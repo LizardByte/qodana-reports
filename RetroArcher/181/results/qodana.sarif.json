@@ -1566,13 +1566,13 @@
                 ]
               },
               {
-                "id": "PyDefaultArgumentInspection",
+                "id": "PyMissingConstructorInspection",
                 "shortDescription": {
-                  "text": "The default argument is mutable"
+                  "text": "Missed call to '__init__' of the super class"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
-                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
+                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1600,13 +1600,13 @@
                 ]
               },
               {
-                "id": "PyMissingConstructorInspection",
+                "id": "PyDefaultArgumentInspection",
                 "shortDescription": {
-                  "text": "Missed call to '__init__' of the super class"
+                  "text": "The default argument is mutable"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
-                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
+                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1838,19 +1838,19 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
+                    "ideaSeverity": "WEAK WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -1872,19 +1872,19 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
+                    "ideaSeverity": "WARNING",
                     "tags": [
                       "ideaSeverity"
                     ]
@@ -1974,13 +1974,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2008,13 +2008,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -4502,40 +4502,6 @@
                 ]
               },
               {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 3,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JsonSchemaDeprecation",
                 "shortDescription": {
                   "text": "Deprecated JSON property"
@@ -4559,6 +4525,40 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 3,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4740,40 +4740,6 @@
                 ]
               },
               {
-                "id": "RequiredAttributes",
-                "shortDescription": {
-                  "text": "Missing required attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
-                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "tags": [
-                      "ideaSeverity"
-                    ]
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 8,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "DuplicatedCode",
                 "shortDescription": {
                   "text": "Duplicated code fragment"
@@ -4797,6 +4763,40 @@
                     "target": {
                       "id": "General",
                       "index": 9,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RequiredAttributes",
+                "shortDescription": {
+                  "text": "Missing required attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
+                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "tags": [
+                      "ideaSeverity"
+                    ]
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 8,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6440,13 +6440,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -6474,13 +6474,13 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "RegExpRepeatedSpace",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Consecutive spaces"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -7137,6 +7137,218 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
+                  "uri": "scripts/_locale.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3309,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3309,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "c74e2fbea8ec2098094982f996a7f5e6ff8a7fbefab010b14c0f65db61cccc52"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyInterpreterInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "No Python interpreter configured for the project",
+            "markdown": "No Python interpreter configured for the project"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/_run_tests.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3316,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3316,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "c759ce8aab60d041d4cb5c4df638936d6c61f934d85be19e675062a950dab31c"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyInterpreterInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "No Python interpreter configured for the project",
+            "markdown": "No Python interpreter configured for the project"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/config.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 5372,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 5372,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "7490634cc35f19a292a79ed65c47ebdeec7df2ad7892a4fc335c0ea4b6bed9e1"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyInterpreterInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "No Python interpreter configured for the project",
+            "markdown": "No Python interpreter configured for the project"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/__init__.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3766,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 3766,
+                  "snippet": {
+                    "text": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "f6598e1803878acdccbe16ca2d16a83a18a0c36e67e4f196376f3d715b7238f5"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "ideaSeverity"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyInterpreterInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "No Python interpreter configured for the project",
+            "markdown": "No Python interpreter configured for the project"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
                   "uri": "pyra/locales.py",
                   "uriBaseId": "SRCROOT"
                 },
@@ -7508,112 +7720,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "scripts/_run_tests.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3316,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3316,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "c759ce8aab60d041d4cb5c4df638936d6c61f934d85be19e675062a950dab31c"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyInterpreterInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "No Python interpreter configured for the project",
-            "markdown": "No Python interpreter configured for the project"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "scripts/_locale.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3309,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3309,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "c74e2fbea8ec2098094982f996a7f5e6ff8a7fbefab010b14c0f65db61cccc52"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyInterpreterInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "No Python interpreter configured for the project",
-            "markdown": "No Python interpreter configured for the project"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "pyra/logger.py",
                   "uriBaseId": "SRCROOT"
                 },
@@ -7720,59 +7826,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "pyra/config.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 5372,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 5372,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "7490634cc35f19a292a79ed65c47ebdeec7df2ad7892a4fc335c0ea4b6bed9e1"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyInterpreterInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "No Python interpreter configured for the project",
-            "markdown": "No Python interpreter configured for the project"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "retroarcher.py",
                   "uriBaseId": "SRCROOT"
                 },
@@ -7806,59 +7859,6 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "f9f9ed0bf9636137b83404329fa22986a89c17f54e82e65d688dbd116aea4e46"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "ideaSeverity"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyInterpreterInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "No Python interpreter configured for the project",
-            "markdown": "No Python interpreter configured for the project"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/__init__.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3766,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 3766,
-                  "snippet": {
-                    "text": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "f6598e1803878acdccbe16ca2d16a83a18a0c36e67e4f196376f3d715b7238f5"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -8771,9 +8771,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2022-12-06",
-        "guid": "f31f7f7e-ab22-4094-9eee-6f3935e52c7c",
+        "guid": "1fdd392c-65b3-4b4b-b424-eee367c86382",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/3633213141",
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/3633293779",
           "tags": [
             "jobUrl"
           ]
@@ -8790,33 +8790,33 @@
             "kind": "fail",
             "level": "error",
             "message": {
-              "text": "No module named 'gettext'",
-              "markdown": "No module named 'gettext'"
+              "text": "No module named 'argparse'",
+              "markdown": "No module named 'argparse'"
             },
             "locations": [
               {
                 "physicalLocation": {
                   "artifactLocation": {
-                    "uri": "pyra/locales.py",
+                    "uri": "scripts/_locale.py",
                     "uriBaseId": "SRCROOT"
                   },
                   "region": {
-                    "startLine": 20,
+                    "startLine": 8,
                     "startColumn": 8,
-                    "charOffset": 965,
-                    "charLength": 7,
+                    "charOffset": 148,
+                    "charLength": 8,
                     "snippet": {
-                      "text": "gettext"
+                      "text": "argparse"
                     },
                     "sourceLanguage": "Python"
                   },
                   "contextRegion": {
-                    "startLine": 18,
+                    "startLine": 6,
                     "startColumn": 1,
-                    "charOffset": 935,
-                    "charLength": 52,
+                    "charOffset": 118,
+                    "charLength": 66,
                     "snippet": {
-                      "text": "\"\"\"\n# standard imports\nimport gettext\n\n# lib imports"
+                      "text": "\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess"
                     }
                   }
                 },
@@ -8829,207 +8829,7 @@
               }
             ],
             "partialFingerprints": {
-              "equalIndicator/v1": "7401d22843c01d8c093376d0bdc0093b284c3bdef966e5147ed6c154d1b75dc8"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "No module named 'babel'",
-              "markdown": "No module named 'babel'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/locales.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 23,
-                    "startColumn": 8,
-                    "charOffset": 995,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "babel"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 21,
-                    "startColumn": 1,
-                    "charOffset": 973,
-                    "charLength": 57,
-                    "snippet": {
-                      "text": "\n# lib imports\nimport babel\nfrom babel import localedata\n"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "a382d92df84477f4c66c1df2fbc87c251e81d4855e36cad9c23b10a73073409b"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'babel'",
-              "markdown": "Unresolved reference 'babel'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/locales.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 24,
-                    "startColumn": 6,
-                    "charOffset": 1006,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "babel"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 22,
-                    "startColumn": 1,
-                    "charOffset": 974,
-                    "charLength": 72,
-                    "snippet": {
-                      "text": "# lib imports\nimport babel\nfrom babel import localedata\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "aa3286a1cce2fc66af482f91fbe1cf85e472b36ed90a0bbb9abbe8e8d95a1303"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'localedata'",
-              "markdown": "Unresolved reference 'localedata'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/locales.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 24,
-                    "startColumn": 19,
-                    "charOffset": 1019,
-                    "charLength": 10,
-                    "snippet": {
-                      "text": "localedata"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 22,
-                    "startColumn": 1,
-                    "charOffset": 974,
-                    "charLength": 72,
-                    "snippet": {
-                      "text": "# lib imports\nimport babel\nfrom babel import localedata\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "9cd17ebc54bea9cb5ed72c59d3d0cfa244b614ba8e81c51f6ba200cfc6d842d2"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "No module named 'threading'",
-              "markdown": "No module named 'threading'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/threads.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 27,
-                    "startColumn": 8,
-                    "charOffset": 773,
-                    "charLength": 9,
-                    "snippet": {
-                      "text": "threading"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 25,
-                    "startColumn": 1,
-                    "charOffset": 743,
-                    "charLength": 85,
-                    "snippet": {
-                      "text": "\"\"\"\n# standard imports\nimport threading\n\n# just use standard threading.Thread for now"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "05c263e09564b6451df8b80fb2b58f9a6e7cc4d0c94f62dc407bd3d756bb3fdb"
+              "equalIndicator/v1": "7ce84aee24f45f34e7c89de6772132b877ebfecf3af210ec136204ae37786805"
             },
             "properties": {
               "ideaSeverity": "ERROR"
@@ -9047,13 +8847,13 @@
               {
                 "physicalLocation": {
                   "artifactLocation": {
-                    "uri": "pyra/webapp.py",
+                    "uri": "scripts/_locale.py",
                     "uriBaseId": "SRCROOT"
                   },
                   "region": {
-                    "startLine": 8,
+                    "startLine": 9,
                     "startColumn": 8,
-                    "charOffset": 87,
+                    "charOffset": 164,
                     "charLength": 2,
                     "snippet": {
                       "text": "os"
@@ -9061,12 +8861,12 @@
                     "sourceLanguage": "Python"
                   },
                   "contextRegion": {
-                    "startLine": 6,
+                    "startLine": 7,
                     "startColumn": 1,
-                    "charOffset": 57,
-                    "charLength": 47,
+                    "charOffset": 122,
+                    "charLength": 63,
                     "snippet": {
-                      "text": "\"\"\"\n# standard imports\nimport os\n\n# lib imports"
+                      "text": "# standard imports\nimport argparse\nimport os\nimport subprocess\n"
                     }
                   }
                 },
@@ -9079,7 +8879,7 @@
               }
             ],
             "partialFingerprints": {
-              "equalIndicator/v1": "101c2708c6589ebab323dc244eec6b57c2b355d585e9db240c05bb3579a2d980"
+              "equalIndicator/v1": "6c7748f7e2b7a37819ee755fc3d5008a7f7d5f73b534c0aa9c210fdcd80efbfa"
             },
             "properties": {
               "ideaSeverity": "ERROR"
@@ -9090,183 +8890,33 @@
             "kind": "fail",
             "level": "error",
             "message": {
-              "text": "No module named 'flask'",
-              "markdown": "No module named 'flask'"
+              "text": "No module named 'subprocess'",
+              "markdown": "No module named 'subprocess'"
             },
             "locations": [
               {
                 "physicalLocation": {
                   "artifactLocation": {
-                    "uri": "pyra/webapp.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 11,
-                    "startColumn": 8,
-                    "charOffset": 112,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "flask"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 9,
-                    "startColumn": 1,
-                    "charOffset": 90,
-                    "charLength": 125,
-                    "snippet": {
-                      "text": "\n# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "dd1f537344a806b56ca0415cef7c49b1eb8d1c3cb18670837be2652d5fa8f1d0"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'flask'",
-              "markdown": "Unresolved reference 'flask'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/webapp.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 6,
-                    "charOffset": 123,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "flask"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 91,
-                    "charLength": 154,
-                    "snippet": {
-                      "text": "# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "9c18dee76aa79c1074f46ca9b774560c0d46d61fc3893bab96cae9e5f4f8eb27"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'Flask'",
-              "markdown": "Unresolved reference 'Flask'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/webapp.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 19,
-                    "charOffset": 136,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "Flask"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 91,
-                    "charLength": 154,
-                    "snippet": {
-                      "text": "# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "2c012d0efffa70f96e485e6f9a03fc7847e9216ccac4cc36f9906ac9d6c1ddd0"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "No module named 'GPUtil'",
-              "markdown": "No module named 'GPUtil'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/hardware.py",
+                    "uri": "scripts/_locale.py",
                     "uriBaseId": "SRCROOT"
                   },
                   "region": {
                     "startLine": 10,
                     "startColumn": 8,
-                    "charOffset": 111,
-                    "charLength": 6,
+                    "charOffset": 174,
+                    "charLength": 10,
                     "snippet": {
-                      "text": "GPUtil"
+                      "text": "subprocess"
                     },
                     "sourceLanguage": "Python"
                   },
                   "contextRegion": {
                     "startLine": 8,
                     "startColumn": 1,
-                    "charOffset": 89,
-                    "charLength": 70,
+                    "charOffset": 141,
+                    "charLength": 73,
                     "snippet": {
-                      "text": "\n# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil"
+                      "text": "import argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'"
                     }
                   }
                 },
@@ -9279,7 +8929,457 @@
               }
             ],
             "partialFingerprints": {
-              "equalIndicator/v1": "a3209bf86672eb5061460c087308c8ab6a3e5014104fa1a3d1e68921e556f08f"
+              "equalIndicator/v1": "d9da5131d2ea75215f25b2325699393fa32bc37fed1996e27246523390e7bdab"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'print'",
+              "markdown": "Unresolved reference 'print'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "scripts/_locale.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 49,
+                    "startColumn": 5,
+                    "charOffset": 1174,
+                    "charLength": 5,
+                    "snippet": {
+                      "text": "print"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 47,
+                    "startColumn": 1,
+                    "charOffset": 1163,
+                    "charLength": 84,
+                    "snippet": {
+                      "text": "    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "9370daf53a30bde5a69cbc26de0ffb27c856c6f222017fb7d450fa7c26c39f54"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'os'",
+              "markdown": "No module named 'os'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "scripts/_run_tests.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 12,
+                    "startColumn": 8,
+                    "charOffset": 267,
+                    "charLength": 2,
+                    "snippet": {
+                      "text": "os"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 10,
+                    "startColumn": 1,
+                    "charOffset": 237,
+                    "charLength": 61,
+                    "snippet": {
+                      "text": "\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "91021f0db95c1f844d3484a1563774f7f5ceec989365019aaf82221b8bcc0e68"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'subprocess'",
+              "markdown": "No module named 'subprocess'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "scripts/_run_tests.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 13,
+                    "startColumn": 8,
+                    "charOffset": 277,
+                    "charLength": 10,
+                    "snippet": {
+                      "text": "subprocess"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 11,
+                    "startColumn": 1,
+                    "charOffset": 241,
+                    "charLength": 69,
+                    "snippet": {
+                      "text": "# standard imports\nimport os\nimport subprocess\nimport sys\nimport time"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "2b51ea6e61fe194eb12e7dc18f2800775240abb8e5105b35aad3c87a5cdb269a"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'sys'",
+              "markdown": "No module named 'sys'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "scripts/_run_tests.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 14,
+                    "startColumn": 8,
+                    "charOffset": 295,
+                    "charLength": 3,
+                    "snippet": {
+                      "text": "sys"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 12,
+                    "startColumn": 1,
+                    "charOffset": 260,
+                    "charLength": 51,
+                    "snippet": {
+                      "text": "import os\nimport subprocess\nimport sys\nimport time\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "64e6f5f53d40b8a075fcc73992e997432dac5e4ea7c617d11cfbcf1db191b44d"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'time'",
+              "markdown": "No module named 'time'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "scripts/_run_tests.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 15,
+                    "startColumn": 8,
+                    "charOffset": 306,
+                    "charLength": 4,
+                    "snippet": {
+                      "text": "time"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 13,
+                    "startColumn": 1,
+                    "charOffset": 270,
+                    "charLength": 73,
+                    "snippet": {
+                      "text": "import subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "567cd1829a40078c7810c9fad4591383eb08eee6b44e2d471bbd47daec73a87c"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'sys'",
+              "markdown": "No module named 'sys'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/config.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 8,
+                    "startColumn": 8,
+                    "charOffset": 93,
+                    "charLength": 3,
+                    "snippet": {
+                      "text": "sys"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 6,
+                    "startColumn": 1,
+                    "charOffset": 63,
+                    "charLength": 48,
+                    "snippet": {
+                      "text": "\"\"\"\n# standard imports\nimport sys\n\n# lib imports"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "49e20600e25040c9d7bb1856ca244887c556b61afd7aced1f5c2d9170edd3d35"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'configobj'",
+              "markdown": "Unresolved reference 'configobj'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/config.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 11,
+                    "startColumn": 6,
+                    "charOffset": 117,
+                    "charLength": 9,
+                    "snippet": {
+                      "text": "configobj"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 9,
+                    "startColumn": 1,
+                    "charOffset": 97,
+                    "charLength": 93,
+                    "snippet": {
+                      "text": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "e3a34831e0d196fb7f85b796627c0c0fbb5e7cd8fe2d0f21271dc0e281e9150e"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'ConfigObj'",
+              "markdown": "Unresolved reference 'ConfigObj'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/config.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 11,
+                    "startColumn": 23,
+                    "charOffset": 134,
+                    "charLength": 9,
+                    "snippet": {
+                      "text": "ConfigObj"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 9,
+                    "startColumn": 1,
+                    "charOffset": 97,
+                    "charLength": 93,
+                    "snippet": {
+                      "text": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "9fca7a5cc175f8b700b0b6b7f03d1f904d74fb7d2be2f0b13264bd01046fe0be"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'validate'",
+              "markdown": "Unresolved reference 'validate'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/config.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 12,
+                    "startColumn": 6,
+                    "charOffset": 149,
+                    "charLength": 8,
+                    "snippet": {
+                      "text": "validate"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 10,
+                    "startColumn": 1,
+                    "charOffset": 98,
+                    "charLength": 108,
+                    "snippet": {
+                      "text": "# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "9e781dccc8715c56034799d0e245c982761db177f7cfc479ba4ed26fa7fed1b5"
             },
             "properties": {
               "ideaSeverity": "ERROR"

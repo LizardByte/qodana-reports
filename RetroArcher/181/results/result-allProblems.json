@@ -8,6 +8,118 @@
   "sources": [
     {
       "type": "file",
+      "path": "scripts/_locale.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 1,
+      "length": 3309,
+      "code": {
+        "startLine": 1,
+        "length": 3309,
+        "offset": 0,
+        "surroundingCode": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "c74e2fbea8ec2098094982f996a7f5e6ff8a7fbefab010b14c0f65db61cccc52"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "scripts/_run_tests.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 1,
+      "length": 3316,
+      "code": {
+        "startLine": 1,
+        "length": 3316,
+        "offset": 0,
+        "surroundingCode": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "c759ce8aab60d041d4cb5c4df638936d6c61f934d85be19e675062a950dab31c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 1,
+      "length": 5372,
+      "code": {
+        "startLine": 1,
+        "length": 5372,
+        "offset": 0,
+        "surroundingCode": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "7490634cc35f19a292a79ed65c47ebdeec7df2ad7892a4fc335c0ea4b6bed9e1"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/__init__.py",
+      "language": "Python",
+      "line": 1,
+      "offset": 1,
+      "length": 3766,
+      "code": {
+        "startLine": 1,
+        "length": 3766,
+        "offset": 0,
+        "surroundingCode": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInterpreterInspection"
+  },
+  "hash": "f6598e1803878acdccbe16ca2d16a83a18a0c36e67e4f196376f3d715b7238f5"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "An invalid interpreter",
+  "severity": "High",
+  "comment": "No Python interpreter configured for the project",
+  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "sources": [
+    {
+      "type": "file",
       "path": "pyra/locales.py",
       "language": "Python",
       "line": 1,
@@ -204,62 +316,6 @@
   "sources": [
     {
       "type": "file",
-      "path": "scripts/_run_tests.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3316,
-      "code": {
-        "startLine": 1,
-        "length": 3316,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "c759ce8aab60d041d4cb5c4df638936d6c61f934d85be19e675062a950dab31c"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "scripts/_locale.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3309,
-      "code": {
-        "startLine": 1,
-        "length": 3309,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "c74e2fbea8ec2098094982f996a7f5e6ff8a7fbefab010b14c0f65db61cccc52"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
       "path": "pyra/logger.py",
       "language": "Python",
       "line": 1,
@@ -316,34 +372,6 @@
   "sources": [
     {
       "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 5372,
-      "code": {
-        "startLine": 1,
-        "length": 5372,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "7490634cc35f19a292a79ed65c47ebdeec7df2ad7892a4fc335c0ea4b6bed9e1"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
       "path": "retroarcher.py",
       "language": "Python",
       "line": 1,
@@ -362,34 +390,6 @@
     "inspectionName": "PyInterpreterInspection"
   },
   "hash": "f9f9ed0bf9636137b83404329fa22986a89c17f54e82e65d688dbd116aea4e46"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "severity": "High",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3766,
-      "code": {
-        "startLine": 1,
-        "length": 3766,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "f6598e1803878acdccbe16ca2d16a83a18a0c36e67e4f196376f3d715b7238f5"
 },{
   "tool": "Code Inspection",
   "category": "Python",
