@@ -29,6 +29,34 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
+  "type": "The default argument is mutable",
+  "severity": "High",
+  "comment": "Default argument value is mutable",
+  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 57,
+      "length": 12,
+      "code": {
+        "startLine": 54,
+        "length": 12,
+        "offset": 58,
+        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDefaultArgumentInspection"
+  },
+  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
   "type": "Shadowing names from outer scopes",
   "severity": "Moderate",
   "comment": "Shadows name 'args' from outer scope",
@@ -141,34 +169,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "The default argument is mutable",
-  "severity": "High",
-  "comment": "Default argument value is mutable",
-  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 56,
-      "offset": 57,
-      "length": 12,
-      "code": {
-        "startLine": 54,
-        "length": 12,
-        "offset": 58,
-        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyDefaultArgumentInspection"
-  },
-  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "Unbound local variables",
   "severity": "High",
   "comment": "Local variable 'cmd' might be referenced before assignment",
@@ -278,6 +278,34 @@
     "inspectionName": "PyPep8NamingInspection"
   },
   "hash": "a0c7599cf7ce729c86aac330fd7b61a7a1365d41689f170604a8332b493339e0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 167,
+      "offset": 12,
+      "length": 9,
+      "code": {
+        "startLine": 165,
+        "length": 9,
+        "offset": 43,
+        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -530,34 +558,6 @@
     "inspectionName": "PyBroadExceptionInspection"
   },
   "hash": "ff1fc19d699fc5d771d2e1523c2876b27be97c1d7ccd78c901c2829596e4a659"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 167,
-      "offset": 12,
-      "length": 9,
-      "code": {
-        "startLine": 165,
-        "length": 9,
-        "offset": 43,
-        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
 },{
   "tool": "Code Inspection",
   "category": "Python",
