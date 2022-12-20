@@ -255,16 +255,16 @@
           "description": "Reports invalid usages of a class with `__slots__` definitions.\n\n**Example:**\n\n```\nclass Foo:\n    __slots__ = ['foo', 'bar']\n\n\nfoo = Foo()\nfoo.baz = 'spam'\n```"
         },
         {
-          "shortName": "PyMissingConstructorInspection",
-          "displayName": "Missed call to '__init__' of the super class",
-          "enabled": true,
-          "description": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
-        },
-        {
           "shortName": "PyDefaultArgumentInspection",
           "displayName": "The default argument is mutable",
           "enabled": true,
           "description": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+        },
+        {
+          "shortName": "PyMissingConstructorInspection",
+          "displayName": "Missed call to '__init__' of the super class",
+          "enabled": true,
+          "description": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
         },
         {
           "shortName": "PyShadowingBuiltinsInspection",
@@ -393,16 +393,16 @@
           "description": "Reports cases in Python 2 when a class has no `__init__` method, neither its parent\nclasses.\n\n**Example:**\n\n```\nclass Book():\n    pass\n```\n\nThe quick-fix adds the `__init__` method:\n\n```\nclass Book():\n    def __init__(self):\n        pass\n```"
         },
         {
-          "shortName": "PyArgumentEqualDefaultInspection",
-          "displayName": "The function argument is equal to the default parameter value",
-          "enabled": false,
-          "description": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
-        },
-        {
           "shortName": "CythonUsageBeforeDeclarationInspection",
           "displayName": "Cython variable is used before its declaration",
           "enabled": true,
           "description": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+        },
+        {
+          "shortName": "PyArgumentEqualDefaultInspection",
+          "displayName": "The function argument is equal to the default parameter value",
+          "enabled": false,
+          "description": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
         },
         {
           "shortName": "PyClassVarInspection",
@@ -573,16 +573,16 @@
           "description": "Reports invalid usages of final classes,\nmethods and variables.\n\n**Example:**\n\n```\nfrom typing import final\n\n\n@final\nclass A:\n    def a_method(self):\n        pass\n\n\nclass B(A):\n    def a_method(self):\n        pass\n```"
         },
         {
-          "shortName": "PyProtectedMemberInspection",
-          "displayName": "Accessing a protected member of a class or a module",
-          "enabled": true,
-          "description": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
-        },
-        {
           "shortName": "PyStubPackagesCompatibilityInspection",
           "displayName": "Incompatible stub packages",
           "enabled": false,
           "description": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+        },
+        {
+          "shortName": "PyProtectedMemberInspection",
+          "displayName": "Accessing a protected member of a class or a module",
+          "enabled": true,
+          "description": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
         },
         {
           "shortName": "PyUnboundLocalVariableInspection",
@@ -689,6 +689,375 @@
       ]
     },
     {
+      "name": "PostgreSQL",
+      "inspections": [
+        {
+          "shortName": "PgSelectFromProcedureInspection",
+          "displayName": "Postgres: Select from procedure call",
+          "enabled": false,
+          "description": "Reports situations when you make SELECT from a function or a DBLINK without an alias with a type (for example, `AS t1(s VARCHAR)`).\n\nThis requirement does not apply to scalar functions.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION produce_a_table() RETURNS RECORD AS $$\n    SELECT 1;\n    $$ LANGUAGE sql;\n    SELECT * FROM produce_a_table() AS s (c1 INT);\n    SELECT * FROM produce_a_table() AS s (c1);\n    SELECT * FROM DBLINK('dbname=mydb', 'SELECT proname, prosrc FROM pg_proc') AS t1;\n\nThe `AS s (c1 INT)` has a typed alias, while `AS s (c1)` and `AS t1` do not.\nIn this case, the second call of `produce_a_table()` and `DBLINK()` will be highlighted."
+        }
+      ]
+    },
+    {
+      "name": "Google App Engine (Python)",
+      "inspections": [
+        {
+          "shortName": "Query_index_required",
+          "displayName": "Query does not have the required index",
+          "enabled": true,
+          "description": "Reports GQL queries for which an index is not defined in `index.yaml`.\nSuch queries will fail on the production server.\nThe quick-fix allows you to add the necessary index definitions."
+        },
+        {
+          "shortName": "AppEngineThreadsafeCGIHandlerInspection",
+          "displayName": "Threadsafe cannot be enabled with the CGI handler",
+          "enabled": true,
+          "description": "Reports cases when threadsafe is not enabled with the CGI handler."
+        },
+        {
+          "shortName": "Restricted_Python_calls",
+          "displayName": "Feature is not supported in the App Engine sandbox",
+          "enabled": true,
+          "description": "Reports usages of Python features that are restricted by the Google App\nEngine sandbox and will cause a failure on the production server."
+        },
+        {
+          "shortName": "Query_bound_parameters",
+          "displayName": "Query does not have required bound parameters",
+          "enabled": true,
+          "description": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+        },
+        {
+          "shortName": "Query_restricted",
+          "displayName": "Query does not comply with the query restrictions",
+          "enabled": true,
+          "description": "Reports GQL queries that do not comply with the restrictions for queries allowed\non the Google App Engine server.\nSee the [App Engine documentation](http://code.google.com/appengine/docs/python/datastore/queriesandindexes.html#Restrictions_on_Queries) for more information."
+        },
+        {
+          "shortName": "AppEngineThreadsafeInspection",
+          "displayName": "Threadsafe is not available or set inappropriately",
+          "enabled": true,
+          "description": "Reports cases when threadsafe is not present or it is not set to either `yes` or `no`."
+        }
+      ]
+    },
+    {
+      "name": "SQL",
+      "inspections": [
+        {
+          "shortName": "SqlCurrentSchemaInspection",
+          "displayName": "Current console schema introspected",
+          "enabled": false,
+          "description": "Reports schemas and databases in the current session that are not introspected.\n\nFor example, this warning might occur when you try to create a table in the schema that is not introspected.\n\nIntrospection is a method of inspecting a data source. When you perform introspection, structural information in the data source is\ninspected to detect tables, columns, functions, and other elements with their attributes."
+        },
+        {
+          "shortName": "SqlMisleadingReferenceInspection",
+          "displayName": "Misleading references",
+          "enabled": false,
+          "description": "Reports ambiguous references in SQL code.\n\nFor example, when a name refer to both a table column and a routine parameter. The execution of such code might lead to errors or unexpected\nresults due to counter-intuitive resolution logic. Usually, names with a more local scope have higher priority.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n        id   INT,\n        name VARCHAR(5)\n    );\n    CREATE FUNCTION func(name VARCHAR(5)) RETURNS INT AS\n    $$\n    DECLARE\n        b INT;\n    BEGIN\n          -- `name` is ambiguous as it is used as a column name and a parameter\n        SELECT COUNT(*) INTO b FROM foo t WHERE t.name = name;\n        RETURN b;\n    END;\n    $$ LANGUAGE plpgsql;\n\nIn PostgreSQL, you can use the `#variable_conflict` directives to explicitly specify a correct reference. For example,\nuse `#variable_conflict use_column` to refer to a column name, or `#variable_conflict use_variable` to refer to a\nparameter.\n\n    CREATE TABLE foo\n    (\n        id   INT,\n        name VARCHAR(5)\n    );\n    CREATE FUNCTION func(name VARCHAR(5)) RETURNS INT AS\n    $$\n        #variable_conflict use_column\n    DECLARE\n        b INT;\n    BEGIN\n        SELECT COUNT(*) INTO b FROM foo t WHERE t.name = name;\n        RETURN b;\n    END;\n    $$ LANGUAGE plpgsql;\n"
+        },
+        {
+          "shortName": "SqlInsertIntoGeneratedColumnInspection",
+          "displayName": "Insertion into generated columns",
+          "enabled": false,
+          "description": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
+        },
+        {
+          "shortName": "SqlRedundantLimitInspection",
+          "displayName": "Redundant row limiting in queries",
+          "enabled": false,
+          "description": "Reports redundant row limiting clauses like FETCH and LIMIT in queries.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT);\n\n    SELECT * FROM foo WHERE EXISTS(SELECT * FROM foo LIMIT 2);\n    SELECT * FROM foo WHERE EXISTS(SELECT * FROM foo FETCH FIRST 2 ROWS ONLY);\n\nTo fix the warning, you can add OFFSET to limiting clauses. If OFFSET is missing, then LIMIT is redundant because\nthe usage of LIMIT does not influence the operation result of EXISTS. In case with OFFSET, we skip first `N` rows and this will\ninfluence the output.\n\n    SELECT * FROM foo WHERE EXISTS(SELECT * FROM foo OFFSET 1 ROW LIMIT 2);\n    SELECT * FROM foo WHERE EXISTS(SELECT * FROM foo OFFSET 1 ROW FETCH FIRST 2 ROWS ONLY);\n"
+        },
+        {
+          "shortName": "SqlInsertNullIntoNotNullInspection",
+          "displayName": "Insert NULL into NOT NULL column",
+          "enabled": false,
+          "description": "Reports cases when you insert NULL values into columns that accept only NOT NULL values.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE br2 (\n    id INT NOT NULL,\n    col1 NVARCHAR (20) NOT NULL,\n    col2 NVARCHAR (20) NOT NULL,\n    );\n    --\n    INSERT INTO br2 (id, col1, col2)\n    VALUES (1, NULL, NULL);\n\nYou cannot insert NULL values in `col1` and `col2` because they are defined as NOT NULL. If you run the script as\nis,\nyou will receive an error. To fix this code, replace NULL in the VALUES part with some values (for example, `42` and\n`'bird'`).\n\n```\nINSERT INTO br2 (id, col1, col2)\nVALUES (1, 42, 'bird');\n```"
+        },
+        {
+          "shortName": "SqlDerivedTableAliasInspection",
+          "displayName": "Each derived table should have alias",
+          "enabled": false,
+          "description": "Reports derived tables without aliases.\n\nExample (MySQL):\n\n    CREATE TABLE table1 (id INT, name VARCHAR(20), cats FLOAT);\n    CREATE TABLE table2 (id INT, age INTEGER);\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n\nAccording to [Derived Tables at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/derived-tables.html), an alias is\nmandatory. You can add the alias by using the **Introduce alias** quick-fix.\n\nAfter the quick-fix is applied:\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n"
+        },
+        {
+          "shortName": "SqlMissingReturnInspection",
+          "displayName": "Missing return statement",
+          "enabled": false,
+          "description": "Reports functions that have no RETURN statements.\n\nExample (Oracle):\n\n    CREATE FUNCTION foo RETURN int AS\n    BEGIN\n    END;\n\nThe `foo` function must return the integer value but the function body returns nothing. To fix the error,\nadd a RETURN statement (for example, `return 1;`).\n\n    CREATE FUNCTION foo RETURN int AS\n    BEGIN\n     RETURN 1;\n    END;\n"
+        },
+        {
+          "shortName": "SqlUnusedSubqueryItemInspection",
+          "displayName": "Unused subquery item",
+          "enabled": false,
+          "description": "Reports columns, aliases, and other subquery items that are not referenced in the outer query expression.\n\nExample (PostgreSQL):\n\n    CREATE TABLE for_subquery(id INT);\n    SELECT a, q FROM (SELECT 1 AS a, 10 AS b, 2 + 3 AS q, id\n          FROM for_subquery) x;\n\nWe reference `a` and `q` aliases from a subquery. But the `b` alias and the `id` column are\nnot referenced in the outer SELECT statement. Therefore, `b` and `id` are grayed out."
+        },
+        {
+          "shortName": "SqlTriggerTransitionInspection",
+          "displayName": "Suspicious code in triggers",
+          "enabled": false,
+          "description": "Reports incorrect usages of transition table variables in triggers.\n\nExample (HSQLDB):\n\n    CREATE TABLE foo(a INT);\n\n    CREATE TRIGGER trg\n     AFTER DELETE ON foo\n    BEGIN\n       SELECT * FROM NEW;\n    END;\n\n    CREATE TRIGGER trig AFTER INSERT ON foo\n       REFERENCING OLD ROW AS newrow\n       FOR EACH ROW WHEN (a > 1)\n       INSERT INTO foo VALUES (1)\n\nIn HSQLDB, DELETE triggers may be used only with the OLD state while INSERT triggers may have only the NEW state. So, in the previous\nexample, NEW in `SELECT * FROM NEW;` will be highlighted as well as OLD in `REFERENCING OLD ROW AS newrow`."
+        },
+        {
+          "shortName": "SqlNamedArgumentsInspection",
+          "displayName": "Named arguments should be used",
+          "enabled": false,
+          "description": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+        },
+        {
+          "shortName": "SqlMultipleLimitClausesInspection",
+          "displayName": "Multiple row limiting/offset clauses in queries",
+          "enabled": false,
+          "description": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+        },
+        {
+          "shortName": "SqlCaseVsCoalesceInspection",
+          "displayName": "Using CASE instead of COALESCE function and vice versa",
+          "enabled": false,
+          "description": "Reports situations when CASE and COALESCE calls are interchangeable. This inspection has the following intention actions: **Replace\nwith 'COALESCE' call** and the opposite one **Replace with CASE expression** .\n\nExample (MySQL):\n\n    SELECT\n      -- this CASE may be replaced by COALESCE\n    \tCASE\n    \t\tWHEN C1 IS NOT NULL THEN C1\n    \t\tELSE 0\n    \t\tEND\n    FROM dual;\n\nIn the example, the CASE statement can be replaced with `SELECT COALESCE(C1, 0)` that produces the same output.\n\nIf you prefer using CASE expressions, select the **Prefer CASE expressions over COALESCE function** option on\nthe inspection page."
+        },
+        {
+          "shortName": "SqlCaseVsIfInspection",
+          "displayName": "Using CASE instead of conditional function and vice versa",
+          "enabled": false,
+          "description": "Reports situations when CASE and IF are interchangeable.\n\nExample (MySQL):\n\n    SELECT CASE\n    WHEN C1 IS NULL THEN 1\n    ELSE 0\n    END\n    FROM dual;\n\nTo keep your code short, you can replace the CASE structure with IF. You can do that by applying the **Replace with 'IF' call**\nintention action. The example code will look as follows:\n\n    SELECT IF(C1 IS NULL, 1, 0)\n    FROM dual;\n\nTo revert IF to CASE, click IF and apply the **Replace with CASE expression** intention action."
+        },
+        {
+          "shortName": "SqlShouldBeInGroupByInspection",
+          "displayName": "Column should be in group by clause",
+          "enabled": false,
+          "description": "Reports columns that are not in the GROUP BY clause or inside an aggregate function call.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE t1 (a INT, b INT);\n    SELECT a, b FROM t1 GROUP BY a;\n\nIf you run the SELECT query, you will receive an error because Microsoft SQL Server expects the `b` column in GROUP BY or used\ninside an aggregate function. The following two examples will fix the error.\n\n    SELECT a, b FROM t1 GROUP BY a, b;\n    SELECT a, max(b) max_b FROM t1 GROUP BY a;\n"
+        },
+        {
+          "shortName": "SqlRedundantAliasInspection",
+          "displayName": "Redundant alias expressions",
+          "enabled": false,
+          "description": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+        },
+        {
+          "shortName": "SqlIdentifierInspection",
+          "displayName": "Identifier should be quoted",
+          "enabled": false,
+          "description": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
+        },
+        {
+          "shortName": "SqlAutoIncrementDuplicateInspection",
+          "displayName": "Auto-increment duplicate",
+          "enabled": false,
+          "description": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+        },
+        {
+          "shortName": "SqlStringLengthExceededInspection",
+          "displayName": "Implicit string truncation",
+          "enabled": false,
+          "description": "Reports variables that exceed the defined length in characters.\n\nExample (Microsoft SQL Server):\n\n    CREATE PROCEDURE test() AS\n    BEGIN\n    DECLARE myVarOk VARCHAR(5) = 'abcde';\n    DECLARE myVarExceeded VARCHAR(5) = 'abcde12345';\n\n    SET myVarOk = 'xyz';\n    SET myVarExceeded = '123456789';\n    END;\n\nThe `myVarExceeded` variable is defined as `VARCHAR(5)` but both assigned values (`'abcde12345'` and\n`'123456789'`) exceed this limitation. You can truncate assigned values or increase the defined length.\nTo increase the length, use the **Increase type length** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE PROCEDURE test() AS\n    BEGIN\n    DECLARE myVarOk VARCHAR(5) = 'abcde';\n    DECLARE myVarExceeded VARCHAR(10) = 'abcde12345';\n\n    SET myVarOk = 'xyz';\n    SET myVarExceeded = '123456789';\n    END;\n"
+        },
+        {
+          "shortName": "SqlTransactionStatementInTriggerInspection",
+          "displayName": "Use of transaction management statements in triggers",
+          "enabled": false,
+          "description": "Reports usages of transaction management statements like COMMIT or ROLLBACK in trigger bodies.\n\nWith COMMIT or ROLLBACK statements in a trigger body, the trigger will not compile.\nThe fail happens because triggers start during transactions. When the trigger starts the current transaction is still not complete. As\nCOMMIT\nterminates a transaction, both statements (COMMIT and ROLLBACK) would lead to an exception.\nChanges that are executed in a trigger should be committed (or rolled back) by the owning transaction that started the trigger.\n\nExample (Oracle):\n\n    CREATE TABLE employee_audit\n    (\n        id          INT  NOT NULL,\n        update_date DATE NOT NULL,\n        old_name    VARCHAR2(100),\n        new_name    VARCHAR2(100)\n    );\n\n    CREATE TABLE employees\n    (\n        id   INT           NOT NULL,\n        name VARCHAR2(100) NOT NULL\n    );\n\n    CREATE OR REPLACE TRIGGER trig_commit\n        AFTER UPDATE OF name\n        ON employees\n        FOR EACH ROW\n    BEGIN\n        INSERT INTO employee_audit VALUES (:old.id, SYSDATE, :old.name, :new.name);\n        COMMIT;\n    END;\n\n    CREATE OR REPLACE TRIGGER trig_rollback\n        AFTER UPDATE OF name\n        ON employees\n        FOR EACH ROW\n    BEGIN\n        INSERT INTO employee_audit VALUES (:old.id, SYSDATE, :old.name, :new.name);\n        ROLLBACK;\n    END;\n"
+        },
+        {
+          "shortName": "SqlRedundantCodeInCoalesceInspection",
+          "displayName": "Redundant code in COALESCE call",
+          "enabled": false,
+          "description": "Reports all the arguments except for the first expression that does not evaluate to NULL in COALESCE functions.\n\nExample (MySQL):\n\n    SELECT COALESCE(NULL, NULL, NULL, 42, NULL, 'string') as a;\n\nThe first NOT NULL argument is `42`, all other arguments will be grayed out."
+        },
+        {
+          "shortName": "SqlStorageInspection",
+          "displayName": "SQL source modification detection",
+          "enabled": false,
+          "description": "Reports situations when source code of a database object has been changed.\n\nThe inspection is triggered when you perform database or object introspection. The introspection is run when you open source code of an\nobject, run statements, and perform code refactoring.\nAlso, you can run introspection by right-clicking an object and selecting **Refresh**.\n\nThe inspection covers the following situations:\n\n* Object source code was changed in the database but code in the editor was not updated. Works in PostgreSQL, Microsoft SQL Server, Oracle, and Sybase ASE.\n* You changed the object source code, introspected the database, but source code has been already changed by someone else.\n* The database introspector was updated in the IDE and you need to download new object properties that were missing in the previous introspector version."
+        },
+        {
+          "shortName": "SqlDtInspection",
+          "displayName": "Ill-formed date/time literals",
+          "enabled": false,
+          "description": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+        },
+        {
+          "shortName": "SqlSideEffectsInspection",
+          "displayName": "Statement with side effects",
+          "enabled": false,
+          "description": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+        },
+        {
+          "shortName": "SqlIllegalCursorStateInspection",
+          "displayName": "Illegal cursor state",
+          "enabled": false,
+          "description": "Reports illegal cursor states inside SQL routines.\n\n* A routine has CLOSE or FETCH statements but a cursor might be closed.\n* A routine has the OPEN statement but a cursor might be opened.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE t(col INT);\n\n    CREATE PROCEDURE foo() AS\n    BEGIN\n    DECLARE my_cursor CURSOR FOR SELECT * FROM t;\n    DECLARE a INT;\n    FETCH my_cursor INTO a;\n    CLOSE my_cursor;\n    END;\n\nAccording to [CLOSE (Transact-SQL) at\ndocs.microsoft.com](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/close-transact-sql), CLOSE must be issued on an open cursor, and CLOSE is not allowed on cursors that have only been declared or are\nalready closed. So, we need to open the cursor to fix the warning.\n\n    CREATE PROCEDURE foo() AS\n    BEGIN\n    DECLARE my_cursor CURSOR FOR SELECT * FROM t;\n    DECLARE a INT;\n    OPEN my_cursor;\n    FETCH my_cursor INTO a;\n    CLOSE my_cursor;\n    END;\n"
+        },
+        {
+          "shortName": "SqlJoinWithoutOnInspection",
+          "displayName": "Unsafe 'join' clause in 'delete' statement",
+          "enabled": false,
+          "description": "Reports missing conditional checks for statements that might modify the whole database.\n\nFor example, usages of JOIN clauses inside DELETE statements without ON or WHERE. Without conditional checks on JOIN, DELETE drops\ncontents of the entire table.\n\nExample (MySQL):\n\n    CREATE TABLE foo (a INT,b INT,c INT);\n    CREATE TABLE bar (a INT,b INT,c INT);\n\n    DELETE table1 FROM foo table1  INNER JOIN bar table2;\n"
+        },
+        {
+          "shortName": "SqlDropIndexedColumnInspection",
+          "displayName": "Index is dependent on column",
+          "enabled": false,
+          "description": "Reports cases when you try to drop columns from indexed tables. This inspection is available in Microsoft SQL Server and Sybase ASE.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE test_index\n    (\n    col  INT NOT NULL,\n    col2 INT NOT NULL,\n    col3 INT NOT NULL UNIQUE,\n    col4 VARCHAR(200)\n    );\n\n    CREATE UNIQUE INDEX aaaa ON test_index (col, col2);\n\n    ALTER TABLE test_index\n    DROP COLUMN col;\n\nYou cannot delete the `col` column because it is in the indexed table. To delete the column, you need to delete the\n`aaaa` index first (for example, DROP INDEX aaaa)."
+        },
+        {
+          "shortName": "SqlCheckUsingColumnsInspection",
+          "displayName": "Check using clause columns",
+          "enabled": false,
+          "description": "Reports columns in the USING clause that does not exist in both tables.\n\nExample (MySQL):\n\n    CREATE TABLE t1 (i INT, j INT);\n    CREATE TABLE t2 (k INT, l INT);\n    SELECT * FROM t1 JOIN t2 USING (j);\n\nIn USING clauses, a column name must be present in both tables, and the SELECT query will automatically join\nthose tables by using the given column name. As we do not have the `j` column in `t2`, we can\nrewrite the query using ON. The ON clause can join tables where the column names do not match in both tables.\n\n    SELECT * FROM t1 JOIN t2 ON t1.j = t2.l;\n"
+        },
+        {
+          "shortName": "SqlSignatureInspection",
+          "displayName": "Function signature",
+          "enabled": false,
+          "description": "Reports signature issues for built-in functions.\n\nThe inspection will report a wrong number of arguments, invalid keywords, wrong data types, and other issues.\n\nExample (MySQL):\n\n    CREATE TABLE foo (a INT, b INT, c INT)\n\n    SELECT IFNULL() FROM foo; -- error\n    SELECT IFNULL(a) FROM foo; -- error\n    SELECT IFNULL(a, b) FROM foo; -- OK\n    SELECT IFNULL(a, b, c) FROM foo; -- error\n\nIn MySQL, the `IFNULL()` function accepts strictly two arguments. So, only the `SELECT IFNULL(a, b) FROM foo;`\nquery is correct."
+        },
+        {
+          "shortName": "SqlRedundantOrderingDirectionInspection",
+          "displayName": "Redundant ordering direction",
+          "enabled": false,
+          "description": "Reports redundant ordering directions like ASC and DESC in ORDER BY clauses.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT, b INT, c INT);\n    SELECT * FROM foo ORDER BY a ASC, b DESC, c ASC;\n\nThe ORDER BY keyword sorts the records in the ascending order by default. So, the `ASC` keyword for `a` and\n`c` columns is redundant."
+        },
+        {
+          "shortName": "SqlInsertValuesInspection",
+          "displayName": "VALUES clause cardinality",
+          "enabled": false,
+          "description": "Reports situations when a number of parameters in VALUES does not match a number of columns in a target table.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT, b INT, c INT);\n\n    INSERT INTO foo VALUES (1,2,3,4)\n\nThe `foo` table has three columns but in the INSERT INTO statement we pass four."
+        },
+        {
+          "shortName": "SqlConstantConditionInspection",
+          "displayName": "Constant condition",
+          "enabled": false,
+          "description": "Reports conditions in WHERE or JOIN clauses that are always TRUE or always FALSE.\n\nExample (MySQL):\n\n    CREATE TABLE t1 (a TEXT, b INT, c BOOLEAN);\n    SELECT a FROM t1 WHERE 'Cat' = 'Cat';\n\nThe `'Cat' = 'Cat'` is always true and will be reported."
+        },
+        {
+          "shortName": "SqlDialectInspection",
+          "displayName": "SQL dialect detection",
+          "enabled": false,
+          "description": "Reports situations when a dialect is not assigned to an SQL file.\n\nFor example, when you open a new SQL file without assigning a dialect\nto it, you see a notification where the best matching dialect is advised. Click the **Use \\<dialect\\>** link to use the advised\ndialect. Alternatively, click the **Change dialect to** link to select the other dialect."
+        },
+        {
+          "shortName": "SqlRedundantElseNullInspection",
+          "displayName": "Redundant ELSE NULL clause",
+          "enabled": false,
+          "description": "Reports redundant ELSE NULL clauses.\n\nExample (MySQL):\n\n    SELECT CASE WHEN 2 > 1 THEN 'OK' ELSE NULL END AS alias FROM foo;\n\nThe `ELSE NULL` part will never be executed and may be omitted."
+        },
+        {
+          "shortName": "SqlDeprecateTypeInspection",
+          "displayName": "Deprecated type",
+          "enabled": false,
+          "description": "Reports usages of types that are deprecated and might disappear in future versions of DBMS.\n\nReported types:\n\n* LONG in Oracle (see [Deprecated\n  and Desupported Features at docs.oracle.com](https://docs.oracle.com/cd/A91202_01/901_doc/server.901/a90120/ch4_dep.htm#6690)).\n* TEXT, NTEXT, and IMAGE in Microsoft SQL Server (see [Deprecated Database Engine Features in SQL Server 2016 at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/database-engine/deprecated-database-engine-features-in-sql-server-2016?view=sql-server-ver15)).\n\nExample (Oracle):\n\n    CREATE TABLE ot.foo(\n    a NUMBER GENERATED BY DEFAULT AS IDENTITY,\n    b LONG NOT NULL\n    );\n"
+        },
+        {
+          "shortName": "SqlAggregatesInspection",
+          "displayName": "Aggregate-related problems",
+          "enabled": false,
+          "description": "Reports invalid usages of SQL aggregate functions.\n\nThe following situations are considered:\n\n* Columns that are used in HAVING and ORDER BY clauses but are missed in GROUP BY clauses.\n\n      CREATE TABLE foo(id INT PRIMARY KEY, a INT, b INT);\n      SELECT a, MAX(b) FROM foo GROUP BY a HAVING b > 0;\n      SELECT * FROM foo GROUP BY a ORDER BY b;\n\n  This rule does not apply when grouping is made by the primary key.\n\n      SELECT * FROM foo GROUP BY id ORDER BY b;\n\n* Aggregate functions in a wrong context. Usually, you can use aggregate functions in the following contexts: a list of expressions in\n  SELECT; in HAVING and ORDER BY sections; and other dialect-specific cases. The following queries will display an error.\n\n      SELECT a FROM foo WHERE MAX(b) > 0;\n      SELECT a FROM foo GROUP BY MAX(a);\n\n* Nested calls of aggregate functions.\n\n      SELECT MAX(SUM(a)) FROM foo GROUP BY a;\n\n  This rule does not apply to analytic functions. The following query is valid and correct.\n\n      SELECT MAX(SUM(a) OVER ()) FROM foo;\n\n* Usages of HAVING without aggregate functions. In this case, consider rewriting your code using the WHERE section.\n\n      SELECT a, MAX(b) FROM foo GROUP BY a HAVING a > 0;\n"
+        },
+        {
+          "shortName": "SqlCallNotationInspection",
+          "displayName": "Using of named and positional arguments",
+          "enabled": false,
+          "description": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2.\n\nExample (In PostgreSQL):\n\n    CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n        LANGUAGE plpgsql AS\n    $$\n    BEGIN\n        RETURN a + b + c;\n    END\n    $$;\n    SELECT foo(a => 1, b => 2, c => 3);\n      -- `3` goes after the named argument\n    SELECT foo(1, b => 2, 3);\n      -- `1` and `3` go after the named argument\n    SELECT foo(b => 2, 1, 3);\n"
+        },
+        {
+          "shortName": "SqlConstantExpressionInspection",
+          "displayName": "Constant expression",
+          "enabled": false,
+          "description": "Reports conditions and expressions that are always true, false or null.\n\nExample (MySQL):\n\n    CREATE TABLE t1 (a TEXT, b INT, c BOOLEAN);\n    SELECT a FROM t1 WHERE 'Cat' = 'Cat';\n    SELECT a FROM t1 WHERE 'Cat' = null;\n\nThe `'Cat' = 'Cat'` is always true and will be reported.\n\nThe `'Cat' = null` is always null and will be reported."
+        },
+        {
+          "shortName": "SqlMissingColumnAliasesInspection",
+          "displayName": "Missing column aliases",
+          "enabled": false,
+          "description": "Reports queries without explicit aliases in output expressions (for example, in the SELECT statement).\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT 1, a + 1 AS A2, MAX(b) AS M\n    FROM foo;\n"
+        },
+        {
+          "shortName": "SqlAddNotNullColumnInspection",
+          "displayName": "Adding not null column without default value",
+          "enabled": false,
+          "description": "Reports attempts to create NOT NULL columns without DEFAULT values.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE foo (a INT, b  INT)\n\n    ALTER TABLE foo ADD c INT NOT NULL;\n\nBy default, a column holds NULL values. In the example, we use the NOT NULL constraint that enforces a column not to accept NULL values.\nIf we prohibit to use NULL values, we must set the DEFAULT value that SQL can use when we create a new record.\n\n    ALTER TABLE foo ADD c INT NOT NULL DEFAULT 42;\n\nYou can quickly add the DEFAULT value by using the **Add DEFAULT value** quick-fix."
+        },
+        {
+          "shortName": "SqlDuplicateColumnInspection",
+          "displayName": "Duplicating column name in SELECT",
+          "enabled": false,
+          "description": "Reports duplicated names of column aliases in SELECT lists.\n\nExample (Sybase ASE):\n\n    CREATE TABLE t1 (a TEXT, b INT, c INT);\n\n    SELECT a AS x, b AS x FROM t1;\n\nThe `x` alias name is used for `a` and `b` columns. These assignments are highlighted as errors because\nyou cannot use identical alias names for columns in Sybase ASE."
+        },
+        {
+          "shortName": "SqlShadowingAliasInspection",
+          "displayName": "Column is shadowed by alias",
+          "enabled": false,
+          "description": "Reports SELECT aliases with names that match column names in the FROM clause.\n\nExample (MySQL):\n\n    CREATE TABLE foo (a INT, b INT, c INT);\n    SELECT a b, c FROM foo;\n\nThe `a` column uses the `b` alias but the `b` name is also used by the column from the `foo`\ntable."
+        },
+        {
+          "shortName": "SqlTypeInspection",
+          "displayName": "Types compatibility",
+          "enabled": false,
+          "description": "Reports type-related errors."
+        },
+        {
+          "shortName": "SqlUnreachableCodeInspection",
+          "displayName": "Unreachable code",
+          "enabled": false,
+          "description": "Reports unreachable statements inside SQL routines.\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo() RETURNS INT AS\n    BEGIN\n        THROW;\n        RETURN 1;\n    END;\n\nIn Microsoft SQL Server, the `THROW` statement raises an exception and transfers execution to the CATCH block of the TRY...CATCH\nconstruct. Therefore, the `RETURN 1;` part will never be executed."
+        },
+        {
+          "shortName": "SqlUnicodeStringLiteralInspection",
+          "displayName": "Unicode usage in SQL",
+          "enabled": false,
+          "description": "Reports string literals that use national characters without the `N` prefix.\n\nWithout the N prefix, the string is converted to the default\ncode page of the database. This default code page may not recognize certain characters. For more information, see\n[nchar and nvarchar\n(Transact-SQL)\nat docs.microsoft.com](https://docs.microsoft.com/en-us/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql).\n\nExample (Microsoft SQL Server):\n\n    SELECT 'abcde' AS a;\n    SELECT N'abcde' AS b;\n    SELECT 'абвгд' AS c;\n    SELECT N'абвгд' AS d;\n\nThe `SELECT 'абвгд' AS c;` does not have the `N` prefix, the `'абвгд'` part will be highlighted."
+        },
+        {
+          "shortName": "SqlGotoInspection",
+          "displayName": "Usages of GOTO statements",
+          "enabled": false,
+          "description": "Reports usages of backward GOTO statements and GOTO statements used to exit a loop.\n\nThe extensive use of GOTO statements is generally\nnot recommended. For details, see [GOTO statement in\nSQL\nprocedures at ibm.com](https://www.ibm.com/docs/no/db2/11.5?topic=procedures-goto-statement-in-sql).\n\nInstead of jumping back to a previous statement using GOTO, consider using a loop.\n\nInstead of exiting the WHILE loop with GOTO, consider using other control-of-flow statements (for example, RETURN or BREAK).\n\nExample (Oracle):\n\n    CREATE PROCEDURE test(n INT) AS\n    DECLARE\n        x INT;\n    BEGIN\n        x := 0;\n        GOTO a;\n        <<a>> x := 1;\n        IF (n = 0) THEN\n            GOTO a;\n        END IF;\n        WHILE TRUE\n            LOOP\n                GOTO b;\n            END LOOP;\n        <<b>> x := 3;\n    END;\n"
+        },
+        {
+          "shortName": "SqlUnusedVariableInspection",
+          "displayName": "Unused variable",
+          "enabled": false,
+          "description": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+        },
+        {
+          "shortName": "SqlNoDataSourceInspection",
+          "displayName": "No data sources configured",
+          "enabled": false,
+          "description": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+        },
+        {
+          "shortName": "SqlWithoutWhereInspection",
+          "displayName": "Delete or update statement without where clauses",
+          "enabled": false,
+          "description": "Reports usages of DELETE or UPDATE statements without WHERE clauses.\n\nWithout WHERE clauses, DELETE drops all the data from the table, and UPDATE overwrites values for all the table rows.\n\nExample (MySQL):\n\n    CREATE TABLE t1 (a TEXT, b INT, c BOOLEAN);\n    update t1 set  a = 'Smith';\n    delete from t1;\n"
+        },
+        {
+          "shortName": "SqlAmbiguousColumnInspection",
+          "displayName": "Ambiguous reference",
+          "enabled": false,
+          "description": "Reports columns that have identical names but belong to different tables.\n\nExample (MySQL):\n\n    CREATE TABLE foo(id INT PRIMARY KEY);\n    CREATE TABLE bar(id INT PRIMARY KEY);\n\n    SELECT foo.id, bar.id FROM foo, bar WHERE id > 0;\n\nThe `id` column appears in `foo` and `bar` tables. You need to qualify the column name to\nmake the query correct.\n\n    SELECT foo.id, bar.id FROM foo, bar WHERE foo.id > 0;\n"
+        },
+        {
+          "shortName": "SqlUnusedCteInspection",
+          "displayName": "Unused common table expression",
+          "enabled": false,
+          "description": "Reports unused common table expressions (CTE) inside the query.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT);\n\n    WITH a AS (SELECT 1 AS x FROM foo)\n    SELECT 1 + 2 FROM foo;\n\nBy using WITH, we create a temporary named result set with the name `a`, also known as a common table expression (CTE). But\nwe do not use this CTE later in the code. The unused CTE is greyed out."
+        },
+        {
+          "shortName": "SqlResolveInspection",
+          "displayName": "Unresolved reference",
+          "enabled": false,
+          "description": "Reports unresolved SQL references.\n\nExample (MySQL):\n\n    CREATE TABLE users(id INT, name VARCHAR(40));\n    CREATE TABLE admins(id INT, col1 INT);\n\n    SELECT users.id, admins.id FROM admins WHERE admins.id > 1;\n\nThe `users.id` column is unresolved because the `users` table is missing in the FROM clause."
+        },
+        {
+          "shortName": "SqlNullComparisonInspection",
+          "displayName": "Null comparison",
+          "enabled": false,
+          "description": "Reports comparisons with NULL that can be replaced with IS NULL or IS NOT NULL operators.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE foo ( id int );\n\n    SELECT * FROM foo WHERE NULL = NULL;\n    SELECT * FROM foo WHERE NULL != NULL;\n\nThe `NULL = NULL` can be replaced with `IS NULL`, the `NULL != NULL` comparison\nwith `IS NOT NULL`. To do this replacement, you can use **Use IS NULL operator** or **Use IS NOT NULL operator**\nquick-fixes.\n\n    SELECT * FROM foo WHERE NULL IS NULL;\n    SELECT * FROM foo WHERE NULL IS NOT NULL;\n"
+        }
+      ]
+    },
+    {
       "name": "XML",
       "inspections": [
         {
@@ -766,6 +1135,47 @@
       ]
     },
     {
+      "name": "YAML",
+      "inspections": [
+        {
+          "shortName": "YAMLRecursiveAlias",
+          "displayName": "Recursive alias",
+          "enabled": false,
+          "description": "Reports recursion in YAML aliases.\n\nAlias can't be recursive and be used inside the data referenced by a corresponding anchor.\n\n**Example:**\n\n\n      some_key: &some_anchor\n        sub_key1: value1\n        sub_key2: *some_anchor\n"
+        },
+        {
+          "shortName": "YAMLSchemaValidation",
+          "displayName": "Validation by JSON Schema",
+          "enabled": false,
+          "description": "Reports inconsistencies between a YAML file and a JSON Schema if the schema is specified.\n\n**Scheme example:**\n\n\n      {\n        \"properties\": {\n          \"SomeNumberProperty\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n\n**The following is an example with the corresponding warning:**\n\n\n      SomeNumberProperty: hello world\n"
+        },
+        {
+          "shortName": "YAMLDuplicatedKeys",
+          "displayName": "Duplicated YAML keys",
+          "enabled": false,
+          "description": "Reports duplicated keys in YAML files.\n\n**Example:**\n\n\n      same_key: some value\n      same_key: another value\n"
+        },
+        {
+          "shortName": "YAMLUnusedAnchor",
+          "displayName": "Unused anchor",
+          "enabled": false,
+          "description": "Reports unused anchors.\n\n**Example:**\n\n\n      some_key: &some_anchor\n        key1: value1\n"
+        },
+        {
+          "shortName": "YAMLUnresolvedAlias",
+          "displayName": "Unresolved alias",
+          "enabled": false,
+          "description": "Reports unresolved aliases in YAML files.\n\n**Example:**\n\n\n      some_key: *unknown_alias\n"
+        },
+        {
+          "shortName": "YAMLSchemaDeprecation",
+          "displayName": "Deprecated YAML key",
+          "enabled": false,
+          "description": "Reports deprecated keys in YAML files.\n\nDeprecation is checked only if there exists a JSON schema associated with the corresponding YAML file.\n\nNote that the deprecation mechanism is not defined in the JSON Schema specification yet,\nand this inspection uses a non-standard `deprecationMessage` extension.\n\n**Scheme deprecation example:**\n\n\n      {\n        \"properties\": {\n          \"SomeDeprecatedProperty\": {\n            \"deprecationMessage\": \"Baz\",\n            \"description\": \"Foo bar\"\n          }\n        }\n      }\n\n**The following is an example with the corresponding warning:**\n\n\n      SomeDeprecatedProperty: some value\n"
+        }
+      ]
+    },
+    {
       "name": "JSON and JSON5",
       "inspections": [
         {
@@ -821,6 +1231,29 @@
           "displayName": "Unknown JSONPath operator",
           "enabled": false,
           "description": "Reports an unknown operator on a JSONPath expression instead of one of the standard ones: `in`, `nin`, `subsetof`, `anyof`, `noneof`, `size`, `empty`, `contains`."
+        }
+      ]
+    },
+    {
+      "name": "MongoJS",
+      "inspections": [
+        {
+          "shortName": "MongoJSSideEffectsInspection",
+          "displayName": "Statement with side effects",
+          "enabled": false,
+          "description": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
+        },
+        {
+          "shortName": "MongoJSDeprecationInspection",
+          "displayName": "Deprecated element",
+          "enabled": false,
+          "description": "Reports usages of deprecated methods in MongoDB and JavaScript code.\n\nThe quick-fix replaces deprecated methods with recommended alternatives.\n\nExample:\n\n    db.my_collection.insert()\n\nAfter the quick-fix is applied:\n\n    db.my_collection.insertOne()\n"
+        },
+        {
+          "shortName": "MongoJSResolveInspection",
+          "displayName": "Resolution problems",
+          "enabled": false,
+          "description": "Reports unresolved references in MongoDB and JavaScript code.\n\nExample:\n\n    db\n    use foo\n      -- a reference to a non-existing collection\n    db.non_existing_collection\n    db['non_existing_collection']\n    db['non_existing_collection'].find().hasNext()\n\nThe `non_existing_collection` collection does not exist in the database and will be reported."
         }
       ]
     },
@@ -906,16 +1339,33 @@
           "description": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
         },
         {
-          "shortName": "RegExpDuplicateAlternationBranch",
-          "displayName": "Duplicate branch in alternation",
-          "enabled": true,
-          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
-        },
-        {
           "shortName": "RegExpRepeatedSpace",
           "displayName": "Consecutive spaces",
           "enabled": true,
           "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpDuplicateAlternationBranch",
+          "displayName": "Duplicate branch in alternation",
+          "enabled": true,
+          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+        }
+      ]
+    },
+    {
+      "name": "MySQL",
+      "inspections": [
+        {
+          "shortName": "MysqlLoadDataPathInspection",
+          "displayName": "LOAD statement path",
+          "enabled": false,
+          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
+        },
+        {
+          "shortName": "MysqlParsingInspection",
+          "displayName": "Unsupported syntax in pre-8.0 versions",
+          "enabled": false,
+          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
         }
       ]
     },
@@ -944,19 +1394,66 @@
           "shortName": "TrailingSpacesInProperty",
           "displayName": "Trailing spaces in property",
           "enabled": false,
-          "description": "Reports all properties whose keys or values end with a whitespace.   "
+          "description": "Reports properties whose keys or values end with a whitespace."
         },
         {
           "shortName": "UnusedProperty",
           "displayName": "Unused property",
           "enabled": false,
-          "description": "Reports all properties that are not referenced from the outside of the .properties file."
+          "description": "Reports properties that are not referenced outside of the .properties file they are contained in."
         },
         {
           "shortName": "WrongPropertyKeyValueDelimiter",
           "displayName": "Property key/value delimiter doesn't match code style settings",
           "enabled": false,
           "description": "Reports properties in which key or value delimiters do not match code style settings."
+        }
+      ]
+    },
+    {
+      "name": "CSS",
+      "inspections": [
+        {
+          "shortName": "CssUnusedSymbol",
+          "displayName": "Unused selector",
+          "enabled": false,
+          "description": "Reports a CSS class or an element IDs that appears in selectors but is not used in HTML.\n\n\nNote that complete inspection results are available only when running it via **Code \\| Inspect Code** or\n**Code \\| Analyze Code \\| Run Inspection by Name**.\nDue to performance reasons, style sheet files are not inspected on the fly."
+        },
+        {
+          "shortName": "CssOverwrittenProperties",
+          "displayName": "Overwritten property",
+          "enabled": false,
+          "description": "Reports a duplicated CSS property within a ruleset. Respects shorthand properties.\n\n**Example:**\n\n\n    .foo {\n      margin-bottom: 1px;\n      margin-bottom: 1px; /* duplicates margin-bottom */\n      margin: 0; /* overrides margin-bottom */\n    }\n"
+        },
+        {
+          "shortName": "CssReplaceWithShorthandSafely",
+          "displayName": "Properties may be safely replaced with a shorthand",
+          "enabled": false,
+          "description": "Reports a set of longhand properties. Suggests replacing a complete set of longhand CSS properties with an equivalent shorthand form.\n\n\nFor example, 4 properties: `padding-top`, `padding-right`, `padding-bottom`, and\n`padding-left`\ncan be safely replaced with a single `padding` property.\n\n\nNote that this inspection doesn't show up if the set of longhand properties is incomplete\n(e.g. only 3 `padding-xxx` properties in a ruleset)\nbecause switching to a shorthand may change the result.\nFor such cases consider the 'Properties may probably be replaced with a shorthand'\ninspection."
+        },
+        {
+          "shortName": "CssBrowserCompatibilityForProperties",
+          "displayName": "Property is incompatible with selected browsers",
+          "enabled": false,
+          "description": "Reports a CSS property that is not supported by the specified browsers. Based on the [MDN Compatibility Data](https://github.com/mdn/browser-compat-data)."
+        },
+        {
+          "shortName": "CssConvertColorToHexInspection",
+          "displayName": "Color could be replaced with #-hex",
+          "enabled": false,
+          "description": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+        },
+        {
+          "shortName": "CssReplaceWithShorthandUnsafely",
+          "displayName": "Properties may probably be replaced with a shorthand",
+          "enabled": false,
+          "description": "Reports a set of longhand CSS properties and suggests replacing an incomplete set of longhand CSS properties with a shorthand form, which is however not 100% equivalent in this case.\n\n\nFor example, 2 properties: `outline-color` and `outline-style` may be replaced with a single `outline`.\nSuch replacement is not 100% equivalent because shorthands reset all omitted sub-values to their initial states.\nIn this example, switching to the `outline` shorthand means that `outline-width` is also set to its initial value,\nwhich is `medium`.\n\n\nThis inspection doesn't handle full sets of longhand properties (when switching to shorthand is 100% safe).\nFor such cases see the 'Properties may be safely replaced with a shorthand' inspection instead."
+        },
+        {
+          "shortName": "CssConvertColorToRgbInspection",
+          "displayName": "Color could be replaced with rgb()",
+          "enabled": false,
+          "description": "Reports an `hsl()` or `hwb()` color function or a hexadecimal color notation.\n\nSuggests replacing such color value with an equivalent `rgb()` or `rgba()` color function.\n\n**Example:**\n\n    #0c0fff\n\nAfter the quick-fix is applied:\n\n    rgb(12, 15, 255).\n"
         }
       ]
     },
@@ -1095,6 +1592,12 @@
           "description": "Reports an HTML element without a closing tag. Some coding styles require that HTML elements have closing tags even where this is optional.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <p>Behold!\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <p>Behold!</p>\n        </body>\n      </html>\n"
         },
         {
+          "shortName": "HtmlWrongAttributeValue",
+          "displayName": "Wrong attribute value",
+          "enabled": true,
+          "description": "Reports an incorrect HTML attribute value."
+        },
+        {
           "shortName": "HtmlExtraClosingTag",
           "displayName": "Redundant closing tag",
           "enabled": false,
@@ -1117,6 +1620,59 @@
           "displayName": "Empty tag",
           "enabled": false,
           "description": "Reports empty tags that do not work in some browsers.\n\n**Example:**\n\n\n      <html>\n        <script/>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <script></script>\n      </html>\n"
+        },
+        {
+          "shortName": "HtmlDeprecatedTag",
+          "displayName": "Obsolete tag",
+          "enabled": false,
+          "description": "Reports an obsolete HTML5 tag. Suggests replacing the obsolete tag with a CSS or another tag."
+        },
+        {
+          "shortName": "CheckImageSize",
+          "displayName": "Mismatched image size",
+          "enabled": false,
+          "description": "Reports a `width` and `height` attribute value of a `img` tag that is different from the actual width and height of the referenced image."
+        },
+        {
+          "shortName": "HtmlNonExistentInternetResource",
+          "displayName": "Unresolved web link",
+          "enabled": false,
+          "description": "Reports an unresolved web link. Works by making network requests in the background."
+        },
+        {
+          "shortName": "HtmlDeprecatedAttribute",
+          "displayName": "Obsolete attribute",
+          "enabled": false,
+          "description": "Reports an obsolete HTML5 attribute."
+        },
+        {
+          "shortName": "HtmlPresentationalElement",
+          "displayName": "Presentational tag",
+          "enabled": false,
+          "description": "Reports a presentational HTML tag. Suggests replacing the presentational tag with a CSS or another tag."
+        }
+      ]
+    },
+    {
+      "name": "Probable bugs",
+      "inspections": [
+        {
+          "shortName": "CssNonIntegerLengthInPixels",
+          "displayName": "Non-integer length in pixels",
+          "enabled": false,
+          "description": "Reports a non-integer length in pixels.\n\n**Example:**\n\n     width: 3.14px\n"
+        },
+        {
+          "shortName": "CssNoGenericFontName",
+          "displayName": "Missing generic font family name",
+          "enabled": false,
+          "description": "Verifies that the [font-family](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family) property contains a generic font family name as a fallback alternative.\n\n\nGeneric font family names are: `serif`, `sans-serif`, `cursive`, `fantasy`,\nand `monospace`."
+        },
+        {
+          "shortName": "CssMissingComma",
+          "displayName": "Missing comma in selector list",
+          "enabled": false,
+          "description": "Reports a multi-line selector. Most likely this means that several single-line selectors are actually intended but a comma is missing at the end of one or several lines.\n\n**Example:**\n\n\n    input /* comma has probably been forgotten */\n    .button {\n      margin: 1px;\n    }\n"
         }
       ]
     },
@@ -1169,7 +1725,7 @@
           "shortName": "TodoComment",
           "displayName": "TODO comment",
           "enabled": false,
-          "description": "Reports **TODO** comments in your code.\n\nYou can configure the format for **TODO** comments in [Settings \\| Editor \\| TODO](settings://preferences.toDoOptions).\nSince syntax highlighting for **TODO** comments is already provided,\nthis inspection is intended for use in batch mode or on a continuous integration server."
+          "description": "Reports **TODO** comments in your code.\n\nYou can configure the format for **TODO** comments in [Settings \\| Editor \\| TODO](settings://preferences.toDoOptions).\n\nEnable the **Only warn on TODO comments without any details** option to only warn on empty TODO comments, that\ndon't provide any description on the task that should be done. Disable to report all TODO comments."
         },
         {
           "shortName": "IncorrectFormatting",
@@ -1200,6 +1756,147 @@
           "displayName": "Qodana service message",
           "enabled": false,
           "description": "Reports the Qodana service messages such as suspending a particular inspection due to a large number of reported problems."
+        }
+      ]
+    },
+    {
+      "name": "Accessibility",
+      "inspections": [
+        {
+          "shortName": "HtmlRequiredAltAttribute",
+          "displayName": "Missing required 'alt' attribute",
+          "enabled": false,
+          "description": "Reports a missing `alt` attribute in a `img` or `applet` tag or in a `area` element of an image map. Suggests adding a required attribute with a text alternative for the contents of the tag. Based on WCAG 2.0: [H24](https://www.w3.org/TR/WCAG20-TECHS/H24.html), [H35](https://www.w3.org/TR/WCAG20-TECHS/H35.html), [H36](https://www.w3.org/TR/WCAG20-TECHS/H36.html), [H37](https://www.w3.org/TR/WCAG20-TECHS/H37.html)."
+        },
+        {
+          "shortName": "HtmlFormInputWithoutLabel",
+          "displayName": "Missing associated label",
+          "enabled": false,
+          "description": "Reports a form element (`input`, `textarea`, or `select`) without an associated label. Suggests creating a new label. Based on WCAG 2.0: [H44](https://www.w3.org/TR/WCAG20-TECHS/H44.html).  "
+        },
+        {
+          "shortName": "HtmlRequiredSummaryAttribute",
+          "displayName": "Missing required 'summary' attribute",
+          "enabled": false,
+          "description": "Reports a missing `summary` attribute in a `table` tag. Suggests adding a`summary` attribute. Based on WCAG 2.0: [H73](https://www.w3.org/TR/WCAG20-TECHS/H73.html)."
+        },
+        {
+          "shortName": "HtmlRequiredLangAttribute",
+          "displayName": "Missing required 'lang' attribute",
+          "enabled": false,
+          "description": "Reports a missing `lang` (or `xml:lang`) attribute in a `html` tag. Suggests adding a required attribute to state the default language of the document. Based on WCAG 2.0: [H57](https://www.w3.org/TR/WCAG20-TECHS/H57.html)."
+        },
+        {
+          "shortName": "HtmlRequiredTitleAttribute",
+          "displayName": "Missing required 'title' attribute",
+          "enabled": false,
+          "description": "Reports a missing title attribute `frame`, `iframe`, `dl`, and `a` tags. Suggests adding a title attribute. Based on WCAG 2.0: [H33](https://www.w3.org/TR/WCAG20-TECHS/H33.html), [H40](https://www.w3.org/TR/WCAG20-TECHS/H40.html), and [H64](https://www.w3.org/TR/WCAG20-TECHS/H64.html)."
+        },
+        {
+          "shortName": "HtmlRequiredTitleElement",
+          "displayName": "Missing required 'title' element",
+          "enabled": false,
+          "description": "Reports a missing `title` element inside a `head` section. Suggests adding a `title` element. The title should describe the document. Based on WCAG 2.0: [H25](https://www.w3.org/TR/WCAG20-TECHS/H25.html)."
+        }
+      ]
+    },
+    {
+      "name": "SQL server",
+      "inspections": [
+        {
+          "shortName": "MsBuiltinInspection",
+          "displayName": "Builtin functions",
+          "enabled": false,
+          "description": "Reports truncations of string arguments in ISNULL functions.\n\nThe ISNULL syntax is `ISNULL(check_expression, replacement_value)`.\n\nAccording to [ISNULL at\ndocs.microsoft.com](https://docs.microsoft.com/en-us/sql/t-sql/functions/isnull-transact-sql), `replacement_value` will be truncated if `replacement_value` is longer than\n`check_expression`.\n\nExample (Microsoft SQL Server):\n\n    DECLARE @name1 VARCHAR(2) = NULL;\n    DECLARE @name2 VARCHAR(10) = 'Example';\n    DECLARE @name3 VARCHAR(2) = 'Hi';\n\n      -- `@name2` is VARCHAR(10) and will be truncated\n    SELECT ISNULL(@name1, @name2);\n\n      -- `@name3` is VARCHAR(2) as `@name1` and will not be truncated\n    SELECT ISNULL(@name1, @name3);\n"
+        },
+        {
+          "shortName": "MsOrderByInspection",
+          "displayName": "ORDER BY in queries",
+          "enabled": false,
+          "description": "Reports usages when the `ORDER BY` clause is used without `TOP`, `OFFSET`, or `FOR XML` in views, inline functions, derived tables, subqueries, and common table expressions.\n\nFor more information about usages of `ORDER BY`, see [SELECT - ORDER BY Clause (Transact-SQL) at\ndocs.microsoft.com](https://docs.microsoft.com/en-us/sql/t-sql/queries/select-order-by-clause-transact-sql).\n\nExample (Microsoft SQL server):\n\n    CREATE TABLE foo (a INT NOT NULL, b  INT NOT NULL);\n\n    SELECT *\n    FROM (SELECT a, b\n    FROM foo A\n    WHERE a < 89\n    ORDER BY b) ALIAS;\n\nIn a subquery, ORDER BY will be highlighted as an error. You can add TOP, OFFSET, or FOR XML to a subquery.\nAlternatively, use the **Delete element** quick-fix to delete the ORDER BY section.\n\nAfter the quick-fix is applied:\n\n    SELECT *\n    FROM (SELECT a, b\n    FROM foo A\n    WHERE a < 89) ALIAS;\n"
+        }
+      ]
+    },
+    {
+      "name": "Invalid elements",
+      "inspections": [
+        {
+          "shortName": "CssInvalidImport",
+          "displayName": "Misplaced @import",
+          "enabled": false,
+          "description": "Reports a misplaced `@import` statement.\n\n\nAccording to the [specification](https://developer.mozilla.org/en-US/docs/Web/CSS/@import),\n`@import` rules must precede all other types of rules, except `@charset` rules."
+        },
+        {
+          "shortName": "CssInvalidHtmlTagReference",
+          "displayName": "Invalid type selector",
+          "enabled": false,
+          "description": "Reports a CSS [type selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors) that matches an unknown HTML element."
+        },
+        {
+          "shortName": "CssInvalidAtRule",
+          "displayName": "Unknown at-rule",
+          "enabled": false,
+          "description": "Reports an unknown [CSS at-rule](https://developer.mozilla.org/en-US/docs/Web/CSS/At-rule)."
+        },
+        {
+          "shortName": "CssInvalidFunction",
+          "displayName": "Invalid function",
+          "enabled": false,
+          "description": "Reports an unknown [CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Functions) or an incorrect function parameter."
+        },
+        {
+          "shortName": "CssUnresolvedCustomProperty",
+          "displayName": "Unresolved custom property",
+          "enabled": false,
+          "description": "Reports an unresolved reference to a [custom property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) among the arguments of the `var()` function."
+        },
+        {
+          "shortName": "CssUnknownTarget",
+          "displayName": "Unresolved file reference",
+          "enabled": false,
+          "description": "Reports an unresolved file reference, for example, an incorrect path in an `@import` statement."
+        },
+        {
+          "shortName": "CssNegativeValue",
+          "displayName": "Negative property value",
+          "enabled": false,
+          "description": "Reports a negative value of a CSS property that is not expected to be less than zero, for example, object width or height."
+        },
+        {
+          "shortName": "CssUnresolvedClassInComposesRule",
+          "displayName": "Unresolved class in 'composes' rule",
+          "enabled": false,
+          "description": "Reports a CSS class reference in the ['composes'](https://github.com/css-modules/css-modules#composition) rule that cannot be resolved to any valid target.\n\n**Example:**\n\n\n      .className {/* ... */}\n\n      .otherClassName {\n        composes: className;\n      }\n"
+        },
+        {
+          "shortName": "CssInvalidCharsetRule",
+          "displayName": "Misplaced or incorrect @charset",
+          "enabled": false,
+          "description": "Reports a misplaced `@charset` at-rule or an incorrect charset value."
+        },
+        {
+          "shortName": "CssInvalidPropertyValue",
+          "displayName": "Invalid property value",
+          "enabled": false,
+          "description": "Reports an incorrect CSS property value."
+        },
+        {
+          "shortName": "CssUnknownProperty",
+          "displayName": "Unknown property",
+          "enabled": false,
+          "description": "Reports an unknown CSS property or a property used in a wrong context.\n\nAdd the unknown property to the 'Custom CSS properties' list to skip validation."
+        },
+        {
+          "shortName": "CssInvalidPseudoSelector",
+          "displayName": "Invalid pseudo-selector",
+          "enabled": false,
+          "description": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
+        },
+        {
+          "shortName": "CssInvalidMediaFeature",
+          "displayName": "Invalid media feature",
+          "enabled": false,
+          "description": "Reports an unknown [CSS media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries) or an incorrect media feature value."
         }
       ]
     },
@@ -1239,7 +1936,41 @@
           "shortName": "IncorrectProjectDependenciesConfiguration",
           "displayName": "Check configuration of project dependencies",
           "enabled": false,
-          "description": "Check project for possible problems: user's third party software list does not match the collected project metadata"
+          "description": "Checking configuration of project dependencies"
+        }
+      ]
+    },
+    {
+      "name": "Code style issues",
+      "inspections": [
+        {
+          "shortName": "CssMissingSemicolon",
+          "displayName": "Missing semicolon",
+          "enabled": false,
+          "description": "Reports a missing semicolon at the end of a declaration."
+        },
+        {
+          "shortName": "CssRedundantUnit",
+          "displayName": "Redundant measure unit",
+          "enabled": false,
+          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
+        }
+      ]
+    },
+    {
+      "name": "Ini files",
+      "inspections": [
+        {
+          "shortName": "DuplicateKeyInSection",
+          "displayName": "Duplicate directive in section",
+          "enabled": true,
+          "description": "Reports duplicate properties in the `ini` file section."
+        },
+        {
+          "shortName": "DuplicateSectionInFile",
+          "displayName": "Duplicate section in file",
+          "enabled": true,
+          "description": "Reports duplicate sections in the `ini` file."
         }
       ]
     },
@@ -1261,6 +1992,29 @@
       ]
     },
     {
+      "name": "Proofreading",
+      "inspections": [
+        {
+          "shortName": "SpellCheckingInspection",
+          "displayName": "Typo",
+          "enabled": false,
+          "description": "Reports typos and misspellings in your code, comments, and literals and fixes them with one click."
+        },
+        {
+          "shortName": "LanguageDetectionInspection",
+          "displayName": "Natural language detection",
+          "enabled": false,
+          "description": "Detects natural languages and suggests enabling corresponding grammar and spelling checks."
+        },
+        {
+          "shortName": "GrazieInspection",
+          "displayName": "Grammar",
+          "enabled": false,
+          "description": "Reports grammar mistakes in your text. You can configure the inspection in [Settings \\| Editor \\| Natural Languages \\| Grammar](settings://reference.settingsdialog.project.grazie)."
+        }
+      ]
+    },
+    {
       "name": "Pyramid",
       "inspections": [
         {
@@ -1272,13 +2026,25 @@
       ]
     },
     {
-      "name": "Proofreading",
+      "name": "Oracle",
       "inspections": [
         {
-          "shortName": "SpellCheckingInspection",
-          "displayName": "Typo",
+          "shortName": "OraOverloadInspection",
+          "displayName": "Overloading errors",
           "enabled": false,
-          "description": "Reports typos and misspellings in your code, comments, and literals and fixes them with one click."
+          "description": "Reports invalid cases of subprogram overloading in Oracle.\n\nExample (Oracle):\n\n    DECLARE\n        SUBTYPE fff IS BINARY_INTEGER;\n        SUBTYPE ggg IS NATURAL;\n        PROCEDURE foo (a IN ggg) IS BEGIN NULL; END;\n        PROCEDURE foo (a IN fff) IS BEGIN NULL; END;\n    BEGIN\n        NULL;\n    END;\n\nYou cannot overload subprograms which parameters differ only in subtypes. For example, you cannot overload procedures where one accepts a\nBINARY INTEGER parameter and the other accepts a NATURAL parameter. For more information about restrictions on procedure overloading,\nsee [Restrictions on Overloading at docs.oracle.com](https://docs.oracle.com/cd/B19306_01/appdev.102/b14261/subprograms.htm)."
+        },
+        {
+          "shortName": "OraMissingBodyInspection",
+          "displayName": "Missing body for package/object type specification",
+          "enabled": false,
+          "description": "Reports package and object type specifications that are missing body declarations.\n\nPackage specifications and object types that declare routines as well as package specifications with cursors must have body\ndeclarations where those routines and cursors are implemented. Absence of a body leads to a runtime error when routines or cursors are\ninvoked in program code.\n\nExample (Oracle):\n\n    CREATE OR REPLACE PACKAGE ppp IS\n        FUNCTION foo(a INT) RETURN INT;\n    END;\n"
+        },
+        {
+          "shortName": "OraUnmatchedForwardDeclarationInspection",
+          "displayName": "Forward declaration without definition",
+          "enabled": false,
+          "description": "Reports declarations of procedures and functions that are missing their implementation in code.\n\nIn Oracle, you can declare a procedure or a function without its body, and write the implementation later. The inspection will report names\nof such procedures or functions that are left without implementation.\n\nExample (Oracle):\n\n    DECLARE PROCEDURE foo(a int, b varchar2);\n    BEGIN\n        NULL;\n    END;\n\nThe `foo` procedure is declared but is missing implementation. We can add the implementation to get rid of the error.\n\n    DECLARE PROCEDURE foo(a int, b varchar2);\n      PROCEDURE foo(a int, b varchar2) IS\n    BEGIN\n        NULL;\n    END;\n    BEGIN\n        NULL;\n    END;\n"
         }
       ]
     },
@@ -1306,7 +2072,7 @@
           "shortName": "IgnoreFileDuplicateEntry",
           "displayName": "Ignore file duplicates",
           "enabled": false,
-          "description": "Reports duplicate entries (patters) in the ignore file (e.g. .gitignore, .hgignore). Duplicate entries in these files are redundant and can be removed.\n\nExample:\n\n```\n    # Output directories\n    /out/\n    /target/\n    /out/\n```"
+          "description": "Reports duplicate entries (patterns) in the ignore file (e.g. .gitignore, .hgignore). Duplicate entries in these files are redundant and can be removed.\n\nExample:\n\n```\n    # Output directories\n    /out/\n    /target/\n    /out/\n```"
         }
       ]
     }
