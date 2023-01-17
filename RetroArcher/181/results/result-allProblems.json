@@ -321,37 +321,6 @@
   "sources": [
     {
       "type": "file",
-      "path": "pyra/helpers.py",
-      "language": "Python",
-      "line": 202,
-      "offset": 16,
-      "length": 9,
-      "code": {
-        "startLine": 200,
-        "length": 9,
-        "offset": 103,
-        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
       "path": "pyra/config.py",
       "language": "Python",
       "line": 167,
@@ -414,16 +383,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "pyra/hardware.py",
+      "path": "pyra/tray_icon.py",
       "language": "Python",
-      "line": 68,
+      "line": 32,
       "offset": 12,
       "length": 9,
       "code": {
-        "startLine": 66,
+        "startLine": 30,
         "length": 9,
-        "offset": 57,
-        "surroundingCode": "    try:\n        from pyadl import ADLManager\n    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`\n        amd_gpus = range(0)  # no amd gpus found\n    else:"
+        "offset": 40,
+        "surroundingCode": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
       }
     }
   ],
@@ -431,7 +400,38 @@
     "module": "project",
     "inspectionName": "PyBroadExceptionInspection"
   },
-  "hash": "c55f8d0732e775a82bf3f5f2b2baa244f19abceb247dab4b09b8647f84d2f53b"
+  "hash": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/helpers.py",
+      "language": "Python",
+      "line": 202,
+      "offset": 16,
+      "length": 9,
+      "code": {
+        "startLine": 200,
+        "length": 9,
+        "offset": 103,
+        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -631,16 +631,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "pyra/tray_icon.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 32,
+      "line": 68,
       "offset": 12,
       "length": 9,
       "code": {
-        "startLine": 30,
+        "startLine": 66,
         "length": 9,
-        "offset": 40,
-        "surroundingCode": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
+        "offset": 57,
+        "surroundingCode": "    try:\n        from pyadl import ADLManager\n    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`\n        amd_gpus = range(0)  # no amd gpus found\n    else:"
       }
     }
   ],
@@ -648,7 +648,38 @@
     "module": "project",
     "inspectionName": "PyBroadExceptionInspection"
   },
-  "hash": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
+  "hash": "c55f8d0732e775a82bf3f5f2b2baa244f19abceb247dab4b09b8647f84d2f53b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Attempt to call a non-callable object",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "'Icon' is not callable",
+  "detailsInfo": "Reports a problem when you are trying\nto call objects that are not callable, like, for example, properties:\n\n```\nclass Record:\n    @property\n    def as_json(self):\n\njson = Record().as_json()\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/tray_icon.py",
+      "language": "Python",
+      "line": 67,
+      "offset": 17,
+      "length": 24,
+      "code": {
+        "startLine": 65,
+        "length": 24,
+        "offset": 64,
+        "surroundingCode": "    if not icon_supported:\n        return False\n    tray_icon = Icon(name='retroarcher')\n    tray_icon.title = definitions.Names.name\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyCallingNonCallableInspection"
+  },
+  "hash": "a1e709139142e021d820d4a34d2f5de220c5853d3ede4e8fa5ec211fcc4373ae"
 },{
   "tool": "Code Inspection",
   "category": "Python",
