@@ -7,7 +7,7 @@
         "driver": {
           "name": "QDPY",
           "fullName": "Qodana for Python",
-          "version": "223.8385.67",
+          "version": "223.8782.115",
           "rules": [],
           "taxa": [
             {
@@ -55,12 +55,12 @@
               "name": "RegExp"
             },
             {
-              "id": "MySQL",
-              "name": "MySQL"
-            },
-            {
               "id": "Properties files",
               "name": "Properties files"
+            },
+            {
+              "id": "MySQL",
+              "name": "MySQL"
             },
             {
               "id": "CSS",
@@ -201,7 +201,7 @@
         "extensions": [
           {
             "name": "org.editorconfig.editorconfigjetbrains",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "EditorConfigCharClassRedundancy",
@@ -1081,7 +1081,7 @@
           },
           {
             "name": "Pythonid",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "JupyterPackageInspection",
@@ -1952,13 +1952,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1983,13 +1983,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2324,19 +2324,19 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING"
+                    "ideaSeverity": "WEAK WARNING"
                   }
                 },
                 "relationships": [
@@ -2355,19 +2355,19 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING"
+                    "ideaSeverity": "WARNING"
                   }
                 },
                 "relationships": [
@@ -2975,19 +2975,19 @@
                 ]
               },
               {
-                "id": "PyOldStyleClassesInspection",
+                "id": "PyAbstractClassInspection",
                 "shortDescription": {
-                  "text": "Old-style class contains new-style class features"
+                  "text": "Class must implement all abstract methods"
                 },
                 "fullDescription": {
-                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
-                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
+                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING"
+                    "ideaSeverity": "WEAK WARNING"
                   }
                 },
                 "relationships": [
@@ -3006,19 +3006,19 @@
                 ]
               },
               {
-                "id": "PyAbstractClassInspection",
+                "id": "PyOldStyleClassesInspection",
                 "shortDescription": {
-                  "text": "Class must implement all abstract methods"
+                  "text": "Old-style class contains new-style class features"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
-                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
+                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING"
+                    "ideaSeverity": "WARNING"
                   }
                 },
                 "relationships": [
@@ -3099,37 +3099,6 @@
                 ]
               },
               {
-                "id": "PyArgumentListInspection",
-                "shortDescription": {
-                  "text": "Incorrect call arguments"
-                },
-                "fullDescription": {
-                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
-                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "Query_bound_parameters",
                 "shortDescription": {
                   "text": "Query does not have required bound parameters"
@@ -3150,6 +3119,37 @@
                     "target": {
                       "id": "Google App Engine (Python)",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyArgumentListInspection",
+                "shortDescription": {
+                  "text": "Incorrect call arguments"
+                },
+                "fullDescription": {
+                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
+                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3595,37 +3595,6 @@
                 ]
               },
               {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
                   "text": "Incompatible stub packages"
@@ -3646,6 +3615,37 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4379,7 +4379,7 @@
           },
           {
             "name": "com.intellij.database",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "PgSelectFromProcedureInspection",
@@ -4556,7 +4556,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 11,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4785,13 +4785,13 @@
                 ]
               },
               {
-                "id": "SqlMultipleLimitClausesInspection",
+                "id": "SqlNamedArgumentsInspection",
                 "shortDescription": {
-                  "text": "Multiple row limiting/offset clauses in queries"
+                  "text": "Named arguments should be used"
                 },
                 "fullDescription": {
-                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
-                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
+                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -4816,13 +4816,13 @@
                 ]
               },
               {
-                "id": "SqlNamedArgumentsInspection",
+                "id": "SqlMultipleLimitClausesInspection",
                 "shortDescription": {
-                  "text": "Named arguments should be used"
+                  "text": "Multiple row limiting/offset clauses in queries"
                 },
                 "fullDescription": {
-                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
-                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
+                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -4971,13 +4971,13 @@
                 ]
               },
               {
-                "id": "SqlRedundantAliasInspection",
+                "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
-                  "text": "Redundant alias expressions"
+                  "text": "Auto-increment duplicate"
                 },
                 "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
+                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5002,13 +5002,13 @@
                 ]
               },
               {
-                "id": "SqlAutoIncrementDuplicateInspection",
+                "id": "SqlRedundantAliasInspection",
                 "shortDescription": {
-                  "text": "Auto-increment duplicate"
+                  "text": "Redundant alias expressions"
                 },
                 "fullDescription": {
-                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
-                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5622,37 +5622,6 @@
                 ]
               },
               {
-                "id": "MysqlParsingInspection",
-                "shortDescription": {
-                  "text": "Unsupported syntax in pre-8.0 versions"
-                },
-                "fullDescription": {
-                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
-                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlCallNotationInspection",
                 "shortDescription": {
                   "text": "Using of named and positional arguments"
@@ -5673,6 +5642,37 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlParsingInspection",
+                "shortDescription": {
+                  "text": "Unsupported syntax in pre-8.0 versions"
+                },
+                "fullDescription": {
+                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
+                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6087,13 +6087,13 @@
                 ]
               },
               {
-                "id": "SqlNoDataSourceInspection",
+                "id": "SqlUnusedVariableInspection",
                 "shortDescription": {
-                  "text": "No data sources configured"
+                  "text": "Unused variable"
                 },
                 "fullDescription": {
-                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
-                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
+                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6118,13 +6118,13 @@
                 ]
               },
               {
-                "id": "SqlUnusedVariableInspection",
+                "id": "SqlNoDataSourceInspection",
                 "shortDescription": {
-                  "text": "Unused variable"
+                  "text": "No data sources configured"
                 },
                 "fullDescription": {
-                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
-                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
+                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6344,7 +6344,7 @@
           },
           {
             "name": "com.intellij",
-            "version": "223.8385.67",
+            "version": "223.8782.115",
             "rules": [
               {
                 "id": "XmlHighlighting",
@@ -6595,37 +6595,6 @@
                 ]
               },
               {
-                "id": "DuplicatedCode",
-                "shortDescription": {
-                  "text": "Duplicated code fragment"
-                },
-                "fullDescription": {
-                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
-                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "General",
-                      "index": 17,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RequiredAttributes",
                 "shortDescription": {
                   "text": "Missing required attribute"
@@ -6646,6 +6615,37 @@
                     "target": {
                       "id": "HTML",
                       "index": 15,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DuplicatedCode",
+                "shortDescription": {
+                  "text": "Duplicated code fragment"
+                },
+                "fullDescription": {
+                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
+                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "General",
+                      "index": 17,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -7742,37 +7742,6 @@
                 ]
               },
               {
-                "id": "HtmlUnknownAnchorTarget",
-                "shortDescription": {
-                  "text": "Unresolved fragment in a link"
-                },
-                "fullDescription": {
-                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
-                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnusedDefine",
                 "shortDescription": {
                   "text": "Unused define"
@@ -7793,6 +7762,37 @@
                     "target": {
                       "id": "RELAX NG",
                       "index": 25,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlUnknownAnchorTarget",
+                "shortDescription": {
+                  "text": "Unresolved fragment in a link"
+                },
+                "fullDescription": {
+                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
+                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8371,7 +8371,7 @@
           },
           {
             "name": "org.jetbrains.plugins.yaml",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "YAMLRecursiveAlias",
@@ -8569,7 +8569,7 @@
           },
           {
             "name": "com.intellij.properties",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "DuplicatePropertyInspection",
@@ -8591,7 +8591,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8622,7 +8622,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8653,7 +8653,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8684,7 +8684,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8715,7 +8715,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8746,7 +8746,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8767,7 +8767,7 @@
           },
           {
             "name": "com.intellij.css",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "CssUnusedSymbol",
@@ -9390,37 +9390,6 @@
                 ]
               },
               {
-                "id": "CssInvalidPseudoSelector",
-                "shortDescription": {
-                  "text": "Invalid pseudo-selector"
-                },
-                "fullDescription": {
-                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
-                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS/Invalid elements",
-                      "index": 20,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssConvertColorToHexInspection",
                 "shortDescription": {
                   "text": "Color could be replaced with #-hex"
@@ -9441,6 +9410,37 @@
                     "target": {
                       "id": "CSS",
                       "index": 13,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssInvalidPseudoSelector",
+                "shortDescription": {
+                  "text": "Invalid pseudo-selector"
+                },
+                "fullDescription": {
+                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
+                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS/Invalid elements",
+                      "index": 20,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9554,7 +9554,7 @@
           },
           {
             "name": "HtmlTools",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "HtmlRequiredAltAttribute",
@@ -9907,7 +9907,7 @@
           },
           {
             "name": "com.intellij.plugins.dependencyAnalysis",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "CheckThirdPartySoftwareList",
@@ -10043,7 +10043,7 @@
           },
           {
             "name": "org.intellij.intelliLang",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "InjectedReferences",
@@ -10086,7 +10086,7 @@
           },
           {
             "name": "com.jetbrains.plugins.ini4idea",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "DuplicateKeyInSection",
@@ -10160,7 +10160,7 @@
           },
           {
             "name": "tanvd.grazi",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "LanguageDetectionInspection",
@@ -10234,7 +10234,7 @@
           },
           {
             "name": "org.intellij.qodana",
-            "version": "223.8385",
+            "version": "223.8782",
             "rules": [
               {
                 "id": "QodanaServiceMessage",
@@ -10293,6 +10293,19 @@
         }
       ],
       "language": "en-US",
+      "versionControlProvenance": [
+        {
+          "repositoryUri": "https://github.com/LizardByte/RetroArcher.git",
+          "revisionId": "7a4962c0529e893351a739b23e78a92fd7ac8d4c",
+          "branch": "add/qodana",
+          "properties": {
+            "repoUrl": "https://github.com/LizardByte/RetroArcher.git",
+            "lastAuthorName": "ReenigneArcher",
+            "vcsType": "Git",
+            "lastAuthorEmail": "42013603+reenignearcher@users.noreply.github.com"
+          }
+        }
+      ],
       "results": [
         {
           "ruleId": "PyShadowingBuiltinsInspection",
@@ -10342,59 +10355,6 @@
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyDefaultArgumentInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Default argument value is mutable",
-            "markdown": "Default argument value is mutable"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/config.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 56,
-                  "startColumn": 57,
-                  "charOffset": 1513,
-                  "charLength": 12,
-                  "snippet": {
-                    "text": "_CONFIG_SPEC"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 54,
-                  "startColumn": 1,
-                  "charOffset": 1455,
-                  "charLength": 155,
-                  "snippet": {
-                    "text": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
             "tags": [
               "Python"
             ]
@@ -10613,6 +10573,59 @@
           }
         },
         {
+          "ruleId": "PyDefaultArgumentInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Default argument value is mutable",
+            "markdown": "Default argument value is mutable"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/config.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 57,
+                  "charOffset": 1513,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "_CONFIG_SPEC"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 54,
+                  "startColumn": 1,
+                  "charOffset": 1455,
+                  "charLength": 155,
+                  "snippet": {
+                    "text": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
           "ruleId": "PyUnboundLocalVariableInspection",
           "kind": "fail",
           "level": "warning",
@@ -10723,59 +10736,6 @@
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Function name should be lowercase",
-            "markdown": "Function name should be lowercase"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/helpers.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 316,
-                  "startColumn": 5,
-                  "charOffset": 7364,
-                  "charLength": 19,
-                  "snippet": {
-                    "text": "timestamp_to_YMDHMS"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 314,
-                  "startColumn": 1,
-                  "charOffset": 7358,
-                  "charLength": 114,
-                  "snippet": {
-                    "text": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPep8NamingInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
             "text": "Argument name should be lowercase",
             "markdown": "Argument name should be lowercase"
           },
@@ -10825,37 +10785,37 @@
           }
         },
         {
-          "ruleId": "PyBroadExceptionInspection",
+          "ruleId": "PyPep8NamingInspection",
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Too broad exception clause",
-            "markdown": "Too broad exception clause"
+            "text": "Function name should be lowercase",
+            "markdown": "Function name should be lowercase"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "pyra/config.py",
+                  "uri": "pyra/helpers.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 167,
-                  "startColumn": 12,
-                  "charOffset": 4493,
-                  "charLength": 9,
+                  "startLine": 316,
+                  "startColumn": 5,
+                  "charOffset": 7364,
+                  "charLength": 19,
                   "snippet": {
-                    "text": "Exception"
+                    "text": "timestamp_to_YMDHMS"
                   },
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 165,
+                  "startLine": 314,
                   "startColumn": 1,
-                  "charOffset": 4450,
-                  "charLength": 84,
+                  "charOffset": 7358,
+                  "charLength": 114,
                   "snippet": {
-                    "text": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+                    "text": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
                   }
                 }
               },
@@ -10868,7 +10828,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+            "equalIndicator/v1": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -10922,112 +10882,6 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyBroadExceptionInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Too broad exception clause",
-            "markdown": "Too broad exception clause"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/tray_icon.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 32,
-                  "startColumn": 12,
-                  "charOffset": 557,
-                  "charLength": 9,
-                  "snippet": {
-                    "text": "Exception"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 30,
-                  "startColumn": 1,
-                  "charOffset": 517,
-                  "charLength": 68,
-                  "snippet": {
-                    "text": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyBroadExceptionInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Too broad exception clause",
-            "markdown": "Too broad exception clause"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/helpers.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 202,
-                  "startColumn": 16,
-                  "charOffset": 5069,
-                  "charLength": 9,
-                  "snippet": {
-                    "text": "Exception"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 200,
-                  "startColumn": 1,
-                  "charOffset": 4966,
-                  "charLength": 204,
-                  "snippet": {
-                    "text": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -11408,6 +11262,165 @@
           }
         },
         {
+          "ruleId": "PyBroadExceptionInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Too broad exception clause",
+            "markdown": "Too broad exception clause"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/helpers.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 202,
+                  "startColumn": 16,
+                  "charOffset": 5069,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "Exception"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 200,
+                  "startColumn": 1,
+                  "charOffset": 4966,
+                  "charLength": 204,
+                  "snippet": {
+                    "text": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyBroadExceptionInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Too broad exception clause",
+            "markdown": "Too broad exception clause"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/config.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 12,
+                  "charOffset": 4493,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "Exception"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 165,
+                  "startColumn": 1,
+                  "charOffset": 4450,
+                  "charLength": 84,
+                  "snippet": {
+                    "text": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyBroadExceptionInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Too broad exception clause",
+            "markdown": "Too broad exception clause"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/tray_icon.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 12,
+                  "charOffset": 557,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "Exception"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 30,
+                  "startColumn": 1,
+                  "charOffset": 517,
+                  "charLength": 68,
+                  "snippet": {
+                    "text": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
           "ruleId": "PyCallingNonCallableInspection",
           "kind": "fail",
           "level": "warning",
@@ -11568,10 +11581,10 @@
         }
       ],
       "automationDetails": {
-        "id": "project/qodana/2023-01-17",
-        "guid": "370bf914-5332-4622-be23-19bc6d4060a9",
+        "id": "project/qodana/2023-02-10",
+        "guid": "5894a197-b734-4052-bd4f-db7ab3068fe6",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/3744738866"
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4147170240"
         }
       },
       "newlineSequences": [
@@ -11725,406 +11738,6 @@
             ],
             "partialFingerprints": {
               "equalIndicator/v1": "9cd17ebc54bea9cb5ed72c59d3d0cfa244b614ba8e81c51f6ba200cfc6d842d2"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'configobj'",
-              "markdown": "Unresolved reference 'configobj'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/config.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 11,
-                    "startColumn": 6,
-                    "charOffset": 117,
-                    "charLength": 9,
-                    "snippet": {
-                      "text": "configobj"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 9,
-                    "startColumn": 1,
-                    "charOffset": 97,
-                    "charLength": 93,
-                    "snippet": {
-                      "text": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "e3a34831e0d196fb7f85b796627c0c0fbb5e7cd8fe2d0f21271dc0e281e9150e"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'ConfigObj'",
-              "markdown": "Unresolved reference 'ConfigObj'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/config.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 11,
-                    "startColumn": 23,
-                    "charOffset": 134,
-                    "charLength": 9,
-                    "snippet": {
-                      "text": "ConfigObj"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 9,
-                    "startColumn": 1,
-                    "charOffset": 97,
-                    "charLength": 93,
-                    "snippet": {
-                      "text": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "9fca7a5cc175f8b700b0b6b7f03d1f904d74fb7d2be2f0b13264bd01046fe0be"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'validate'",
-              "markdown": "Unresolved reference 'validate'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/config.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 6,
-                    "charOffset": 149,
-                    "charLength": 8,
-                    "snippet": {
-                      "text": "validate"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 98,
-                    "charLength": 108,
-                    "snippet": {
-                      "text": "# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "9e781dccc8715c56034799d0e245c982761db177f7cfc479ba4ed26fa7fed1b5"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'Validator'",
-              "markdown": "Unresolved reference 'Validator'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/config.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 22,
-                    "charOffset": 165,
-                    "charLength": 9,
-                    "snippet": {
-                      "text": "Validator"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 98,
-                    "charLength": 108,
-                    "snippet": {
-                      "text": "# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "96ef6389732737f39373c78e07d594a8854c91ec69952bf8f574d2913e5a6ab4"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'PIL'",
-              "markdown": "Unresolved reference 'PIL'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/tray_icon.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 6,
-                    "charOffset": 158,
-                    "charLength": 3,
-                    "snippet": {
-                      "text": "PIL"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 138,
-                    "charLength": 53,
-                    "snippet": {
-                      "text": "\n# lib imports\nfrom PIL import Image\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "e626dbdf47a5fb8ae6f60d901cd09a6b5d7d97ac19c8168779d69c4af5a352f9"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'Image'",
-              "markdown": "Unresolved reference 'Image'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/tray_icon.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 12,
-                    "startColumn": 17,
-                    "charOffset": 169,
-                    "charLength": 5,
-                    "snippet": {
-                      "text": "Image"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 10,
-                    "startColumn": 1,
-                    "charOffset": 138,
-                    "charLength": 53,
-                    "snippet": {
-                      "text": "\n# lib imports\nfrom PIL import Image\n\n# local imports"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "90f6d635754ab189f52e07b2ff9b918287b262b1017da64ae21b3116441a1a5c"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Module 'Xlib' not found",
-              "markdown": "Module 'Xlib' not found"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/tray_icon.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 31,
-                    "startColumn": 16,
-                    "charOffset": 541,
-                    "charLength": 4,
-                    "snippet": {
-                      "text": "Xlib"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 29,
-                    "startColumn": 1,
-                    "charOffset": 469,
-                    "charLength": 111,
-                    "snippet": {
-                      "text": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "8a235f2b32d12bb4f0de0cf503fd8c142d3e33004402788028814bcb0b45c3b3"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR"
-            }
-          },
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'pystray'",
-              "markdown": "Unresolved reference 'pystray'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/tray_icon.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 35,
-                    "startColumn": 10,
-                    "charOffset": 595,
-                    "charLength": 7,
-                    "snippet": {
-                      "text": "pystray"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 33,
-                    "startColumn": 1,
-                    "charOffset": 568,
-                    "charLength": 114,
-                    "snippet": {
-                      "text": "        pass\ntry:\n    from pystray import Icon, MenuItem, Menu\nexcept Xlib.error.DisplayNameError:\n    Icon = None"
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "d9b2810222fecff04bfb8537d90339d663b956dccf2763e21cc2397db8c4f21f"
             },
             "properties": {
               "ideaSeverity": "ERROR"
@@ -12325,6 +11938,406 @@
             ],
             "partialFingerprints": {
               "equalIndicator/v1": "96039da094c89e547d2b183c8aaef588d9ba4b5ad5789742045fbd88e1dfe141"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved attribute reference 'logs' for class 'Paths'",
+              "markdown": "Unresolved attribute reference 'logs' for class 'Paths'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/definitions.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 142,
+                    "startColumn": 15,
+                    "charOffset": 3570,
+                    "charLength": 4,
+                    "snippet": {
+                      "text": "logs"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 140,
+                    "startColumn": 1,
+                    "charOffset": 3530,
+                    "charLength": 67,
+                    "snippet": {
+                      "text": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'configobj'",
+              "markdown": "Unresolved reference 'configobj'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/logger.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 25,
+                    "startColumn": 6,
+                    "charOffset": 395,
+                    "charLength": 9,
+                    "snippet": {
+                      "text": "configobj"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 23,
+                    "startColumn": 1,
+                    "charOffset": 375,
+                    "charLength": 63,
+                    "snippet": {
+                      "text": "\n# lib imports\nfrom configobj import ConfigObj\n\n# local imports"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "5c2b9fb034d3446dbe7c0627da0d97c240b6fa548fb32258a1f7da6edfc82a44"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'ConfigObj'",
+              "markdown": "Unresolved reference 'ConfigObj'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/logger.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 25,
+                    "startColumn": 23,
+                    "charOffset": 412,
+                    "charLength": 9,
+                    "snippet": {
+                      "text": "ConfigObj"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 23,
+                    "startColumn": 1,
+                    "charOffset": 375,
+                    "charLength": 63,
+                    "snippet": {
+                      "text": "\n# lib imports\nfrom configobj import ConfigObj\n\n# local imports"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "b687fbd3ab3f89f781c798493623f8710b0151b5be90a6494d616db8f5e183a5"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Module 'pyi_splash' not found",
+              "markdown": "Module 'pyi_splash' not found"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "retroarcher.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 122,
+                    "startColumn": 20,
+                    "charOffset": 2681,
+                    "charLength": 10,
+                    "snippet": {
+                      "text": "pyi_splash"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 120,
+                    "startColumn": 1,
+                    "charOffset": 2624,
+                    "charLength": 198,
+                    "snippet": {
+                      "text": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'GPUtil'",
+              "markdown": "No module named 'GPUtil'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/hardware.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 10,
+                    "startColumn": 8,
+                    "charOffset": 111,
+                    "charLength": 6,
+                    "snippet": {
+                      "text": "GPUtil"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 8,
+                    "startColumn": 1,
+                    "charOffset": 89,
+                    "charLength": 70,
+                    "snippet": {
+                      "text": "\n# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "a3209bf86672eb5061460c087308c8ab6a3e5014104fa1a3d1e68921e556f08f"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'numexpr'",
+              "markdown": "Unresolved reference 'numexpr'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/hardware.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 11,
+                    "startColumn": 6,
+                    "charOffset": 123,
+                    "charLength": 7,
+                    "snippet": {
+                      "text": "numexpr"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 9,
+                    "startColumn": 1,
+                    "charOffset": 90,
+                    "charLength": 70,
+                    "snippet": {
+                      "text": "# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "dfc671467677717d54d32a751368c69d1becf076480102aaa926285f35a17955"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'cpuinfo'",
+              "markdown": "Unresolved reference 'cpuinfo'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/hardware.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 11,
+                    "startColumn": 21,
+                    "charOffset": 138,
+                    "charLength": 7,
+                    "snippet": {
+                      "text": "cpuinfo"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 9,
+                    "startColumn": 1,
+                    "charOffset": 90,
+                    "charLength": 70,
+                    "snippet": {
+                      "text": "# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "cb17f9f05c330975151156ba014ad765f60f69e31d06174dce082e8837140d85"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "No module named 'psutil'",
+              "markdown": "No module named 'psutil'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/hardware.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 12,
+                    "startColumn": 8,
+                    "charOffset": 153,
+                    "charLength": 6,
+                    "snippet": {
+                      "text": "psutil"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 10,
+                    "startColumn": 1,
+                    "charOffset": 104,
+                    "charLength": 72,
+                    "snippet": {
+                      "text": "import GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n\n# local imports"
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "6243e63662eb6c45491adce6217927b6c7367e5edc82487b9a6f6c9160521b72"
             },
             "properties": {
               "ideaSeverity": "ERROR"

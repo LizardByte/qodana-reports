@@ -32,37 +32,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "The default argument is mutable",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "Default argument value is mutable",
-  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 56,
-      "offset": 57,
-      "length": 12,
-      "code": {
-        "startLine": 54,
-        "length": 12,
-        "offset": 58,
-        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyDefaultArgumentInspection"
-  },
-  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
     "Python"
@@ -187,6 +156,37 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
+  "type": "The default argument is mutable",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Default argument value is mutable",
+  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 57,
+      "length": 12,
+      "code": {
+        "startLine": 54,
+        "length": 12,
+        "offset": 58,
+        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDefaultArgumentInspection"
+  },
+  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
   "type": "Unbound local variables",
   "tags": [
     "Python"
@@ -254,37 +254,6 @@
     "Python"
   ],
   "severity": "Moderate",
-  "comment": "Function name should be lowercase",
-  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/helpers.py",
-      "language": "Python",
-      "line": 316,
-      "offset": 5,
-      "length": 19,
-      "code": {
-        "startLine": 314,
-        "length": 19,
-        "offset": 6,
-        "surroundingCode": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyPep8NamingInspection"
-  },
-  "hash": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "PEP 8 naming convention violation",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
   "comment": "Argument name should be lowercase",
   "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
   "sources": [
@@ -311,34 +280,34 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "Unclear exception clauses",
+  "type": "PEP 8 naming convention violation",
   "tags": [
     "Python"
   ],
   "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "comment": "Function name should be lowercase",
+  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/config.py",
+      "path": "pyra/helpers.py",
       "language": "Python",
-      "line": 167,
-      "offset": 12,
-      "length": 9,
+      "line": 316,
+      "offset": 5,
+      "length": 19,
       "code": {
-        "startLine": 165,
-        "length": 9,
-        "offset": 43,
-        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+        "startLine": 314,
+        "length": 19,
+        "offset": 6,
+        "surroundingCode": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
+    "inspectionName": "PyPep8NamingInspection"
   },
-  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+  "hash": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -370,68 +339,6 @@
     "inspectionName": "PyBroadExceptionInspection"
   },
   "hash": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/tray_icon.py",
-      "language": "Python",
-      "line": 32,
-      "offset": 12,
-      "length": 9,
-      "code": {
-        "startLine": 30,
-        "length": 9,
-        "offset": 40,
-        "surroundingCode": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/helpers.py",
-      "language": "Python",
-      "line": 202,
-      "offset": 16,
-      "length": 9,
-      "code": {
-        "startLine": 200,
-        "length": 9,
-        "offset": 103,
-        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -649,6 +556,99 @@
     "inspectionName": "PyBroadExceptionInspection"
   },
   "hash": "c55f8d0732e775a82bf3f5f2b2baa244f19abceb247dab4b09b8647f84d2f53b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/helpers.py",
+      "language": "Python",
+      "line": 202,
+      "offset": 16,
+      "length": 9,
+      "code": {
+        "startLine": 200,
+        "length": 9,
+        "offset": 103,
+        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 167,
+      "offset": 12,
+      "length": 9,
+      "code": {
+        "startLine": 165,
+        "length": 9,
+        "offset": 43,
+        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/tray_icon.py",
+      "language": "Python",
+      "line": 32,
+      "offset": 12,
+      "length": 9,
+      "code": {
+        "startLine": 30,
+        "length": 9,
+        "offset": 40,
+        "surroundingCode": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
 },{
   "tool": "Code Inspection",
   "category": "Python",
