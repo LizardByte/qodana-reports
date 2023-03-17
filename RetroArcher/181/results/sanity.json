@@ -1,522 +1,26 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "An invalid interpreter",
+  "type": "Unresolved references",
   "tags": [
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 5372,
-      "code": {
-        "startLine": 1,
-        "length": 5372,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   config.py\n\nResponsible for config related functions.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\n\n# get log\nlog = helpers.get_logger(name=__name__)  # must use helpers.get_log due to circular import\n\n# get the config filename\nFILENAME = definitions.Files.CONFIG\n\n# access the config dictionary here\nCONFIG = None\n\n# increase CONFIG_VERSION default when changing default values\n# then do `if CONFIG_VERSION == x:` something to change the old default value to the new default value\n# then update the CONFIG_VERSION number\n_CONFIG_SPEC = [\n    '[Hidden]',\n    'CONFIG_VERSION = integer(min=0, default=0)',\n    'FIRST_RUN_COMPLETE = boolean(default=False)',  # todo\n    '[General]',\n    'LOCALE = option(\"en\", \"es\", default=\"en\")',\n    'LAUNCH_BROWSER = boolean(default=True)',\n    'SYSTEM_TRAY = boolean(default=True)',\n    '[Logging]',\n    'LOG_DIR = string',\n    'DEBUG_LOGGING = boolean(default=True)',\n    '[Network]',\n    'HTTP_HOST = string(default=\"0.0.0.0\")',\n    'HTTP_PORT = integer(min=21, max=65535, default=9696)',\n    'HTTP_ROOT = string',\n    '[Updater]',\n    'AUTO_UPDATE = boolean(default=False)',\n]\n\n# used for log filters\n_BLACKLIST_KEYS = ['_APITOKEN', '_TOKEN', '_KEY', '_SECRET', '_PASSWORD', '_APIKEY', '_ID', '_HOOK']\n_WHITELIST_KEYS = ['HTTPS_KEY']\n\nLOG_BLACKLIST = []\n\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec.\n\n    The created config is validated against a Validator object. This function will remove keys from the user's\n    config.ini if they no longer exist in the config spec.\n\n    Parameters\n    ----------\n    config_file : str\n        Full filename of config file.\n    config_spec : list, default = _CONFIG_SPEC\n        Config spec to use.\n\n    Returns\n    -------\n    ConfigObj\n        Dictionary of config keys and values.\n\n    Raises\n    ------\n    SystemExit\n        If config_spec is not valid.\n\n    Examples\n    --------\n    >>> create_config(config_file='config.ini')\n    ConfigObj({...})\n    \"\"\"\n    config = ConfigObj(\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    config_valid = validate_config(config=config)\n\n    if not config_valid:\n        # logger may not be initialized\n        log_msg = \"Unable to initialize due to a corrupted config spec. Exiting...\"\n        log.error(msg=log_msg)\n        raise SystemExit(log_msg)\n\n    user_config = ConfigObj(\n        infile=config_file,\n        configspec=config_spec,\n        encoding='UTF-8',\n        list_values=True,\n        stringify=True,\n        write_empty_values=False\n    )\n    user_config_valid = validate_config(config=user_config)\n    if not user_config_valid:\n        # write to stderr and logger\n        log_msg = \"Invalid 'config.ini' file, attempting to correct.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n\n    # dictionary comprehension\n    if config_valid and user_config_valid:\n        # remove values from user config that are no longer in the spec\n        user_config = {\n            key: {\n                k: v for k, v in value.items() if k in config.get(key, {})\n            } for key, value in user_config.items()\n        }\n\n        # remove sections from user config that are no longer in the spec\n        user_config = {key: value for key, value in user_config.items() if key in config}\n\n        # merge user config into default config\n        config.merge(indict=user_config)\n\n        # validate merged config\n        validate_config(config=config)\n\n    config.filename = config_file\n    config.write()  # write the config file\n\n    if config_spec == _CONFIG_SPEC:  # set CONFIG dictionary\n        global CONFIG\n        CONFIG = config\n\n    return config\n\n\ndef save_config(config: ConfigObj = CONFIG) -> bool:\n    \"\"\"\n    Save the config to file.\n\n    Saves the `ConfigObj` to the specified file.\n\n    Parameters\n    ----------\n    config : ConfigObj, default = CONFIG\n        Config to save.\n\n    Returns\n    -------\n    bool\n        True if save successful, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> save_config(config=config_object)\n    True\n    \"\"\"\n    try:\n        config.write()\n    except Exception:\n        return False\n    else:\n        return True\n\n\ndef validate_config(config: ConfigObj) -> bool:\n    \"\"\"\n    Validate ConfigObj dictionary.\n\n    Ensures that the given `ConfigObj` is valid.\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to validate.\n\n    Returns\n    -------\n    bool\n        True if validation passes, otherwise False.\n\n    Examples\n    --------\n    >>> config_object = create_config(config_file='config.ini')\n    >>> validate_config(config=config_object)\n    True\n    \"\"\"\n    validator = Validator()\n    try:\n        config.validate(\n            validator=validator,\n            copy=False  # don't write out default values\n        )\n        return True\n    except ValidateError as e:\n        log_msg = f\"Config validation error: {e}.\\n\"\n        log.error(msg=log_msg)\n        sys.stderr.write(log_msg)\n        return False\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "7490634cc35f19a292a79ed65c47ebdeec7df2ad7892a4fc335c0ea4b6bed9e1"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/__init__.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3766,
-      "code": {
-        "startLine": 1,
-        "length": 3766,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   __init__.py\n\nResponsible for initialization of RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading\nfrom typing import Union\n\n# local imports\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import logger\n\n# get logger\nlog = logger.get_logger(name=__name__)\n\n_INITIALIZED = False\nCONFIG = None\nCONFIG_FILE = None\nDEBUG = False\nDEV = False\nSIGNAL = None  # Signal to watch for\nINIT_LOCK = threading.Lock()\nQUIET = False\n\n\ndef initialize(config_file: str) -> bool:\n    \"\"\"\n    Initialize RetroArcher.\n\n    Sets up config, loggers, and http port.\n\n    Parameters\n    ----------\n    config_file : str\n        The path to the config file.\n\n    Returns\n    -------\n    bool\n        True if initialize succeeds, otherwise False.\n\n    Raises\n    ------\n    SystemExit\n        If unable to correct possible issues with config file.\n\n    Examples\n    --------\n    >>> initialize(config_file='config.ini')\n    True\n    \"\"\"\n    with INIT_LOCK:\n\n        global CONFIG\n        global CONFIG_FILE\n        global DEBUG\n        global _INITIALIZED\n\n        try:\n            CONFIG = config.create_config(config_file=config_file)\n        except Exception:\n            raise SystemExit(\"Unable to initialize due to a corrupted config file. Exiting...\")\n\n        CONFIG_FILE = config_file\n\n        assert CONFIG is not None\n\n        logger.blacklist_config(config=CONFIG)  # setup log blacklist\n\n        if _INITIALIZED:\n            return False\n\n        # create logs folder\n        definitions.Paths.LOG_DIR, log_writable = helpers.check_folder_writable(\n            folder=definitions.Paths.LOG_DIR,\n            fallback=os.path.join(definitions.Paths.DATA_DIR, 'logs'),\n            name='logs'\n        )\n        if not log_writable and not QUIET:\n            sys.stderr.write(\"Unable to create the log directory. Logging to screen only.\\n\")\n\n        # setup loggers... cannot use logging until this is finished\n        logger.setup_loggers()\n\n        if CONFIG['Network']['HTTP_PORT'] < 21 or CONFIG['Network']['HTTP_PORT'] > 65535:\n            log.warning(msg=f\"HTTP_PORT out of bounds: 21 < {CONFIG['Network']['HTTP_PORT']} < 65535\")\n            CONFIG['Network']['HTTP_PORT'] = 9696\n\n        DEBUG = DEBUG or bool(CONFIG['Logging']['DEBUG_LOGGING'])\n\n        _INITIALIZED = True\n        return True\n\n\ndef stop(exit_code: Union[int, str] = 0, restart: bool = False):\n    \"\"\"\n    Stop RetroArcher.\n\n    This function ends the tray icon if it's running. Then restarts or shutdowns RetroArcher depending on the value of\n    the `restart` parameter.\n\n    Parameters\n    ----------\n    exit_code : Union[int, str], default = 0\n        The exit code to send. Does not apply if `restart = True`.\n    restart : bool, default = False\n        Set to True to restart RetroArcher.\n\n    Examples\n    --------\n    >>> stop(exit_code=0, restart=False)\n    \"\"\"\n    # stop the tray icon\n    from pyra.tray_icon import tray_end\n    try:\n        tray_end()\n    except AttributeError:\n        pass\n\n    if restart:\n        if definitions.Modes.FROZEN:\n            args = [definitions.Paths.BINARY_PATH]\n        else:\n            args = [sys.executable, definitions.Paths.BINARY_PATH]\n        args += sys.argv[1:]\n\n        if '--nolaunch' not in args:  # don't launch the browser again\n            args += ['--nolaunch']  # also os.execv requires at least one argument\n\n        # os.execv(sys.executable, args)\n        # `os.execv` is more desirable, but is not working correctly\n        # flask app does not respond to requests after restarting\n        # alternative to os.execv()\n        subprocess.Popen(args=args, cwd=os.getcwd())\n\n    sys.exit(exit_code)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "f6598e1803878acdccbe16ca2d16a83a18a0c36e67e4f196376f3d715b7238f5"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/threads.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 983,
-      "code": {
-        "startLine": 1,
-        "length": 983,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   threads.py\n\nFunctions related to threading.\n\nRoutine Listings\n----------------\nrun_in_thread : method\n    Alias of the built in method `threading.Thread`.\n\nExamples\n--------\n>>> from pyra import config, threads, tray_icon\n>>> config_object = config.create_config(config_file='config.ini')\n>>> tray_icon.icon = tray_icon.tray_initialize()\n>>> threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()\n\n>>> from pyra import config, threads, webapp\n>>> config_object = config.create_config(config_file='config.ini')\n>>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n * Serving Flask app 'pyra.webapp' (lazy loading)\n...\n * Running on http://.../ (Press CTRL+C to quit)\n\"\"\"\n# standard imports\nimport threading\n\n# just use standard threading.Thread for now\n# todo\n# this can probably be improved\n# ideally would like to have basic functions and just pass in the target and args\nrun_in_thread = threading.Thread\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "6bff3c6aac796dc7753533a1980c7e26f499b44f10861acdfeeab6d3d6f1d632"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/tray_icon.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 8120,
-      "code": {
-        "startLine": 1,
-        "length": 8120,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   tray_icon.py\n\nResponsible for system tray icon and related functions.\n\"\"\"\n# standard imports\nimport os\nfrom typing import Union\n\n# lib imports\nfrom PIL import Image\n\n# local imports\nimport pyra\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import locales\nfrom pyra import logger\n\n# setup\n_ = locales.get_text()\nicon_running = False\nicon_supported = False\nlog = logger.get_logger(name=__name__)\n\n# conditional imports\nif definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass\ntry:\n    from pystray import Icon, MenuItem, Menu\nexcept Xlib.error.DisplayNameError:\n    Icon = None\nelse:\n    icon_class = Icon  # avoids a messy import for pytest\n    icon_supported = True\n\n# additional setup\nicon: Union[Icon, bool] = False\n\n\ndef tray_initialize() -> Union[Icon, bool]:\n    \"\"\"\n    Initialize the system tray icon.\n\n    Some features of the tray icon may not be available, depending on the operating system. An attempt is made to setup\n    the tray icon with all the available features supported by the OS.\n\n    Returns\n    -------\n    Union[Icon, bool]\n        Icon\n            Instance of pystray.Icon if icon is supported.\n        bool\n            False if icon is not supported.\n\n    Examples\n    --------\n    >>> tray_initialize()\n    \"\"\"\n    if not icon_supported:\n        return False\n    tray_icon = Icon(name='retroarcher')\n    tray_icon.title = definitions.Names.name\n\n    image = Image.open(os.path.join(definitions.Paths.ROOT_DIR, 'web', 'images', 'retroarcher.ico'))\n    tray_icon.icon = image\n\n    # NOTE: Open the application. \"%(app_name)s\" = \"RetroArcher\". Do not translate \"%(app_name)s\".\n    first_menu_entry = MenuItem(text=_('Open %(app_name)s') % {'app_name': definitions.Names.name},\n                                action=open_webapp, default=True if tray_icon.HAS_DEFAULT_ACTION else False)\n\n    if tray_icon.HAS_MENU:\n        menu = (\n            first_menu_entry,\n            Menu.SEPARATOR,\n            # NOTE: Open GitHub Releases. \"%(github)s\" = \"GitHub\". Do not translate \"%(github)s\".\n            MenuItem(text=_('%(github)s Releases') % {'github': 'GitHub'}, action=github_releases),\n            MenuItem(\n                # NOTE: Donate to RetroArcher.\n                text=_('Donate'), action=Menu(\n                    MenuItem(text=_('GitHub Sponsors'), action=donate_github),\n                    MenuItem(text='MEE6', action=donate_mee6),\n                    MenuItem(text='Patreon', action=donate_patreon),\n                    MenuItem(text='PayPal', action=donate_paypal),\n                )\n            ),\n            Menu.SEPARATOR,\n            # NOTE: Open web browser when application starts. Do not translate \"%(app_name)s\".\n            MenuItem(text=_('Open browser when %(app_name)s starts') % {'app_name': definitions.Names.name},\n                     action=tray_browser, checked=lambda item: config.CONFIG['General']['LAUNCH_BROWSER']),\n            # NOTE: Disable or turn off icon.\n            MenuItem(text=_('Disable icon'), action=tray_disable),\n            Menu.SEPARATOR,\n            # NOTE: Restart the program.\n            MenuItem(text=_('Restart'), action=tray_restart),\n            # NOTE: Quit, Stop, End, or Shutdown the program.\n            MenuItem(text=_('Quit'), action=tray_quit),\n        )\n\n    else:\n        menu = (\n            first_menu_entry,\n        )\n\n    tray_icon.menu = menu\n\n    return tray_icon\n\n\ndef tray_browser():\n    \"\"\"\n    Toggle the config option 'LAUNCH_BROWSER'.\n\n    This functions switches the `LAUNCH_BROWSER` config option from True to False, or False to True.\n\n    Examples\n    --------\n    >>> tray_browser()\n    \"\"\"\n    # toggle the value of LAUNCH_BROWSER\n    config.CONFIG['General']['LAUNCH_BROWSER'] = not config.CONFIG['General']['LAUNCH_BROWSER']\n\n    config.save_config(config.CONFIG)\n\n\ndef tray_disable():\n    \"\"\"\n    Turn off the config option 'SYSTEM_TRAY'.\n\n    This function ends and disables the `SYSTEM_TRAY` config option.\n\n    Examples\n    --------\n    >>> tray_disable()\n    \"\"\"\n    tray_end()\n    config.CONFIG['General']['SYSTEM_TRAY'] = False\n    config.save_config(config.CONFIG)\n\n\ndef tray_end():\n    \"\"\"\n    End the system tray icon.\n\n    Hide and then stop the system tray icon.\n\n    Examples\n    --------\n    >>> tray_end()\n    \"\"\"\n    try:\n        icon_class\n    except NameError:\n        pass\n    else:\n        if isinstance(icon, icon_class):\n            try:  # this shouldn't be possible to call, other than through pytest\n                icon.visible = False\n            except AttributeError:\n                pass\n\n            try:\n                icon.stop()\n            except AttributeError:\n                pass\n            except Exception as e:\n                log.error(f'Exception when stopping system tray icon: {e}')\n            else:\n                global icon_running\n                icon_running = False\n\n\ndef tray_quit():\n    \"\"\"\n    Shutdown RetroArcher.\n\n    Set the 'pyra.SIGNAL' variable to 'shutdown'.\n\n    Examples\n    --------\n    >>> tray_quit()\n    \"\"\"\n    pyra.SIGNAL = 'shutdown'\n\n\ndef tray_restart():\n    \"\"\"\n    Restart RetroArcher.\n\n    Set the 'pyra.SIGNAL' variable to 'restart'.\n\n    Examples\n    --------\n    >>> tray_restart()\n    \"\"\"\n    pyra.SIGNAL = 'restart'\n\n\ndef tray_run():\n    \"\"\"\n    Start the tray icon.\n\n    Run the system tray icon in detached mode.\n\n    Examples\n    --------\n    >>> tray_run()\n    \"\"\"\n    try:\n        icon_class\n    except NameError:\n        pass\n    else:\n        global icon_running\n\n        if isinstance(icon, icon_class):\n            try:\n                icon.run_detached()\n            except AttributeError:\n                pass\n            except NotImplementedError as e:\n                log.error(f'Error running system tray icon: {e}')\n            else:\n                icon_running = True\n\n\ndef open_webapp() -> bool:\n    \"\"\"\n    Open the webapp.\n\n    Open RetroArcher in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> open_webapp()\n    True\n    \"\"\"\n    url = f\"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}\"\n    return helpers.open_url_in_browser(url=url)\n\n\ndef github_releases():\n    \"\"\"\n    Open GitHub Releases.\n\n    Open GitHub Releases in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> github_releases()\n    True\n    \"\"\"\n    url = 'https://github.com/LizardByte/RetroArcher/releases/latest'\n    return helpers.open_url_in_browser(url=url)\n\n\ndef donate_github():\n    \"\"\"\n    Open GitHub Sponsors.\n\n    Open GitHub Sponsors in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> donate_github()\n    True\n    \"\"\"\n    url = 'https://github.com/sponsors/LizardByte'\n    return helpers.open_url_in_browser(url=url)\n\n\ndef donate_mee6():\n    \"\"\"\n    Open MEE6.\n\n    Open MEE6 in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> donate_mee6()\n    True\n    \"\"\"\n    url = 'https://mee6.xyz/m/804382334370578482'\n    return helpers.open_url_in_browser(url=url)\n\n\ndef donate_patreon():\n    \"\"\"\n    Open Patreon.\n\n    Open Patreon in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> donate_patreon()\n    True\n    \"\"\"\n    url = 'https://www.patreon.com/LizardByte'\n    return helpers.open_url_in_browser(url=url)\n\n\ndef donate_paypal():\n    \"\"\"\n    Open PayPal.\n\n    Open PayPal in the default web browser.\n\n    Returns\n    -------\n    bool\n        True if opening page was successful, otherwise False.\n\n    Examples\n    --------\n    >>> donate_paypal()\n    True\n    \"\"\"\n    url = 'https://www.paypal.com/paypalme/ReenigneArcher'\n    return helpers.open_url_in_browser(url=url)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "0d68947ce61360c6faf864b0fe0ae60bcb47be427c83eb9386a172eede2fbf4b"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/locales.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3550,
-      "code": {
-        "startLine": 1,
-        "length": 3550,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   locales.py\n\nFunctions related to localization.\n\nLocalization (also referred to as l10n) is the process of adapting a product or service to a specific locale.\nTranslation is only one of several elements in the localization process. In addition to translation, the localization\nprocess may also include:\n- Adapting design and layout to properly display translated text in the language of the locale\n- Adapting sorting functions to the alphabetical order of a specific locale\n- Changing formats for date and time, addresses, numbers, currencies, etc. for specific target locales\n- Adapting graphics to suit the expectations and tastes of a target locale\n- Modifying content to suit the tastes and consumption habits of a target locale\n\nThe aim of localization is to give a product or service the look and feel of having been created specifically for a\ntarget market, no matter their language, cultural preferences, or location.\n\"\"\"\n# standard imports\nimport gettext\n\n# lib imports\nimport babel\nfrom babel import localedata\n\n# local imports\nfrom pyra import config\nfrom pyra.definitions import Paths\nfrom pyra import logger\n\ndefault_domain = 'retroarcher'\ndefault_locale = 'en'\ndefault_timezone = 'UTC'\nsupported_locales = ['en', 'es']\n\nlog = logger.get_logger(__name__)\n\n\ndef get_all_locales() -> dict:\n    \"\"\"\n    Get a dictionary of all possible locales for use with babel.\n\n    Dictionary keys will be `locale_id` and value with be `locale_display_name`.\n    This is a shortened example of the returned value.\n\n    .. code-block:: python\n\n        {\n          'de': 'Deutsch',\n          'en': 'English',\n          'en_GB': 'English (United Kingdom)',\n          'en_US': 'English (United States)',\n          'es': 'español',\n          'fr': 'français',\n          'it': 'italiano',\n          'ru': 'русский'\n        }\n\n    Returns\n    -------\n    dict\n        Dictionary of all possible locales.\n\n    Examples\n    --------\n    >>> get_all_locales()\n    {... 'en': 'English', ... 'en_GB': 'English (United Kingdom)', ... 'es': 'español', ... 'fr': 'français', ...}\n    \"\"\"\n    log.debug(msg='Getting locale dictionary.')\n    locale_ids = localedata.locale_identifiers()\n\n    locales = {}\n\n    for locale_id in locale_ids:\n        locale = babel.Locale.parse(identifier=locale_id)\n        locales[locale_id] = locale.get_display_name()\n\n    return locales\n\n\ndef get_locale() -> str:\n    \"\"\"\n    Verify the locale.\n\n    Verify the locale from the config against supported locales and returns appropriate locale.\n\n    Returns\n    -------\n    str\n        The locale set in the config if it is valid, otherwise the default locale (en).\n\n    Examples\n    --------\n    >>> get_locale()\n    'en'\n    \"\"\"\n    try:\n        config_locale = config.CONFIG['General']['LOCALE']\n    except TypeError:\n        config_locale = None\n\n    if config_locale in supported_locales:\n        return config_locale\n    else:\n        return default_locale\n\n\ndef get_text() -> gettext.gettext:\n    \"\"\"\n    Install the language defined in the conifg.\n\n    This function installs the language defined in the config and allows translations in python code.\n\n    Returns\n    -------\n    gettext.gettext\n        The `gettext.gettext` method.\n\n    Examples\n    --------\n    >>> get_text()\n    <bound method GNUTranslations.gettext of <gettext.GNUTranslations object at 0x...>>\n    \"\"\"\n    language = gettext.translation(\n        domain=default_domain,\n        localedir=Paths.LOCALE_DIR,\n        languages=[get_locale()]\n    )\n\n    language.install()\n\n    return language.gettext\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "793750c91145050ba03f13d21c65a3dc2716c080e0950a33897c807d73d33389"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/helpers.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 8721,
-      "code": {
-        "startLine": 1,
-        "length": 8721,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   helpers.py\n\nMany reusable helper functions.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport datetime\nimport logging\nimport re\nimport os\nimport requests\nimport socket\nimport time\nfrom typing import Optional, Union\nimport webbrowser\n\n# lib imports\nfrom IPy import IP\n\n\ndef check_folder_writable(fallback: str, name: str, folder: Optional[str] = None) -> tuple[str, Optional[bool]]:\n    \"\"\"\n    Check if folder or fallback folder is writeable.\n\n    This function ensures that the folder can be created, if it doesn't exist. It also ensures there are sufficient\n    permissions to write to the folder. If the primary `folder` fails, it falls back to the `fallback` folder.\n\n    Parameters\n    ----------\n    fallback : str\n        Secondary folder to check, if the primary folder fails.\n    name : str\n        Short name of folder.\n    folder : str, optional\n        Primary folder to check.\n\n    Returns\n    -------\n    tuple[str, Optional[bool]]\n        A tuple containing:\n            folder : str\n                The original or fallback folder.\n            Optional[bool]\n                True if writeable, otherwise False. Nothing is returned if there is an error attempting to create the\n                directory.\n\n    Examples\n    --------\n    >>> check_folder_writable(\n    ...     folder='logs',\n    ...     fallback='backup_logs',\n    ...     name='logs'\n    ...     )\n    ('logs', True)\n    \"\"\"\n    if not folder:\n        folder = fallback\n\n    if not os.path.isdir(s=folder):  # if directory doesn't exist\n        try:\n            os.makedirs(name=folder)  # try to make the directory\n        except OSError as e:\n            log.error(msg=f\"Could not create {name} dir '{folder}': {e}\")\n            if fallback and folder != fallback:\n                log.warning(msg=f\"Falling back to {name} dir '{fallback}'\")\n                return check_folder_writable(folder=None, fallback=fallback, name=name)\n            else:\n                return folder, None\n\n    if not os.access(path=folder, mode=os.W_OK):\n        log.error(msg=f\"Cannot write to {name} dir '{folder}'\")\n        if fallback and folder != fallback:\n            log.warning(msg=f\"Falling back to {name} dir '{fallback}'\")\n            return check_folder_writable(folder=None, fallback=fallback, name=name)\n        else:\n            return folder, False\n\n    return folder, True\n\n\ndef docker_healthcheck() -> bool:\n    \"\"\"\n    Check the health of the docker container.\n\n    .. Warning:: This is only meant to be called by `retroarcher.py`, and the interpreter should be immediate exited\n       following the result.\n\n    The default port is used considering that the container will use the default port internally.\n    The external port should not make any difference.\n\n    Returns\n    -------\n    bool\n        True if status okay, otherwise False.\n\n    Examples\n    --------\n    >>> docker_healthcheck()\n    True\n    \"\"\"\n    protocols = ['http', 'https']\n\n    for p in protocols:\n        try:\n            response = requests.get(url=f'{p}://localhost:9696/status')\n        except requests.exceptions.ConnectionError:\n            pass\n        else:\n            if response.status_code == 200:\n                return True\n\n    return False  # did not get a valid response, so return False\n\n\ndef get_logger(name: str) -> logging.Logger:\n    \"\"\"\n    Get the logger for the given name.\n\n    This function also exists in `logger.py` to prevent circular imports.\n\n    Parameters\n    ----------\n    name : str\n        Name of logger.\n\n    Returns\n    -------\n    logging.Logger\n        The logging.Logger object.\n\n    Examples\n    --------\n    >>> get_logger(name='my_log')\n    <Logger my_log (WARNING)>\n    \"\"\"\n    return logging.getLogger(name=name)\n\n\ndef is_public_ip(host: str) -> bool:\n    \"\"\"\n    Check if ip address is public or not.\n\n    This function is used to determine if the given host address is a public ip address or not.\n\n    Parameters\n    ----------\n    host : str\n        IP address to check.\n\n    Returns\n    -------\n    bool\n        True if ip address is public, otherwise False.\n\n    Examples\n    --------\n    >>> is_public_ip(host='www.google.com')\n    True\n\n    >>> is_public_ip(host='192.168.1.1')\n    False\n    \"\"\"\n    ip = is_valid_ip(address=get_ip(host=host))\n    if ip and ip.iptype() == 'PUBLIC':\n        return True\n    return False\n\n\ndef get_ip(host: str) -> str:\n    \"\"\"\n    Get IP address from host name.\n\n    This function is used to get the IP address of a given host name.\n\n    Parameters\n    ----------\n    host : str\n        Host name to get ip address of.\n\n    Returns\n    -------\n    str\n        IP address of host name.\n\n    Examples\n    --------\n    >>> get_ip(host='192.168.1.1')\n    '192.168.1.1'\n\n    >>> get_ip(host='www.google.com')\n    '172.253.63.147'\n    \"\"\"\n    if is_valid_ip(address=host):\n        return host\n    elif not re.match(pattern=r'^[0-9]+(?:\\.[0-9]+){3}(?!\\d*-[a-z0-9]{6})$', string=host):\n        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:\n            log.debug(f\"IP Checker :: Resolved {host} to {ip_address}.\")\n            return ip_address\n\n\ndef is_valid_ip(address: str) -> Union[IP, bool]:\n    \"\"\"\n    Check if address is an ip address.\n\n    This function is used to determine if the given address is an ip address or not.\n\n    Parameters\n    ----------\n    address : str\n        Address to check.\n\n    Returns\n    -------\n    Union[IP, bool]\n        IP object if address is an ip address, otherwise False.\n\n    Examples\n    --------\n    >>> is_valid_ip(address='192.168.1.1')\n    True\n\n    >>> is_valid_ip(address='0.0.0.0.0')\n    False\n    \"\"\"\n    try:\n        return IP(address)\n    except TypeError:\n        return False\n    except ValueError:\n        return False\n\n\ndef now(separate: bool = False) -> str:\n    \"\"\"\n    Function to get the current time, formatted.\n\n    This function will return the current time formatted as YMDHMS\n\n    Parameters\n    ----------\n    separate : bool, default = False\n        True to separate time with a combination of dashes (`-`) and colons (`:`).\n\n    Returns\n    -------\n    str\n        The current time formatted as YMDHMS.\n\n    Examples\n    --------\n    >>> now()\n    '20220410184531'\n\n    >>> now(separate=True)\n    '2022-04-10 18:46:12'\n    \"\"\"\n    return timestamp_to_YMDHMS(ts=timestamp(), separate=separate)\n\n\ndef open_url_in_browser(url: str) -> bool:\n    \"\"\"\n    Open a given url in the default browser.\n\n    Attempt to open the given url in the default web browser, in a new tab.\n\n    Parameters\n    ----------\n    url : str\n        The url to open.\n\n    Returns\n    -------\n    bool\n        True if no error, otherwise False.\n\n    Examples\n    --------\n    >>> open_url_in_browser(url='https://www.google.com')\n    True\n    \"\"\"\n    try:\n        webbrowser.open(url=url, new=2)\n    except webbrowser.Error:\n        return False\n    else:\n        return True\n\n\ndef timestamp() -> int:\n    \"\"\"\n    Function to get the current time.\n\n    This function uses time.time() to get the current time.\n\n    Returns\n    -------\n    int\n        The current time as a timestamp integer.\n\n    Examples\n    --------\n    >>> timestamp()\n    1649631005\n    \"\"\"\n    return int(time.time())\n\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format.\n\n    Convert a given timestamp to YMDHMS format.\n\n    Parameters\n    ----------\n    ts : int\n        The timestamp to convert.\n    separate : bool, default = False\n        True to separate time with a combination of dashes (`-`) and colons (`:`).\n\n    Returns\n    -------\n    str\n        The timestamp formatted as YMDHMS.\n\n    Examples\n    --------\n    >>> timestamp_to_YMDHMS(ts=timestamp(), separate=False)\n    '20220410185142'\n\n    >>> timestamp_to_YMDHMS(ts=timestamp(), separate=True)\n    '2022-04-10 18:52:09'\n    \"\"\"\n    dt = timestamp_to_datetime(ts=ts)\n    if separate:\n        return dt.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return dt.strftime(\"%Y%m%d%H%M%S\")\n\n\ndef timestamp_to_datetime(ts: float) -> datetime.datetime:\n    \"\"\"\n    Convert timestamp to datetime object.\n\n    This function returns the result of `datetime.datetime.fromtimestamp()`.\n\n    Parameters\n    ----------\n    ts : float\n        The timestamp to convert.\n\n    Returns\n    -------\n    datetime.datetime\n        Object `datetime.datetime`.\n\n    Examples\n    --------\n    >>> timestamp_to_datetime(ts=timestamp())\n    datetime.datetime(20..., ..., ..., ..., ..., ...)\n    \"\"\"\n    return datetime.datetime.fromtimestamp(ts)\n\n\n# get logger\nlog = get_logger(name=__name__)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "aa3e2b4b4b7bd411baf3c7e45699147e7b50589b37515342aa6fcf016dd23ceb"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "docs/source/conf.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3302,
-      "code": {
-        "startLine": 1,
-        "length": 3302,
-        "offset": 0,
-        "surroundingCode": "# Configuration file for the Sphinx documentation builder.\n#\n# This file only contains a selection of the most common options. For a full\n# list see the documentation:\n# https://www.sphinx-doc.org/en/master/usage/configuration.html\n\n# standard imports\nfrom datetime import datetime\n\n\n# -- Path setup --------------------------------------------------------------\n\n# If extensions (or modules to document with autodoc) are in another directory,\n# add these directories to sys.path here. If the directory is relative to the\n# documentation root, use os.path.abspath to make it absolute, like shown here.\nimport os\nimport sys\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))  # the directory of this file\nsource_dir = os.path.dirname(script_dir)  # the source folder directory\nroot_dir = os.path.dirname(source_dir)  # the root folder directory\n\ntry:\n    sys.path.insert(0, root_dir)\n    from pyra import definitions  # put this in a try/except to prevent flake8 warning\n    from pyra import version\nexcept Exception:\n    sys.exit(1)\n\n# -- Project information -----------------------------------------------------\nproject = definitions.Names().name\ncopyright = f'{datetime.now ().year}, {project}'\nauthor = 'ReenigneArcher'\n\n# The full version, including alpha/beta/rc tags\nversion = version.version\n\n\n# -- General configuration ---------------------------------------------------\n\n# Add any Sphinx extension module names here, as strings. They can be\n# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom\n# ones.\nextensions = [\n    'm2r2',  # enable markdown files\n    'numpydoc',  # this automatically loads `sphinx.ext.autosummary` as well\n    'sphinx.ext.autodoc',  # autodocument modules\n    'sphinx.ext.autosectionlabel',\n    'sphinx.ext.todo',  # enable to-do sections\n    'sphinx.ext.viewcode'  # add links to view source code\n]\n\n# Add any paths that contain templates here, relative to this directory.\n# templates_path = ['_templates']\n\n# List of patterns, relative to source directory, that match files and\n# directories to ignore when looking for source files.\n# This pattern also affects html_static_path and html_extra_path.\nexclude_patterns = ['toc.rst']\n\n# Extensions to include.\nsource_suffix = ['.rst', '.md']\n\n\n# -- Options for HTML output -------------------------------------------------\n\n# Add any paths that contain custom static files (such as style sheets) here,\n# relative to this directory. They are copied after the builtin static files,\n# so a file named \"default.css\" will overwrite the builtin \"default.css\".\n# html_static_path = ['_static']\n\nhtml_logo = os.path.join(definitions.Paths().ROOT_DIR, 'web', 'images', 'logo-circle.png')\n\n# The theme to use for HTML and HTML Help pages.  See the documentation for\n# a list of builtin themes.\nhtml_theme = 'furo'\n\nhtml_theme_options = {\n    \"top_of_page_button\": \"edit\",\n    \"source_edit_link\": \"https://github.com/lizardbyte/retroarcher/tree/nightly/docs/source/{filename}\",\n}\n\n# extension config options\nautodoc_preserve_defaults = True  # Do not evaluate default arguments of functions\nautosectionlabel_prefix_document = True  # Make sure the target is unique\ntodo_include_todos = True\n\n# numpydoc config\nnumpydoc_validation_checks = {'all', 'SA01'}  # Report warnings for all checks *except* for SA01\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "4023697e37c9db32c4443788ba41c3324061cdb49555e81af1a833d555d77be8"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "retroarcher.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 7519,
-      "code": {
-        "startLine": 1,
-        "length": 7519,
-        "offset": 0,
-        "surroundingCode": "#!/usr/bin/env python3\n\"\"\"\n..\n   retroarcher.py\n\nResponsible for starting RetroArcher.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport argparse\nimport os\nimport sys\nimport time\nfrom typing import Union\n\n# local imports\nimport pyra\nfrom pyra import config\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import locales\nfrom pyra import logger\nfrom pyra import threads\nfrom pyra import version\n\npy_name = 'pyra'\n\n# locales\n_ = locales.get_text()\n\n# get logger\nlog = logger.get_logger(name=py_name)\n\n\nclass IntRange(object):\n    \"\"\"\n    Custom IntRange class for argparse.\n\n    Prevents printing out large list of possible choices for integer ranges.\n\n    Parameters\n    ----------\n    stop : int\n        Range maximum value.\n    start : int, default = 0\n        Range minimum value.\n\n    Methods\n    -------\n    __call__:\n        Validate that value is within accepted range.\n\n    Examples\n    --------\n    >>> IntRange(0, 10)\n    <retroarcher.IntRange object at 0x...>\n    \"\"\"\n    def __init__(self, stop: int, start: int = 0,):\n        \"\"\"\n        Initialize the IntRange class object.\n\n        If stop is less than start, the values will be corrected automatically.\n        \"\"\"\n        if stop < start:\n            stop, start = start, stop\n        self.start, self.stop = start, stop\n\n    def __call__(self, value: Union[int, str]) -> int:\n        \"\"\"\n        Validate that value is within accepted range.\n\n        Validate the provided value is within the range of the `IntRange()` object.\n\n        Parameters\n        ----------\n        value : Union[int, str]\n            The value to validate.\n\n        Returns\n        -------\n        int\n            The original value.\n\n        Raises\n        ------\n        argparse.ArgumentTypeError\n            If provided value is outside the accepted range.\n\n        Examples\n        --------\n        >>> IntRange(0, 10).__call__(5)\n        5\n\n        >>> IntRange(0, 10).__call__(15)\n        Traceback (most recent call last):\n            ...\n        argparse.ArgumentTypeError: Value outside of range: (0, 10)\n        \"\"\"\n        value = int(value)\n        if value < self.start or value >= self.stop:\n            raise argparse.ArgumentTypeError(f'Value outside of range: ({self.start}, {self.stop})')\n        return value\n\n\ndef main():\n    \"\"\"\n    Application entry point.\n\n    Parses arguments and initializes the application.\n\n    Examples\n    --------\n    >>> if __name__ == \"__main__\":\n    ...     main()\n    \"\"\"\n    # Fixed paths to RetroArcher\n    if definitions.Modes.FROZEN:  # only when using the pyinstaller build\n\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n\n    # Set up and gather command line arguments\n    # todo... fix translations for '--help' command\n    parser = argparse.ArgumentParser(description=_('RetroArcher is a Python based game streaming server.\\n'\n                                                   'Arguments supplied here are meant to be temporary.'))\n\n    parser.add_argument('--config', help=_('Specify a config file to use'))\n    parser.add_argument('--debug', action='store_true', help=_('Use debug logging level'))\n    parser.add_argument('--dev', action='store_true', help=_('Start RetroArcher in the development environment'))\n    parser.add_argument('--docker_healthcheck', action='store_true', help=_('Health check the container and exit'))\n    parser.add_argument('--nolaunch', action='store_true', help=_('Do not open RetroArcher in browser'))\n    parser.add_argument('-p', '--port', default=9696, type=IntRange(21, 65535),\n                        help=_('Force RetroArcher to run on a specified port, default=9696')\n                        )\n    parser.add_argument('-q', '--quiet', action='store_true', help=_('Turn off console logging'))\n    parser.add_argument('-v', '--version', action='store_true', help=_('Print the version details and exit'))\n\n    args = parser.parse_args()\n\n    if args.docker_healthcheck:\n        status = helpers.docker_healthcheck()\n        exit_code = int(not status)\n        sys.exit(exit_code)\n\n    if args.version:\n        print(f'v{version.version}')\n        sys.exit()\n\n    if args.config:\n        config_file = args.config\n    else:\n        config_file = os.path.join(definitions.Paths.DATA_DIR, definitions.Files.CONFIG)\n    if args.debug:\n        pyra.DEBUG = True\n    if args.dev:\n        pyra.DEV = True\n    if args.quiet:\n        pyra.QUIET = True\n\n    # initialize retroarcher\n    # logging should not occur until after initialize\n    # any submodules that require translations need to be imported after config is initialize\n    pyra.initialize(config_file=config_file)\n\n    if args.config:\n        log.info(msg=f\"RetroArcher is using custom config file: {config_file}.\")\n    if args.debug:\n        log.info(msg=\"RetroArcher will log debug messages.\")\n    if args.dev:\n        log.info(msg=\"RetroArcher is running in the dev environment.\")\n    if args.quiet:\n        log.info(msg=\"RetroArcher is running in quiet mode. Nothing will be printed to console.\")\n\n    if args.port:\n        config.CONFIG['Network']['HTTP_PORT'] = args.port\n        config.CONFIG.write()\n\n    if config.CONFIG['General']['SYSTEM_TRAY']:\n        from pyra import tray_icon  # submodule requires translations so importing after initialization\n        # also do not import if not required by config options\n\n        if tray_icon.icon_supported:\n            tray_icon.icon = tray_icon.tray_initialize()\n            threads.run_in_thread(target=tray_icon.tray_run, name='pystray', daemon=True).start()\n\n    # start the webapp\n    if definitions.Modes.SPLASH:  # pyinstaller build only, not darwin platforms\n        pyi_splash.update_text(\"Starting the webapp\")\n        time.sleep(3)  # show splash screen for a min of 3 seconds\n        pyi_splash.close()  # close the splash screen\n    from pyra import webapp  # import at use due to translations\n    threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n\n    # this should be after starting flask app\n    if config.CONFIG['General']['LAUNCH_BROWSER'] and not args.nolaunch:\n        url = f\"http://127.0.0.1:{config.CONFIG['Network']['HTTP_PORT']}\"\n        helpers.open_url_in_browser(url=url)\n\n    wait()  # wait for signal\n\n\ndef wait():\n    \"\"\"\n    Wait for signal.\n\n    Endlessly loop while `pyra.SIGNAL = None`.\n    If `pyra.SIGNAL` is changed to `shutdown` or `restart` `pyra.stop()` will be executed.\n    If KeyboardInterrupt signal is detected `pyra.stop()` will be executed.\n\n    Examples\n    --------\n    >>> wait()\n    \"\"\"\n    from pyra import hardware  # submodule requires translations so importing after initialization\n\n    log.info(\"RetroArcher is ready!\")\n\n    while True:  # wait endlessly for a signal\n        if not pyra.SIGNAL:\n            hardware.update()  # update dashboard resource values\n            try:\n                time.sleep(1)\n            except KeyboardInterrupt:\n                pyra.SIGNAL = 'shutdown'\n        else:\n            log.info(f'Received signal: {pyra.SIGNAL}')\n\n            if pyra.SIGNAL == 'shutdown':\n                pyra.stop()\n            elif pyra.SIGNAL == 'restart':\n                pyra.stop(restart=True)\n            else:\n                log.error('Unknown signal. Shutting down...')\n                pyra.stop()\n\n            break\n\n\nif __name__ == \"__main__\":\n    main()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "f9f9ed0bf9636137b83404329fa22986a89c17f54e82e65d688dbd116aea4e46"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "scripts/build.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 1255,
-      "code": {
-        "startLine": 1,
-        "length": 1255,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   build.py\n\nCreates spec and builds binaries for RetroArcher.\n\"\"\"\n# standard imports\nimport sys\n\n# lib imports\nimport PyInstaller.__main__\n\n\ndef build():\n    \"\"\"Sets arguments for pyinstaller, creates spec, and builds binaries.\"\"\"\n    pyinstaller_args = [\n        'retroarcher.py',\n        '--onefile',\n        '--noconfirm',\n        '--paths=./',\n        '--add-data=docs:docs',\n        '--add-data=web:web',\n        '--add-data=locale:locale',\n        '--icon=./web/images/retroarcher.ico'\n    ]\n\n    if sys.platform.lower() == 'win32':  # windows\n        pyinstaller_args.append('--console')\n        pyinstaller_args.append('--splash=./web/images/logo-circle.png')\n\n        # fix args for windows\n        arg_count = 0\n        for arg in pyinstaller_args:\n            pyinstaller_args[arg_count] = arg.replace(':', ';')\n            arg_count += 1\n    elif sys.platform.lower() == 'darwin':  # macOS\n        pyinstaller_args.append('--console')\n        pyinstaller_args.append('--osx-bundle-identifier=dev.lizardbyte.retroarcher')\n\n    elif sys.platform.lower() == 'linux':  # linux\n        pyinstaller_args.append('--splash=./web/images/logo-circle.png')\n\n    PyInstaller.__main__.run(pyinstaller_args)\n\n\nif __name__ == '__main__':\n    build()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "5b23b4c45c76b99b318e7565e05f1c56017e213897f4cb922ac5f7360b05ccf6"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/logger.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 18662,
-      "code": {
-        "startLine": 1,
-        "length": 18662,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   logger.py\n\nResponsible for logging related functions.\n\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports\nimport contextlib\nimport errno\nimport logging\nimport multiprocessing\nimport os\nimport pkgutil\nimport re\nimport sys\nimport threading\nimport traceback\nfrom logging import handlers\nfrom logging.handlers import QueueHandler, QueueListener\n\n# lib imports\nfrom configobj import ConfigObj\n\n# local imports\nimport pyra\nfrom pyra import definitions\nfrom pyra import helpers\n\nfrom pyra.config import _BLACKLIST_KEYS, _WHITELIST_KEYS\n\n# These settings are for file logging only\npy_name = 'pyra'\nMAX_SIZE = 5000000  # 5 MB\nMAX_FILES = 5\n\n_BLACKLIST_WORDS = set()\n\n# Global queue for multiprocessing logging\nqueue = None\n\n\ndef blacklist_config(config: ConfigObj):\n    \"\"\"\n    Update blacklist words.\n\n    In order to filter words out of the logs, it is required to call this function.\n\n    Values in the config for keys containing the following terms will be removed.\n\n    - HOOK\n    - APIKEY\n    - KEY\n    - PASSWORD\n    - TOKEN\n\n    Parameters\n    ----------\n    config : ConfigObj\n        Config to parse.\n\n    Examples\n    --------\n    >>> config_object = pyra.config.create_config(config_file='config.ini')\n    >>> blacklist_config(config=config_object)\n    \"\"\"\n    blacklist = set()\n    blacklist_keys = ['HOOK', 'APIKEY', 'KEY', 'PASSWORD', 'TOKEN']\n\n    for k, v in config.items():\n        for key, value in v.items():\n            if isinstance(value, str) and len(value.strip()) > 5 and \\\n                    key.upper() not in _WHITELIST_KEYS and (key.upper() in blacklist_keys or\n                                                            any(bk in key.upper() for bk in _BLACKLIST_KEYS)):\n                blacklist.add(value.strip())\n\n    _BLACKLIST_WORDS.update(blacklist)\n\n\nclass NoThreadFilter(logging.Filter):\n    \"\"\"\n    Log filter for the current thread.\n\n    .. todo:: This documentation needs to be improved.\n\n    Parameters\n    ----------\n    threadName : str\n        The name of the thread.\n\n    Methods\n    -------\n    filter:\n        Filter the given record.\n\n    Examples\n    --------\n    >>> NoThreadFilter('main')\n    <pyra.logger.NoThreadFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self, threadName):\n        super(NoThreadFilter, self).__init__()\n\n        self.threadName = threadName\n\n    def filter(self, record) -> bool:\n        \"\"\"\n        Filter the given record.\n\n        .. todo:: This documentation needs to be improved.\n\n        Parameters\n        ----------\n        record : NoThreadFilter\n            The record to filter.\n\n        Returns\n        -------\n        bool\n            True if record.threadName is not equal to self.threadName, otherwise False.\n\n        Examples\n        --------\n        >>> NoThreadFilter('main').filter(record=NoThreadFilter('test'))\n        True\n\n        >>> NoThreadFilter('main').filter(record=NoThreadFilter('main'))\n        False\n        \"\"\"\n        return not record.threadName == self.threadName\n\n\n# Taken from Hellowlol/HTPC-Manager\nclass BlacklistFilter(logging.Filter):\n    \"\"\"\n    Filter logs for blacklisted words.\n\n    Log filter for blacklisted tokens and passwords.\n\n    Methods\n    -------\n    filter:\n        Filter the given record.\n\n    Examples\n    --------\n    >>> BlacklistFilter()\n    <pyra.logger.BlacklistFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self):\n        super(BlacklistFilter, self).__init__()\n\n    def filter(self, record) -> bool:\n        \"\"\"\n        Filter the given record.\n\n        .. todo:: This documentation needs to be improved.\n\n        Parameters\n        ----------\n        record : BlacklistFilter\n            The record to filter.\n\n        Returns\n        -------\n        bool\n            True in all cases.\n\n        Examples\n        --------\n        >>> BlacklistFilter().filter(record=BlacklistFilter())\n        True\n        \"\"\"\n        if not pyra.config.LOG_BLACKLIST:\n            return True\n\n        for item in _BLACKLIST_WORDS:\n            try:\n                if item in record.msg:\n                    record.msg = record.msg.replace(item, 16 * '*')\n\n                args = []\n                for arg in record.args:\n                    try:\n                        arg_str = str(arg)\n                        if item in arg_str:\n                            arg_str = arg_str.replace(item, 16 * '*')\n                            arg = arg_str\n                    except Exception:\n                        pass\n                    args.append(arg)\n                record.args = tuple(args)\n            except Exception:\n                pass\n\n        return True\n\n\nclass RegexFilter(logging.Filter):\n    \"\"\"\n    Base class for regex log filter.\n\n    Log filter for regex.\n\n    Attributes\n    ----------\n    regex : re.compile\n        The compiled regex pattern.\n\n    Methods\n    -------\n    filter:\n        Filter the given record.\n\n    Examples\n    --------\n    >>> RegexFilter()\n    <pyra.logger.RegexFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self):\n        super(RegexFilter, self).__init__()\n\n        self.regex = re.compile(pattern=r'')\n\n    def filter(self, record) -> bool:\n        \"\"\"\n        Filter the given record.\n\n        .. todo:: This documentation needs to be improved.\n\n        Parameters\n        ----------\n        record : RegexFilter\n            The record to filter.\n\n        Returns\n        -------\n        bool\n            True in all cases.\n\n        Examples\n        --------\n        >>> RegexFilter().filter(record=RegexFilter())\n        True\n        \"\"\"\n        if not pyra.config.LOG_BLACKLIST:\n            return True\n\n        try:\n            matches = self.regex.findall(record.msg)\n            for match in matches:\n                record.msg = self.replace(record.msg, match)\n\n            args = []\n            for arg in record.args:\n                try:\n                    arg_str = str(arg)\n                    matches = self.regex.findall(arg_str)\n                    if matches:\n                        for match in matches:\n                            arg_str = self.replace(arg_str, match)\n                        arg = arg_str\n                except Exception:\n                    pass\n                args.append(arg)\n            record.args = tuple(args)\n        except Exception:\n            pass\n\n        return True\n\n    def replace(self, text, match):\n        return text\n\n\nclass PublicIPFilter(RegexFilter):\n    \"\"\"\n    Log filter for public IP addresses.\n\n    Class responsible for filtering public IP addresses.\n\n    Attributes\n    ----------\n    regex : re.compile\n        The compiled regex pattern.\n\n    Methods\n    -------\n    replace:\n        Filter that replaces a string within another string.\n\n    Examples\n    --------\n    >>> PublicIPFilter()\n    <pyra.logger.PublicIPFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self):\n        super(PublicIPFilter, self).__init__()\n\n        # Currently only checking for ipv4 addresses\n        self.regex = re.compile(pattern=r'[0-9]+(?:[.-][0-9]+){3}(?!\\d*-[a-z0-9]{6})')\n\n    def replace(self, text: str, ip: str) -> str:\n        \"\"\"\n        Filter a public address.\n\n        Filter the given ip address out of the given text. The ip address will only be filter if it is public.\n\n        Parameters\n        ----------\n        text : str\n            The text to replace the ip address within.\n        ip : str\n            The ip address to replace with asterisks.\n\n        Returns\n        -------\n        str\n            The original text with the ip address replaced.\n\n        Examples\n        --------\n        >>> PublicIPFilter().replace(text='Testing 172.1.7.5', ip='172.1.7.5')\n        'Testing ***.***.***.***'\n        \"\"\"\n        if helpers.is_public_ip(ip.replace('-', '.')):\n            partition = '-' if '-' in ip else '.'\n            return text.replace(ip, partition.join(['***'] * 4))\n        return text\n\n\nclass EmailFilter(RegexFilter):\n    \"\"\"\n    Log filter for email addresses.\n\n    Class responsible for filtering email addresses.\n\n    Attributes\n    ----------\n    regex : re.compile\n        The compiled regex pattern.\n\n    Methods\n    -------\n    replace:\n        Filter that replaces a string within another string.\n\n    Examples\n    --------\n    >>> EmailFilter()\n    <pyra.logger.EmailFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self):\n        super(EmailFilter, self).__init__()\n\n        self.regex = re.compile(pattern=r'([a-z0-9!#$%&\\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\\'*+/=?^_`{|}~-]+)*@'\n                                r'(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)',\n                                flags=re.IGNORECASE)\n\n    def replace(self, text: str, email: str) -> str:\n        \"\"\"\n        Filter an email address.\n\n        Filter the given email address out of the given text.\n\n        Parameters\n        ----------\n        text : str\n            The text to replace the email address within.\n        email : str\n            The email address to replace with asterisks.\n\n        Returns\n        -------\n        str\n            The original text with the email address replaced.\n\n        Examples\n        --------\n        >>> EmailFilter().replace(text='Testing example@example.com', email='example@example.com')\n        'Testing ****************@********'\n        \"\"\"\n        email_parts = email.partition('@')\n        return text.replace(email, 16 * '*' + email_parts[1] + 8 * '*')\n\n\nclass PlexTokenFilter(RegexFilter):\n    \"\"\"\n    Log filter for X-Plex-Token.\n\n    Class responsible for filtering Plex tokens.\n\n    Attributes\n    ----------\n    regex : re.compile\n        The compiled regex pattern.\n\n    Methods\n    -------\n    replace:\n        Filter that replaces a string within another string.\n\n    Examples\n    --------\n    >>> PlexTokenFilter()\n    <pyra.logger.PlexTokenFilter object at 0x...>\n    \"\"\"\n\n    def __init__(self):\n        super(PlexTokenFilter, self).__init__()\n\n        self.regex = re.compile(pattern=r'X-Plex-Token(?:=|%3D)([a-zA-Z0-9]+)')\n\n    def replace(self, text: str, token: str) -> str:\n        \"\"\"\n        Filter a token.\n\n        Filter the given token out of the given text.\n\n        Parameters\n        ----------\n        text : str\n            The text to replace the token within.\n        token : str\n            The token to replace with asterisks.\n\n        Returns\n        -------\n        str\n            The original text with the token replaced.\n\n        Examples\n        --------\n        >>> PlexTokenFilter().replace(text='x-plex-token=5FBCvHo9vFf9erz8ssLQ', token='5FBCvHo9vFf9erz8ssLQ')\n        'x-plex-token=****************'\n        \"\"\"\n        return text.replace(token, 16 * '*')\n\n\n@contextlib.contextmanager\ndef listener(logger: logging.Logger):\n    \"\"\"\n    Create a QueueListener.\n\n    Wrapper that create a QueueListener, starts it and automatically stops it.\n    To be used in a with statement in the main process, for multiprocessing.\n\n    Parameters\n    ----------\n    logger : logging.Logger\n        The logger object.\n\n    Examples\n    --------\n    >>> logger = get_logger(name='retroarcher')\n    >>> listener(logger=logger)\n    \"\"\"\n\n    global queue\n\n    # Initialize queue if not already done\n    if queue is None:\n        try:\n            queue = multiprocessing.Queue()\n        except OSError as e:\n            queue = False\n\n            # Some machines don't have access to /dev/shm. See\n            # http://stackoverflow.com/questions/2009278 for more information.\n            if e.errno == errno.EACCES:\n                logger.warning('Multiprocess logging disabled, because current user cannot map shared memory. You '\n                               'won\\'t see any logging generated by the worker processed.')\n\n    # Multiprocess logging may be disabled.\n    if not queue:\n        yield\n    else:\n        queue_listener = QueueListener(queue, *logger.handlers)\n\n        try:\n            queue_listener.start()\n            yield\n        finally:\n            queue_listener.stop()\n\n\ndef init_multiprocessing(logger: logging.Logger):\n    \"\"\"\n    Remove all handlers and add QueueHandler on top.\n\n    This should only be called inside a multiprocessing worker process, since it changes the logger completely.\n\n    Parameters\n    ----------\n    logger : logging.Logger\n        The logger to initialize for multiprocessing.\n\n    Examples\n    --------\n    >>> logger = get_logger(name='retroarcher')\n    >>> init_multiprocessing(logger=logger)\n    \"\"\"\n\n    # Multiprocess logging may be disabled.\n    if not queue:\n        return\n\n    # Remove all handlers and add the Queue handler as the only one.\n    for handler in logger.handlers[:]:\n        logger.removeHandler(handler)\n\n    queue_handler = QueueHandler(queue)\n    queue_handler.setLevel(logging.DEBUG)\n\n    logger.addHandler(queue_handler)\n\n    # Change current thread name for log record\n    threading.current_thread().name = multiprocessing.current_process().name\n\n\ndef get_logger(name: str) -> logging.Logger:  # this also exists in helpers.py to prevent circular imports\n    \"\"\"\n    Get a logger.\n\n    Return the logging.Logger object for a given name. Additionally, replaces logger.warn with logger.warning.\n\n    Parameters\n    ----------\n    name : str\n        The name of the logger to get.\n\n    Returns\n    -------\n    logging.Logger\n        The logging.Logger object.\n\n    Examples\n    --------\n    >>> get_logger(name='retroarcher')\n    <Logger retroarcher (WARNING)>\n    \"\"\"\n    logger = logging.getLogger(name)\n    logger.warn = logger.warning  # replace warn with warning\n\n    return logger\n\n\ndef setup_loggers():\n    \"\"\"\n    Setup all loggers.\n\n    Setup all the available loggers.\n\n    Examples\n    --------\n    >>> setup_loggers()\n    \"\"\"\n    loggers_list = [py_name, 'werkzeug']\n\n    submodules = pkgutil.iter_modules(pyra.__path__)\n\n    for submodule in submodules:\n        loggers_list.append(f'{py_name}.{submodule[1]}')\n\n    for logger_name in loggers_list:\n        init_logger(log_name=logger_name)\n\n\ndef init_logger(log_name: str) -> logging.Logger:\n    \"\"\"\n    Create a logger.\n\n    Creates a logging.Logger object from the given log name.\n\n    Parameters\n    ----------\n    log_name : str\n        The name of the log to create.\n\n    Returns\n    -------\n    logging.Logger\n        The logging.Logger object.\n\n    Examples\n    --------\n    >>> init_logger(log_name='retroarcher')\n    <Logger retroarcher (INFO)>\n    \"\"\"\n    logger = logging.getLogger(name=log_name)\n\n    # Close and remove old handlers. This is required to reinitialize the loggers at runtime\n    log_handlers = logger.handlers\n    for handler in log_handlers:\n        # Just make sure it is cleaned up.\n        if isinstance(handler, handlers.RotatingFileHandler):\n            handler.close()\n        elif isinstance(handler, logging.StreamHandler):\n            handler.flush()\n\n        logger.removeHandler(handler)\n\n    # Configure the logger to accept all messages\n    logger.propagate = False\n    logger.setLevel(logging.DEBUG if pyra.DEBUG else logging.INFO)\n\n    # Setup file logger\n    file_formatter = logging.Formatter('%(asctime)s - %(levelname)-7s :: %(threadName)s : %(message)s',\n                                       '%Y-%m-%d %H:%M:%S')\n\n    # Setup file logger\n    log_dir = definitions.Paths.LOG_DIR\n    if os.path.isdir(log_dir):\n        filename = os.path.join(log_dir, f'{log_name}.log')\n        file_handler = handlers.RotatingFileHandler(filename=filename, maxBytes=MAX_SIZE, backupCount=MAX_FILES,\n                                                    encoding='utf-8')\n        file_handler.setLevel(logging.DEBUG)\n        file_handler.setFormatter(file_formatter)\n\n        logger.addHandler(file_handler)\n\n    # Setup console logger\n    if not pyra.QUIET:\n        console_formatter = logging.Formatter('%(asctime)s - %(levelname)s :: %(threadName)s : %(message)s',\n                                              '%Y-%m-%d %H:%M:%S')\n        console_handler = logging.StreamHandler()\n        console_handler.setFormatter(console_formatter)\n        console_handler.setLevel(logging.DEBUG)\n\n        logger.addHandler(console_handler)\n\n    # Add filters to log handlers\n    # Only add filters after the config file has been initialized\n    # Nothing prior to initialization should contain sensitive information\n    if not pyra.DEV and pyra.CONFIG:\n        log_handlers = logger.handlers\n        for handler in log_handlers:\n            handler.addFilter(BlacklistFilter())\n            handler.addFilter(PublicIPFilter())\n            handler.addFilter(EmailFilter())\n            handler.addFilter(PlexTokenFilter())\n\n    # Install exception hooks\n    if log_name == py_name:  # all tracebacks go to 'pyra.log'\n        _init_hooks(logger)\n\n    # replace warn\n    # logger.warn = logger.warning\n\n    return logger\n\n\ndef _init_hooks(logger: logging.Logger, global_exceptions: bool = True, thread_exceptions: bool = True,\n                pass_original: bool = True):\n    \"\"\"This method installs exception catching mechanisms.\n\n    Any exception caught will pass through the exception hook, and will be logged to the logger as an error.\n    Additionally, a traceback is provided.\n\n    This is very useful for crashing threads and any other bugs, that may not be exposed when running as daemon.\n\n    The default exception hook is still considered, if pass_original is True.\n    \"\"\"\n\n    def excepthook(*exception_info):\n        # We should always catch this to prevent loops!\n        try:\n            message = \"\".join(traceback.format_exception(*exception_info))\n            logger.error(\"Uncaught exception: %s\", message)\n        except Exception:\n            pass\n\n        # Original excepthook\n        if pass_original:\n            sys.__excepthook__(*exception_info)\n\n    # Global exception hook\n    if global_exceptions:\n        sys.excepthook = excepthook\n\n    # Thread exception hook\n    if thread_exceptions:\n        old_init = threading.Thread.__init__\n\n        def new_init(self, *args, **kwargs):\n            old_init(self, *args, **kwargs)\n            old_run = self.run\n\n            def new_run(*args, **kwargs):\n                try:\n                    old_run(*args, **kwargs)\n                except (KeyboardInterrupt, SystemExit):\n                    raise\n                except Exception:\n                    excepthook(*sys.exc_info())\n\n            self.run = new_run\n\n        # Monkey patch the run() by monkey patching the __init__ method\n        threading.Thread.__init__ = new_init\n\n\ndef shutdown():\n    \"\"\"\n    Stop logging.\n\n    Shutdown logging.\n\n    Examples\n    --------\n    >>> shutdown()\n    \"\"\"\n    logging.shutdown()\n\n\n# get logger\nlog = get_logger(name=__name__)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "30619264eebb9e2f1d9c5479765f996e32585761259f15c77c92dd565bf967bd"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/version.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 327,
-      "code": {
-        "startLine": 1,
-        "length": 327,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   version.py\n\nModule containing constants related to version numbers.\n\nConstants\n---------\nversion : str\n    Semantic version of RetroArcher. i.e. `0.1.0`\n\nExamples\n--------\n>>> version\n0.1.0\n\"\"\"\n\n_version_major = 0\n_version_minor = 1\n_version_patch = 0\n\nversion = f'{_version_major}.{_version_minor}.{_version_patch}'\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "9695fe84e26c63924f3b00d3d88ecc6602add05dcde96c889696586b373904f5"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/hardware.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 15652,
-      "code": {
-        "startLine": 1,
-        "length": 15652,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   hardware.py\n\nFunctions related to the dashboard viewer.\n\"\"\"\n# standard imports\n\n# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n\n# local imports\nfrom pyra import definitions\nfrom pyra import helpers\nfrom pyra import locales\nfrom pyra import logger\n\ntry:\n    cpu_name = cpuinfo.cpu.info[0]['ProcessorNameString'].strip()\nexcept KeyError:\n    cpu_name = None\n\n_ = locales.get_text()\nchart_translations = dict(\n    cpu=dict(\n        bare=_('cpu'),\n        usage=_('cpu usage'),\n        name=cpu_name\n    ),\n    gpu=dict(\n        bare=_('gpu'),\n        usage=_('gpu usage')\n    ),\n    memory=dict(\n        bare=_('memory'),\n        usage=_('memory usage')\n    ),\n    network=dict(\n        bare=_('network'),\n        usage=_('network usage')\n    ),\n    general=dict(\n        received=_('received'),\n        sent=_('sent'),\n        system=_('system')\n    )\n)\n\nlog = logger.get_logger(__name__)\n\ninitialized = False\nnetwork_recv_last = 0\nnetwork_sent_last = 0\nproc = psutil.Process()  # the main retroarcher process\nproc_id = proc.pid\nprocesses = [proc]\n\nnvidia_gpus = GPUtil.getGPUs()\n\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False\n    try:\n        from pyadl import ADLManager\n    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`\n        amd_gpus = range(0)  # no amd gpus found\n    else:\n        amd_gpus = ADLManager.getInstance().getDevices()  # list of AMD gpus\nelse:\n    pyamdgpu = True\n    amd_gpus = range(pyamdgpuinfo.detect_gpus())  # integer representing amd gpus count\n\ndash_stats = dict(\n    time=dict(\n        timestamp=[],\n        relative_time=[]\n    ),\n    cpu=dict(\n        system=[]\n    ),\n    gpu=dict(),\n    memory=dict(\n        system=[]\n    ),\n    network=dict(\n        sent=[],\n        received=[]\n    )\n)\n\nhistory_length = 120\n\n\ndef update_cpu() -> float:\n    \"\"\"\n    Update dashboard stats for system CPU usage.\n\n    This will append a new value to the ``dash_stats['cpu'][system']`` list.\n\n    Returns\n    -------\n    float\n        The current system cpu percentage utilized.\n\n    Examples\n    --------\n    >>> update_cpu()\n    \"\"\"\n    cpu_percent = min(float(100), psutil.cpu_percent(interval=None, percpu=False))  # max of 100\n\n    if initialized:\n        dash_stats['cpu']['system'].append(cpu_percent)\n\n    return cpu_percent\n\n\ndef update_gpu():\n    \"\"\"\n    Update dashboard stats for system GPU usage.\n\n    This will create new keys for the ``dash_stats`` dictionary if required, and then append a new value to the\n    appropriate list.\n\n    AMD data is provided by `pyamdgpuinfo <https://github.com/mark9064/pyamdgpuinfo>`_ on Linux, and by\n    `pyadl <https://github.com/nicolargo/pyadl>`_ on non Linux systems.\n    Nvidia data is provided by `GPUtil <https://github.com/anderskm/gputil>`_.\n\n    Examples\n    --------\n    >>> update_gpu()\n    \"\"\"\n    global nvidia_gpus\n    nvidia_gpus = GPUtil.getGPUs()  # need to get the GPUs again otherwise the load does not update\n\n    gpu_types = [nvidia_gpus, amd_gpus]\n\n    for gpu_type in gpu_types:  # loop through gpu types\n        for gpu in gpu_type:  # loop through found gpus\n            name = None\n            gpu_load = None\n            if gpu_type == nvidia_gpus:\n                name = f'{gpu.name}-{gpu.id}'\n                gpu_load = min(100, gpu.load * 100)  # convert decimal to percentage, max of 100\n            elif gpu_type == amd_gpus:\n                if pyamdgpu:\n                    amd_gpu = pyamdgpuinfo.get_gpu(gpu)\n                    name = f'{amd_gpu.name}-{amd_gpu.gpu_id}'\n                    gpu_load = min(100, gpu.query_load())  # max of 100\n                else:\n                    name = f'{gpu.adapterName.decode(\"utf-8\")}-{gpu.adapterIndex}'  # adapterName is bytes so decode it\n                    gpu_load = min(100, gpu.getCurrentUsage())  # max of 100\n\n            if initialized and name:\n                try:\n                    dash_stats['gpu'][name]\n                except KeyError:\n                    dash_stats['gpu'][name] = []\n                finally:\n                    dash_stats['gpu'][name].append(gpu_load)\n\n\ndef update_memory():\n    \"\"\"\n    Update dashboard stats for system memory usage.\n\n    This will append a new value to the ``dash_stats['memory']['system']`` list.\n\n    Returns\n    -------\n    float\n        The current system memory percentage utilized.\n\n    Examples\n    --------\n    >>> update_memory()\n    \"\"\"\n    memory_percent = min(100, psutil.virtual_memory().percent)  # max of 100\n\n    if initialized:\n        dash_stats['memory']['system'].append(memory_percent)\n\n    return memory_percent\n\n\ndef update_network():\n    \"\"\"\n    Update dashboard stats for system network usage.\n\n    This will append a new values to the ``dash_stats['network']['received']`` and ``dash_stats['network']['sent']``\n    lists.\n\n    Returns\n    -------\n    tuple\n        A tuple of the received and sent values as a difference since the last update.\n\n    Examples\n    --------\n    >>> update_network()\n    \"\"\"\n    global network_recv_last\n    global network_sent_last\n\n    network_stats = psutil.net_io_counters()\n\n    # get the current values in mb\n    network_received_current = network_stats.bytes_recv / 1e6  # convert bytes to mb\n    network_sent_current = network_stats.bytes_sent / 1e6  # convert bytes to mb\n\n    # compare the current values to the last values, as current values increase incrementally\n    network_received_diff = network_received_current - network_recv_last\n    network_sent_diff = network_sent_current - network_sent_last\n\n    # rewrite the last value\n    network_recv_last = network_received_current\n    network_sent_last = network_sent_current\n\n    if initialized:\n        dash_stats['network']['received'].append(network_received_diff)\n        dash_stats['network']['sent'].append(network_sent_diff)\n\n    return network_received_diff, network_sent_diff\n\n\ndef update():\n    \"\"\"\n    Update all dashboard stats.\n\n    This function updates the cpu and memory usage of this python process as well as subprocesses. Following that the\n    system functions are called to update system cpu, gpu, memory, and network usage. Finally, the keys in the\n    ``dash_stats`` dictionary are cleaned up to only hold 120 values. This function is called once per second,\n    therefore there are 2 minutes worth of values in the dictionary.\n\n    Examples\n    --------\n    >>> update()\n    \"\"\"\n    global initialized\n\n    current_timestamp = helpers.timestamp()\n\n    if initialized:\n        dash_stats['time']['timestamp'].append(helpers.timestamp())\n\n        dash_stats['time']['relative_time'] = []\n        for x in dash_stats['time']['timestamp']:\n            seconds_ago = current_timestamp - x\n            dash_stats['time']['relative_time'].append(seconds_ago)\n\n        child_processes = proc.children(recursive=False)  # list all children processes\n\n        for child in child_processes:\n            if child not in processes:\n                processes.append(child)\n\n    # find the indexes to remove from the lists\n    time_index = 0\n    last_tstamp = None\n    for tstamp in dash_stats['time']['relative_time']:\n        if tstamp <= history_length:\n            if last_tstamp is not None:\n                # ensures upper X axis label does not fall\n                if tstamp < history_length < last_tstamp and time_index > 0:\n                    time_index += -1\n            break\n        else:\n            last_tstamp = tstamp\n            time_index += 1\n\n    # remove oldest list entries\n    for stat_type, data in dash_stats.items():\n        for key in data:\n            data[key] = data[key][time_index:]  # keep the first 2 minutes\n\n    for p in processes:\n        # set the name\n        proc_name = definitions.Names.name if p.pid == proc_id else p.name()\n\n        # cpu stats per process\n        proc_cpu_percent = None\n        try:\n            proc_cpu_percent = min(float(100), p.cpu_percent())  # get current value, max of 100\n        except psutil.NoSuchProcess:\n            pass\n        finally:\n            if initialized:\n                try:\n                    dash_stats['cpu'][proc_name]\n                except KeyError:\n                    dash_stats['cpu'][proc_name] = []\n                finally:  # append the current value to the list\n                    dash_stats['cpu'][proc_name].append(proc_cpu_percent)\n\n        # memory stats per process\n        proc_memory_percent = None\n        try:\n            proc_memory_percent = min(float(100), p.memory_percent(memtype='rss'))  # get current value, max of 100\n        except psutil.NoSuchProcess:\n            pass\n        finally:\n            if initialized:\n                try:\n                    dash_stats['memory'][proc_name]\n                except KeyError:\n                    dash_stats['memory'][proc_name] = []\n                finally:  # append the current value to the list\n                    dash_stats['memory'][proc_name].append(proc_memory_percent)\n\n    update_cpu()  # todo, need to investigate why this is sometimes lower than the individual process\n    update_gpu()  # todo... AMD GPUs on non Linux... integrated GPUs... GPU stats for processes\n    update_memory()\n    update_network()  # todo... network stats for processes\n\n    if not initialized:\n        initialized = True\n\n\ndef chart_data() -> dict:\n    \"\"\"\n    Get chart data.\n\n    Get the data from the ``dash_stats`` dictionary, formatted for use with ``plotly``.\n\n    Returns\n    -------\n    dict\n        A single key named 'graphs' contains a list of graphs. Each graph is formatted as a dictionary and ready to use\n        with ``plotly``.\n\n    See Also\n    --------\n    pyra.webapp.callback_dashboard : A callback called by javascript to get this data.\n\n    Examples\n    --------\n    >>> chart_data()\n    {'graphs': [{\"data\": [...], \"layout\": ..., \"config\": ..., {\"data\": ...]}\n    \"\"\"\n    x = dash_stats['time']['relative_time']\n\n    graphs = dict(graphs=[])\n\n    accepted_chart_types = chart_types()\n\n    # todo\n    # currently disabled: https://github.com/plotly/plotly.js/issues/6012\n    # x_ticks = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]\n\n    for chart in accepted_chart_types:\n\n        if chart == 'network':\n            # NOTE: Mbps = megabytes per second\n            hover_template = _('%(numeric_value)s Mbps') % {'numeric_value': '%{y:.3f}'}\n        else:\n            # NOTE: the double percent symbols is rendered as one in this case\n            hover_template = _('%(numeric_value)s %%') % {'numeric_value': '%{y:.2f}'}\n\n        data = []\n        for key, value in dash_stats[chart].items():\n            y = value\n\n            try:  # try to get the name from the translation dictionary\n                name = chart_translations['general'][key]\n            except KeyError:\n                name = key\n\n            data.append(\n                dict(  # https://plotly.com/javascript/reference/scatter/\n                    cliponaxis=False,\n                    hovertemplate=hover_template,\n                    line=dict(\n                        shape='spline',\n                        smoothing=0.8,  # 0.75 is nice, but sometimes drops below the axis line\n                        width=3.5,\n                    ),\n                    mode='lines+markers' if len(x) < 30 else 'lines',\n                    name=name,\n                    textfont=dict(\n                        family='Open Sans',\n                    ),\n                    type='scatter',\n                    x=x,\n                    y=y,\n                )\n            )\n\n        if data:\n            graphs['graphs'].append(\n                dict(\n                    data=data,  # this is a list\n                    layout=dict(  # https://plotly.com/javascript/reference/layout/\n                        autosize=True,  # makes chart responsive, works better than the responsive config option\n                        font=dict(\n                            color='FFF',\n                            family='Open Sans',\n                        ),\n                        hoverlabel=dict(\n                            bgcolor='252525',\n                        ),\n                        hovermode='x unified',  # show all Y values on hover\n                        legend=dict(\n                            entrywidth=0,\n                            entrywidthmode='pixels',\n                            orientation='h',\n                        ),\n                        margin=dict(\n                            b=40,  # bottom\n                            l=60,  # left\n                            r=20,  # right\n                            t=40,  # top\n                        ),\n                        meta=dict(\n                            id=f'chart-{chart}',  # this must match the div id in the html template\n                        ),\n                        paper_bgcolor='#303030',\n                        plot_bgcolor='#303030',\n                        showlegend=True,\n                        title=chart_translations[chart]['usage'],\n                        uirevision=True,\n                        xaxis=dict(\n                            autorange='reversed',  # smaller number, right side\n                            fixedrange=True,  # disable zoom of axis\n                            layer='below traces',\n                            showspikes=False,\n                            # todo\n                            # currently disabled: https://github.com/plotly/plotly.js/issues/6012\n                            # does not display how I would like\n                            # would like to show \"x s ago\" (localizable) on the hover label, but not in the axis\n                            # tickmode='array',\n                            # # NOTE: this exact moment in time\n                            # ticktext=[_('NOW') if value == 0 else\n                            #           # NOTE: s = seconds, i.e. \"5 s\"... do not change \"%(numeric_value)s\"\n                            #           _('%(numeric_value)s s') % {'numeric_value': value} for value in x_ticks],\n                            # tickvals=x_ticks\n                        ),\n                        yaxis=dict(\n                            fixedrange=True,  # disable zoom of axis\n                            layer='below traces',\n                            # rangemode='tozero',  # axis does not drop below 0; however the line gets cut below 0\n                            title=dict(\n                                standoff=10,  # separation between title and axis labels\n                                text=_('Mbps') if chart == 'network' else _('%'),\n                            ),\n                        ),\n                    ),\n                    config=dict(\n                        displayModeBar=False,  # disable the modebar\n                        editable=False,  # explicitly disable editing\n                        responsive=False,  # keep False, does not work properly when True with ajax calls\n                        scrollZoom=False  # explicitly disable mouse scroll zoom\n                    )\n                )\n            )\n\n    return graphs\n\n\ndef chart_types():\n    \"\"\"\n    Get chart types.\n\n    Get the type of charts supported by the system.\n\n    Returns\n    -------\n    list\n        A list containing the types of charts supported.\n\n    Examples\n    --------\n    >>> chart_types()\n    ['cpu', 'memory', 'network']\n\n    >>> chart_types()\n    ['cpu', 'gpu', 'memory', 'network']\n    \"\"\"\n    chart_type_list = [\n        'cpu',\n        'memory',\n        'network'\n    ]\n\n    if nvidia_gpus or amd_gpus:\n        chart_type_list.insert(1, 'gpu')\n\n    return chart_type_list\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "0524cae0f9002b399f0913913ba0c52c7b05befe2314ba67b6451e5a4b98f30f"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "scripts/_locale.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3309,
-      "code": {
-        "startLine": 1,
-        "length": 3309,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   _locale.py\n\nFunctions related to building, initializing, updating, and compiling localization translations.\n\"\"\"\n# standard imports\nimport argparse\nimport os\nimport subprocess\n\nproject_name = 'RetroArcher'\n\nscript_dir = os.path.dirname(os.path.abspath(__file__))\nroot_dir = os.path.dirname(script_dir)\nlocale_dir = os.path.join(root_dir, 'locale')\n\n# retroarcher target locales\ntarget_locales = [\n    'de',  # Deutsch\n    'en',  # English\n    'en_GB',  # English (United Kingdom)\n    'en_US',  # English (United States)\n    'es',  # español\n    'fr',  # français\n    'it',  # italiano\n    'ru',  # русский\n]\n\n\ndef babel_extract():\n    \"\"\"Executes `pybabel extract` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'extract',\n        '-F', os.path.join(script_dir, 'babel.cfg'),\n        '-o', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '--sort-by-file',\n        f'--msgid-bugs-address=github.com/{project_name.lower()}',\n        f'--copyright-holder={project_name}',\n        f'--project={project_name}',\n        '--version=v0',\n        '--add-comments=NOTE',\n        './retroarcher.py',\n        './pyra',\n        './web'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_init(locale_code: str):\n    \"\"\"Executes `pybabel init` in subprocess.\n\n    :param locale_code: str - locale code\n    \"\"\"\n    commands = [\n        'pybabel',\n        'init',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '-l', locale_code\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_update():\n    \"\"\"Executes `pybabel update` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'update',\n        '-i', os.path.join(locale_dir, f'{project_name.lower()}.po'),\n        '-d', locale_dir,\n        '-D', project_name.lower(),\n        '--update-header-comment'\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\ndef babel_compile():\n    \"\"\"Executes `pybabel compile` in subprocess.\"\"\"\n    commands = [\n        'pybabel',\n        'compile',\n        '-d', locale_dir,\n        '-D', project_name.lower()\n    ]\n\n    print(commands)\n    subprocess.check_output(args=commands, cwd=root_dir)\n\n\nif __name__ == '__main__':\n    # Set up and gather command line arguments\n    parser = argparse.ArgumentParser(\n        description='Script helps update locale translations. Translations must be done manually.')\n\n    parser.add_argument('--extract', action='store_true', help='Extract messages from python files and templates.')\n    parser.add_argument('--init', action='store_true', help='Initialize any new locales specified in target locales.')\n    parser.add_argument('--update', action='store_true', help='Update existing locales.')\n    parser.add_argument('--compile', action='store_true', help='Compile translated locales.')\n\n    args = parser.parse_args()\n\n    if args.extract:\n        babel_extract()\n\n    if args.init:\n        for locale_id in target_locales:\n            if not os.path.isdir(os.path.join(locale_dir, locale_id)):\n                babel_init(locale_code=locale_id)\n\n    if args.update:\n        babel_update()\n\n    if args.compile:\n        babel_compile()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "c74e2fbea8ec2098094982f996a7f5e6ff8a7fbefab010b14c0f65db61cccc52"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "scripts/_run_tests.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 3316,
-      "code": {
-        "startLine": 1,
-        "length": 3316,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   _run_tests.py\n\nThis is not intended to be run by the end user, but only to supplement the `python_tests.yml` github action.\n\nNotes\n-----\nNot currently used, but may be useful for further testing of tray_icon or other features.\n\"\"\"\n# standard imports\nimport os\nimport subprocess\nimport sys\nimport time\n\nplatform = sys.platform.lower()\n\nexit_code = 0\n\n\ndef cmd_popen_print(cmd: list):\n    \"\"\"Popen cmd in subprocess and print the output, line by line.\n\n    :param cmd list - list of arguments for the command\n    :raises subprocess.CalledProcessError\n    \"\"\"\n    proc = subprocess.Popen(args=cmd, stdout=sys.stdout, stderr=sys.stderr, text=True)\n\n    proc.communicate()\n\n    if proc.returncode != 0:\n        global exit_code\n        exit_code = proc.returncode\n\n        raise subprocess.CalledProcessError(returncode=proc.returncode, cmd=proc.args)\n\n    proc.terminate()  # ask nicely\n    time.sleep(5)  # wait\n    proc.kill()  # don't ask\n\n    print(f'Command finished with args: {cmd}', flush=True)\n\n\ndef cmd_checkcall(cmd: list):\n    \"\"\"check_call cmd in subprocess\"\"\"\n\n    subprocess.check_call(args=cmd, stdout=sys.stdout, stderr=sys.stderr)\n\n\ndef pre_commands():\n    \"\"\"Run pre commands\n\n    Use this to install dependencies, compile translations, etc.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        update_cmd = ['sudo', 'apt-get', 'update']\n        cmd_checkcall(cmd=update_cmd)\n\n        cmd = ['sudo', 'apt-get', 'install', '-y']\n\n        packages = [\n            'libappindicator3-1',\n            'ubuntu-desktop',\n            'xserver-xorg-video-dummy'\n        ]\n\n        for package in packages:\n            cmd.append(package)\n\n    elif platform == 'win32':\n        pass\n\n    try:\n        cmd_checkcall(cmd=cmd)\n    except NameError:\n        pass\n\n    compile_cmd = [sys.executable, './scripts/_locale.py', '--compile']\n    cmd_checkcall(cmd=compile_cmd)\n\n\ndef run_commands():\n    \"\"\"Run commands\n\n    This will run after pre_commands.\n    \"\"\"\n    if platform == 'darwin':\n        pass\n\n    elif platform == 'linux':\n        dummy_conf = \"\"\"Section \"Monitor\"\n  Identifier \"Monitor0\"\n  HorizSync 28.0-80.0\n  VertRefresh 48.0-75.0\n  # https://arachnoid.com/modelines/\n  # 1920x1080 @ 60.00 Hz (GTF) hsync: 67.08 kHz; pclk: 172.80 MHz\n  Modeline \"1920x1080_60.00\" 172.80 1920 2040 2248 2576 1080 1081 1084 1118 -HSync +Vsync\nEndSection\n\nSection \"Device\"\n  Identifier \"Card0\"\n  Driver \"dummy\"\n  VideoRam 256000\nEndSection\n\nSection \"Screen\"\n  DefaultDepth 24\n  Identifier \"Screen0\"\n  Device \"Card0\"\n  Monitor \"Monitor0\"\n  SubSection \"Display\"\n    Depth 24\n    Modes \"1920x1080_60.00\"\n  EndSubSection\nEndSection\n        \"\"\"\n\n        with open(file='dummy-1920x1080.conf', mode='w') as f:\n            f.write(dummy_conf)\n\n        cmd = ['sudo', 'X', '-config', 'dummy-1920x1080.conf']\n\n        os.environ['DISPLAY'] = ':0'  # set the DISPLAY environment variable\n\n    elif platform == 'win32':\n        pass\n\n    time.sleep(5)  # wait 5 seconds\n\n    try:\n        subprocess.Popen(args=cmd)\n    except NameError:\n        pass\n\n    # run pytest\n    cmd = [sys.executable, '-m', 'pytest', '-v']\n    cmd_checkcall(cmd=cmd)\n\n\ndef main():\n    \"\"\"main function\"\"\"\n    pre_commands()\n\n    run_commands()\n\n    sys.exit(exit_code)\n\n\nif __name__ == '__main__':\n    main()\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "c759ce8aab60d041d4cb5c4df638936d6c61f934d85be19e675062a950dab31c"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/definitions.py",
-      "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 4235,
-      "code": {
-        "startLine": 1,
-        "length": 4235,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   definitions.py\n\nContains classes with attributes to common definitions (paths and filenames).\n\"\"\"\n# standard imports\nimport os\nimport platform\nimport sys\n\n\nclass Names:\n    \"\"\"\n    Class representing common names.\n\n    The purpose of this class is to ensure consistency when using these names.\n\n    name : str\n        The application's name. i.e. `RetroArcher`.\n\n    Examples\n    --------\n    >>> Names.name\n    'RetroArcher'\n    \"\"\"\n    name = 'RetroArcher'\n\n\nclass Platform:\n    \"\"\"\n    Class representing the machine platform.\n\n    The purpose of this class is to ensure consistency when there is a need for platform specific functions.\n\n    bits : str\n        Operating system bitness. e.g. 64.\n    operating_system : str\n        Operating system name. e.g. 'Windows'.\n    os_platform : str\n        Operating system platform. e.g. 'win32', 'darwin', 'linux'.\n    machine : str\n        Machine architecture. e.g. 'AMD64'.\n    node : str\n        Machine name.\n    release : str\n        Operating system release. e.g. '10'.\n    version : str\n        Operating system version. e.g. '10.0.22000'.\n    edition : str\n        Windows edition. e.g. 'Core', None for non Windows platforms.\n    iot : bool\n        True if Windows IOT, otherwise False.\n\n    Examples\n    --------\n    >>> Platform.os_platform\n    ...\n    \"\"\"\n    bits = 64 if sys.maxsize > 2**32 else 32\n    operating_system = platform.system()\n    os_platform = sys.platform.lower()\n    processor = platform.processor()\n    machine = platform.machine()\n    node = platform.node()\n    release = platform.release()\n    version = platform.version()\n\n    # Windows only\n    edition = platform.win32_edition() if os_platform == 'win32' else None\n    iot = platform.win32_is_iot() if os_platform == 'win32' else False\n\n\nclass Modes:\n    \"\"\"\n    Class representing runtime variables.\n\n    FROZEN : bool\n        ``True`` if running pyinstaller bundle version, otherwise ``False``.\n    DOCKER : bool\n        ``True`` if running Docker version, otherwise ``False``.\n    SPLASH : bool\n        ``True`` if capable of displaying a splash image on start, otherwise, ``False``.\n\n    Examples\n    --------\n    >>> Modes.FROZEN\n    False\n    \"\"\"\n    FROZEN = False\n    DOCKER = False\n    SPLASH = False\n\n    if hasattr(sys, 'frozen') and hasattr(sys, '_MEIPASS'):  # only when using the pyinstaller build\n        FROZEN = True\n\n        if Platform.os_platform != 'darwin':  # pyi_splash is not available on macos\n            SPLASH = True\n\n    if os.getenv('RETROARCHER_DOCKER', False):  # the environment variable is set in the Dockerfile\n        DOCKER = True\n\n\nclass Files:\n    \"\"\"\n    Class representing common Files.\n\n    The purpose of this class is to ensure consistency when using these files.\n\n    CONFIG : str\n        The default config file name. i.e. `config.ini`.\n\n    Examples\n    --------\n    >>> Files.CONFIG\n    'config.ini'\n    \"\"\"\n    CONFIG = 'config.ini'\n\n\nclass Paths:\n    \"\"\"\n    Class representing common Paths.\n\n    The purpose of this class is to ensure consistency when using these paths.\n\n    PYRA_DIR : str\n        The directory containing the retroarcher python files.\n    ROOT_DIR : str\n        The root directory of the application. This is where the source files exist.\n    DATA_DIR : str\n        The data directory of the application.\n    DOCS_DIR : str\n        The directory containing html documentation.\n    LOCALE_DIR : str\n        The directory containing localization files.\n    LOG_DIR : str\n        The directory containing log files.\n\n    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\"\n    PYRA_DIR = os.path.dirname(os.path.abspath(__file__))\n    ROOT_DIR = os.path.dirname(PYRA_DIR)\n\n    if Modes.FROZEN:  # pyinstaller build\n        DATA_DIR = os.path.dirname(sys.executable)\n        BINARY_PATH = os.path.abspath(sys.executable)\n    else:\n        DATA_DIR = ROOT_DIR\n        BINARY_PATH = os.path.abspath(os.path.join(DATA_DIR, 'retroarcher.py'))\n\n    if Modes.DOCKER:  # docker install\n        DATA_DIR = '/config'  # overwrite the value that was already set\n\n    DOCS_DIR = os.path.join(ROOT_DIR, 'docs', 'build', 'html')\n    LOCALE_DIR = os.path.join(ROOT_DIR, 'locale')\n    LOG_DIR = os.path.join(DATA_DIR, 'logs')\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "ba66b2b3b6d7c920b4c739e5948e7ed83817cd505799e757a5236f74f9edb1b8"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "An invalid interpreter",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No Python interpreter configured for the project",
-  "detailsInfo": "Reports problems if there is no Python interpreter configured for the project or if the interpreter is invalid. Without a properly\nconfigured interpreter, you cannot execute your Python scripts and benefit from some Python code insight features.\n\nThe IDE provides quick access to the interpreter settings.",
+  "comment": "Unresolved reference 'webapp'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "pyra/webapp.py",
       "language": "Python",
-      "line": 1,
-      "offset": 1,
-      "length": 5611,
+      "line": 238,
+      "offset": 38,
+      "length": 6,
       "code": {
-        "startLine": 1,
-        "length": 5611,
-        "offset": 0,
-        "surroundingCode": "\"\"\"\n..\n   webapp.py\n\nResponsible for serving the webapp.\n\"\"\"\n# standard imports\nimport os\n\n# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel\n\n# local imports\nimport pyra\nfrom pyra import config\nfrom pyra import hardware\nfrom pyra.definitions import Paths\nfrom pyra import locales\nfrom pyra import logger\n\n# setup flask app\napp = Flask(\n    import_name=__name__,\n    root_path=os.path.join(Paths.ROOT_DIR, 'web'),\n    static_folder=os.path.join(Paths.ROOT_DIR, 'web'),\n    template_folder=os.path.join(Paths.ROOT_DIR, 'web', 'templates')\n    )\n\n\n# remove extra lines rendered jinja templates\napp.jinja_env.trim_blocks = True\napp.jinja_env.lstrip_blocks = True\n\n# localization\nbabel = Babel(\n    app=app,\n    default_locale=locales.default_locale,\n    default_timezone=locales.default_timezone,\n    default_translation_directories=Paths.LOCALE_DIR,\n    default_domain=locales.default_domain,\n    configure_jinja=True,\n    locale_selector=locales.get_locale\n)\n\n# setup logging for flask\nlog_handlers = logger.get_logger(name=__name__).handlers\n\nfor handler in log_handlers:\n    app.logger.addHandler(handler)\n\n\n@app.route('/')\n@app.route('/home')\ndef home() -> render_template:\n    \"\"\"\n    Serve the webapp home page.\n\n    .. todo:: This documentation needs to be improved.\n\n    Returns\n    -------\n    render_template\n        The rendered page.\n\n    Notes\n    -----\n    The following routes trigger this function.\n\n        `/`\n        `/home`\n\n    Examples\n    --------\n    >>> home()\n    \"\"\"\n    chart_types = hardware.chart_types()\n    chart_translations = hardware.chart_translations\n\n    return render_template('home.html', title='Home', chart_types=chart_types, translations=chart_translations)\n\n\n@app.route('/callback/dashboard', methods=['GET'])\ndef callback_dashboard() -> Response:\n    \"\"\"\n    Get dashboard data.\n\n    This should be used in a callback in order to update charts in the web app.\n\n    Returns\n    -------\n    Response\n        A response formatted as ``flask.jsonify``.\n\n    See Also\n    --------\n    pyra.hardware.chart_data : This function sets up the data in the proper format.\n\n    Examples\n    --------\n    >>> callback_dashboard()\n    <Response ... bytes [200 OK]>\n    \"\"\"\n    graphs = hardware.chart_data()\n\n    data = jsonify(graphs)\n\n    return data\n\n\n@app.route('/docs/', defaults={'filename': 'index.html'})\n@app.route('/docs/<path:filename>')\ndef docs(filename) -> flask.send_from_directory:\n    \"\"\"\n    Serve the Sphinx html documentation.\n\n    .. todo:: This documentation needs to be improved.\n\n    Parameters\n    ----------\n    filename : str\n        The html filename to return.\n\n    Returns\n    -------\n    flask.send_from_directory\n        The requested documentation page.\n\n    Notes\n    -----\n    The following routes trigger this function.\n\n        `/docs/`\n        `/docs/<page.html>`\n\n    Examples\n    --------\n    >>> docs(filename='index.html')\n    \"\"\"\n\n    return send_from_directory(directory=os.path.join(Paths.DOCS_DIR), path=filename)\n\n\n@app.route('/favicon.ico')\ndef favicon() -> flask.send_from_directory:\n    \"\"\"\n    Serve the favicon.ico file.\n\n    .. todo:: This documentation needs to be improved.\n\n    Returns\n    -------\n    flask.send_from_directory\n        The ico file.\n\n    Notes\n    -----\n    The following routes trigger this function.\n\n        `/favicon.ico`\n\n    Examples\n    --------\n    >>> favicon()\n    \"\"\"\n    return send_from_directory(directory=os.path.join(app.static_folder, 'images'),\n                               path='retroarcher.ico', mimetype='image/vnd.microsoft.icon')\n\n\n@app.route('/status')\ndef status() -> dict:\n    \"\"\"\n    Check the status of RetroArcher.\n\n    This is useful for a healthcheck from Docker, and may have many other uses in the future for third party\n    applications.\n\n    Returns\n    -------\n    dict\n        A dictionary of the status.\n\n    Examples\n    --------\n    >>> status()\n    \"\"\"\n    web_status = {'result': 'success', 'message': 'Ok'}\n    return web_status\n\n\n@app.route('/test_logger')\ndef test_logger() -> str:\n    \"\"\"\n    Test logging functions.\n\n    Check `./logs/pyra.webapp.log` for output.\n\n    Returns\n    -------\n    str\n        A message telling the user to check the logs.\n\n    Notes\n    -----\n    The following routes trigger this function.\n\n        `/test_logger`\n\n    Examples\n    --------\n    >>> test_logger()\n    \"\"\"\n    app.logger.info('testing from app.logger')\n    app.logger.warn('testing from app.logger')\n    app.logger.error('testing from app.logger')\n    app.logger.critical('testing from app.logger')\n    app.logger.debug('testing from app.logger')\n    return f'Testing complete, check \"logs/{__name__}.log\" for output.'\n\n\ndef start_webapp():\n    \"\"\"\n    Start the webapp.\n\n    Start the flask webapp. This is placed in it's own function to allow the ability to start the webapp within a\n    thread in a simple way.\n\n    Examples\n    --------\n    >>> start_webapp()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ...\n     * Running on http://.../ (Press CTRL+C to quit)\n\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ...\n     * Running on http://.../ (Press CTRL+C to quit)\n    \"\"\"\n    app.run(\n        host=config.CONFIG['Network']['HTTP_HOST'],\n        port=config.CONFIG['Network']['HTTP_PORT'],\n        debug=pyra.DEV,\n        use_reloader=False  # reloader doesn't work when running in a separate thread\n    )\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyInterpreterInspection"
-  },
-  "hash": "6cfc70c76509ffb65d44925dc64b8486e885c2d113fcc90b179fe037307a7a2f"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No module named 'sys'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 8,
-      "offset": 8,
-      "length": 3,
-      "code": {
-        "startLine": 6,
-        "length": 3,
-        "offset": 30,
-        "surroundingCode": "\"\"\"\n# standard imports\nimport sys\n\n# lib imports"
+        "startLine": 236,
+        "length": 6,
+        "offset": 71,
+        "surroundingCode": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
       }
     }
   ],
@@ -524,7 +28,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "49e20600e25040c9d7bb1856ca244887c556b61afd7aced1f5c2d9170edd3d35"
+  "hash": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -533,21 +37,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'configobj'",
+  "comment": "Module 'pyamdgpuinfo' not found",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/config.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 11,
-      "offset": 6,
-      "length": 9,
+      "line": 63,
+      "offset": 12,
+      "length": 12,
       "code": {
-        "startLine": 9,
-        "length": 9,
-        "offset": 20,
-        "surroundingCode": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
+        "startLine": 61,
+        "length": 12,
+        "offset": 17,
+        "surroundingCode": "\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False"
       }
     }
   ],
@@ -555,7 +59,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "e3a34831e0d196fb7f85b796627c0c0fbb5e7cd8fe2d0f21271dc0e281e9150e"
+  "hash": "699ab1fa79533e58532611e65f8f9b06aff0ca3c351b3386a1ed74e8f78c43e5"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -564,83 +68,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'ConfigObj'",
+  "comment": "Module 'pyi_splash' not found",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/config.py",
+      "path": "retroarcher.py",
       "language": "Python",
-      "line": 11,
-      "offset": 23,
-      "length": 9,
-      "code": {
-        "startLine": 9,
-        "length": 9,
-        "offset": 37,
-        "surroundingCode": "\n# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "9fca7a5cc175f8b700b0b6b7f03d1f904d74fb7d2be2f0b13264bd01046fe0be"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'validate'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 12,
-      "offset": 6,
-      "length": 8,
-      "code": {
-        "startLine": 10,
-        "length": 8,
-        "offset": 51,
-        "surroundingCode": "# lib imports\nfrom configobj import ConfigObj\nfrom validate import Validator, ValidateError\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "9e781dccc8715c56034799d0e245c982761db177f7cfc479ba4ed26fa7fed1b5"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference '__future__'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/__init__.py",
-      "language": "Python",
-      "line": 8,
-      "offset": 6,
+      "line": 122,
+      "offset": 20,
       "length": 10,
       "code": {
-        "startLine": 6,
+        "startLine": 120,
         "length": 10,
-        "offset": 26,
-        "surroundingCode": "\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports"
+        "offset": 57,
+        "surroundingCode": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
       }
     }
   ],
@@ -648,7 +90,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "8c883b41e10ae78dd399285512c3d3f10099fb5792ea598c6c68eb853ebc5fe3"
+  "hash": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -657,21 +99,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'annotations'",
+  "comment": "Cannot find reference 'stop' in 'None | bool'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/__init__.py",
+      "path": "pyra/tray_icon.py",
       "language": "Python",
-      "line": 8,
-      "offset": 24,
-      "length": 11,
+      "line": 168,
+      "offset": 22,
+      "length": 4,
       "code": {
-        "startLine": 6,
-        "length": 11,
-        "offset": 44,
-        "surroundingCode": "\"\"\"\n# future imports\nfrom __future__ import annotations\n\n# standard imports"
+        "startLine": 166,
+        "length": 4,
+        "offset": 39,
+        "surroundingCode": "\n            try:\n                icon.stop()\n            except AttributeError:\n                pass"
       }
     }
   ],
@@ -679,7 +121,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "033e0af9e183563fabeabc7ce17815c1ffd3c0c5f96d95ceb42c1926c33026c2"
+  "hash": "5048ead9a24148366679cf5f51232020a969b26ee6fc64aef6940a780fa5ef03"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -688,21 +130,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No module named 'os'",
+  "comment": "Cannot find reference 'run_detached' in 'None | bool'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/__init__.py",
+      "path": "pyra/tray_icon.py",
       "language": "Python",
-      "line": 11,
-      "offset": 8,
-      "length": 2,
+      "line": 223,
+      "offset": 22,
+      "length": 12,
       "code": {
-        "startLine": 9,
-        "length": 2,
-        "offset": 27,
-        "surroundingCode": "\n# standard imports\nimport os\nimport subprocess\nimport sys"
+        "startLine": 221,
+        "length": 12,
+        "offset": 79,
+        "surroundingCode": "        if isinstance(icon, icon_class):\n            try:\n                icon.run_detached()\n            except AttributeError:\n                pass"
       }
     }
   ],
@@ -710,7 +152,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "f6a2b1e9968a383b1a394fa2669729669ddd0b886fd32a67291f3554fc757421"
+  "hash": "a8170157775f1869801d96e0ac28c633cbd802e5f3340a6bb540c61272758ad7"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -719,21 +161,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No module named 'subprocess'",
+  "comment": "Unresolved attribute reference 'logs' for class 'Paths'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/__init__.py",
+      "path": "pyra/definitions.py",
       "language": "Python",
-      "line": 12,
-      "offset": 8,
-      "length": 10,
+      "line": 142,
+      "offset": 15,
+      "length": 4,
       "code": {
-        "startLine": 10,
-        "length": 10,
-        "offset": 36,
-        "surroundingCode": "# standard imports\nimport os\nimport subprocess\nimport sys\nimport threading"
+        "startLine": 140,
+        "length": 4,
+        "offset": 40,
+        "surroundingCode": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
       }
     }
   ],
@@ -741,5 +183,5 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "61b36fd0e9adaea9d69ea71bcfb345b5c3149a7d3cb55e4aca9230221cd50e28"
+  "hash": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
 }]}
