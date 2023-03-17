@@ -6,114 +6,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No module named 'babel'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/locales.py",
-      "language": "Python",
-      "line": 23,
-      "offset": 8,
-      "length": 5,
-      "code": {
-        "startLine": 21,
-        "length": 5,
-        "offset": 22,
-        "surroundingCode": "\n# lib imports\nimport babel\nfrom babel import localedata\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "a382d92df84477f4c66c1df2fbc87c251e81d4855e36cad9c23b10a73073409b"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'babel'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/locales.py",
-      "language": "Python",
-      "line": 24,
-      "offset": 6,
-      "length": 5,
-      "code": {
-        "startLine": 22,
-        "length": 5,
-        "offset": 32,
-        "surroundingCode": "# lib imports\nimport babel\nfrom babel import localedata\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "aa3286a1cce2fc66af482f91fbe1cf85e472b36ed90a0bbb9abbe8e8d95a1303"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'localedata'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/locales.py",
-      "language": "Python",
-      "line": 24,
-      "offset": 19,
-      "length": 10,
-      "code": {
-        "startLine": 22,
-        "length": 10,
-        "offset": 45,
-        "surroundingCode": "# lib imports\nimport babel\nfrom babel import localedata\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "9cd17ebc54bea9cb5ed72c59d3d0cfa244b614ba8e81c51f6ba200cfc6d842d2"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No module named 'flask'",
+  "comment": "Unresolved reference 'webapp'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
       "path": "pyra/webapp.py",
       "language": "Python",
-      "line": 11,
-      "offset": 8,
-      "length": 5,
+      "line": 238,
+      "offset": 38,
+      "length": 6,
       "code": {
-        "startLine": 9,
-        "length": 5,
-        "offset": 22,
-        "surroundingCode": "\n# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory"
+        "startLine": 236,
+        "length": 6,
+        "offset": 71,
+        "surroundingCode": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
       }
     }
   ],
@@ -121,7 +28,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "dd1f537344a806b56ca0415cef7c49b1eb8d1c3cb18670837be2652d5fa8f1d0"
+  "hash": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -130,21 +37,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'flask'",
+  "comment": "Module 'pyamdgpuinfo' not found",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/webapp.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 12,
-      "offset": 6,
-      "length": 5,
+      "line": 63,
+      "offset": 12,
+      "length": 12,
       "code": {
-        "startLine": 10,
-        "length": 5,
-        "offset": 32,
-        "surroundingCode": "# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel"
+        "startLine": 61,
+        "length": 12,
+        "offset": 17,
+        "surroundingCode": "\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False"
       }
     }
   ],
@@ -152,162 +59,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "9c18dee76aa79c1074f46ca9b774560c0d46d61fc3893bab96cae9e5f4f8eb27"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'Flask'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/webapp.py",
-      "language": "Python",
-      "line": 12,
-      "offset": 19,
-      "length": 5,
-      "code": {
-        "startLine": 10,
-        "length": 5,
-        "offset": 45,
-        "surroundingCode": "# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "2c012d0efffa70f96e485e6f9a03fc7847e9216ccac4cc36f9906ac9d6c1ddd0"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'Response'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/webapp.py",
-      "language": "Python",
-      "line": 12,
-      "offset": 26,
-      "length": 8,
-      "code": {
-        "startLine": 10,
-        "length": 8,
-        "offset": 52,
-        "surroundingCode": "# lib imports\nimport flask\nfrom flask import Flask, Response\nfrom flask import jsonify, render_template, send_from_directory\nfrom flask_babel import Babel"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "96039da094c89e547d2b183c8aaef588d9ba4b5ad5789742045fbd88e1dfe141"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved attribute reference 'logs' for class 'Paths'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/definitions.py",
-      "language": "Python",
-      "line": 142,
-      "offset": 15,
-      "length": 4,
-      "code": {
-        "startLine": 140,
-        "length": 4,
-        "offset": 40,
-        "surroundingCode": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'configobj'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/logger.py",
-      "language": "Python",
-      "line": 25,
-      "offset": 6,
-      "length": 9,
-      "code": {
-        "startLine": 23,
-        "length": 9,
-        "offset": 20,
-        "surroundingCode": "\n# lib imports\nfrom configobj import ConfigObj\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "5c2b9fb034d3446dbe7c0627da0d97c240b6fa548fb32258a1f7da6edfc82a44"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "Unresolved reference 'ConfigObj'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/logger.py",
-      "language": "Python",
-      "line": 25,
-      "offset": 23,
-      "length": 9,
-      "code": {
-        "startLine": 23,
-        "length": 9,
-        "offset": 37,
-        "surroundingCode": "\n# lib imports\nfrom configobj import ConfigObj\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "b687fbd3ab3f89f781c798493623f8710b0151b5be90a6494d616db8f5e183a5"
+  "hash": "699ab1fa79533e58532611e65f8f9b06aff0ca3c351b3386a1ed74e8f78c43e5"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -347,21 +99,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "No module named 'GPUtil'",
+  "comment": "Cannot find reference 'stop' in 'None | bool'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/hardware.py",
+      "path": "pyra/tray_icon.py",
       "language": "Python",
-      "line": 10,
-      "offset": 8,
-      "length": 6,
+      "line": 168,
+      "offset": 22,
+      "length": 4,
       "code": {
-        "startLine": 8,
-        "length": 6,
-        "offset": 22,
-        "surroundingCode": "\n# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil"
+        "startLine": 166,
+        "length": 4,
+        "offset": 39,
+        "surroundingCode": "\n            try:\n                icon.stop()\n            except AttributeError:\n                pass"
       }
     }
   ],
@@ -369,7 +121,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "a3209bf86672eb5061460c087308c8ab6a3e5014104fa1a3d1e68921e556f08f"
+  "hash": "5048ead9a24148366679cf5f51232020a969b26ee6fc64aef6940a780fa5ef03"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -378,21 +130,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'numexpr'",
+  "comment": "Cannot find reference 'run_detached' in 'None | bool'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/hardware.py",
+      "path": "pyra/tray_icon.py",
       "language": "Python",
-      "line": 11,
-      "offset": 6,
-      "length": 7,
+      "line": 223,
+      "offset": 22,
+      "length": 12,
       "code": {
-        "startLine": 9,
-        "length": 7,
-        "offset": 33,
-        "surroundingCode": "# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n"
+        "startLine": 221,
+        "length": 12,
+        "offset": 79,
+        "surroundingCode": "        if isinstance(icon, icon_class):\n            try:\n                icon.run_detached()\n            except AttributeError:\n                pass"
       }
     }
   ],
@@ -400,7 +152,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "dfc671467677717d54d32a751368c69d1becf076480102aaa926285f35a17955"
+  "hash": "a8170157775f1869801d96e0ac28c633cbd802e5f3340a6bb540c61272758ad7"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -409,21 +161,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'cpuinfo'",
+  "comment": "Unresolved attribute reference 'logs' for class 'Paths'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/hardware.py",
+      "path": "pyra/definitions.py",
       "language": "Python",
-      "line": 11,
-      "offset": 21,
-      "length": 7,
+      "line": 142,
+      "offset": 15,
+      "length": 4,
       "code": {
-        "startLine": 9,
-        "length": 7,
-        "offset": 48,
-        "surroundingCode": "# lib imports\nimport GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n"
+        "startLine": 140,
+        "length": 4,
+        "offset": 40,
+        "surroundingCode": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
       }
     }
   ],
@@ -431,36 +183,5 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "cb17f9f05c330975151156ba014ad765f60f69e31d06174dce082e8837140d85"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
-  "comment": "No module named 'psutil'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/hardware.py",
-      "language": "Python",
-      "line": 12,
-      "offset": 8,
-      "length": 6,
-      "code": {
-        "startLine": 10,
-        "length": 6,
-        "offset": 49,
-        "surroundingCode": "import GPUtil\nfrom numexpr import cpuinfo\nimport psutil\n\n# local imports"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "6243e63662eb6c45491adce6217927b6c7367e5edc82487b9a6f6c9160521b72"
+  "hash": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
 }]}

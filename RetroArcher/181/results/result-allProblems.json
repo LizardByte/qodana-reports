@@ -32,6 +32,37 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
+  "type": "The default argument is mutable",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Default argument value is mutable",
+  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 57,
+      "length": 12,
+      "code": {
+        "startLine": 54,
+        "length": 12,
+        "offset": 58,
+        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDefaultArgumentInspection"
+  },
+  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
     "Python"
@@ -156,37 +187,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "The default argument is mutable",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "Default argument value is mutable",
-  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 56,
-      "offset": 57,
-      "length": 12,
-      "code": {
-        "startLine": 54,
-        "length": 12,
-        "offset": 58,
-        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyDefaultArgumentInspection"
-  },
-  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "Unbound local variables",
   "tags": [
     "Python"
@@ -254,6 +254,37 @@
     "Python"
   ],
   "severity": "Moderate",
+  "comment": "Function name should be lowercase",
+  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/helpers.py",
+      "language": "Python",
+      "line": 316,
+      "offset": 5,
+      "length": 19,
+      "code": {
+        "startLine": 314,
+        "length": 19,
+        "offset": 6,
+        "surroundingCode": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8NamingInspection"
+  },
+  "hash": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 naming convention violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
   "comment": "Argument name should be lowercase",
   "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
   "sources": [
@@ -280,34 +311,96 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "PEP 8 naming convention violation",
+  "type": "Unclear exception clauses",
   "tags": [
     "Python"
   ],
   "severity": "Moderate",
-  "comment": "Function name should be lowercase",
-  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/helpers.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 316,
-      "offset": 5,
-      "length": 19,
+      "line": 68,
+      "offset": 12,
+      "length": 9,
       "code": {
-        "startLine": 314,
-        "length": 19,
-        "offset": 6,
-        "surroundingCode": "\n\ndef timestamp_to_YMDHMS(ts: int, separate: bool = False) -> str:\n    \"\"\"\n    Convert timestamp to YMDHMS format."
+        "startLine": 66,
+        "length": 9,
+        "offset": 57,
+        "surroundingCode": "    try:\n        from pyadl import ADLManager\n    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`\n        amd_gpus = range(0)  # no amd gpus found\n    else:"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyPep8NamingInspection"
+    "inspectionName": "PyBroadExceptionInspection"
   },
-  "hash": "8494fe3bf42325138226a8ccb2fe9edec1ab0f8cc2672e61ac0d7b3ef2011468"
+  "hash": "c55f8d0732e775a82bf3f5f2b2baa244f19abceb247dab4b09b8647f84d2f53b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 167,
+      "offset": 12,
+      "length": 9,
+      "code": {
+        "startLine": 165,
+        "length": 9,
+        "offset": 43,
+        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/helpers.py",
+      "language": "Python",
+      "line": 202,
+      "offset": 16,
+      "length": 9,
+      "code": {
+        "startLine": 200,
+        "length": 9,
+        "offset": 103,
+        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -538,99 +631,6 @@
   "sources": [
     {
       "type": "file",
-      "path": "pyra/hardware.py",
-      "language": "Python",
-      "line": 68,
-      "offset": 12,
-      "length": 9,
-      "code": {
-        "startLine": 66,
-        "length": 9,
-        "offset": 57,
-        "surroundingCode": "    try:\n        from pyadl import ADLManager\n    except Exception:  # cannot import `ADLError` from `pyadl.pyadl`\n        amd_gpus = range(0)  # no amd gpus found\n    else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "c55f8d0732e775a82bf3f5f2b2baa244f19abceb247dab4b09b8647f84d2f53b"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/helpers.py",
-      "language": "Python",
-      "line": 202,
-      "offset": 16,
-      "length": 9,
-      "code": {
-        "startLine": 200,
-        "length": 9,
-        "offset": 103,
-        "surroundingCode": "        try:\n            ip_address = socket.getaddrinfo(host=host, port=None)[0][4][0]\n        except Exception:\n            log.error(f\"IP Checker :: Bad IP or hostname provided: {host}.\")\n        else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 167,
-      "offset": 12,
-      "length": 9,
-      "code": {
-        "startLine": 165,
-        "length": 9,
-        "offset": 43,
-        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
       "path": "pyra/tray_icon.py",
       "language": "Python",
       "line": 32,
@@ -652,34 +652,96 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "Attempt to call a non-callable object",
+  "type": "Unsatisfied package requirements",
   "tags": [
     "Python"
   ],
-  "severity": "High",
-  "comment": "'Icon' is not callable",
-  "detailsInfo": "Reports a problem when you are trying\nto call objects that are not callable, like, for example, properties:\n\n```\nclass Record:\n    @property\n    def as_json(self):\n\njson = Record().as_json()\n```",
+  "severity": "Moderate",
+  "comment": "Package containing module 'pyamdgpuinfo' is not listed in the project requirements",
+  "detailsInfo": "Reports packages mentioned in requirements files (for example, `requirements.txt` or `Pipfile`) but not installed,\nor imported but not mentioned in requirements files.\n\n\nThe IDE shows a quick-fix banner so that you can install the missing packages in one click.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/tray_icon.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 67,
-      "offset": 17,
-      "length": 24,
+      "line": 63,
+      "offset": 12,
+      "length": 12,
       "code": {
-        "startLine": 65,
-        "length": 24,
-        "offset": 64,
-        "surroundingCode": "    if not icon_supported:\n        return False\n    tray_icon = Icon(name='retroarcher')\n    tray_icon.title = definitions.Names.name\n"
+        "startLine": 61,
+        "length": 12,
+        "offset": 17,
+        "surroundingCode": "\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyCallingNonCallableInspection"
+    "inspectionName": "PyPackageRequirementsInspection"
   },
-  "hash": "a1e709139142e021d820d4a34d2f5de220c5853d3ede4e8fa5ec211fcc4373ae"
+  "hash": "72f54356173bea8d38b4489052c471a8d90dcae96dda63f1c1ed093bb4d36522"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unsatisfied package requirements",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Package containing module 'Xlib' is not listed in the project requirements",
+  "detailsInfo": "Reports packages mentioned in requirements files (for example, `requirements.txt` or `Pipfile`) but not installed,\nor imported but not mentioned in requirements files.\n\n\nThe IDE shows a quick-fix banner so that you can install the missing packages in one click.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/tray_icon.py",
+      "language": "Python",
+      "line": 31,
+      "offset": 16,
+      "length": 4,
+      "code": {
+        "startLine": 29,
+        "length": 4,
+        "offset": 72,
+        "surroundingCode": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPackageRequirementsInspection"
+  },
+  "hash": "5b32eb2d2f0c11c13dc991e49a36995166cd5383d8efce2d142d1b1a1bf1fd58"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unsatisfied package requirements",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Package containing module 'PyInstaller' is not listed in the project requirements",
+  "detailsInfo": "Reports packages mentioned in requirements files (for example, `requirements.txt` or `Pipfile`) but not installed,\nor imported but not mentioned in requirements files.\n\n\nThe IDE shows a quick-fix banner so that you can install the missing packages in one click.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "scripts/build.py",
+      "language": "Python",
+      "line": 11,
+      "offset": 8,
+      "length": 11,
+      "code": {
+        "startLine": 9,
+        "length": 11,
+        "offset": 22,
+        "surroundingCode": "\n# lib imports\nimport PyInstaller.__main__\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPackageRequirementsInspection"
+  },
+  "hash": "39eac71d3185de8b6d28431ddf56a2b7045b1febc804951bb13b6b028896b523"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -688,7 +750,7 @@
     "Python"
   ],
   "severity": "High",
-  "comment": "Unexpected type(s): (None) Possible type(s): (SimpleQueue | Queue) (Queue)",
+  "comment": "Expected type 'SimpleQueue | Queue', got 'None' instead",
   "detailsInfo": "Reports type errors in function call expressions, targets, and return values. In a dynamically typed language, this is possible in a limited number of cases.\n\nTypes of function parameters can be specified in\ndocstrings or in Python 3 function annotations.\n\n**Example:**\n\n```\ndef foo() -> int:\n    return \"abc\" # Expected int, got str\n\n\na: str\na = foo() # Expected str, got int\n```\n\nWith the quick-fix, you can modify the problematic types:\n\n```\ndef foo() -> str:\n    return \"abc\"\n\n\na: str\na = foo()\n```",
   "sources": [
     {
@@ -710,36 +772,5 @@
     "module": "project",
     "inspectionName": "PyTypeCheckerInspection"
   },
-  "hash": "d2f35de56aef3f85009082d6775a5090ec4c28150761d3bfdc459d536bb29033"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Incorrect type",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "Expected type '(group: None, target: (...) -> Any | None, name: str | None, args: Iterable, kwargs: Mapping[str, Any] | None, Any, daemon: bool | None) -> None', got '(group: None, target: (...) -> Any | None, name: str | None, args: Iterable, kwargs: Mapping[str, Any] | None, Any, daemon: bool | None) -> None' instead",
-  "detailsInfo": "Reports type errors in function call expressions, targets, and return values. In a dynamically typed language, this is possible in a limited number of cases.\n\nTypes of function parameters can be specified in\ndocstrings or in Python 3 function annotations.\n\n**Example:**\n\n```\ndef foo() -> int:\n    return \"abc\" # Expected int, got str\n\n\na: str\na = foo() # Expected str, got int\n```\n\nWith the quick-fix, you can modify the problematic types:\n\n```\ndef foo() -> str:\n    return \"abc\"\n\n\na: str\na = foo()\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/logger.py",
-      "language": "Python",
-      "line": 690,
-      "offset": 20,
-      "length": 25,
-      "code": {
-        "startLine": 688,
-        "length": 25,
-        "offset": 73,
-        "surroundingCode": "    # Thread exception hook\n    if thread_exceptions:\n        old_init = threading.Thread.__init__\n\n        def new_init(self, *args, **kwargs):"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyTypeCheckerInspection"
-  },
-  "hash": "0d147c5e7c80848bb31154620b2692ae48ed38107e55cff1d7a969d7f67baf80"
+  "hash": "e867a18b7f4cb696acf0a23f01f662c67d222eda6d5e377549169509553c6102"
 }]}
