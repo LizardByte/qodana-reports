@@ -1884,20 +1884,20 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -1916,20 +1916,20 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2012,13 +2012,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2044,13 +2044,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2396,20 +2396,20 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -2428,20 +2428,20 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3004,38 +3004,6 @@
                 ]
               },
               {
-                "id": "PyTrailingSemicolonInspection",
-                "shortDescription": {
-                  "text": "Prohibited trailing semicolon in a statement"
-                },
-                "fullDescription": {
-                  "text": "Reports trailing semicolons in statements. Example: def my_func(a):\n    c = a ** 2;\n    return c\n IDE provides a quick-fix that removes a trailing semicolon. When you apply it, the code changes to: def my_func(a):\n    c = a ** 2\n    return c",
-                  "markdown": "Reports trailing semicolons in statements.\n\n**Example:**\n\n```\ndef my_func(a):\n    c = a ** 2;\n    return c\n```\n\nIDE provides a quick-fix that removes a trailing semicolon. When you\napply it, the code changes to:\n\n```\ndef my_func(a):\n    c = a ** 2\n    return c\n```"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyRedundantParenthesesInspection",
                 "shortDescription": {
                   "text": "Redundant parentheses"
@@ -3068,20 +3036,20 @@
                 ]
               },
               {
-                "id": "PyAbstractClassInspection",
+                "id": "PyTrailingSemicolonInspection",
                 "shortDescription": {
-                  "text": "Class must implement all abstract methods"
+                  "text": "Prohibited trailing semicolon in a statement"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
-                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                  "text": "Reports trailing semicolons in statements. Example: def my_func(a):\n    c = a ** 2;\n    return c\n IDE provides a quick-fix that removes a trailing semicolon. When you apply it, the code changes to: def my_func(a):\n    c = a ** 2\n    return c",
+                  "markdown": "Reports trailing semicolons in statements.\n\n**Example:**\n\n```\ndef my_func(a):\n    c = a ** 2;\n    return c\n```\n\nIDE provides a quick-fix that removes a trailing semicolon. When you\napply it, the code changes to:\n\n```\ndef my_func(a):\n    c = a ** 2\n    return c\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3114,6 +3082,38 @@
                   "parameters": {
                     "ideaSeverity": "WARNING",
                     "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyAbstractClassInspection",
+                "shortDescription": {
+                  "text": "Class must implement all abstract methods"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
+                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "PyArgumentListInspection",
-                "shortDescription": {
-                  "text": "Incorrect call arguments"
-                },
-                "fullDescription": {
-                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
-                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "Query_bound_parameters",
                 "shortDescription": {
                   "text": "Query does not have required bound parameters"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Google App Engine (Python)",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyArgumentListInspection",
+                "shortDescription": {
+                  "text": "Incorrect call arguments"
+                },
+                "fullDescription": {
+                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
+                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3740,20 +3740,20 @@
                 ]
               },
               {
-                "id": "PyStubPackagesCompatibilityInspection",
+                "id": "PyProtectedMemberInspection",
                 "shortDescription": {
-                  "text": "Incompatible stub packages"
+                  "text": "Accessing a protected member of a class or a module"
                 },
                 "fullDescription": {
-                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
-                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
+                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3772,20 +3772,20 @@
                 ]
               },
               {
-                "id": "PyProtectedMemberInspection",
+                "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
-                  "text": "Accessing a protected member of a class or a module"
+                  "text": "Incompatible stub packages"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
-                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
+                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
+                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "MongoJSSideEffectsInspection",
-                "shortDescription": {
-                  "text": "Statement with side effects"
-                },
-                "fullDescription": {
-                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
-                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MongoJS",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlInsertIntoGeneratedColumnInspection",
                 "shortDescription": {
                   "text": "Insertion into generated columns"
@@ -4669,6 +4637,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MongoJSSideEffectsInspection",
+                "shortDescription": {
+                  "text": "Statement with side effects"
+                },
+                "fullDescription": {
+                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
+                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MongoJS",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,38 +4776,6 @@
                 ]
               },
               {
-                "id": "MysqlSpaceAfterFunctionNameInspection",
-                "shortDescription": {
-                  "text": "Whitespace between the function name and the open parenthesis"
-                },
-                "fullDescription": {
-                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
-                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlDerivedTableAliasInspection",
                 "shortDescription": {
                   "text": "Each derived table should have alias"
@@ -4829,6 +4797,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlSpaceAfterFunctionNameInspection",
+                "shortDescription": {
+                  "text": "Whitespace between the function name and the open parenthesis"
+                },
+                "fullDescription": {
+                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
+                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5384,13 +5384,13 @@
                 ]
               },
               {
-                "id": "SqlDtInspection",
+                "id": "SqlSideEffectsInspection",
                 "shortDescription": {
-                  "text": "Ill-formed date/time literals"
+                  "text": "Statement with side effects"
                 },
                 "fullDescription": {
-                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
-                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
+                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5416,13 +5416,13 @@
                 ]
               },
               {
-                "id": "SqlSideEffectsInspection",
+                "id": "SqlDtInspection",
                 "shortDescription": {
-                  "text": "Statement with side effects"
+                  "text": "Ill-formed date/time literals"
                 },
                 "fullDescription": {
-                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
-                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
+                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6312,13 +6312,13 @@
                 ]
               },
               {
-                "id": "SqlNoDataSourceInspection",
+                "id": "SqlUnusedVariableInspection",
                 "shortDescription": {
-                  "text": "No data sources configured"
+                  "text": "Unused variable"
                 },
                 "fullDescription": {
-                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
-                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
+                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6344,13 +6344,13 @@
                 ]
               },
               {
-                "id": "SqlUnusedVariableInspection",
+                "id": "SqlNoDataSourceInspection",
                 "shortDescription": {
-                  "text": "Unused variable"
+                  "text": "No data sources configured"
                 },
                 "fullDescription": {
-                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
-                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
+                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "JsonSchemaDeprecation",
-                "shortDescription": {
-                  "text": "Deprecated JSON property"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
-                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JSON and JSON5",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDuplicatedId",
                 "shortDescription": {
                   "text": "Duplicate 'id' attribute"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JsonSchemaDeprecation",
+                "shortDescription": {
+                  "text": "Deprecated JSON property"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
+                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JSON and JSON5",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6880,38 +6880,6 @@
                 ]
               },
               {
-                "id": "RequiredAttributes",
-                "shortDescription": {
-                  "text": "Missing required attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
-                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "DuplicatedCode",
                 "shortDescription": {
                   "text": "Duplicated code fragment"
@@ -6933,6 +6901,38 @@
                     "target": {
                       "id": "General",
                       "index": 18,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RequiredAttributes",
+                "shortDescription": {
+                  "text": "Missing required attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
+                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "RegExpEscapedMetaCharacter",
-                "shortDescription": {
-                  "text": "Escaped meta character"
-                },
-                "fullDescription": {
-                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
-                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "LossyEncoding",
                 "shortDescription": {
                   "text": "Lossy encoding"
@@ -8501,6 +8469,38 @@
                     "target": {
                       "id": "Internationalization",
                       "index": 30,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpEscapedMetaCharacter",
+                "shortDescription": {
+                  "text": "Escaped meta character"
+                },
+                "fullDescription": {
+                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
+                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssConvertColorToHexInspection",
-                "shortDescription": {
-                  "text": "Color could be replaced with #-hex"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
-                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssInvalidPseudoSelector",
                 "shortDescription": {
                   "text": "Invalid pseudo-selector"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS/Invalid elements",
                       "index": 21,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssConvertColorToHexInspection",
+                "shortDescription": {
+                  "text": "Color could be replaced with #-hex"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
+                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/RetroArcher.git",
-          "revisionId": "a3489754dea4b207dd5db1f5e0e7fe4b7bc034e7",
+          "revisionId": "aaa4378bdeb8dc5ea061b554c59b307b38fc3f2a",
           "branch": "add/qodana",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/RetroArcher.git",
@@ -10941,6 +10941,93 @@
             "qodanaSeverity": "Moderate",
             "tags": [
               "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "gh-pages/RetroArcher/181/default/versions/VERSION_ID/TeamCity.css",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  },
+                  "sourceLanguage": "CSS"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "gh-pages/RetroArcher/181/versions/VERSION_ID/TeamCity.css",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  },
+                  "sourceLanguage": "CSS"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "7e52b5b28240e577a9e26fa72773bb5e7ccee6c3e0c8a250814a80633cb10f0d"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "CSS"
             ]
           }
         },
@@ -11867,60 +11954,6 @@
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Package containing module 'Xlib' is not listed in the project requirements",
-            "markdown": "Package containing module 'Xlib' is not listed in the project requirements"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/tray_icon.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 16,
-                  "charOffset": 541,
-                  "charLength": 4,
-                  "snippet": {
-                    "text": "Xlib"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 29,
-                  "startColumn": 1,
-                  "charOffset": 469,
-                  "charLength": 111,
-                  "snippet": {
-                    "text": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "5b32eb2d2f0c11c13dc991e49a36995166cd5383d8efce2d142d1b1a1bf1fd58"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPackageRequirementsInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
             "text": "Package containing module 'PyInstaller' is not listed in the project requirements",
             "markdown": "Package containing module 'PyInstaller' is not listed in the project requirements"
           },
@@ -11961,6 +11994,60 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "39eac71d3185de8b6d28431ddf56a2b7045b1febc804951bb13b6b028896b523"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyPackageRequirementsInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Package containing module 'Xlib' is not listed in the project requirements",
+            "markdown": "Package containing module 'Xlib' is not listed in the project requirements"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/tray_icon.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 16,
+                  "charOffset": 541,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "Xlib"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 29,
+                  "startColumn": 1,
+                  "charOffset": 469,
+                  "charLength": 111,
+                  "snippet": {
+                    "text": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "5b32eb2d2f0c11c13dc991e49a36995166cd5383d8efce2d142d1b1a1bf1fd58"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -12027,9 +12114,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-18",
-        "guid": "9ab8f6e1-baf8-4736-a59d-ea686b89034a",
+        "guid": "2cc82eb4-b212-4a86-a2d9-71ebdc2f845a",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4452953697"
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4453016297"
         }
       },
       "newlineSequences": [
