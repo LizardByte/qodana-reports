@@ -6,37 +6,6 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Module 'pyamdgpuinfo' not found",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/hardware.py",
-      "language": "Python",
-      "line": 63,
-      "offset": 12,
-      "length": 12,
-      "code": {
-        "startLine": 61,
-        "length": 12,
-        "offset": 17,
-        "surroundingCode": "\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "699ab1fa79533e58532611e65f8f9b06aff0ca3c351b3386a1ed74e8f78c43e5"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
   "comment": "Unresolved reference 'webapp'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
@@ -68,21 +37,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Module 'pyi_splash' not found",
+  "comment": "Module 'pyamdgpuinfo' not found",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "retroarcher.py",
+      "path": "pyra/hardware.py",
       "language": "Python",
-      "line": 122,
-      "offset": 20,
-      "length": 10,
+      "line": 63,
+      "offset": 12,
+      "length": 12,
       "code": {
-        "startLine": 120,
-        "length": 10,
-        "offset": 57,
-        "surroundingCode": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
+        "startLine": 61,
+        "length": 12,
+        "offset": 17,
+        "surroundingCode": "\ntry:\n    import pyamdgpuinfo  # linux only\nexcept ModuleNotFoundError:\n    pyamdgpu = False"
       }
     }
   ],
@@ -90,7 +59,7 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
+  "hash": "699ab1fa79533e58532611e65f8f9b06aff0ca3c351b3386a1ed74e8f78c43e5"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -184,4 +153,35 @@
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
   "hash": "a8170157775f1869801d96e0ac28c633cbd802e5f3340a6bb540c61272758ad7"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Module 'pyi_splash' not found",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "retroarcher.py",
+      "language": "Python",
+      "line": 122,
+      "offset": 20,
+      "length": 10,
+      "code": {
+        "startLine": 120,
+        "length": 10,
+        "offset": 57,
+        "surroundingCode": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
 }]}
