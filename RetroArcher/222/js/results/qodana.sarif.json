@@ -75,8 +75,8 @@
               "name": "JSON and JSON5"
             },
             {
-              "id": "JavaScript and TypeScript/Code style issues",
-              "name": "Code style issues",
+              "id": "JavaScript and TypeScript/General",
+              "name": "General",
               "relationships": [
                 {
                   "target": {
@@ -93,8 +93,8 @@
               ]
             },
             {
-              "id": "JavaScript and TypeScript/General",
-              "name": "General",
+              "id": "JavaScript and TypeScript/Code style issues",
+              "name": "Code style issues",
               "relationships": [
                 {
                   "target": {
@@ -383,10 +383,6 @@
               ]
             },
             {
-              "id": "Structural search",
-              "name": "Structural search"
-            },
-            {
               "id": "JavaScript and TypeScript/Function metrics",
               "name": "Function metrics",
               "relationships": [
@@ -403,6 +399,10 @@
                   ]
                 }
               ]
+            },
+            {
+              "id": "Structural search",
+              "name": "Structural search"
             },
             {
               "id": "Dependency analysis",
@@ -728,38 +728,6 @@
                 ]
               },
               {
-                "id": "NonBlockStatementBodyJS",
-                "shortDescription": {
-                  "text": "Statement body without braces"
-                },
-                "fullDescription": {
-                  "text": "Reports a 'if', 'while', 'for', or 'with' statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance.",
-                  "markdown": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "IfStatementWithTooManyBranchesJS",
                 "shortDescription": {
                   "text": "'if' statement with too many branches"
@@ -812,6 +780,38 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
+                      "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "NonBlockStatementBodyJS",
+                "shortDescription": {
+                  "text": "Statement body without braces"
+                },
+                "fullDescription": {
+                  "text": "Reports a 'if', 'while', 'for', or 'with' statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance.",
+                  "markdown": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Code style issues",
                       "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
@@ -1132,7 +1132,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1388,7 +1388,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1452,7 +1452,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1484,7 +1484,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1528,38 +1528,6 @@
                 ]
               },
               {
-                "id": "JSObjectNullOrUndefined",
-                "shortDescription": {
-                  "text": "Object is 'null' or 'undefined'"
-                },
-                "fullDescription": {
-                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
-                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptMissingConfigOption",
                 "shortDescription": {
                   "text": "Missing tsconfig.json option "
@@ -1592,6 +1560,38 @@
                 ]
               },
               {
+                "id": "JSObjectNullOrUndefined",
+                "shortDescription": {
+                  "text": "Object is 'null' or 'undefined'"
+                },
+                "fullDescription": {
+                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
+                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "JSXUnresolvedComponent",
                 "shortDescription": {
                   "text": "Unresolved JSX component"
@@ -1612,7 +1612,39 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ShorthandObjectProperty",
+                "shortDescription": {
+                  "text": "Property can be replaced with shorthand"
+                },
+                "fullDescription": {
+                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
+                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1645,38 +1677,6 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "ES6ShorthandObjectProperty",
-                "shortDescription": {
-                  "text": "Property can be replaced with shorthand"
-                },
-                "fullDescription": {
-                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
-                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1868,7 +1868,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1932,7 +1932,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2028,7 +2028,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2104,6 +2104,38 @@
                 ]
               },
               {
+                "id": "JSReferencingMutableVariableFromClosure",
+                "shortDescription": {
+                  "text": "Referencing mutable variable from closure"
+                },
+                "fullDescription": {
+                  "text": "Reports access to outer mutable variables from functions. Example: 'for (var i = 1; i <= 3; i++) {\n    setTimeout(function() {\n        console.log(i); // bad\n    }, 0);\n  }'",
+                  "markdown": "Reports access to outer mutable variables from functions.\n\nExample:\n\n\n      for (var i = 1; i <= 3; i++) {\n        setTimeout(function() {\n            console.log(i); // bad\n        }, 0);\n      }\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "PointlessBooleanExpressionJS",
                 "shortDescription": {
                   "text": "Pointless statement or boolean expression"
@@ -2125,38 +2157,6 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "JSReferencingMutableVariableFromClosure",
-                "shortDescription": {
-                  "text": "Referencing mutable variable from closure"
-                },
-                "fullDescription": {
-                  "text": "Reports access to outer mutable variables from functions. Example: 'for (var i = 1; i <= 3; i++) {\n    setTimeout(function() {\n        console.log(i); // bad\n    }, 0);\n  }'",
-                  "markdown": "Reports access to outer mutable variables from functions.\n\nExample:\n\n\n      for (var i = 1; i <= 3; i++) {\n        setTimeout(function() {\n            console.log(i); // bad\n        }, 0);\n      }\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2316,7 +2316,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2412,7 +2412,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2476,7 +2476,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2764,7 +2764,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2796,7 +2796,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3000,38 +3000,6 @@
                 ]
               },
               {
-                "id": "AnonymousFunctionJS",
-                "shortDescription": {
-                  "text": "Anonymous function"
-                },
-                "fullDescription": {
-                  "text": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a 'name' property specified in the ECMAScript 6 standard. For example, 'var bar = function() {};' is not reported.",
-                  "markdown": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a `name` property specified in the ECMAScript 6 standard. For example, `var bar = function() {};` is not reported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Potentially undesirable code constructs",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "BlockStatementJS",
                 "shortDescription": {
                   "text": "Unnecessary block statement"
@@ -3053,6 +3021,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Potentially confusing code constructs",
                       "index": 25,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "AnonymousFunctionJS",
+                "shortDescription": {
+                  "text": "Anonymous function"
+                },
+                "fullDescription": {
+                  "text": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a 'name' property specified in the ECMAScript 6 standard. For example, 'var bar = function() {};' is not reported.",
+                  "markdown": "Reports an anonymous function. An explicit name of a function expression may be helpful for debugging. Ignores function expressions without names if they have a `name` property specified in the ECMAScript 6 standard. For example, `var bar = function() {};` is not reported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Potentially undesirable code constructs",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3436,7 +3436,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3628,7 +3628,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3660,7 +3660,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3820,7 +3820,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3852,7 +3852,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3980,7 +3980,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4044,7 +4044,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4120,38 +4120,6 @@
                 ]
               },
               {
-                "id": "ES6ClassMemberInitializationOrder",
-                "shortDescription": {
-                  "text": "Use of possibly unassigned property in a static initializer"
-                },
-                "fullDescription": {
-                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
-                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "EmptyTryBlockJS",
                 "shortDescription": {
                   "text": "Empty 'try' block"
@@ -4173,6 +4141,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ClassMemberInitializationOrder",
+                "shortDescription": {
+                  "text": "Use of possibly unassigned property in a static initializer"
+                },
+                "fullDescription": {
+                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
+                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4492,7 +4492,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4728,38 +4728,6 @@
                 ]
               },
               {
-                "id": "JSAnnotator",
-                "shortDescription": {
-                  "text": "ECMAScript specification is not followed"
-                },
-                "fullDescription": {
-                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
-                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSIncompatibleTypesComparison",
                 "shortDescription": {
                   "text": "Comparison of expressions having incompatible types"
@@ -4812,7 +4780,39 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSAnnotator",
+                "shortDescription": {
+                  "text": "ECMAScript specification is not followed"
+                },
+                "fullDescription": {
+                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
+                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4844,7 +4844,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5100,7 +5100,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5164,7 +5164,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5324,7 +5324,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5420,7 +5420,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5548,7 +5548,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5644,7 +5644,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5708,7 +5708,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5740,7 +5740,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5836,7 +5836,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5900,7 +5900,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5964,7 +5964,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6028,7 +6028,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6156,7 +6156,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6188,7 +6188,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6284,7 +6284,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6380,7 +6380,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6508,7 +6508,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6540,7 +6540,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6636,39 +6636,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "IfStatementWithIdenticalBranchesJS",
-                "shortDescription": {
-                  "text": "'if' statement with identical branches"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'if' statement with identical 'then' and 'else' branches. Such statements are almost certainly an error.",
-                  "markdown": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6701,6 +6669,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/DOM issues",
                       "index": 46,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "IfStatementWithIdenticalBranchesJS",
+                "shortDescription": {
+                  "text": "'if' statement with identical branches"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'if' statement with identical 'then' and 'else' branches. Such statements are almost certainly an error.",
+                  "markdown": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 1,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7000,38 +7000,6 @@
                 ]
               },
               {
-                "id": "InnerHTMLJS",
-                "shortDescription": {
-                  "text": "Use of 'innerHTML' property"
-                },
-                "fullDescription": {
-                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
-                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/DOM issues",
-                      "index": 46,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ES6UnusedImports",
                 "shortDescription": {
                   "text": "Unused import"
@@ -7053,6 +7021,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Imports and dependencies",
                       "index": 41,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "InnerHTMLJS",
+                "shortDescription": {
+                  "text": "Use of 'innerHTML' property"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
+                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/DOM issues",
+                      "index": 46,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7180,7 +7180,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7384,38 +7384,6 @@
                 ]
               },
               {
-                "id": "ReturnFromFinallyBlockJS",
-                "shortDescription": {
-                  "text": "'return' inside 'finally' block"
-                },
-                "fullDescription": {
-                  "text": "Reports a 'return' statement inside a 'finally' block. Such 'return' statements may mask exceptions thrown, and complicate debugging.",
-                  "markdown": "Reports a `return` statement inside a `finally` block. Such `return` statements may mask exceptions thrown, and complicate debugging."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Try statement issues",
-                      "index": 29,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSUnusedLocalSymbols",
                 "shortDescription": {
                   "text": "Unused local symbol"
@@ -7448,6 +7416,38 @@
                 ]
               },
               {
+                "id": "ReturnFromFinallyBlockJS",
+                "shortDescription": {
+                  "text": "'return' inside 'finally' block"
+                },
+                "fullDescription": {
+                  "text": "Reports a 'return' statement inside a 'finally' block. Such 'return' statements may mask exceptions thrown, and complicate debugging.",
+                  "markdown": "Reports a `return` statement inside a `finally` block. Such `return` statements may mask exceptions thrown, and complicate debugging."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Try statement issues",
+                      "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "JSValidateTypes",
                 "shortDescription": {
                   "text": "Type mismatch"
@@ -7468,7 +7468,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -9728,7 +9728,7 @@
                   {
                     "target": {
                       "id": "Structural search",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13776,7 +13776,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/General",
-                      "index": 10,
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13972,7 +13972,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/RetroArcher.git",
-          "revisionId": "1b4de8ebec2b827afdc0832412084073aa50f4ba",
+          "revisionId": "76a18e3d40f5ef11326b0187e1b65400bac09bc8",
           "branch": "dependabot/github_actions/nightly/pascalgn/automerge-action-0.15.6",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/RetroArcher.git",
@@ -13983,60 +13983,6 @@
         }
       ],
       "results": [
-        {
-          "ruleId": "JSUnusedAssignment",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Variable initializer is redundant",
-            "markdown": "Variable initializer is redundant"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "web/js/discord.js",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 10,
-                  "startColumn": 21,
-                  "charOffset": 385,
-                  "charLength": 4,
-                  "snippet": {
-                    "text": "null"
-                  },
-                  "sourceLanguage": "ECMAScript 6"
-                },
-                "contextRegion": {
-                  "startLine": 8,
-                  "startColumn": 1,
-                  "charOffset": 327,
-                  "charLength": 134,
-                  "snippet": {
-                    "text": "\nfunction randomQuote(quote, crate) {\n    let the_quote = null\n    if (quote['quote_safe']) {\n        the_quote = quote['quote_safe'];"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "027af7f090a71c1d173fda2d39363403568534fbe63d3b3c0394c5d7cc017dbe"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "ECMAScript 6"
-            ]
-          }
-        },
         {
           "ruleId": "JSCheckFunctionSignatures",
           "kind": "fail",
@@ -14086,6 +14032,60 @@
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
+            "tags": [
+              "ECMAScript 6"
+            ]
+          }
+        },
+        {
+          "ruleId": "JSUnusedAssignment",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Variable initializer is redundant",
+            "markdown": "Variable initializer is redundant"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "web/js/discord.js",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 21,
+                  "charOffset": 385,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "null"
+                  },
+                  "sourceLanguage": "ECMAScript 6"
+                },
+                "contextRegion": {
+                  "startLine": 8,
+                  "startColumn": 1,
+                  "charOffset": 327,
+                  "charLength": 134,
+                  "snippet": {
+                    "text": "\nfunction randomQuote(quote, crate) {\n    let the_quote = null\n    if (quote['quote_safe']) {\n        the_quote = quote['quote_safe'];"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "027af7f090a71c1d173fda2d39363403568534fbe63d3b3c0394c5d7cc017dbe"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
             "tags": [
               "ECMAScript 6"
             ]
@@ -14144,133 +14144,13 @@
               "JSON"
             ]
           }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages/RetroArcher/181/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages/RetroArcher/181/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages/RetroArcher/222/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "c7d8765b0a55718d49d6628049b31f397c0e10f5ef5cb42227fb611b0371c1d4"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "CSS"
-            ]
-          }
         }
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-18",
-        "guid": "c3754e63-d063-416d-a25e-a46feca6a5bb",
+        "guid": "3644a7ba-19e8-47c9-8e70-1da41840781b",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4456596448"
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4456955951"
         }
       },
       "newlineSequences": [
