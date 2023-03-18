@@ -59,12 +59,12 @@
               "name": "RegExp"
             },
             {
-              "id": "Properties files",
-              "name": "Properties files"
-            },
-            {
               "id": "MySQL",
               "name": "MySQL"
+            },
+            {
+              "id": "Properties files",
+              "name": "Properties files"
             },
             {
               "id": "CSS",
@@ -1884,20 +1884,20 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -1916,20 +1916,20 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3004,38 +3004,6 @@
                 ]
               },
               {
-                "id": "PyRedundantParenthesesInspection",
-                "shortDescription": {
-                  "text": "Redundant parentheses"
-                },
-                "fullDescription": {
-                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
-                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyTrailingSemicolonInspection",
                 "shortDescription": {
                   "text": "Prohibited trailing semicolon in a statement"
@@ -3068,20 +3036,20 @@
                 ]
               },
               {
-                "id": "PyOldStyleClassesInspection",
+                "id": "PyRedundantParenthesesInspection",
                 "shortDescription": {
-                  "text": "Old-style class contains new-style class features"
+                  "text": "Redundant parentheses"
                 },
                 "fullDescription": {
-                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
-                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
+                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3114,6 +3082,38 @@
                   "parameters": {
                     "ideaSeverity": "WEAK WARNING",
                     "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyOldStyleClassesInspection",
+                "shortDescription": {
+                  "text": "Old-style class contains new-style class features"
+                },
+                "fullDescription": {
+                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
+                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3708,38 +3708,6 @@
                 ]
               },
               {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyProtectedMemberInspection",
                 "shortDescription": {
                   "text": "Accessing a protected member of a class or a module"
@@ -3793,6 +3761,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "SqlInsertIntoGeneratedColumnInspection",
-                "shortDescription": {
-                  "text": "Insertion into generated columns"
-                },
-                "fullDescription": {
-                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
-                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MongoJSSideEffectsInspection",
                 "shortDescription": {
                   "text": "Statement with side effects"
@@ -4680,6 +4648,38 @@
                 ]
               },
               {
+                "id": "SqlInsertIntoGeneratedColumnInspection",
+                "shortDescription": {
+                  "text": "Insertion into generated columns"
+                },
+                "fullDescription": {
+                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
+                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "MysqlLoadDataPathInspection",
                 "shortDescription": {
                   "text": "LOAD statement path"
@@ -4700,7 +4700,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4828,7 +4828,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5128,6 +5128,38 @@
                 ]
               },
               {
+                "id": "SqlRedundantAliasInspection",
+                "shortDescription": {
+                  "text": "Redundant alias expressions"
+                },
+                "fullDescription": {
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "SqlIdentifierInspection",
                 "shortDescription": {
                   "text": "Identifier should be quoted"
@@ -5167,38 +5199,6 @@
                 "fullDescription": {
                   "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
                   "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "SqlRedundantAliasInspection",
-                "shortDescription": {
-                  "text": "Redundant alias expressions"
-                },
-                "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5832,38 +5832,6 @@
                 ]
               },
               {
-                "id": "MysqlParsingInspection",
-                "shortDescription": {
-                  "text": "Unsupported syntax in pre-8.0 versions"
-                },
-                "fullDescription": {
-                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
-                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlCallNotationInspection",
                 "shortDescription": {
                   "text": "Using of named and positional arguments"
@@ -5885,6 +5853,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlParsingInspection",
+                "shortDescription": {
+                  "text": "Unsupported syntax in pre-8.0 versions"
+                },
+                "fullDescription": {
+                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
+                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6312,13 +6312,13 @@
                 ]
               },
               {
-                "id": "SqlUnusedVariableInspection",
+                "id": "SqlNoDataSourceInspection",
                 "shortDescription": {
-                  "text": "Unused variable"
+                  "text": "No data sources configured"
                 },
                 "fullDescription": {
-                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
-                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
+                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6344,13 +6344,13 @@
                 ]
               },
               {
-                "id": "SqlNoDataSourceInspection",
+                "id": "SqlUnusedVariableInspection",
                 "shortDescription": {
-                  "text": "No data sources configured"
+                  "text": "Unused variable"
                 },
                 "fullDescription": {
-                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
-                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
+                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -7840,38 +7840,6 @@
                 ]
               },
               {
-                "id": "RegExpRedundantNestedCharacterClass",
-                "shortDescription": {
-                  "text": "Redundant nested character class"
-                },
-                "fullDescription": {
-                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
-                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDeprecatedElement",
                 "shortDescription": {
                   "text": "Deprecated symbol"
@@ -7893,6 +7861,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpRedundantNestedCharacterClass",
+                "shortDescription": {
+                  "text": "Redundant nested character class"
+                },
+                "fullDescription": {
+                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
+                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8096,38 +8096,6 @@
                 ]
               },
               {
-                "id": "HtmlUnknownAnchorTarget",
-                "shortDescription": {
-                  "text": "Unresolved fragment in a link"
-                },
-                "fullDescription": {
-                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
-                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnusedDefine",
                 "shortDescription": {
                   "text": "Unused define"
@@ -8149,6 +8117,38 @@
                     "target": {
                       "id": "RELAX NG",
                       "index": 26,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlUnknownAnchorTarget",
+                "shortDescription": {
+                  "text": "Unresolved fragment in a link"
+                },
+                "fullDescription": {
+                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
+                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "LossyEncoding",
-                "shortDescription": {
-                  "text": "Lossy encoding"
-                },
-                "fullDescription": {
-                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
-                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Internationalization",
-                      "index": 30,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpEscapedMetaCharacter",
                 "shortDescription": {
                   "text": "Escaped meta character"
@@ -8501,6 +8469,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "LossyEncoding",
+                "shortDescription": {
+                  "text": "Lossy encoding"
+                },
+                "fullDescription": {
+                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
+                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Internationalization",
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8940,7 +8940,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8972,7 +8972,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9004,7 +9004,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9036,7 +9036,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9068,7 +9068,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9100,7 +9100,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/RetroArcher.git",
-          "revisionId": "aaa4378bdeb8dc5ea061b554c59b307b38fc3f2a",
+          "revisionId": "8eb892243001a7c5e447481b75f50a5bd2f901c5",
           "branch": "add/qodana",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/RetroArcher.git",
@@ -10725,6 +10725,93 @@
             "qodanaSeverity": "Moderate",
             "tags": [
               "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "gh-pages/RetroArcher/181/default/versions/VERSION_ID/TeamCity.css",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  },
+                  "sourceLanguage": "CSS"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "gh-pages/RetroArcher/181/versions/VERSION_ID/TeamCity.css",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  },
+                  "sourceLanguage": "CSS"
+                },
+                "contextRegion": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "charOffset": 0,
+                  "charLength": 1923,
+                  "snippet": {
+                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "7e52b5b28240e577a9e26fa72773bb5e7ccee6c3e0c8a250814a80633cb10f0d"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "CSS"
             ]
           }
         },
@@ -10941,93 +11028,6 @@
             "qodanaSeverity": "Moderate",
             "tags": [
               "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages/RetroArcher/181/default/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages/RetroArcher/181/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "7e52b5b28240e577a9e26fa72773bb5e7ccee6c3e0c8a250814a80633cb10f0d"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "CSS"
             ]
           }
         },
@@ -12114,9 +12114,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-18",
-        "guid": "2cc82eb4-b212-4a86-a2d9-71ebdc2f845a",
+        "guid": "88060ee1-f787-47ed-91c5-d76c5ff8f6d5",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4453016297"
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4453059497"
         }
       },
       "newlineSequences": [
