@@ -2012,13 +2012,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2044,13 +2044,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2396,20 +2396,20 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -2428,20 +2428,20 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3004,38 +3004,6 @@
                 ]
               },
               {
-                "id": "PyRedundantParenthesesInspection",
-                "shortDescription": {
-                  "text": "Redundant parentheses"
-                },
-                "fullDescription": {
-                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
-                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyTrailingSemicolonInspection",
                 "shortDescription": {
                   "text": "Prohibited trailing semicolon in a statement"
@@ -3068,20 +3036,20 @@
                 ]
               },
               {
-                "id": "PyOldStyleClassesInspection",
+                "id": "PyRedundantParenthesesInspection",
                 "shortDescription": {
-                  "text": "Old-style class contains new-style class features"
+                  "text": "Redundant parentheses"
                 },
                 "fullDescription": {
-                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
-                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
+                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3114,6 +3082,38 @@
                   "parameters": {
                     "ideaSeverity": "WEAK WARNING",
                     "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyOldStyleClassesInspection",
+                "shortDescription": {
+                  "text": "Old-style class contains new-style class features"
+                },
+                "fullDescription": {
+                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
+                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "Query_bound_parameters",
-                "shortDescription": {
-                  "text": "Query does not have required bound parameters"
-                },
-                "fullDescription": {
-                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
-                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Google App Engine (Python)",
-                      "index": 4,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyArgumentListInspection",
                 "shortDescription": {
                   "text": "Incorrect call arguments"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "Query_bound_parameters",
+                "shortDescription": {
+                  "text": "Query does not have required bound parameters"
+                },
+                "fullDescription": {
+                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
+                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Google App Engine (Python)",
+                      "index": 4,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,38 +4776,6 @@
                 ]
               },
               {
-                "id": "MysqlSpaceAfterFunctionNameInspection",
-                "shortDescription": {
-                  "text": "Whitespace between the function name and the open parenthesis"
-                },
-                "fullDescription": {
-                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
-                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 12,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlDerivedTableAliasInspection",
                 "shortDescription": {
                   "text": "Each derived table should have alias"
@@ -4829,6 +4797,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlSpaceAfterFunctionNameInspection",
+                "shortDescription": {
+                  "text": "Whitespace between the function name and the open parenthesis"
+                },
+                "fullDescription": {
+                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
+                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4968,13 +4968,13 @@
                 ]
               },
               {
-                "id": "SqlMultipleLimitClausesInspection",
+                "id": "SqlNamedArgumentsInspection",
                 "shortDescription": {
-                  "text": "Multiple row limiting/offset clauses in queries"
+                  "text": "Named arguments should be used"
                 },
                 "fullDescription": {
-                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
-                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
+                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5000,13 +5000,13 @@
                 ]
               },
               {
-                "id": "SqlNamedArgumentsInspection",
+                "id": "SqlMultipleLimitClausesInspection",
                 "shortDescription": {
-                  "text": "Named arguments should be used"
+                  "text": "Multiple row limiting/offset clauses in queries"
                 },
                 "fullDescription": {
-                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
-                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
+                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5128,13 +5128,13 @@
                 ]
               },
               {
-                "id": "SqlRedundantAliasInspection",
+                "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
-                  "text": "Redundant alias expressions"
+                  "text": "Auto-increment duplicate"
                 },
                 "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
+                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5160,13 +5160,13 @@
                 ]
               },
               {
-                "id": "SqlAutoIncrementDuplicateInspection",
+                "id": "SqlRedundantAliasInspection",
                 "shortDescription": {
-                  "text": "Auto-increment duplicate"
+                  "text": "Redundant alias expressions"
                 },
                 "fullDescription": {
-                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
-                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6312,13 +6312,13 @@
                 ]
               },
               {
-                "id": "SqlUnusedVariableInspection",
+                "id": "SqlNoDataSourceInspection",
                 "shortDescription": {
-                  "text": "Unused variable"
+                  "text": "No data sources configured"
                 },
                 "fullDescription": {
-                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
-                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
+                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6344,13 +6344,13 @@
                 ]
               },
               {
-                "id": "SqlNoDataSourceInspection",
+                "id": "SqlUnusedVariableInspection",
                 "shortDescription": {
-                  "text": "No data sources configured"
+                  "text": "Unused variable"
                 },
                 "fullDescription": {
-                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
-                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
+                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "JsonSchemaDeprecation",
-                "shortDescription": {
-                  "text": "Deprecated JSON property"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
-                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JSON and JSON5",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDuplicatedId",
                 "shortDescription": {
                   "text": "Duplicate 'id' attribute"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JsonSchemaDeprecation",
+                "shortDescription": {
+                  "text": "Deprecated JSON property"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
+                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JSON and JSON5",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6880,38 +6880,6 @@
                 ]
               },
               {
-                "id": "RequiredAttributes",
-                "shortDescription": {
-                  "text": "Missing required attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
-                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "DuplicatedCode",
                 "shortDescription": {
                   "text": "Duplicated code fragment"
@@ -6933,6 +6901,38 @@
                     "target": {
                       "id": "General",
                       "index": 18,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RequiredAttributes",
+                "shortDescription": {
+                  "text": "Missing required attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
+                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8512,13 +8512,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -8544,13 +8544,13 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "RegExpRepeatedSpace",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Consecutive spaces"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssConvertColorToHexInspection",
-                "shortDescription": {
-                  "text": "Color could be replaced with #-hex"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
-                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssInvalidPseudoSelector",
                 "shortDescription": {
                   "text": "Invalid pseudo-selector"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS/Invalid elements",
                       "index": 21,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssConvertColorToHexInspection",
+                "shortDescription": {
+                  "text": "Color could be replaced with #-hex"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
+                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/RetroArcher.git",
-          "revisionId": "a83c53c2131432f6228422089e4561d302cb8ff6",
+          "revisionId": "e74040a5ba600e2b758c4f742f9b1098be4c9caa",
           "branch": "add/qodana",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/RetroArcher.git",
@@ -10723,60 +10723,6 @@
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyDefaultArgumentInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Default argument value is mutable",
-            "markdown": "Default argument value is mutable"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/config.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 56,
-                  "startColumn": 57,
-                  "charOffset": 1513,
-                  "charLength": 12,
-                  "snippet": {
-                    "text": "_CONFIG_SPEC"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 54,
-                  "startColumn": 1,
-                  "charOffset": 1455,
-                  "charLength": 155,
-                  "snippet": {
-                    "text": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
             "tags": [
               "Python"
             ]
@@ -10993,6 +10939,60 @@
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyDefaultArgumentInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Default argument value is mutable",
+            "markdown": "Default argument value is mutable"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/config.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 57,
+                  "charOffset": 1513,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "_CONFIG_SPEC"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 54,
+                  "startColumn": 1,
+                  "charOffset": 1455,
+                  "charLength": 155,
+                  "snippet": {
+                    "text": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
             "tags": [
               "Python"
             ]
@@ -11280,60 +11280,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "pyra/config.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 167,
-                  "startColumn": 12,
-                  "charOffset": 4493,
-                  "charLength": 9,
-                  "snippet": {
-                    "text": "Exception"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 165,
-                  "startColumn": 1,
-                  "charOffset": 4450,
-                  "charLength": 84,
-                  "snippet": {
-                    "text": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyBroadExceptionInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Too broad exception clause",
-            "markdown": "Too broad exception clause"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "pyra/helpers.py",
                   "uriBaseId": "SRCROOT"
                 },
@@ -11388,13 +11334,13 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "docs/source/conf.py",
+                  "uri": "pyra/tray_icon.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 27,
-                  "startColumn": 8,
-                  "charOffset": 1012,
+                  "startLine": 32,
+                  "startColumn": 12,
+                  "charOffset": 557,
                   "charLength": 9,
                   "snippet": {
                     "text": "Exception"
@@ -11402,12 +11348,12 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 25,
+                  "startLine": 30,
                   "startColumn": 1,
-                  "charOffset": 889,
-                  "charLength": 150,
+                  "charOffset": 517,
+                  "charLength": 68,
                   "snippet": {
-                    "text": "    from pyra import definitions  # put this in a try/except to prevent flake8 warning\n    from pyra import version\nexcept Exception:\n    sys.exit(1)\n"
+                    "text": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
                   }
                 }
               },
@@ -11420,7 +11366,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
+            "equalIndicator/v1": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -11766,13 +11712,13 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "pyra/tray_icon.py",
+                  "uri": "pyra/config.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 32,
+                  "startLine": 167,
                   "startColumn": 12,
-                  "charOffset": 557,
+                  "charOffset": 4493,
                   "charLength": 9,
                   "snippet": {
                     "text": "Exception"
@@ -11780,12 +11726,12 @@
                   "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 30,
+                  "startLine": 165,
                   "startColumn": 1,
-                  "charOffset": 517,
-                  "charLength": 68,
+                  "charOffset": 4450,
+                  "charLength": 84,
                   "snippet": {
-                    "text": "    try:\n        import Xlib\n    except Exception:\n        pass\ntry:"
+                    "text": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
                   }
                 }
               },
@@ -11798,7 +11744,61 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "d667a6dd34e7622269079ec7fe55bdc5756fca8270005f08e4246eaa82a43595"
+            "equalIndicator/v1": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyBroadExceptionInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Too broad exception clause",
+            "markdown": "Too broad exception clause"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docs/source/conf.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 8,
+                  "charOffset": 1012,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "Exception"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 25,
+                  "startColumn": 1,
+                  "charOffset": 889,
+                  "charLength": 150,
+                  "snippet": {
+                    "text": "    from pyra import definitions  # put this in a try/except to prevent flake8 warning\n    from pyra import version\nexcept Exception:\n    sys.exit(1)\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -11867,60 +11867,6 @@
           "kind": "fail",
           "level": "note",
           "message": {
-            "text": "Package containing module 'Xlib' is not listed in the project requirements",
-            "markdown": "Package containing module 'Xlib' is not listed in the project requirements"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "pyra/tray_icon.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 16,
-                  "charOffset": 541,
-                  "charLength": 4,
-                  "snippet": {
-                    "text": "Xlib"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 29,
-                  "startColumn": 1,
-                  "charOffset": 469,
-                  "charLength": 111,
-                  "snippet": {
-                    "text": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "5b32eb2d2f0c11c13dc991e49a36995166cd5383d8efce2d142d1b1a1bf1fd58"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyPackageRequirementsInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
             "text": "Package containing module 'PyInstaller' is not listed in the project requirements",
             "markdown": "Package containing module 'PyInstaller' is not listed in the project requirements"
           },
@@ -11961,6 +11907,60 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "39eac71d3185de8b6d28431ddf56a2b7045b1febc804951bb13b6b028896b523"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyPackageRequirementsInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Package containing module 'Xlib' is not listed in the project requirements",
+            "markdown": "Package containing module 'Xlib' is not listed in the project requirements"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pyra/tray_icon.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 16,
+                  "charOffset": 541,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "Xlib"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 29,
+                  "startColumn": 1,
+                  "charOffset": 469,
+                  "charLength": 111,
+                  "snippet": {
+                    "text": "if definitions.Platform.os_platform == 'linux':\n    try:\n        import Xlib\n    except Exception:\n        pass"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "5b32eb2d2f0c11c13dc991e49a36995166cd5383d8efce2d142d1b1a1bf1fd58"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -12027,9 +12027,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-18",
-        "guid": "3b3ffab1-8efc-49f0-b328-af08946c6a16",
+        "guid": "988a8b32-c007-4deb-85ca-52f15f3f877d",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4456248813"
+          "jobUrl": "https://github.com/LizardByte/RetroArcher/actions/runs/4456290876"
         }
       },
       "newlineSequences": [
@@ -12038,57 +12038,6 @@
       ],
       "properties": {
         "qodana.sanity.results": [
-          {
-            "ruleId": "PyUnresolvedReferencesInspection",
-            "kind": "fail",
-            "level": "error",
-            "message": {
-              "text": "Unresolved reference 'webapp'",
-              "markdown": "Unresolved reference 'webapp'"
-            },
-            "locations": [
-              {
-                "physicalLocation": {
-                  "artifactLocation": {
-                    "uri": "pyra/webapp.py",
-                    "uriBaseId": "SRCROOT"
-                  },
-                  "region": {
-                    "startLine": 238,
-                    "startColumn": 38,
-                    "charOffset": 5199,
-                    "charLength": 6,
-                    "snippet": {
-                      "text": "webapp"
-                    },
-                    "sourceLanguage": "Python"
-                  },
-                  "contextRegion": {
-                    "startLine": 236,
-                    "startColumn": 1,
-                    "charOffset": 5128,
-                    "charLength": 188,
-                    "snippet": {
-                      "text": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
-                    }
-                  }
-                },
-                "logicalLocations": [
-                  {
-                    "fullyQualifiedName": "project",
-                    "kind": "module"
-                  }
-                ]
-              }
-            ],
-            "partialFingerprints": {
-              "equalIndicator/v1": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
-            },
-            "properties": {
-              "ideaSeverity": "ERROR",
-              "qodanaSeverity": "Critical"
-            }
-          },
           {
             "ruleId": "PyUnresolvedReferencesInspection",
             "kind": "fail",
@@ -12134,6 +12083,57 @@
             ],
             "partialFingerprints": {
               "equalIndicator/v1": "699ab1fa79533e58532611e65f8f9b06aff0ca3c351b3386a1ed74e8f78c43e5"
+            },
+            "properties": {
+              "ideaSeverity": "ERROR",
+              "qodanaSeverity": "Critical"
+            }
+          },
+          {
+            "ruleId": "PyUnresolvedReferencesInspection",
+            "kind": "fail",
+            "level": "error",
+            "message": {
+              "text": "Unresolved reference 'webapp'",
+              "markdown": "Unresolved reference 'webapp'"
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "pyra/webapp.py",
+                    "uriBaseId": "SRCROOT"
+                  },
+                  "region": {
+                    "startLine": 238,
+                    "startColumn": 38,
+                    "charOffset": 5199,
+                    "charLength": 6,
+                    "snippet": {
+                      "text": "webapp"
+                    },
+                    "sourceLanguage": "Python"
+                  },
+                  "contextRegion": {
+                    "startLine": 236,
+                    "startColumn": 1,
+                    "charOffset": 5128,
+                    "charLength": 188,
+                    "snippet": {
+                      "text": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
+                    }
+                  }
+                },
+                "logicalLocations": [
+                  {
+                    "fullyQualifiedName": "project",
+                    "kind": "module"
+                  }
+                ]
+              }
+            ],
+            "partialFingerprints": {
+              "equalIndicator/v1": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
             },
             "properties": {
               "ideaSeverity": "ERROR",
