@@ -1,0 +1,17 @@
+---
+version: "1.0"
+linter: jetbrains/qodana-js:2023.1-eap
+
+bootstrap: |
+  # install npm dependencies
+  npm install
+
+failThreshold: 100
+
+include:
+  - name: CheckDependencyLicenses  # license audit is not currently working, but leave it enabled anyway
+
+profile:
+  # path: .idea/inspectionProfiles/project.xml
+  # name: qodana.starter
+  name: qodana.recommended
