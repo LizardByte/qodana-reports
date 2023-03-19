@@ -1,0 +1,157 @@
+---
+# Receive dispatch events from LizardByte repositories that have Qodana config files.
+
+name: Qodana
+
+on:
+  repository_dispatch:
+    types: [qodana]
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false  # one at a time
+
+jobs:
+  #  initialize:
+  #    name: Initialize
+  #    runs-on: ubuntu-latest
+  #    permissions:
+  #      pull-requests: write  # required to add PR comment
+  #    steps:
+  #
+  #      - name: Setup PR comment
+  #        if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
+  #        uses: mshick/add-pr-comment@v2
+  #        with:
+  #          repo-token: ${{ secrets.GH_BOT_TOKEN }}
+  #          message: |
+  #            :warning: **Qodana is checking this PR** :warning:
+  #            Live results available [here](${{ steps.prepare.outputs.workflow_url }})
+
+  qodana:
+    # needs: [initialize]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(github.event.client_payload.matrix) }}
+      max-parallel: 1
+    name: Qodana-${{ matrix.language }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.client_payload.checkout_repo }}
+          ref: ${{ github.event.client_payload.checkout_ref }}
+          submodules: recursive
+
+      - name: Checkout Qodana/gh-pages repo
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
+          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Get baseline
+        id: baseline
+        run: |
+          sarif_file=qodana.sarif.json
+          repo=${{ github.event.client_payload.github.event.repository.name }}
+          target=${{ github.event.client_payload.target }}
+          language=${{ matrix.language }}
+
+          baseline="./gh-pages/${repo}/${target}/${language}/results/${sarif_file}"
+
+          # check if file exists
+          if [ -f ${baseline_file} ]
+          then
+              echo "baseline exists"
+              echo "baseline_args=--baseline,qodana.sarif.json" >> $GITHUB_OUTPUT
+
+              # copy the file
+              cp -f ${baseline} ./${sarif_file}
+          else
+              echo "baseline does not exist"
+              echo "baseline_args=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Rename Qodana config file
+        run: |
+          # rename the file
+          if [ "${{ matrix.file }}" != "./qodana.yaml" ]
+          then
+            mv -f ${{ matrix.file }} ./qodana.yaml
+          fi
+
+      - name: Qodana
+        id: qodana
+        uses: JetBrains/qodana-action@v2022.3.4
+        with:
+          additional-cache-hash: ${{ github.event.client_payload.checkout_repo }}-${{ github.event.client_payload.checkout_ref }}-${{ github.event.client_payload.destination}}-${{ matrix.language }}  # yamllint disable-line rule:line-length
+          args: '--print-problems,${{ steps.baseline.outputs.baseline_args }}'
+          pr-mode: false
+          upload-result: true
+          use-caches: true
+
+      - name: Prepare gh-pages
+        id: pages
+        if: always()
+        run: |
+          repo=${{ github.event.client_payload.github.event.repository.name }}
+          destination=${{ github.event.client_payload.destination }}
+          language=${{ matrix.language }}
+
+          # set the output directory
+          output_dir=./gh-pages/${repo}/${destination}/${language}
+          mkdir -p $output_dir
+
+          # empty contents
+          rm -f -r $output_dir/*
+
+          # copy qodana results
+          cp -f -r ${{ runner.temp }}/qodana/results/report/. $output_dir/
+
+      - name: Deploy to gh-pages
+        id: deploy
+        if: ${{ steps.pages.conclusion == 'success' }}
+        uses: actions-js/push@v1.4
+        with:
+          github_token: ${{ secrets.GH_BOT_TOKEN }}
+          author_email: ${{ secrets.GH_BOT_EMAIL }}
+          author_name: ${{ secrets.GH_BOT_NAME }}
+          directory: gh-pages
+          branch: gh-pages
+          force: false
+          message: >-
+            update
+            ${{ github.event.client_payload.github.event.repository.name }}
+            ${{ github.event.client_payload.destination }}
+            ${{ matrix.language }}
+
+#  notify:
+#    name: Notify
+#    needs: [initialize, qodana]
+#    if: >-
+#      startsWith(github.event.client_payload.github.event_name, 'pull_request') &&
+#      needs.qodana.result != ''
+#    runs-on: ubuntu-latest
+#    permissions:
+#      pull-requests: write  # required to add PR comment
+#
+#    steps:
+#      - name: Update PR comment
+#        uses: mshick/add-pr-comment@v2
+#        with:
+#          repo-token: ${{ secrets.GH_BOT_TOKEN }}
+#          status: ${{ needs.qodana.result }}
+#          message-failure: |
+#            :warning: **Qodana: failure**
+#
+#            [Logs](${{ steps.prepare.outputs.workflow_url }})
+#
+#            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
+#          message-success: |
+#            :white_check_mark: **Qodana: success**
+#
+#            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
