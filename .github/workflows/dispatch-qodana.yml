@@ -43,7 +43,6 @@ jobs:
           client-payload: ${{ steps.client_payload.outputs.client_payload }}
 
   qodana:
-    needs: [initialize-notify]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -105,6 +104,7 @@ jobs:
       - name: Qodana
         id: qodana
         if: ${{ steps.rename.conclusion == 'success' }}
+        continue-on-error: true
         uses: JetBrains/qodana-action@v2022.3.4
         with:
           additional-cache-hash: ${{ github.event.client_payload.checkout_repo }}-${{ github.event.client_payload.checkout_ref }}-${{ github.event.client_payload.destination}}-${{ matrix.language }}  # yamllint disable-line rule:line-length
@@ -116,6 +116,7 @@ jobs:
       - name: Prepare gh-pages
         id: pages
         if: ${{ steps.qodana.conclusion != 'skipped' }}
+        continue-on-error: true
         run: |
           repo=${{ github.event.client_payload.github.event.repository.name }}
           destination=${{ github.event.client_payload.destination }}
@@ -134,6 +135,7 @@ jobs:
       - name: Deploy to gh-pages
         id: deploy
         if: ${{ steps.pages.conclusion == 'success' }}
+        continue-on-error: true
         uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GH_BOT_TOKEN }}
@@ -150,7 +152,7 @@ jobs:
 
   final-notify:
     name: Final Notify
-    needs: [qodana]
+    needs: [initialize-notify, qodana]
     if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
     runs-on: ubuntu-latest
     steps:
