@@ -1,43 +1,61 @@
 ---
 # Receive dispatch events from LizardByte repositories that have Qodana config files.
 
-name: Qodana
+name: Qodana Scan
 
 on:
   repository_dispatch:
-    types: [qodana]
+    types: [qodana-scan]
 
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: false  # one at a time
+  # ensure only one workflow runs for a given repo and ref, cancel in progress to only run the latest
+  group: ${{ github.event.client_payload.github.repository }}-${{ github.event.client_payload.github.workflow }}- ${{ github.event.client_payload.github.ref }}  # yamllint disable-line rule:line-length
+  cancel-in-progress: true
 
 jobs:
-  #  initialize:
-  #    name: Initialize
-  #    runs-on: ubuntu-latest
-  #    permissions:
-  #      pull-requests: write  # required to add PR comment
-  #    steps:
-  #
-  #      - name: Setup PR comment
-  #        if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
-  #        uses: mshick/add-pr-comment@v2
-  #        with:
-  #          repo-token: ${{ secrets.GH_BOT_TOKEN }}
-  #          message: |
-  #            :warning: **Qodana is checking this PR** :warning:
-  #            Live results available [here](${{ steps.prepare.outputs.workflow_url }})
+  initialize-notify:
+    name: Initialize Notify
+    if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup client payload
+        id: client_payload
+        run: |
+          workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
+
+          client_payload=$(echo '{
+            "final": "'"false"'",
+            "pull_request_number": "'"${{ github.event.client_payload.github.event.number }}"'",
+            "workflow_url": "'"${workflow_url}"'"
+          }' | jq -c .)
+
+          echo $client_payload
+          echo $client_payload | jq .
+          echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
+
+      - name: Repository Dispatch
+        if: ${{ steps.prepare.outputs.files != '' }}
+        uses: peter-evans/repository-dispatch@v2.1.1
+        with:
+          token: ${{ secrets.GH_BOT_TOKEN }}
+          repository: ${{ github.repository_owner }}/${{ github.event.client_payload.github.event.repository.name }}
+          event-type: qodana-notify
+          client-payload: ${{ steps.client_payload.outputs.client_payload }}
 
   qodana:
-    # needs: [initialize]
+    needs: [initialize-notify]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(github.event.client_payload.matrix) }}
       max-parallel: 1
-    name: Qodana-${{ matrix.language }}
-
+    name: Qodana-Scan-${{ matrix.language }}
     steps:
+      - name: Queue
+        # we only want to run one add job at a time, so queue them
+        uses: ahmadnassri/action-workflow-queue@v1
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -131,29 +149,35 @@ jobs:
             ${{ github.event.client_payload.destination }}
             ${{ matrix.language }}
 
-#  notify:
-#    name: Notify
-#    needs: [initialize, qodana]
-#    if: >-
-#      startsWith(github.event.client_payload.github.event_name, 'pull_request') &&
-#      needs.qodana.result != ''
-#    runs-on: ubuntu-latest
-#    permissions:
-#      pull-requests: write  # required to add PR comment
-#
-#    steps:
-#      - name: Update PR comment
-#        uses: mshick/add-pr-comment@v2
-#        with:
-#          repo-token: ${{ secrets.GH_BOT_TOKEN }}
-#          status: ${{ needs.qodana.result }}
-#          message-failure: |
-#            :warning: **Qodana: failure**
-#
-#            [Logs](${{ steps.prepare.outputs.workflow_url }})
-#
-#            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
-#          message-success: |
-#            :white_check_mark: **Qodana: success**
-#
-#            Reports: ${{ needs.check_qodana_files.outputs.reports_markdown }}
+  final-notify:
+    name: Final Notify
+    needs: [qodana]
+    if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup client payload
+        id: client_payload
+        run: |
+          workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
+
+          client_payload=$(echo '{
+            "final": "'"true"'",
+            "pull_request_number": "'"${{ github.event.client_payload.github.event.number }}"'",
+            "reports_markdown": "'"${{ github.event.client_payload.reports_markdown }}"'",
+            "status": "'"${{ needs.qodana.result }}"'",
+            "workflow_url": "'"${workflow_url}"'"
+          }' | jq -c .)
+
+          echo $client_payload
+          echo $client_payload | jq .
+          echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
+
+      - name: Repository Dispatch
+        if: ${{ steps.prepare.outputs.files != '' }}
+        uses: peter-evans/repository-dispatch@v2.1.1
+        with:
+          token: ${{ secrets.GH_BOT_TOKEN }}
+          repository: ${{ github.repository_owner }}/${{ github.event.client_payload.github.event.repository.name }}
+          event-type: qodana-notify
+          client-payload: ${{ steps.client_payload.outputs.client_payload }}
