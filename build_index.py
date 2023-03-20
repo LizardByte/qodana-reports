@@ -3,8 +3,18 @@ import os
 
 # constants
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-TEMPLATE_FILE = os.path.join(CURRENT_DIR, 'gh-pages-template', 'index_template.html')
-NEW_FILE = os.path.join(CURRENT_DIR, 'gh-pages-template', 'index.html')
+
+directories = [CURRENT_DIR, os.path.join(CURRENT_DIR, 'qodana-reports')]
+
+for directory in directories:
+    TEMPLATE_FILE = os.path.join(directory, 'gh-pages-template', 'index_template.html')
+    if os.path.exists(TEMPLATE_FILE):
+        break
+
+if not os.path.exists(TEMPLATE_FILE):
+    raise FileNotFoundError(f'Could not find template file: {TEMPLATE_FILE}')
+
+NEW_FILE = os.path.join(CURRENT_DIR, 'gh-pages', 'index.html')
 
 ICON_MAP = dict(
     default='https://jetbrains.gallerycdn.vsassets.io/extensions/jetbrains/qodana/2022.3.4/1676474458891/Microsoft'
@@ -138,6 +148,10 @@ def main():
                     card = card.replace(f'<!-- {item_type} -->', f'{list_item}<!-- {item_type} -->')
 
         template = template.replace('<!-- REPLACE_ME -->', f'{card}<!-- REPLACE_ME -->')
+
+    # create directories if they don't exist
+    if not os.path.isdir(os.path.dirname(NEW_FILE)):
+        os.makedirs(os.path.dirname(NEW_FILE))
 
     # write the template file to disk
     with open(file=NEW_FILE, mode='w') as f:
