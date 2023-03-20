@@ -54,17 +54,17 @@ jobs:
         # we only want to run one add job at a time, so queue them
         uses: ahmadnassri/action-workflow-queue@v1
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          path: qodana-reports
-
       - name: Checkout Test repo
         uses: actions/checkout@v3
         with:
           repository: ${{ github.event.client_payload.checkout_repo }}
           ref: ${{ github.event.client_payload.checkout_ref }}
           submodules: recursive
+
+      - name: Checkout qodana-reports
+        uses: actions/checkout@v3
+        with:
+          path: qodana-reports
 
       - name: Checkout Qodana/gh-pages repo
         uses: actions/checkout@v3
