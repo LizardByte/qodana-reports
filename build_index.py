@@ -3,13 +3,7 @@ import os
 
 # constants
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-directories = [CURRENT_DIR, os.path.join(CURRENT_DIR, 'qodana-reports')]
-
-for directory in directories:
-    TEMPLATE_FILE = os.path.join(directory, 'gh-pages-template', 'index_template.html')
-    if os.path.exists(TEMPLATE_FILE):
-        break
+TEMPLATE_FILE = os.path.join(CURRENT_DIR, 'gh-pages-template', 'index_template.html')
 
 if not os.path.exists(TEMPLATE_FILE):
     raise FileNotFoundError(f'Could not find template file: {TEMPLATE_FILE}')
@@ -46,16 +40,18 @@ def main():
     reports = dict()
 
     # walk the directory tree
-    for dirpath, dirnames, filenames in os.walk(os.getcwd()):
+    for dir_path, dir_names, filenames in os.walk(os.path.join(os.getcwd(), 'gh-pages')):
         for filename in [f for f in filenames if f == 'index.html']:
+            print(f'Found file: {filename} in directory: {dir_path}.')
+
             # language is root directory
-            language = dirpath.split(os.sep)[-1]
+            language = dir_path.split(os.sep)[-1]
 
             # source is 2 above
-            source = dirpath.split(os.sep)[-2]
+            source = dir_path.split(os.sep)[-2]
 
             # report is 3 above
-            repo = dirpath.split(os.sep)[-3]
+            repo = dir_path.split(os.sep)[-3]
 
             # determine if source is a branch or pull request
             try:
