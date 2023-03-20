@@ -89573,37 +89573,6 @@
                 ]
               },
               {
-                "id": "JSCheckFunctionSignatures",
-                "shortDescription": {
-                  "text": "Signature mismatch"
-                },
-                "fullDescription": {
-                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
-                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDNET"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ConstantOnLHSOfComparisonJS",
                 "shortDescription": {
                   "text": "Constant on left side of comparison"
@@ -89624,6 +89593,37 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
                       "index": 42,
+                      "toolComponent": {
+                        "name": "QDNET"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSCheckFunctionSignatures",
+                "shortDescription": {
+                  "text": "Signature mismatch"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
+                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDNET"
                       }
@@ -97130,37 +97130,6 @@
                 ]
               },
               {
-                "id": "SqlCallNotationInspection",
-                "shortDescription": {
-                  "text": "Using of named and positional arguments"
-                },
-                "fullDescription": {
-                  "text": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2. Example (In PostgreSQL): 'CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n    LANGUAGE plpgsql AS\n$$\nBEGIN\n    RETURN a + b + c;\nEND\n$$;\nSELECT foo(a => 1, b => 2, c => 3);\n  -- `3` goes after the named argument\nSELECT foo(1, b => 2, 3);\n  -- `1` and `3` go after the named argument\nSELECT foo(b => 2, 1, 3);'",
-                  "markdown": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2.\n\nExample (In PostgreSQL):\n\n    CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n        LANGUAGE plpgsql AS\n    $$\n    BEGIN\n        RETURN a + b + c;\n    END\n    $$;\n    SELECT foo(a => 1, b => 2, c => 3);\n      -- `3` goes after the named argument\n    SELECT foo(1, b => 2, 3);\n      -- `1` and `3` go after the named argument\n    SELECT foo(b => 2, 1, 3);\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 18,
-                      "toolComponent": {
-                        "name": "QDNET"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MysqlParsingInspection",
                 "shortDescription": {
                   "text": "Unsupported syntax in pre-8.0 versions"
@@ -97181,6 +97150,37 @@
                     "target": {
                       "id": "MySQL",
                       "index": 72,
+                      "toolComponent": {
+                        "name": "QDNET"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "SqlCallNotationInspection",
+                "shortDescription": {
+                  "text": "Using of named and positional arguments"
+                },
+                "fullDescription": {
+                  "text": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2. Example (In PostgreSQL): 'CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n    LANGUAGE plpgsql AS\n$$\nBEGIN\n    RETURN a + b + c;\nEND\n$$;\nSELECT foo(a => 1, b => 2, c => 3);\n  -- `3` goes after the named argument\nSELECT foo(1, b => 2, 3);\n  -- `1` and `3` go after the named argument\nSELECT foo(b => 2, 1, 3);'",
+                  "markdown": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2.\n\nExample (In PostgreSQL):\n\n    CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n        LANGUAGE plpgsql AS\n    $$\n    BEGIN\n        RETURN a + b + c;\n    END\n    $$;\n    SELECT foo(a => 1, b => 2, c => 3);\n      -- `3` goes after the named argument\n    SELECT foo(1, b => 2, 3);\n      -- `1` and `3` go after the named argument\n    SELECT foo(b => 2, 1, 3);\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 18,
                       "toolComponent": {
                         "name": "QDNET"
                       }
@@ -100323,7 +100323,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/qodana-reports.git",
-          "revisionId": "cce33623c4ad5e3b3b77cdf4f9edcab189c60c37",
+          "revisionId": "4bacd75fbd81b04c73ee0bec6cacdbdc0f01b7b8",
           "branch": "nightly",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/qodana-reports.git",
@@ -101357,10 +101357,10 @@
         }
       ],
       "automationDetails": {
-        "id": "Jellyfin.Plugin.Themerr/qodana/2023-03-19",
-        "guid": "5966f900-bbdd-466d-93d8-663a48e6500d",
+        "id": "Jellyfin.Plugin.Themerr/qodana/2023-03-20",
+        "guid": "1d3075fb-f6a2-4cba-b1cf-f676f648da85",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4462347955"
+          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4470963194"
         }
       },
       "newlineSequences": [
