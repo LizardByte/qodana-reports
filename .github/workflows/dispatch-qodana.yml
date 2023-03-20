@@ -144,8 +144,8 @@ jobs:
 
       - name: Build index
         run: |
-          # move script
-          mv -f ./qodana-reports/build_index.py ./build_index.py
+          # move qodana-reports to root
+          mv -f ./qodana-reports/. ./
 
           # generate index.html
           python ./build_index.py
