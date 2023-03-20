@@ -32,6 +32,68 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
+  "type": "Unused local symbols",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Local variable 'filename' value is not used",
+  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "qodana-reports/build_index.py",
+      "language": "Python",
+      "line": 50,
+      "offset": 13,
+      "length": 8,
+      "code": {
+        "startLine": 48,
+        "length": 8,
+        "offset": 104,
+        "surroundingCode": "    # walk the directory tree\n    for dirpath, dirnames, filenames in os.walk(os.getcwd()):\n        for filename in [f for f in filenames if f == 'index.html']:\n            # language is root directory\n            language = dirpath.split(os.sep)[-1]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnusedLocalInspection"
+  },
+  "hash": "86c6342a0b5b39231a3919645098583c5998edbb5a57f7898e37f4299b6aa3ae"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "The default argument is mutable",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Default argument value is mutable",
+  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 57,
+      "length": 12,
+      "code": {
+        "startLine": 54,
+        "length": 12,
+        "offset": 58,
+        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDefaultArgumentInspection"
+  },
+  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
     "Python"
@@ -156,34 +218,34 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "The default argument is mutable",
+  "type": "Unbound local variables",
   "tags": [
     "Python"
   ],
   "severity": "High",
-  "comment": "Default argument value is mutable",
-  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "comment": "Name 'TEMPLATE_FILE' can be undefined",
+  "detailsInfo": "Reports local variables referenced before assignment.\n\n**Example:**\n\n```\nx = 0\nif x > 10:\n    b = 3\nprint(b)\n```\n\nThe IDE reports a problem for `print(b)`. A possible fix is:\n\n```\nx = 0\nif x > 10:\n    b = 3\n    print(b)\n```",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/config.py",
+      "path": "qodana-reports/build_index.py",
       "language": "Python",
-      "line": 56,
-      "offset": 57,
-      "length": 12,
+      "line": 14,
+      "offset": 23,
+      "length": 13,
       "code": {
-        "startLine": 54,
-        "length": 12,
-        "offset": 58,
-        "surroundingCode": "\n\ndef create_config(config_file: str, config_spec: list = _CONFIG_SPEC) -> ConfigObj:\n    \"\"\"\n    Create a config file and `ConfigObj` using a config spec."
+        "startLine": 12,
+        "length": 13,
+        "offset": 37,
+        "surroundingCode": "        break\n\nif not os.path.exists(TEMPLATE_FILE):\n    raise FileNotFoundError(f'Could not find template file: {TEMPLATE_FILE}')\n"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "PyDefaultArgumentInspection"
+    "inspectionName": "PyUnboundLocalVariableInspection"
   },
-  "hash": "e70e8dd461400927b3355e5080b960846332fdbfdfd8a870c5ff83383587ef0c"
+  "hash": "3f0f4612ea13f2f53923a5de58ea02ecd0dea180d4f73bb224e23563fabf9331"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -321,6 +383,37 @@
   "sources": [
     {
       "type": "file",
+      "path": "docs/source/conf.py",
+      "language": "Python",
+      "line": 27,
+      "offset": 8,
+      "length": 9,
+      "code": {
+        "startLine": 25,
+        "length": 9,
+        "offset": 123,
+        "surroundingCode": "    from pyra import definitions  # put this in a try/except to prevent flake8 warning\n    from pyra import version\nexcept Exception:\n    sys.exit(1)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
       "path": "pyra/hardware.py",
       "language": "Python",
       "line": 68,
@@ -370,6 +463,37 @@
     "inspectionName": "PyBroadExceptionInspection"
   },
   "hash": "6e5408448535f31ae805cf33200a4848a933554151885951ce73622250bb12bd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "pyra/config.py",
+      "language": "Python",
+      "line": 167,
+      "offset": 12,
+      "length": 9,
+      "code": {
+        "startLine": 165,
+        "length": 9,
+        "offset": 43,
+        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection"
+  },
+  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -587,68 +711,6 @@
     "inspectionName": "PyBroadExceptionInspection"
   },
   "hash": "ff1fc19d699fc5d771d2e1523c2876b27be97c1d7ccd78c901c2829596e4a659"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/config.py",
-      "language": "Python",
-      "line": 167,
-      "offset": 12,
-      "length": 9,
-      "code": {
-        "startLine": 165,
-        "length": 9,
-        "offset": 43,
-        "surroundingCode": "    try:\n        config.write()\n    except Exception:\n        return False\n    else:"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "7cf0d08d8aa1d98f8903dc602751996232c9201229208642205ccdd89e2e4cbe"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unclear exception clauses",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Too broad exception clause",
-  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
-  "sources": [
-    {
-      "type": "file",
-      "path": "docs/source/conf.py",
-      "language": "Python",
-      "line": 27,
-      "offset": 8,
-      "length": 9,
-      "code": {
-        "startLine": 25,
-        "length": 9,
-        "offset": 123,
-        "surroundingCode": "    from pyra import definitions  # put this in a try/except to prevent flake8 warning\n    from pyra import version\nexcept Exception:\n    sys.exit(1)\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyBroadExceptionInspection"
-  },
-  "hash": "395414d05f7a0f952cd66c89a9dbd61db50761d3cbc4a73ad28d81d88d6ded94"
 },{
   "tool": "Code Inspection",
   "category": "Python",
