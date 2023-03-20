@@ -201,6 +201,9 @@ jobs:
           # empty contents
           rm -f -r ./gh-pages/*
 
+          # remove .git directory from staging to prevent failure when merging gh-pages
+          rm -f -r ./gh-pages-staging/.git
+
           # copy staging
           cp -f -r ./gh-pages-staging/. ./gh-pages/
 
