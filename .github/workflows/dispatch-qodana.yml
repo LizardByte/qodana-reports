@@ -57,6 +57,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          path: qodana-reports
+
+      - name: Checkout Test repo
+        uses: actions/checkout@v3
+        with:
           repository: ${{ github.event.client_payload.checkout_repo }}
           ref: ${{ github.event.client_payload.checkout_ref }}
           submodules: recursive
@@ -68,6 +73,11 @@ jobs:
           path: gh-pages
           persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
           fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
       - name: Get baseline
         id: baseline
@@ -131,6 +141,14 @@ jobs:
 
           # copy qodana results
           cp -f -r ${{ runner.temp }}/qodana/results/report/. $output_dir/
+
+      - name: Build index
+        run: |
+          # generate index.html
+          python ./build_index.py
+
+          # move generated index.html to gh-pages
+          mv -f ./gh-pages-template/index.html ./gh-pages/index.html
 
       - name: Deploy to gh-pages
         id: deploy
