@@ -150,9 +150,6 @@ jobs:
           # generate index.html
           python ./build_index.py
 
-          # move generated index.html to gh-pages
-          mv -f ./gh-pages-template/index.html ./gh-pages/index.html
-
       - name: Deploy to gh-pages
         id: deploy
         if: ${{ steps.pages.conclusion == 'success' }}
