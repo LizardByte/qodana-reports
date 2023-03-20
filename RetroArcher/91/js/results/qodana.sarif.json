@@ -169,6 +169,10 @@
               "name": "HTML"
             },
             {
+              "id": "Cucumber",
+              "name": "Cucumber"
+            },
+            {
               "id": "JavaScript and TypeScript/Unused symbols",
               "name": "Unused symbols",
               "relationships": [
@@ -185,10 +189,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "id": "Cucumber",
-              "name": "Cucumber"
             },
             {
               "id": "JavaScript and TypeScript/Data flow",
@@ -383,10 +383,6 @@
               ]
             },
             {
-              "id": "Structural search",
-              "name": "Structural search"
-            },
-            {
               "id": "JavaScript and TypeScript/Function metrics",
               "name": "Function metrics",
               "relationships": [
@@ -403,6 +399,10 @@
                   ]
                 }
               ]
+            },
+            {
+              "id": "Structural search",
+              "name": "Structural search"
             },
             {
               "id": "Dependency analysis",
@@ -728,38 +728,6 @@
                 ]
               },
               {
-                "id": "NonBlockStatementBodyJS",
-                "shortDescription": {
-                  "text": "Statement body without braces"
-                },
-                "fullDescription": {
-                  "text": "Reports a 'if', 'while', 'for', or 'with' statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance.",
-                  "markdown": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "IfStatementWithTooManyBranchesJS",
                 "shortDescription": {
                   "text": "'if' statement with too many branches"
@@ -781,6 +749,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "NonBlockStatementBodyJS",
+                "shortDescription": {
+                  "text": "Statement body without braces"
+                },
+                "fullDescription": {
+                  "text": "Reports a 'if', 'while', 'for', or 'with' statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance.",
+                  "markdown": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Code style issues",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -972,7 +972,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1388,7 +1388,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1528,38 +1528,6 @@
                 ]
               },
               {
-                "id": "JSObjectNullOrUndefined",
-                "shortDescription": {
-                  "text": "Object is 'null' or 'undefined'"
-                },
-                "fullDescription": {
-                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
-                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptMissingConfigOption",
                 "shortDescription": {
                   "text": "Missing tsconfig.json option "
@@ -1581,6 +1549,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/TypeScript",
                       "index": 23,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSObjectNullOrUndefined",
+                "shortDescription": {
+                  "text": "Object is 'null' or 'undefined'"
+                },
+                "fullDescription": {
+                  "text": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is 'undefined' or 'null'.",
+                  "markdown": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 1,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1624,38 +1624,6 @@
                 ]
               },
               {
-                "id": "UnnecessaryLabelOnBreakStatementJS",
-                "shortDescription": {
-                  "text": "Unnecessary label on 'break' statement"
-                },
-                "fullDescription": {
-                  "text": "Reports a labeled 'break' statement whose labels may be removed without changing the flow of control.",
-                  "markdown": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ES6ShorthandObjectProperty",
                 "shortDescription": {
                   "text": "Property can be replaced with shorthand"
@@ -1677,6 +1645,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "UnnecessaryLabelOnBreakStatementJS",
+                "shortDescription": {
+                  "text": "Unnecessary label on 'break' statement"
+                },
+                "fullDescription": {
+                  "text": "Reports a labeled 'break' statement whose labels may be removed without changing the flow of control.",
+                  "markdown": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 1,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2104,38 +2104,6 @@
                 ]
               },
               {
-                "id": "JSReferencingMutableVariableFromClosure",
-                "shortDescription": {
-                  "text": "Referencing mutable variable from closure"
-                },
-                "fullDescription": {
-                  "text": "Reports access to outer mutable variables from functions. Example: 'for (var i = 1; i <= 3; i++) {\n    setTimeout(function() {\n        console.log(i); // bad\n    }, 0);\n  }'",
-                  "markdown": "Reports access to outer mutable variables from functions.\n\nExample:\n\n\n      for (var i = 1; i <= 3; i++) {\n        setTimeout(function() {\n            console.log(i); // bad\n        }, 0);\n      }\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PointlessBooleanExpressionJS",
                 "shortDescription": {
                   "text": "Pointless statement or boolean expression"
@@ -2157,6 +2125,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSReferencingMutableVariableFromClosure",
+                "shortDescription": {
+                  "text": "Referencing mutable variable from closure"
+                },
+                "fullDescription": {
+                  "text": "Reports access to outer mutable variables from functions. Example: 'for (var i = 1; i <= 3; i++) {\n    setTimeout(function() {\n        console.log(i); // bad\n    }, 0);\n  }'",
+                  "markdown": "Reports access to outer mutable variables from functions.\n\nExample:\n\n\n      for (var i = 1; i <= 3; i++) {\n        setTimeout(function() {\n            console.log(i); // bad\n        }, 0);\n      }\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2476,7 +2476,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2520,38 +2520,6 @@
                 ]
               },
               {
-                "id": "UnusedCatchParameterJS",
-                "shortDescription": {
-                  "text": "Unused 'catch' parameter"
-                },
-                "fullDescription": {
-                  "text": "Reports a 'catch' parameter that is not used in the corresponding block. The 'catch' parameters named 'ignore' or 'ignored' are ignored. Use the checkbox below to disable this inspection for 'catch' blocks with comments.",
-                  "markdown": "Reports a `catch` parameter that is not used in the corresponding block. The `catch` parameters named `ignore` or `ignored` are ignored.\n\n\nUse the checkbox below to disable this inspection for `catch`\nblocks with comments."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Try statement issues",
-                      "index": 29,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "NpmUsedModulesInstalled",
                 "shortDescription": {
                   "text": "Missing module dependency"
@@ -2573,6 +2541,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Imports and dependencies",
                       "index": 41,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "UnusedCatchParameterJS",
+                "shortDescription": {
+                  "text": "Unused 'catch' parameter"
+                },
+                "fullDescription": {
+                  "text": "Reports a 'catch' parameter that is not used in the corresponding block. The 'catch' parameters named 'ignore' or 'ignored' are ignored. Use the checkbox below to disable this inspection for 'catch' blocks with comments.",
+                  "markdown": "Reports a `catch` parameter that is not used in the corresponding block. The `catch` parameters named `ignore` or `ignored` are ignored.\n\n\nUse the checkbox below to disable this inspection for `catch`\nblocks with comments."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Try statement issues",
+                      "index": 29,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2924,7 +2924,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3628,7 +3628,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4120,38 +4120,6 @@
                 ]
               },
               {
-                "id": "ES6ClassMemberInitializationOrder",
-                "shortDescription": {
-                  "text": "Use of possibly unassigned property in a static initializer"
-                },
-                "fullDescription": {
-                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
-                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "EmptyTryBlockJS",
                 "shortDescription": {
                   "text": "Empty 'try' block"
@@ -4173,6 +4141,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ClassMemberInitializationOrder",
+                "shortDescription": {
+                  "text": "Use of possibly unassigned property in a static initializer"
+                },
+                "fullDescription": {
+                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
+                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5164,7 +5164,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5644,7 +5644,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5708,7 +5708,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5900,7 +5900,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6136,38 +6136,6 @@
                 ]
               },
               {
-                "id": "ConstantOnLHSOfComparisonJS",
-                "shortDescription": {
-                  "text": "Constant on left side of comparison"
-                },
-                "fullDescription": {
-                  "text": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons.",
-                  "markdown": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSCheckFunctionSignatures",
                 "shortDescription": {
                   "text": "Signature mismatch"
@@ -6189,6 +6157,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ConstantOnLHSOfComparisonJS",
+                "shortDescription": {
+                  "text": "Constant on left side of comparison"
+                },
+                "fullDescription": {
+                  "text": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons.",
+                  "markdown": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Code style issues",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6936,38 +6936,6 @@
                 ]
               },
               {
-                "id": "TrivialConditionalJS",
-                "shortDescription": {
-                  "text": "Redundant conditional expression"
-                },
-                "fullDescription": {
-                  "text": "Reports a conditional expression of the form 'condition ? true : false\ncondition ? false : true' These expressions may be safely converted to 'condition\n!condition'",
-                  "markdown": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 1,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptDuplicateUnionOrIntersectionType",
                 "shortDescription": {
                   "text": "Duplicate union or intersection type component"
@@ -7000,16 +6968,16 @@
                 ]
               },
               {
-                "id": "InnerHTMLJS",
+                "id": "TrivialConditionalJS",
                 "shortDescription": {
-                  "text": "Use of 'innerHTML' property"
+                  "text": "Redundant conditional expression"
                 },
                 "fullDescription": {
-                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
-                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
+                  "text": "Reports a conditional expression of the form 'condition ? true : false\ncondition ? false : true' These expressions may be safely converted to 'condition\n!condition'",
+                  "markdown": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
+                  "enabled": true,
                   "level": "warning",
                   "parameters": {
                     "ideaSeverity": "WARNING",
@@ -7019,8 +6987,8 @@
                 "relationships": [
                   {
                     "target": {
-                      "id": "JavaScript and TypeScript/DOM issues",
-                      "index": 46,
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 1,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7053,6 +7021,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Imports and dependencies",
                       "index": 41,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "InnerHTMLJS",
+                "shortDescription": {
+                  "text": "Use of 'innerHTML' property"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
+                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/DOM issues",
+                      "index": 46,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7384,6 +7384,38 @@
                 ]
               },
               {
+                "id": "JSUnusedLocalSymbols",
+                "shortDescription": {
+                  "text": "Unused local symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Unused symbols",
+                      "index": 16,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "ReturnFromFinallyBlockJS",
                 "shortDescription": {
                   "text": "'return' inside 'finally' block"
@@ -7405,38 +7437,6 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "JSUnusedLocalSymbols",
-                "shortDescription": {
-                  "text": "Unused local symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
-                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -9728,7 +9728,7 @@
                   {
                     "target": {
                       "id": "Structural search",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11564,7 +11564,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11596,7 +11596,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11628,7 +11628,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11660,7 +11660,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11692,7 +11692,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11724,7 +11724,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11756,7 +11756,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -14144,661 +14144,13 @@
               "JSON"
             ]
           }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/181/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/181/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/222/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/222/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/228/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/228/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/229/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/229/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/230/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/230/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/231/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/231/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/91/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/91/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/nightly/js/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/RetroArcher/nightly/python/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/Themerr-jellyfin/12/dotnet/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/Themerr-jellyfin/27/dotnet/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "gh-pages-staging/Themerr-jellyfin/nightly/dotnet/versions/VERSION_ID/TeamCity.css",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  },
-                  "sourceLanguage": "CSS"
-                },
-                "contextRegion": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "charOffset": 0,
-                  "charLength": 1923,
-                  "snippet": {
-                    "text": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "890cd7c1dac275be92725fa683a154b3bcc51e57626fba67d79feb99d4132e57"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "CSS"
-            ]
-          }
         }
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-20",
-        "guid": "b77b4611-1c97-44b2-8780-49c53b31bc94",
+        "guid": "dea153a3-9ea8-49a2-8783-84946a42763a",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4469847536"
+          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4470708966"
         }
       },
       "newlineSequences": [
