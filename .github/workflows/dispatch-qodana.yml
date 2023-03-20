@@ -82,24 +82,33 @@ jobs:
       - name: Get baseline
         id: baseline
         run: |
-          sarif_file=qodana.sarif.json
-          repo=${{ github.event.client_payload.github.event.repository.name }}
-          target=${{ github.event.client_payload.target }}
-          language=${{ matrix.language }}
-
-          baseline_file="./gh-pages/${repo}/${target}/${language}/results/${sarif_file}"
-
-          # check if file exists
-          if [ -f ${baseline_file} ]
+          # check if destination is not an integer
+          if ! [[ "${{ github.event.client_payload.destination }}" =~ ^[0-9]+$ ]]
           then
+            echo "Running for a branch update"
+            echo "baseline_args=" >> $GITHUB_OUTPUT
+          else
+            echo "Running for a PR"
+
+            sarif_file=qodana.sarif.json
+            repo=${{ github.event.client_payload.github.event.repository.name }}
+            target=${{ github.event.client_payload.target }}
+            language=${{ matrix.language }}
+
+            baseline_file="./gh-pages/${repo}/${target}/${language}/results/${sarif_file}"
+
+            # check if file exists
+            if [ -f ${baseline_file} ]
+            then
               echo "baseline exists"
               echo "baseline_args=--baseline,qodana.sarif.json" >> $GITHUB_OUTPUT
 
               # copy the file
               cp -f ${baseline_file} ./${sarif_file}
-          else
+            else
               echo "baseline does not exist"
               echo "baseline_args=" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Rename Qodana config file
