@@ -1,38 +1,5 @@
 {"version":"3","listProblem":[{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Signature mismatch",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Argument type unknown is not assignable to parameter type Element",
-  "detailsInfo": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "web/templates/home.html",
-      "language": "ECMAScript 6",
-      "line": 44,
-      "offset": 56,
-      "length": 5,
-      "code": {
-        "startLine": 42,
-        "length": 5,
-        "offset": 165,
-        "surroundingCode": "                                data['graphs'][i].config\n                            ).then(function(value) {\n                                resizeObserver.observe(value);\n                            });\n                        }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "JSCheckFunctionSignatures",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "f19bf968110293ad7ff68ad030e6e84a0449d2d920c0217d6ddc5bc0819f0a9c"
-},{
-  "tool": "Code Inspection",
   "category": "Unused symbols",
   "type": "Unused assignment",
   "tags": [
@@ -59,11 +26,40 @@
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "JSUnusedAssignment",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
+    "inspectionName": "JSUnusedAssignment"
   },
   "hash": "027af7f090a71c1d173fda2d39363403568534fbe63d3b3c0394c5d7cc017dbe"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Signature mismatch",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Argument type unknown is not assignable to parameter type Element",
+  "detailsInfo": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "web/templates/home.html",
+      "language": "ECMAScript 6",
+      "line": 44,
+      "offset": 56,
+      "length": 5,
+      "code": {
+        "startLine": 42,
+        "length": 5,
+        "offset": 165,
+        "surroundingCode": "                                data['graphs'][i].config\n                            ).then(function(value) {\n                                resizeObserver.observe(value);\n                            });\n                        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSCheckFunctionSignatures"
+  },
+  "hash": "f19bf968110293ad7ff68ad030e6e84a0449d2d920c0217d6ddc5bc0819f0a9c"
 },{
   "tool": "Code Inspection",
   "category": "Dependency analysis",
@@ -92,9 +88,7 @@
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "CheckDependencyLicenses",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
+    "inspectionName": "CheckDependencyLicenses"
   },
   "hash": "28115b20d3440eb1a6661545e0ad265524045610c88596c76b3388522fc2fd50"
 }]}
