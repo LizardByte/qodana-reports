@@ -13,8 +13,17 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  queue:
+    name: Queue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Queue
+        # we only want to run one add job at a time, so queue them
+        uses: ahmadnassri/action-workflow-queue@v1
+
   initialize-notify:
     name: Initialize Notify
+    needs: [queue]
     if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
     runs-on: ubuntu-latest
     steps:
@@ -49,11 +58,9 @@ jobs:
       matrix: ${{ fromJson(github.event.client_payload.matrix) }}
       max-parallel: 1
     name: Qodana-Scan-${{ matrix.language }}
+    needs: [queue]
+    continue-on-error: true
     steps:
-      - name: Queue
-        # we only want to run one add job at a time, so queue them
-        uses: ahmadnassri/action-workflow-queue@v1
-
       - name: Checkout Test repo
         uses: actions/checkout@v3
         with:
@@ -61,23 +68,13 @@ jobs:
           ref: ${{ github.event.client_payload.checkout_ref }}
           submodules: recursive
 
-      - name: Checkout qodana-reports
+      - name: Checkout Qodana/gh-pages-staging repo
         uses: actions/checkout@v3
         with:
-          path: qodana-reports
-
-      - name: Checkout Qodana/gh-pages repo
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-          path: gh-pages
+          ref: gh-pages-staging
+          path: gh-pages-staging
           persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
           fetch-depth: 0  # otherwise, will fail to push refs to dest repo
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
 
       - name: Get baseline
         id: baseline
@@ -95,7 +92,7 @@ jobs:
             target=${{ github.event.client_payload.target }}
             language=${{ matrix.language }}
 
-            baseline_file="./gh-pages/${repo}/${target}/${language}/results/${sarif_file}"
+            baseline_file="./gh-pages-staging/${repo}/${target}/${language}/results/${sarif_file}"
 
             # check if file exists
             if [ -f ${baseline_file} ]
@@ -122,7 +119,6 @@ jobs:
 
       - name: Qodana
         id: qodana
-        if: ${{ steps.rename.conclusion == 'success' }}
         continue-on-error: true
         uses: JetBrains/qodana-action@v2022.3.4
         with:
@@ -132,9 +128,9 @@ jobs:
           upload-result: true
           use-caches: true
 
-      - name: Prepare gh-pages
+      - name: Prepare gh-pages-staging
         id: pages
-        if: ${{ steps.qodana.conclusion != 'skipped' }}
+        if: ${{ steps.qodana.outcome != 'skipped' }}
         continue-on-error: true
         run: |
           repo=${{ github.event.client_payload.github.event.repository.name }}
@@ -142,7 +138,7 @@ jobs:
           language=${{ matrix.language }}
 
           # set the output directory
-          output_dir=./gh-pages/${repo}/${destination}/${language}
+          output_dir=./gh-pages-staging/${repo}/${destination}/${language}
           mkdir -p $output_dir
 
           # empty contents
@@ -151,18 +147,71 @@ jobs:
           # copy qodana results
           cp -f -r ${{ runner.temp }}/qodana/results/report/. $output_dir/
 
-      - name: Build index
-        run: |
-          # move build script to root
-          mv -f ./qodana-reports/build_index.py ./
+      - name: Deploy to gh-pages-staging
+        id: deploy
+        if: ${{ steps.pages.conclusion == 'success' }}
+        continue-on-error: true
+        uses: actions-js/push@v1.4
+        with:
+          github_token: ${{ secrets.GH_BOT_TOKEN }}
+          author_email: ${{ secrets.GH_BOT_EMAIL }}
+          author_name: ${{ secrets.GH_BOT_NAME }}
+          directory: gh-pages-staging
+          branch: gh-pages-staging
+          force: false
+          message: >-
+            update
+            ${{ github.event.client_payload.github.event.repository.name }}
+            ${{ github.event.client_payload.destination }}
+            ${{ matrix.language }}
 
+  publish:
+    # publishing to gh-pages used to be done in the matrix, but if the matrix had multiple jobs then
+    # multiple deployments would be done, this reduces the number of page deployments to 1
+    name: Publish
+    needs: [queue, qodana]
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Checkout Qodana/gh-pages-staging repo
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages-staging
+          path: gh-pages-staging
+
+      - name: Checkout Qodana/gh-pages repo
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          path: gh-pages
+          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
+          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Prepare gh-pages
+        id: pages
+        run: |
+          # empty contents
+          rm -f -r ./gh-pages/*
+
+          # copy staging
+          cp -f -r ./gh-pages-staging/. ./gh-pages/
+
+      - name: Build index
+        id: build
+        run: |
           # generate index.html
           python ./build_index.py
 
       - name: Deploy to gh-pages
         id: deploy
-        if: ${{ steps.pages.conclusion == 'success' }}
-        continue-on-error: true
         uses: actions-js/push@v1.4
         with:
           github_token: ${{ secrets.GH_BOT_TOKEN }}
@@ -175,16 +224,16 @@ jobs:
             update
             ${{ github.event.client_payload.github.event.repository.name }}
             ${{ github.event.client_payload.destination }}
-            ${{ matrix.language }}
 
   final-notify:
     name: Final Notify
-    needs: [initialize-notify, qodana]
+    needs: [queue, initialize-notify, qodana, publish]
     if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
     runs-on: ubuntu-latest
     steps:
       - name: Setup client payload
         id: client_payload
+        # todo - remove "status" after updating ci-qodana.yml workflows
         run: |
           workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
           workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
@@ -194,6 +243,8 @@ jobs:
             "pull_request_number": "'"${{ github.event.client_payload.github.event.number }}"'",
             "reports_markdown": "'"${{ github.event.client_payload.reports_markdown }}"'",
             "status": "'"${{ needs.qodana.result }}"'",
+            "status_qodana": "'"${{ needs.qodana.result }}"'",
+            "status_publish": "'"${{ needs.publish.result }}"'",
             "workflow_url": "'"${workflow_url}"'"
           }' | jq -c .)
 
