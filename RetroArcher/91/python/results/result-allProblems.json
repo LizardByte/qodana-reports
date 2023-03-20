@@ -32,37 +32,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "Unused local symbols",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Local variable 'filename' value is not used",
-  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "qodana-reports/build_index.py",
-      "language": "Python",
-      "line": 50,
-      "offset": 13,
-      "length": 8,
-      "code": {
-        "startLine": 48,
-        "length": 8,
-        "offset": 104,
-        "surroundingCode": "    # walk the directory tree\n    for dirpath, dirnames, filenames in os.walk(os.getcwd()):\n        for filename in [f for f in filenames if f == 'index.html']:\n            # language is root directory\n            language = dirpath.split(os.sep)[-1]"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnusedLocalInspection"
-  },
-  "hash": "86c6342a0b5b39231a3919645098583c5998edbb5a57f7898e37f4299b6aa3ae"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "The default argument is mutable",
   "tags": [
     "Python"
@@ -215,37 +184,6 @@
     "inspectionName": "PyShadowingNamesInspection"
   },
   "hash": "b6369b038983e7c1cc9247ce740d9a25fd10d5dd34479e78a822f61674553849"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unbound local variables",
-  "tags": [
-    "Python"
-  ],
-  "severity": "High",
-  "comment": "Name 'TEMPLATE_FILE' can be undefined",
-  "detailsInfo": "Reports local variables referenced before assignment.\n\n**Example:**\n\n```\nx = 0\nif x > 10:\n    b = 3\nprint(b)\n```\n\nThe IDE reports a problem for `print(b)`. A possible fix is:\n\n```\nx = 0\nif x > 10:\n    b = 3\n    print(b)\n```",
-  "sources": [
-    {
-      "type": "file",
-      "path": "qodana-reports/build_index.py",
-      "language": "Python",
-      "line": 14,
-      "offset": 23,
-      "length": 13,
-      "code": {
-        "startLine": 12,
-        "length": 13,
-        "offset": 37,
-        "surroundingCode": "        break\n\nif not os.path.exists(TEMPLATE_FILE):\n    raise FileNotFoundError(f'Could not find template file: {TEMPLATE_FILE}')\n"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnboundLocalVariableInspection"
-  },
-  "hash": "3f0f4612ea13f2f53923a5de58ea02ecd0dea180d4f73bb224e23563fabf9331"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -835,4 +773,287 @@
     "inspectionName": "PyTypeCheckerInspection"
   },
   "hash": "e867a18b7f4cb696acf0a23f01f662c67d222eda6d5e377549169509553c6102"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "CSS"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/181/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/181/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/222/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/222/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/228/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/228/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/229/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/229/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/230/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/230/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/231/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/231/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/91/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/91/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/nightly/js/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/RetroArcher/nightly/python/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/Themerr-jellyfin/12/dotnet/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/Themerr-jellyfin/27/dotnet/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "gh-pages-staging/Themerr-jellyfin/nightly/dotnet/versions/VERSION_ID/TeamCity.css",
+      "language": "CSS",
+      "line": 1,
+      "offset": 1,
+      "length": 1923,
+      "code": {
+        "startLine": 1,
+        "length": 1923,
+        "offset": 0,
+        "surroundingCode": "/*This is a TeamCity global styles mock*/\n\n/*body {*/\n/*    background: #fff;*/\n/*    margin: 0;*/\n/*    line-height: 1.5em;*/\n/*    color: #1f2326;*/\n/*    text-rendering: optimizeLegibility;*/\n/*    text-size-adjust: none;*/\n/*}*/\n\n/* Needed for IE10 support */\n[hidden] {\n\tdisplay: none !important;\n}\n\nbody {\n\tmargin: 0;\n}\n\nbody,\ninput,\nselect,\nbutton {\n\tfont-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,\n\t\tCantarell, Droid Sans, Helvetica Neue, Arial, sans-serif;\n\tfont-size: 13px;\n\tfont-variant-numeric: tabular-nums;\n}\n\ntextarea {\n\tfont: normal 12px Menlo, 'Bitstream Vera Sans Mono', 'Ubuntu Mono', Consolas, 'Courier New',\n\t\tCourier, monospace;\n}\n\nimg {\n\tborder: none;\n}\n\nstrong {\n\tfont-weight: bold;\n}\n\na {\n\tcolor: #1564c2;\n\ttext-decoration: none;\n}\n\na:hover {\n\ttext-decoration: underline;\n\tcolor: #1564c2;\n}\n\nh2 {\n\tmargin: 0;\n\tpadding: 3px 18px 3px 0;\n\tfont-weight: normal;\n\tfont-size: 18px;\n\tletter-spacing: 0;\n\tcolor: #1f2326;\n}\n\nh3 {\n\tfont-size: 100%;\n}\n\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/* Normalize styling of form elements */\nform {\n\tmargin: 0;\n\tpadding: 0;\n}\n\ninput,\nselect,\ntextarea {\n\t-moz-box-sizing: border-box;\n\tbox-sizing: border-box;\n}\n\noptgroup {\n\tfont-style: normal;\n\tfont-weight: bold;\n}\n\noptgroup:disabled {\n\tcolor: #999;\n}\n\ninput[type='text'],\ninput[type='password'],\ninput[type='search'],\ntextarea,\nselect[multiple] {\n\tmin-height: 20px !important;\n\tmargin: 0;\n\tpadding: 1px 3px;\n\tline-height: 1.5em;\n\n\tborder: 1px solid;\n\tborder-color: #888 #ccc #ccc;\n\n\t/*box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);*/\n\tfont-size: 13px;\n}\n\ninput[type='radio'] {\n\tmargin-top: 0;\n\tmargin-bottom: 0;\n\tmargin-left: 0;\n\tvertical-align: middle;\n\tposition: relative;\n}\n\ninput[type='checkbox'] {\n\tbottom: 1px;\n}\n\ninput[type='radio'] {\n\tbottom: 2px;\n}\n\ninput[disabled] {\n\tbackground-color: #f9f9f9;\n\tcolor: #999;\n\tborder-color: #ccc #ddd #ddd;\n}\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode"
+  },
+  "hash": "890cd7c1dac275be92725fa683a154b3bcc51e57626fba67d79feb99d4132e57"
 }]}
