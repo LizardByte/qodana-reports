@@ -1,0 +1,642 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Auto-property accessor is never used (non-private accessibility)",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "High",
+  "comment": "Auto-property accessor 'Instance.get' is never used",
+  "detailsInfo": "Accessor in auto-property is never used",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
+      "language": "C#",
+      "line": 21,
+      "offset": 41,
+      "length": 4,
+      "code": {
+        "startLine": 19,
+        "length": 4,
+        "offset": 91,
+        "surroundingCode": "        public override string Name => \"Themerr\";\n\n        public static Plugin Instance { get; private set; }\n\n        public override string Description => \"Downloads Theme Songs\";"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "UnusedAutoPropertyAccessor.Global",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "675c09e43ad5168c3cd94caefe5cb0b802ed4910dde3e7c30ee79e32fc0acf56"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
+      "language": "C#",
+      "line": 10,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 8,
+        "length": 1,
+        "offset": 50,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "language": "C#",
+      "line": 10,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 8,
+        "length": 1,
+        "offset": 39,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Api\n{\n    /// <summary>\n    /// The Themerr api controller."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "e56f0beaaf6772a100750549f48f76d3e17e49f2ea6f83f7e2867ce99fbb89e3"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+      "language": "C#",
+      "line": 4,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 2,
+        "length": 1,
+        "offset": 49,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+      "language": "C#",
+      "line": 22,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 20,
+        "length": 1,
+        "offset": 35,
+        "surroundingCode": "namespace Jellyfin.Plugin.Themerr\n\n{\n    public class ThemerrManager : IServerEntryPoint\n    {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "2f7cd8daf8fd3daf9a49abe1259fe109acf5e5d2f68a1f835552a3f27039106d"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
+      "language": "C#",
+      "line": 10,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 8,
+        "length": 1,
+        "offset": 35,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "1a4acba02d3fff4e1dcaac5b839a170002bfc3a2a00d5746965b740e3ac85701"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred style of 'new' expression when created type is evident",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Redundant type specification",
+  "detailsInfo": "Add or remove explicit type specification in 'new' expression when type is evident from the usage",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
+      "language": "C#",
+      "line": 25,
+      "offset": 41,
+      "length": 4,
+      "code": {
+        "startLine": 23,
+        "length": 4,
+        "offset": 112,
+        "surroundingCode": "        public override string Description => \"Downloads Theme Songs\";\n\n        private readonly Guid _id = new Guid(\"84b59a39-bde4-42f4-adbd-c39882cbb772\");\n        public override Guid Id => _id;\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeObjectCreationWhenTypeEvident",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "8c18efddc645af3f342376e0ddcae4c7a2b307fa68c8e2d4880b1aea2cd227cb"
+},{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Class is never instantiated (non-private accessibility)",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Class 'PluginConfiguration' is never instantiated",
+  "detailsInfo": "Non-static class is never instantiated [Learn more...](https://www.jetbrains.com/help/rider/ClassNeverInstantiated.Global.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+      "language": "C#",
+      "line": 5,
+      "offset": 18,
+      "length": 19,
+      "code": {
+        "startLine": 3,
+        "length": 19,
+        "offset": 67,
+        "surroundingCode": "namespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ClassNeverInstantiated.Global",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "4cbe850f700ead25455c9474fac6dfc2103b67ac1e8ef623bc5b6c8d5e9a3cb5"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript function",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "Moderate",
+  "comment": "Unresolved function or method getUrl()",
+  "detailsInfo": "Reports an unresolved function in a call.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/configurationPage.html",
+      "language": "JavaScript",
+      "line": 33,
+      "offset": 40,
+      "length": 6,
+      "code": {
+        "startLine": 31,
+        "length": 6,
+        "offset": 113,
+        "surroundingCode": "                function download() {\n                    let request = {\n                        url: ApiClient.getUrl('/Themerr/DownloadMovies'),\n                        type: 'POST'\n                    };"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "rider.module",
+    "inspectionName": "JSUnresolvedFunction",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "c58b72f18997d78b2d7348e10861f34148369bbba392a82075c0a048195ce7d5"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundancies in Symbol Declarations",
+  "type": "Type is never used (non-private accessibility)",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Class 'DownloadThemerrTask' is never used",
+  "detailsInfo": "Type is never used [Learn more...](https://www.jetbrains.com/help/rider/UnusedType.Global.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
+      "language": "C#",
+      "line": 11,
+      "offset": 18,
+      "length": 19,
+      "code": {
+        "startLine": 9,
+        "length": 19,
+        "offset": 68,
+        "surroundingCode": "namespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {\n        private readonly ILogger<ThemerrManager> _logger;"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "UnusedType.Global",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "9b15e2f452a07e7b8476ea8798a6fb0218122b7c84da7bcb424009f4d8fb9a1f"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundancies in Symbol Declarations",
+  "type": "Type is never used (non-private accessibility)",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Class 'Plugin' is never used (except inside its declaration)",
+  "detailsInfo": "Type is never used [Learn more...](https://www.jetbrains.com/help/rider/UnusedType.Global.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
+      "language": "C#",
+      "line": 11,
+      "offset": 18,
+      "length": 6,
+      "code": {
+        "startLine": 9,
+        "length": 6,
+        "offset": 53,
+        "surroundingCode": "namespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {\n        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "UnusedType.Global",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "256dca1d80a257caebd2232f688096b9f86fc15949997c4fe73b4be93e5330ee"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Roslyn analyzers output",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+  "detailsInfo": "Presents output of Roslyn analyzers",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+      "language": "C#",
+      "line": 172,
+      "offset": 21,
+      "length": 7,
+      "code": {
+        "startLine": 170,
+        "length": 7,
+        "offset": 30,
+        "surroundingCode": "\n        \n        public void Dispose()\n        {\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "RoslynAnalyzersOutputInspection",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
+},{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Invalid XML documentation comment",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "High",
+  "comment": "XML element is not closed",
+  "detailsInfo": "Invalid XML documentation comment",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "language": "C#",
+      "line": 40,
+      "offset": 14,
+      "length": 7,
+      "code": {
+        "startLine": 38,
+        "length": 7,
+        "offset": 81,
+        "surroundingCode": "        /// Downloads all Movie theme songs.\n        /// </summary>\n        /// <reponse code=\"204\">Theme song download started successfully. </response>\n        /// <returns>A <see cref=\"NoContentResult\"/> indicating success.</returns>\n        [HttpPost(\"DownloadMovies\")]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "InvalidXmlDocComment",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "9638cdb193f971d76c8294cec61f6ee0ff03e8f610f5a8f501674b337e91d071"
+},{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Invalid XML documentation comment",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "High",
+  "comment": "No open tag found",
+  "detailsInfo": "Invalid XML documentation comment",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "language": "C#",
+      "line": 40,
+      "offset": 75,
+      "length": 11,
+      "code": {
+        "startLine": 38,
+        "length": 11,
+        "offset": 142,
+        "surroundingCode": "        /// Downloads all Movie theme songs.\n        /// </summary>\n        /// <reponse code=\"204\">Theme song download started successfully. </response>\n        /// <returns>A <see cref=\"NoContentResult\"/> indicating success.</returns>\n        [HttpPost(\"DownloadMovies\")]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "InvalidXmlDocComment",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "667088346d52c2f8ebf87e478c19ef37575a0151ad466eeb2f85ecfd265aa528"
+},{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Invalid XML documentation comment",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "High",
+  "comment": "XML element is not closed",
+  "detailsInfo": "Invalid XML documentation comment",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "language": "C#",
+      "line": 26,
+      "offset": 14,
+      "length": 7,
+      "code": {
+        "startLine": 24,
+        "length": 7,
+        "offset": 23,
+        "surroundingCode": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "InvalidXmlDocComment",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript variable",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "Moderate",
+  "comment": "Unresolved variable or type ApiClient",
+  "detailsInfo": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/configurationPage.html",
+      "language": "JavaScript",
+      "line": 33,
+      "offset": 30,
+      "length": 9,
+      "code": {
+        "startLine": 31,
+        "length": 9,
+        "offset": 103,
+        "surroundingCode": "                function download() {\n                    let request = {\n                        url: ApiClient.getUrl('/Themerr/DownloadMovies'),\n                        type: 'POST'\n                    };"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "rider.module",
+    "inspectionName": "JSUnresolvedVariable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "e8de5f9ad16ab4080903068dd865099e583cc10835db66bb93cf1a80f982a1e3"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript variable",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "Moderate",
+  "comment": "Unresolved variable or type ApiClient",
+  "detailsInfo": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/configurationPage.html",
+      "language": "JavaScript",
+      "line": 37,
+      "offset": 21,
+      "length": 9,
+      "code": {
+        "startLine": 35,
+        "length": 9,
+        "offset": 48,
+        "surroundingCode": "                    };\n    \n                    ApiClient.fetch(request).then(function () {\n                        Dashboard.alert(\"Downloading Theme Songs...\");\n                    }).catch(function () {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "rider.module",
+    "inspectionName": "JSUnresolvedVariable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "a0ab71a3c494e3a6e117e5989e9dc1c5d9fa36c19ab19ee89d9397547821e5a2"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript variable",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "Moderate",
+  "comment": "Unresolved variable or type Dashboard",
+  "detailsInfo": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/configurationPage.html",
+      "language": "JavaScript",
+      "line": 38,
+      "offset": 25,
+      "length": 9,
+      "code": {
+        "startLine": 36,
+        "length": 9,
+        "offset": 93,
+        "surroundingCode": "    \n                    ApiClient.fetch(request).then(function () {\n                        Dashboard.alert(\"Downloading Theme Songs...\");\n                    }).catch(function () {\n                        Dashboard.alert({"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "rider.module",
+    "inspectionName": "JSUnresolvedVariable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "be2b91f33344d330866c9069a75803c892497ee2ee918e365a510c3b97eeb995"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Unresolved JavaScript variable",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "Moderate",
+  "comment": "Unresolved variable or type Dashboard",
+  "detailsInfo": "Reports an unresolved referenced variable or field.\n\nTypeScript code is ignored.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/configurationPage.html",
+      "language": "JavaScript",
+      "line": 40,
+      "offset": 25,
+      "length": 9,
+      "code": {
+        "startLine": 38,
+        "length": 9,
+        "offset": 138,
+        "surroundingCode": "                        Dashboard.alert(\"Downloading Theme Songs...\");\n                    }).catch(function () {\n                        Dashboard.alert({\n                            message: \"Unexpected error occurred!\"\n                        });"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "rider.module",
+    "inspectionName": "JSUnresolvedVariable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "8f87b132e1af2c570afa797ef97c72ca5c1206b86289d9e171f87f6a8a5fb9bf"
+}]}
