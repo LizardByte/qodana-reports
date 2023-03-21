@@ -4,7 +4,11 @@ import time
 from typing import Callable, Optional
 
 # lib imports
+from dotenv import load_dotenv
 import requests
+
+# load environment variables
+load_dotenv()
 
 # constants
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -30,6 +34,12 @@ ITEM_TYPE_MAP = dict(
     branches='Branches',
     pulls='Pull Requests',
 )
+
+# GitHub headers
+github_headers = {
+    'Accept': 'application/vnd.github+json',
+    'Authorization': f'Bearer {os.getenv("PAT_TOKEN") if os.getenv("PAT_TOKEN") else os.getenv("GH_TOKEN")}'
+}
 
 
 def requests_loop(url: str,
@@ -154,7 +164,8 @@ def main():
 
                     # get info about the branch or pull request from GitHub api
                     item_response = requests_loop(
-                        url=f'https://api.github.com/repos/LizardByte/{repo}/{item_type}/{item}'
+                        url=f'https://api.github.com/repos/LizardByte/{repo}/{item_type}/{item}',
+                        headers=github_headers
                     )
                     item_info = item_response.json()
 

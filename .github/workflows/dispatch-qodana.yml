@@ -82,9 +82,11 @@ jobs:
           pip install -r ./requirements.txt
 
       - name: Build index
+        env:
+          PAT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         run: |
           # generate index.html
-          python ./build_index.py
+          python -u ./build_index.py
 
       - name: Deploy to gh-pages
         id: deploy
