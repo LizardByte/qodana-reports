@@ -36,6 +36,8 @@ jobs:
       - name: Download artifacts from triggering repo
         uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{ secrets.GH_BOT_TOKEN }}
+          repo: ${{ github.event.client_payload.repo }}
           run_id: ${{ github.event.client_payload.run_id }}
           path: ${{ runner.temp }}/artifacts
 
