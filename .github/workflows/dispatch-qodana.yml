@@ -44,7 +44,7 @@ jobs:
       - name: Parse artifacts
         run: |
           # constants
-          repo=${{ github.event.client_payload.repo }}
+          repo_name=${{ github.event.client_payload.repo_name }}
           destination=${{ github.event.client_payload.destination }}
 
           # for each directory in artifacts directory, not recursive
@@ -61,7 +61,7 @@ jobs:
             fi
 
             # create the output directory
-            output_dir=./gh-pages/${repo}/${destination}/${language}
+            output_dir=./gh-pages/${repo_name}/${destination}/${language}
             mkdir -p $output_dir
 
             # empty contents
@@ -97,7 +97,7 @@ jobs:
           branch: gh-pages
           force: false
           message: >-
-            update ${{ github.event.client_payload.repo }}/${{ github.event.client_payload.destination }}
+            update ${{ github.event.client_payload.repo_name }}/${{ github.event.client_payload.destination }}
 
       - name: Setup final notification client payload
         id: client_payload
