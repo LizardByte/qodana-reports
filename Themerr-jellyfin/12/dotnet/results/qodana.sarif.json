@@ -89573,37 +89573,6 @@
                 ]
               },
               {
-                "id": "JSCheckFunctionSignatures",
-                "shortDescription": {
-                  "text": "Signature mismatch"
-                },
-                "fullDescription": {
-                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
-                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDNET"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ConstantOnLHSOfComparisonJS",
                 "shortDescription": {
                   "text": "Constant on left side of comparison"
@@ -89624,6 +89593,37 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
                       "index": 42,
+                      "toolComponent": {
+                        "name": "QDNET"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSCheckFunctionSignatures",
+                "shortDescription": {
+                  "text": "Signature mismatch"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
+                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDNET"
                       }
@@ -97130,37 +97130,6 @@
                 ]
               },
               {
-                "id": "SqlCallNotationInspection",
-                "shortDescription": {
-                  "text": "Using of named and positional arguments"
-                },
-                "fullDescription": {
-                  "text": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2. Example (In PostgreSQL): 'CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n    LANGUAGE plpgsql AS\n$$\nBEGIN\n    RETURN a + b + c;\nEND\n$$;\nSELECT foo(a => 1, b => 2, c => 3);\n  -- `3` goes after the named argument\nSELECT foo(1, b => 2, 3);\n  -- `1` and `3` go after the named argument\nSELECT foo(b => 2, 1, 3);'",
-                  "markdown": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2.\n\nExample (In PostgreSQL):\n\n    CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n        LANGUAGE plpgsql AS\n    $$\n    BEGIN\n        RETURN a + b + c;\n    END\n    $$;\n    SELECT foo(a => 1, b => 2, c => 3);\n      -- `3` goes after the named argument\n    SELECT foo(1, b => 2, 3);\n      -- `1` and `3` go after the named argument\n    SELECT foo(b => 2, 1, 3);\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 18,
-                      "toolComponent": {
-                        "name": "QDNET"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MysqlParsingInspection",
                 "shortDescription": {
                   "text": "Unsupported syntax in pre-8.0 versions"
@@ -97181,6 +97150,37 @@
                     "target": {
                       "id": "MySQL",
                       "index": 72,
+                      "toolComponent": {
+                        "name": "QDNET"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "SqlCallNotationInspection",
+                "shortDescription": {
+                  "text": "Using of named and positional arguments"
+                },
+                "fullDescription": {
+                  "text": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2. Example (In PostgreSQL): 'CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n    LANGUAGE plpgsql AS\n$$\nBEGIN\n    RETURN a + b + c;\nEND\n$$;\nSELECT foo(a => 1, b => 2, c => 3);\n  -- `3` goes after the named argument\nSELECT foo(1, b => 2, 3);\n  -- `1` and `3` go after the named argument\nSELECT foo(b => 2, 1, 3);'",
+                  "markdown": "Reports calls in which positional arguments go after the named ones. Works in PostgreSQL, Oracle, and Db2.\n\nExample (In PostgreSQL):\n\n    CREATE FUNCTION foo(a int, b int, c int) RETURNS int\n        LANGUAGE plpgsql AS\n    $$\n    BEGIN\n        RETURN a + b + c;\n    END\n    $$;\n    SELECT foo(a => 1, b => 2, c => 3);\n      -- `3` goes after the named argument\n    SELECT foo(1, b => 2, 3);\n      -- `1` and `3` go after the named argument\n    SELECT foo(b => 2, 1, 3);\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 18,
                       "toolComponent": {
                         "name": "QDNET"
                       }
@@ -100323,7 +100323,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Themerr-jellyfin.git",
-          "revisionId": "d009e71c6b871ef4a4ce94a8b86404c5a069b9b3",
+          "revisionId": "8e2d246c4a50b2a4abb745f467a65401d3359198",
           "branch": "nightly",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Themerr-jellyfin.git",
@@ -100400,60 +100400,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 10,
-                  "startColumn": 1,
-                  "charOffset": 259,
-                  "charLength": 1,
-                  "snippet": {
-                    "text": "{"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 8,
-                  "startColumn": 1,
-                  "charOffset": 209,
-                  "charLength": 111,
-                  "snippet": {
-                    "text": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
-          "ruleId": "ArrangeNamespaceBody",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Convert to file-scoped namespace",
-            "markdown": "Convert to file-scoped namespace"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
                   "uriBaseId": "SRCROOT"
                 },
@@ -100487,6 +100433,60 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
+          "ruleId": "ArrangeNamespaceBody",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Convert to file-scoped namespace",
+            "markdown": "Convert to file-scoped namespace"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 1,
+                  "charOffset": 259,
+                  "charLength": 1,
+                  "snippet": {
+                    "text": "{"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 8,
+                  "startColumn": 1,
+                  "charOffset": 209,
+                  "charLength": 111,
+                  "snippet": {
+                    "text": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -100820,60 +100820,6 @@
           }
         },
         {
-          "ruleId": "RoslynAnalyzersOutputInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
-            "markdown": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 172,
-                  "startColumn": 21,
-                  "charOffset": 6704,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "Dispose"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 170,
-                  "startColumn": 1,
-                  "charOffset": 6674,
-                  "charLength": 59,
-                  "snippet": {
-                    "text": "\n        \n        public void Dispose()\n        {\n        }"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
           "ruleId": "UnusedType.Global",
           "kind": "fail",
           "level": "note",
@@ -100982,6 +100928,114 @@
           }
         },
         {
+          "ruleId": "RoslynAnalyzersOutputInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+            "markdown": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 172,
+                  "startColumn": 21,
+                  "charOffset": 6704,
+                  "charLength": 7,
+                  "snippet": {
+                    "text": "Dispose"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 170,
+                  "startColumn": 1,
+                  "charOffset": 6674,
+                  "charLength": 59,
+                  "snippet": {
+                    "text": "\n        \n        public void Dispose()\n        {\n        }"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
+          "ruleId": "InvalidXmlDocComment",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "XML element is not closed",
+            "markdown": "XML element is not closed"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 14,
+                  "charOffset": 691,
+                  "charLength": 7,
+                  "snippet": {
+                    "text": "summary"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 24,
+                  "startColumn": 1,
+                  "charOffset": 668,
+                  "charLength": 140,
+                  "snippet": {
+                    "text": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
           "ruleId": "InvalidXmlDocComment",
           "kind": "fail",
           "level": "warning",
@@ -101080,60 +101134,6 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "667088346d52c2f8ebf87e478c19ef37575a0151ad466eeb2f85ecfd265aa528"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
-          "ruleId": "InvalidXmlDocComment",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "XML element is not closed",
-            "markdown": "XML element is not closed"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 26,
-                  "startColumn": 14,
-                  "charOffset": 691,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "summary"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 24,
-                  "startColumn": 1,
-                  "charOffset": 668,
-                  "charLength": 140,
-                  "snippet": {
-                    "text": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -101358,9 +101358,9 @@
       ],
       "automationDetails": {
         "id": "Jellyfin.Plugin.Themerr/qodana/2023-03-21",
-        "guid": "6656151f-4a65-40ec-9c79-6bd96cc983b7",
+        "guid": "2b31f75f-7a8c-4c84-a7b5-0897671c520d",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Themerr-jellyfin/actions/runs/4482745516"
+          "jobUrl": "https://github.com/LizardByte/Themerr-jellyfin/actions/runs/4483544388"
         }
       },
       "newlineSequences": [
