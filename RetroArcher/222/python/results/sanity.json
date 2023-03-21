@@ -6,37 +6,6 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved reference 'webapp'",
-  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "pyra/webapp.py",
-      "language": "Python",
-      "line": 238,
-      "offset": 38,
-      "length": 6,
-      "code": {
-        "startLine": 236,
-        "length": 6,
-        "offset": 71,
-        "surroundingCode": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnresolvedReferencesInspection"
-  },
-  "hash": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
-  "type": "Unresolved references",
-  "tags": [
-    "Sanity"
-  ],
-  "severity": "Critical",
   "comment": "Module 'pyamdgpuinfo' not found",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
@@ -68,21 +37,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Unresolved attribute reference 'logs' for class 'Paths'",
+  "comment": "Unresolved reference 'webapp'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "pyra/definitions.py",
+      "path": "pyra/webapp.py",
       "language": "Python",
-      "line": 142,
-      "offset": 15,
-      "length": 4,
+      "line": 238,
+      "offset": 38,
+      "length": 6,
       "code": {
-        "startLine": 140,
-        "length": 4,
-        "offset": 40,
-        "surroundingCode": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
+        "startLine": 236,
+        "length": 6,
+        "offset": 71,
+        "surroundingCode": "\n    >>> from pyra import threads\n    >>> threads.run_in_thread(target=webapp.start_webapp, name='Flask', daemon=True).start()\n     * Serving Flask app 'pyra.webapp' (lazy loading)\n    ..."
       }
     }
   ],
@@ -90,7 +59,38 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
+  "hash": "ac0e194cb236b5e5fae276acdea3a90c4d49717a0b478231ca9992695ebb426f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Module 'pyi_splash' not found",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "retroarcher.py",
+      "language": "Python",
+      "line": 122,
+      "offset": 20,
+      "length": 10,
+      "code": {
+        "startLine": 120,
+        "length": 10,
+        "offset": 57,
+        "surroundingCode": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -161,21 +161,21 @@
     "Sanity"
   ],
   "severity": "Critical",
-  "comment": "Module 'pyi_splash' not found",
+  "comment": "Unresolved attribute reference 'logs' for class 'Paths'",
   "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
   "sources": [
     {
       "type": "file",
-      "path": "retroarcher.py",
+      "path": "pyra/definitions.py",
       "language": "Python",
-      "line": 122,
-      "offset": 20,
-      "length": 10,
+      "line": 142,
+      "offset": 15,
+      "length": 4,
       "code": {
-        "startLine": 120,
-        "length": 10,
-        "offset": 57,
-        "surroundingCode": "\n        if definitions.Modes.SPLASH:\n            import pyi_splash  # module cannot be installed outside of pyinstaller builds\n            pyi_splash.update_text(\"Attempting to start RetroArcher\")\n"
+        "startLine": 140,
+        "length": 4,
+        "offset": 40,
+        "surroundingCode": "    Examples\n    --------\n    >>> Paths.logs\n    '.../logs'\n    \"\"\""
       }
     }
   ],
@@ -183,5 +183,5 @@
     "module": "project",
     "inspectionName": "PyUnresolvedReferencesInspection"
   },
-  "hash": "9a6abb4d42010d7f8644296a858f03fbaeb66ff0964f82677ae04e5476a521c8"
+  "hash": "c4cbb5b4f68ff3b38dece8e9819a45e0a7ce198de861c4aaa30380c2ce060c64"
 }]}
