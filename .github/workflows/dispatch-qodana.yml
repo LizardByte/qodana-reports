@@ -1,194 +1,72 @@
 ---
-# Receive dispatch events from LizardByte repositories that have Qodana config files.
+# Receive dispatch events from LizardByte repositories that test with Qodana. This workflow will publish
+# artifacts to the `gh-pages` branch.
 
-name: Qodana Scan
+name: Qodana Publish
 
 on:
   repository_dispatch:
-    types: [qodana-scan]
+    types: [qodana-publish]
 
 concurrency:
   # ensure only one workflow runs for a given repo and ref, cancel in progress to only run the latest
-  group: ${{ github.event.client_payload.github.repository }}-${{ github.event.client_payload.github.workflow }}- ${{ github.event.client_payload.github.ref }}  # yamllint disable-line rule:line-length
+  group: ${{ github.event.client_payload.repo }}-${{ github.event.client_payload.ref }}
   cancel-in-progress: true
 
 jobs:
-  queue:
-    name: Queue
+  qodana-upload:
     runs-on: ubuntu-latest
+    name: Qodana Upload
     steps:
       - name: Queue
         # we only want to run one add job at a time, so queue them
         uses: ahmadnassri/action-workflow-queue@v1
 
-  initialize-notify:
-    name: Initialize Notify
-    needs: [queue]
-    if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup client payload
-        id: client_payload
-        run: |
-          workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
-          workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
-
-          client_payload=$(echo '{
-            "final": "'"false"'",
-            "pull_request_number": "'"${{ github.event.client_payload.github.event.number }}"'",
-            "workflow_url": "'"${workflow_url}"'"
-          }' | jq -c .)
-
-          echo $client_payload
-          echo $client_payload | jq .
-          echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
-
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2.1.1
-        with:
-          token: ${{ secrets.GH_BOT_TOKEN }}
-          repository: ${{ github.repository_owner }}/${{ github.event.client_payload.github.event.repository.name }}
-          event-type: qodana-notify
-          client-payload: ${{ steps.client_payload.outputs.client_payload }}
-
-  qodana:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJson(github.event.client_payload.matrix) }}
-      max-parallel: 1
-    name: Qodana-Scan-${{ matrix.language }}
-    needs: [queue]
-    continue-on-error: true
-    steps:
-      - name: Checkout Test repo
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.client_payload.checkout_repo }}
-          ref: ${{ github.event.client_payload.checkout_ref }}
-          submodules: recursive
-
-      - name: Checkout Qodana/gh-pages-staging repo
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages-staging
-          path: gh-pages-staging
-          persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
-          fetch-depth: 0  # otherwise, will fail to push refs to dest repo
-
-      - name: Get baseline
-        id: baseline
-        run: |
-          # check if destination is not an integer
-          if ! [[ "${{ github.event.client_payload.destination }}" =~ ^[0-9]+$ ]]
-          then
-            echo "Running for a branch update"
-            echo "baseline_args=" >> $GITHUB_OUTPUT
-          else
-            echo "Running for a PR"
-
-            sarif_file=qodana.sarif.json
-            repo=${{ github.event.client_payload.github.event.repository.name }}
-            target=${{ github.event.client_payload.target }}
-            language=${{ matrix.language }}
-
-            baseline_file="./gh-pages-staging/${repo}/${target}/${language}/results/${sarif_file}"
-
-            # check if file exists
-            if [ -f ${baseline_file} ]
-            then
-              echo "baseline exists"
-              echo "baseline_args=--baseline,qodana.sarif.json" >> $GITHUB_OUTPUT
-
-              # copy the file
-              cp -f ${baseline_file} ./${sarif_file}
-            else
-              echo "baseline does not exist"
-              echo "baseline_args=" >> $GITHUB_OUTPUT
-            fi
-          fi
-
-      - name: Rename Qodana config file
-        id: rename
-        run: |
-          # rename the file
-          if [ "${{ matrix.file }}" != "./qodana.yaml" ]
-          then
-            mv -f ${{ matrix.file }} ./qodana.yaml
-          fi
-
-      - name: Qodana
-        id: qodana
-        continue-on-error: true
-        uses: JetBrains/qodana-action@v2022.3.4
-        with:
-          additional-cache-hash: ${{ github.event.client_payload.checkout_repo }}-${{ github.event.client_payload.checkout_ref }}-${{ github.event.client_payload.destination}}-${{ matrix.language }}  # yamllint disable-line rule:line-length
-          args: '--print-problems,${{ steps.baseline.outputs.baseline_args }}'
-          pr-mode: false
-          upload-result: true
-          use-caches: true
-
-      - name: Prepare gh-pages-staging
-        id: pages
-        if: ${{ steps.qodana.outcome != 'skipped' }}
-        continue-on-error: true
-        run: |
-          repo=${{ github.event.client_payload.github.event.repository.name }}
-          destination=${{ github.event.client_payload.destination }}
-          language=${{ matrix.language }}
-
-          # set the output directory
-          output_dir=./gh-pages-staging/${repo}/${destination}/${language}
-          mkdir -p $output_dir
-
-          # empty contents
-          rm -f -r $output_dir/*
-
-          # copy qodana results
-          cp -f -r ${{ runner.temp }}/qodana/results/report/. $output_dir/
-
-      - name: Deploy to gh-pages-staging
-        id: deploy
-        if: ${{ steps.pages.conclusion == 'success' }}
-        continue-on-error: true
-        uses: actions-js/push@v1.4
-        with:
-          github_token: ${{ secrets.GH_BOT_TOKEN }}
-          author_email: ${{ secrets.GH_BOT_EMAIL }}
-          author_name: ${{ secrets.GH_BOT_NAME }}
-          directory: gh-pages-staging
-          branch: gh-pages-staging
-          force: false
-          message: >-
-            update
-            ${{ github.event.client_payload.github.event.repository.name }}
-            ${{ github.event.client_payload.destination }}
-            ${{ matrix.language }}
-
-  publish:
-    # publishing to gh-pages used to be done in the matrix, but if the matrix had multiple jobs then
-    # multiple deployments would be done, this reduces the number of page deployments to 1
-    name: Publish
-    needs: [queue, qodana]
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Checkout Qodana/gh-pages-staging repo
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages-staging
-          path: gh-pages-staging
-
-      - name: Checkout Qodana/gh-pages repo
+      - name: Checkout qodana-reports/gh-pages branch
         uses: actions/checkout@v3
         with:
           ref: gh-pages
           path: gh-pages
           persist-credentials: false  # otherwise, the token used is the GITHUB_TOKEN, instead of the personal token
           fetch-depth: 0  # otherwise, will fail to push refs to dest repo
+
+      - name: Download artifacts from triggering repo
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          run_id: ${{ github.event.client_payload.run_id }}
+          path: ${{ runner.temp }}/artifacts
+
+      - name: Parse artifacts
+        run: |
+          # constants
+          repo=${{ github.event.client_payload.repo }}
+          destination=${{ github.event.client_payload.destination }}
+
+          # for each directory in artifacts directory, not recursive
+          for dir in ${{ runner.temp }}/artifacts/*; do
+            # get the language from the directory name, e.g. qodana-language
+            language=${dir##*-}
+
+            # check if language is accepted
+            languages=(default, dotnet, go, java, js, php, python)
+            if [[ ! " ${languages[@]} " =~ " ${language} " ]]; then
+              echo "Language ${language} is not supported"
+              exit 1
+            fi
+
+            # create the output directory
+            output_dir=./gh-pages/${repo}/${destination}/${language}
+            mkdir -p $output_dir
+
+            # empty contents
+            rm -f -r $output_dir/*
+
+            # copy qodana report
+            cp -f -r $dir/results/report/. $output_dir/
+          done
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -200,20 +78,7 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip install -r ./requirements.txt
 
-      - name: Prepare gh-pages
-        id: pages
-        run: |
-          # empty contents
-          rm -f -r ./gh-pages/*
-
-          # remove .git directory from staging to prevent failure when merging gh-pages
-          rm -f -r ./gh-pages-staging/.git
-
-          # copy staging
-          cp -f -r ./gh-pages-staging/. ./gh-pages/
-
       - name: Build index
-        id: build
         run: |
           # generate index.html
           python ./build_index.py
@@ -229,41 +94,46 @@ jobs:
           branch: gh-pages
           force: false
           message: >-
-            update
-            ${{ github.event.client_payload.github.event.repository.name }}
-            ${{ github.event.client_payload.destination }}
+            update ${{ github.event.client_payload.repo }}/${{ github.event.client_payload.destination }}
 
-  final-notify:
-    name: Final Notify
-    needs: [queue, initialize-notify, qodana, publish]
-    if: ${{ startsWith(github.event.client_payload.github.event_name, 'pull_request') }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup client payload
+      - name: Setup final notification client payload
         id: client_payload
-        # todo - remove "status" after updating ci-qodana.yml workflows
         run: |
-          workflow_url_a=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}
-          workflow_url=${workflow_url_a}/actions/runs/${{ github.run_id }}
+          # check if destination is integer
+          if [[ ${{ github.event.client_payload.destination }} =~ ^[0-9]+$ ]]; then
+            # destination is integer, so it's a PR
 
-          client_payload=$(echo '{
-            "final": "'"true"'",
-            "pull_request_number": "'"${{ github.event.client_payload.github.event.number }}"'",
-            "reports_markdown": "'"${{ github.event.client_payload.reports_markdown }}"'",
-            "status": "'"${{ needs.qodana.result }}"'",
-            "status_qodana": "'"${{ needs.qodana.result }}"'",
-            "status_publish": "'"${{ needs.publish.result }}"'",
-            "workflow_url": "'"${workflow_url}"'"
-          }' | jq -c .)
+            if [[ ${{ github.event.client_payload.status }} == 'success' ]]; then
+              status=":white_check_mark: **Qodana success** :white_check_mark:"
+            else
+              status=":x: **Qodana failed** :x:"
+            fi
 
-          echo $client_payload
-          echo $client_payload | jq .
-          echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
+            message=$(cat <<- EOF
+              ${status}
+              Results: ${{ github.event.client_payload.results_markdown }}
+          EOF
+          )
+
+            # escape json control characters
+            message=$(jq -n --arg message "$message" '$message' | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+
+            client_payload=$(echo '{
+              "issue_message": "'"${message}"'",
+              "issue_message_id": "'"qodana"'",
+              "issue_number": "'"${{ github.event.client_payload.destination }}"'"
+            }' | jq -c .)
+
+            echo $client_payload
+            echo $client_payload | jq .
+            echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
+          fi
 
       - name: Repository Dispatch
+        if: ${{ steps.client_payload.outputs.client_payload != '' }}
         uses: peter-evans/repository-dispatch@v2.1.1
         with:
           token: ${{ secrets.GH_BOT_TOKEN }}
-          repository: ${{ github.repository_owner }}/${{ github.event.client_payload.github.event.repository.name }}
-          event-type: qodana-notify
+          repository: ${{ github.repository_owner }}/.github
+          event-type: issue-pr-comment
           client-payload: ${{ steps.client_payload.outputs.client_payload }}
