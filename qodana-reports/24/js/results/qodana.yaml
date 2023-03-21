@@ -1,0 +1,18 @@
+---
+version: "1.0"
+linter: jetbrains/qodana-js:2023.1-eap
+
+# bootstrap: |
+
+exclude:
+  - name: All
+    paths:
+      - gh-pages
+
+failThreshold: 100
+
+include:
+  - name: CheckDependencyLicenses
+
+profile:
+  name: qodana.recommended
