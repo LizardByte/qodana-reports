@@ -53,8 +53,9 @@ jobs:
             language=${dir##*-}
 
             # check if language is accepted
-            languages=(default, dotnet, go, java, js, php, python)
-            if [[ ! " ${languages[@]} " =~ " ${language} " ]]; then
+            languages=("default" "dotnet" "go" "java" "js" "php" "python")
+            if [[ ! " ${languages[@]} " =~ " ${language} " ]]
+            then
               echo "Language ${language} is not supported"
               exit 1
             fi
