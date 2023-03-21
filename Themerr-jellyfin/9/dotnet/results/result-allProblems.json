@@ -46,16 +46,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
       "language": "C#",
-      "line": 4,
+      "line": 10,
       "offset": 1,
       "length": 1,
       "code": {
-        "startLine": 2,
+        "startLine": 8,
         "length": 1,
-        "offset": 49,
-        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+        "offset": 39,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Api\n{\n    /// <summary>\n    /// The Themerr api controller."
       }
     }
   ],
@@ -65,7 +65,7 @@
     "isTechDebt": "true",
     "baselineState": "unchanged"
   },
-  "hash": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
+  "hash": "e56f0beaaf6772a100750549f48f76d3e17e49f2ea6f83f7e2867ce99fbb89e3"
 },{
   "tool": "Code Inspection",
   "category": "Syntax Style",
@@ -114,16 +114,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
       "language": "C#",
-      "line": 10,
+      "line": 4,
       "offset": 1,
       "length": 1,
       "code": {
-        "startLine": 8,
+        "startLine": 2,
         "length": 1,
-        "offset": 39,
-        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Api\n{\n    /// <summary>\n    /// The Themerr api controller."
+        "offset": 49,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
       }
     }
   ],
@@ -133,7 +133,7 @@
     "isTechDebt": "true",
     "baselineState": "unchanged"
   },
-  "hash": "e56f0beaaf6772a100750549f48f76d3e17e49f2ea6f83f7e2867ce99fbb89e3"
+  "hash": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
 },{
   "tool": "Code Inspection",
   "category": "Syntax Style",
@@ -305,40 +305,6 @@
   "hash": "c58b72f18997d78b2d7348e10861f34148369bbba392a82075c0a048195ce7d5"
 },{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Roslyn analyzers output",
-  "tags": [
-    "C#",
-    ".NET 6.0"
-  ],
-  "severity": "Moderate",
-  "comment": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
-  "detailsInfo": "Presents output of Roslyn analyzers",
-  "sources": [
-    {
-      "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
-      "language": "C#",
-      "line": 172,
-      "offset": 21,
-      "length": 7,
-      "code": {
-        "startLine": 170,
-        "length": 7,
-        "offset": 30,
-        "surroundingCode": "\n        \n        public void Dispose()\n        {\n        }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "Jellyfin.Plugin.Themerr",
-    "inspectionName": "RoslynAnalyzersOutputInspection",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
-},{
-  "tool": "Code Inspection",
   "category": "Redundancies in Symbol Declarations",
   "type": "Type is never used (non-private accessibility)",
   "tags": [
@@ -405,6 +371,40 @@
     "baselineState": "unchanged"
   },
   "hash": "256dca1d80a257caebd2232f688096b9f86fc15949997c4fe73b4be93e5330ee"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Roslyn analyzers output",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+  "detailsInfo": "Presents output of Roslyn analyzers",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+      "language": "C#",
+      "line": 172,
+      "offset": 21,
+      "length": 7,
+      "code": {
+        "startLine": 170,
+        "length": 7,
+        "offset": 30,
+        "surroundingCode": "\n        \n        public void Dispose()\n        {\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "RoslynAnalyzersOutputInspection",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
 },{
   "tool": "Code Inspection",
   "category": "Potential Code Quality Issues",
