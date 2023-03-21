@@ -193,7 +193,7 @@ def main():
                                 extra_font_awesome = 'fas fa-code-pull-request text-success'
                         elif pull_state == 'closed':
                             if pull_merged:
-                                extra_class = 'pull-closed pull-merged'
+                                extra_class = 'pull-closed pull-merged d-none'
                                 extra_font_awesome = 'fas fa-code-merge text-purple'
                             else:
                                 extra_class = 'pull-closed pull-unmerged d-none'
@@ -203,7 +203,7 @@ def main():
 
                     # create a link to the branch or pull request
                     item_link = f"""
-                        <a class="text-decoration-none text-white {extra_class}"
+                        <a class="text-decoration-none text-white"
                             href="{extra_url}"
                             target="_blank"
                         >{font_awesome} {item} - {extra_info}</a>
@@ -211,7 +211,7 @@ def main():
 
                     # create a list item in html
                     list_item = f"""
-                    <li class="list-group-item">{item_link}<br>
+                    <li class="list-group-item {extra_class}">{item_link}<br>
                         <!-- language -->
                     </li>
                     """

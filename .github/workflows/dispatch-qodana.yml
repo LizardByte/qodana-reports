@@ -81,12 +81,18 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           pip install -r ./requirements.txt
 
-      - name: Build index
+      - name: Build site
         env:
           PAT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
         run: |
           # generate index.html
           python -u ./build_index.py
+
+          # remove index_template.html
+          rm -f ./gh-pages-template/index_template.html
+
+          # copy rest of template, js/css/etc.
+          cp -f -r ./gh-pages-template/. ./gh-pages/
 
       - name: Deploy to gh-pages
         id: deploy
