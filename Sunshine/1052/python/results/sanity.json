@@ -1,0 +1,249 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "No module named 'miniupnpc'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 9,
+      "offset": 8,
+      "length": 9,
+      "code": {
+        "startLine": 7,
+        "length": 9,
+        "offset": 45,
+        "surroundingCode": "\n# import the python miniupnpc module\nimport miniupnpc\nimport socket\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "a51776532450858d7793c4e5cc30f0fb886c217cfef9e4aa5b51bda9ca397d95"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unused import statement 'import socket'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 10,
+      "offset": 1,
+      "length": 13,
+      "code": {
+        "startLine": 8,
+        "length": 13,
+        "offset": 54,
+        "surroundingCode": "# import the python miniupnpc module\nimport miniupnpc\nimport socket\n\ntry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "75d0552d38a516891f8cf4509b5dec019d78a875085215e59ff7c917ce5f55b0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Unresolved reference 'BaseHTTPServer'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 15,
+      "offset": 10,
+      "length": 14,
+      "code": {
+        "startLine": 13,
+        "length": 14,
+        "offset": 92,
+        "surroundingCode": "    from http.server import BaseHTTPRequestHandler, HTTPServer\nexcept ImportError:\n    from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer\n\n# function definition"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "a935b61a38034be06b041eadc892015ebade403595350899013e33b78a351ad9"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Module 'BaseHTTPRequestHandler' not found",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 15,
+      "offset": 32,
+      "length": 22,
+      "code": {
+        "startLine": 13,
+        "length": 22,
+        "offset": 114,
+        "surroundingCode": "    from http.server import BaseHTTPRequestHandler, HTTPServer\nexcept ImportError:\n    from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer\n\n# function definition"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "95ce3f075751417eb227ec79a90c14470edc40e2ba423614ca587236c139c83b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "No module named 'miniupnpc'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 10,
+      "offset": 8,
+      "length": 9,
+      "code": {
+        "startLine": 8,
+        "length": 9,
+        "offset": 45,
+        "surroundingCode": "\n# import the python miniupnpc module\nimport miniupnpc\nimport sys\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "aabcce10de6fca37f6269e05a0a22db32293cb11a3631d2305321bfd4c90a130"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "No module named 'miniupnpc'",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 8,
+      "offset": 8,
+      "length": 9,
+      "code": {
+        "startLine": 6,
+        "length": 9,
+        "offset": 45,
+        "surroundingCode": "\n# import the python miniupnpc module\nimport miniupnpc\nimport sys\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "20ac0d20d1a89412b5fb54487ce78376766b2f06690a263919e175a7d4637d3b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Class 'Mapping' does not define '__setitem__', so the '[]' operator cannot be used on its instances",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 21,
+      "offset": 28,
+      "length": 1,
+      "code": {
+        "startLine": 19,
+        "length": 1,
+        "offset": 111,
+        "surroundingCode": "        from distutils.core import setup, Extension\nfrom distutils import sysconfig\nsysconfig.get_config_vars()[\"OPT\"] = ''\nsysconfig.get_config_vars()[\"CFLAGS\"] = ''\nsetup(name=\"miniupnpc\","
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "59e4be68283f39d428733bd97eaadaeb243c07be1603f257425bdf2af7e2619b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unresolved references",
+  "tags": [
+    "Sanity"
+  ],
+  "severity": "Critical",
+  "comment": "Class 'Mapping' does not define '__setitem__', so the '[]' operator cannot be used on its instances",
+  "detailsInfo": "Reports references in your code that cannot be resolved.\n\nIn a dynamically typed language, this is possible in a limited number of cases.\n\nIf a reference type is unknown, then its attributes are not highlighted as unresolved even if you know that they should be:\n\n```\ndef print_string(s):\n  print(s.abc())\n```\n\nIn this code fragment `s` is always a string and `abc` should be highlighted as unresolved. However, `s`\ntype is inferred as `Any` and no warning is reported.\n\nThe IDE provides quick-fix actions to add missing references on-the-fly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 28,
+      "length": 1,
+      "code": {
+        "startLine": 20,
+        "length": 1,
+        "offset": 99,
+        "surroundingCode": "from distutils import sysconfig\nsysconfig.get_config_vars()[\"OPT\"] = ''\nsysconfig.get_config_vars()[\"CFLAGS\"] = ''\nsetup(name=\"miniupnpc\",\n      version=open('VERSION').read().strip(),"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnresolvedReferencesInspection"
+  },
+  "hash": "7d5b9d61e1e2ebd3267d192725ddc2c3dd8ed2edb8a0b6aa3bdb93fe8a5443aa"
+}]}
