@@ -1,5 +1,7 @@
 # standard imports
 import os
+import time
+from typing import Callable, Optional
 
 # lib imports
 import requests
@@ -28,6 +30,33 @@ ITEM_TYPE_MAP = dict(
     branches='Branches',
     pulls='Pull Requests',
 )
+
+
+def requests_loop(url: str,
+                  headers: Optional[dict] = None,
+                  method: Callable = requests.get,
+                  max_tries: int = 8,
+                  allow_statuses: list = [requests.codes.ok]) -> requests.Response:
+    count = 1
+    while count <= max_tries:
+        print(f'Processing {url} ... (attempt {count} of {max_tries})')
+        try:
+            response = method(url=url, headers=headers)
+        except requests.exceptions.RequestException as e:
+            print(f'Error processing {url} - {e}')
+            time.sleep(2**count)
+            count += 1
+        except Exception as e:
+            print(f'Error processing {url} - {e}')
+            time.sleep(2**count)
+            count += 1
+        else:
+            if response.status_code in allow_statuses:
+                return response
+            else:
+                print(f'Error processing {url} - {response.status_code}')
+                time.sleep(2**count)
+                count += 1
 
 
 def main():
@@ -124,7 +153,9 @@ def main():
                     print(f'Found {item_type}: {item}. for repo: {repo}')
 
                     # get info about the branch or pull request from GitHub api
-                    item_response = requests.get(f'https://api.github.com/repos/LizardByte/{repo}/{item_type}/{item}')
+                    item_response = requests_loop(
+                        url=f'https://api.github.com/repos/LizardByte/{repo}/{item_type}/{item}'
+                    )
                     item_info = item_response.json()
 
                     extra_info = ''
