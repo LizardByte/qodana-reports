@@ -44,7 +44,7 @@
   "sources": [
     {
       "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
+      "path": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
       "language": "C#",
       "line": 10,
       "offset": 1,
@@ -52,8 +52,8 @@
       "code": {
         "startLine": 8,
         "length": 1,
-        "offset": 35,
-        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {"
+        "offset": 50,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
       }
     }
   ],
@@ -61,7 +61,39 @@
     "module": "Jellyfin.Plugin.Themerr",
     "inspectionName": "ArrangeNamespaceBody"
   },
-  "hash": "1a4acba02d3fff4e1dcaac5b839a170002bfc3a2a00d5746965b740e3ac85701"
+  "hash": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
+},{
+  "tool": "Code Inspection",
+  "category": "Syntax Style",
+  "type": "Use preferred namespace body style",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "Convert to file-scoped namespace",
+  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+      "language": "C#",
+      "line": 4,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 2,
+        "length": 1,
+        "offset": 49,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "ArrangeNamespaceBody"
+  },
+  "hash": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
 },{
   "tool": "Code Inspection",
   "category": "Syntax Style",
@@ -108,38 +140,6 @@
   "sources": [
     {
       "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
-      "language": "C#",
-      "line": 10,
-      "offset": 1,
-      "length": 1,
-      "code": {
-        "startLine": 8,
-        "length": 1,
-        "offset": 50,
-        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "Jellyfin.Plugin.Themerr",
-    "inspectionName": "ArrangeNamespaceBody"
-  },
-  "hash": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
-},{
-  "tool": "Code Inspection",
-  "category": "Syntax Style",
-  "type": "Use preferred namespace body style",
-  "tags": [
-    "C#",
-    ".NET 6.0"
-  ],
-  "severity": "Moderate",
-  "comment": "Convert to file-scoped namespace",
-  "detailsInfo": "Use file-scoped or block-scoped namespace body [Learn more...](https://www.jetbrains.com/help/rider/ArrangeNamespaceBody.html)",
-  "sources": [
-    {
-      "type": "file",
       "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
       "language": "C#",
       "line": 22,
@@ -172,16 +172,16 @@
   "sources": [
     {
       "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+      "path": "Jellyfin.Plugin.Themerr/Plugin.cs",
       "language": "C#",
-      "line": 4,
+      "line": 10,
       "offset": 1,
       "length": 1,
       "code": {
-        "startLine": 2,
+        "startLine": 8,
         "length": 1,
-        "offset": 49,
-        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+        "offset": 35,
+        "surroundingCode": "\nnamespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {"
       }
     }
   ],
@@ -189,7 +189,7 @@
     "module": "Jellyfin.Plugin.Themerr",
     "inspectionName": "ArrangeNamespaceBody"
   },
-  "hash": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
+  "hash": "1a4acba02d3fff4e1dcaac5b839a170002bfc3a2a00d5746965b740e3ac85701"
 },{
   "tool": "Code Inspection",
   "category": "Syntax Style",
@@ -287,6 +287,38 @@
   "hash": "c58b72f18997d78b2d7348e10861f34148369bbba392a82075c0a048195ce7d5"
 },{
   "tool": "Code Inspection",
+  "category": "General",
+  "type": "Roslyn analyzers output",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "Moderate",
+  "comment": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+  "detailsInfo": "Presents output of Roslyn analyzers",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+      "language": "C#",
+      "line": 172,
+      "offset": 21,
+      "length": 7,
+      "code": {
+        "startLine": 170,
+        "length": 7,
+        "offset": 30,
+        "surroundingCode": "\n        \n        public void Dispose()\n        {\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "RoslynAnalyzersOutputInspection"
+  },
+  "hash": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
+},{
+  "tool": "Code Inspection",
   "category": "Redundancies in Symbol Declarations",
   "type": "Type is never used (non-private accessibility)",
   "tags": [
@@ -351,70 +383,6 @@
   "hash": "256dca1d80a257caebd2232f688096b9f86fc15949997c4fe73b4be93e5330ee"
 },{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Roslyn analyzers output",
-  "tags": [
-    "C#",
-    ".NET 6.0"
-  ],
-  "severity": "Moderate",
-  "comment": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
-  "detailsInfo": "Presents output of Roslyn analyzers",
-  "sources": [
-    {
-      "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
-      "language": "C#",
-      "line": 172,
-      "offset": 21,
-      "length": 7,
-      "code": {
-        "startLine": 170,
-        "length": 7,
-        "offset": 30,
-        "surroundingCode": "\n        \n        public void Dispose()\n        {\n        }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "Jellyfin.Plugin.Themerr",
-    "inspectionName": "RoslynAnalyzersOutputInspection"
-  },
-  "hash": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
-},{
-  "tool": "Code Inspection",
-  "category": "Potential Code Quality Issues",
-  "type": "Invalid XML documentation comment",
-  "tags": [
-    "C#",
-    ".NET 6.0"
-  ],
-  "severity": "High",
-  "comment": "XML element is not closed",
-  "detailsInfo": "Invalid XML documentation comment",
-  "sources": [
-    {
-      "type": "file",
-      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
-      "language": "C#",
-      "line": 26,
-      "offset": 14,
-      "length": 7,
-      "code": {
-        "startLine": 24,
-        "length": 7,
-        "offset": 23,
-        "surroundingCode": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
-      }
-    }
-  ],
-  "attributes": {
-    "module": "Jellyfin.Plugin.Themerr",
-    "inspectionName": "InvalidXmlDocComment"
-  },
-  "hash": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
-},{
-  "tool": "Code Inspection",
   "category": "Potential Code Quality Issues",
   "type": "Invalid XML documentation comment",
   "tags": [
@@ -477,6 +445,38 @@
     "inspectionName": "InvalidXmlDocComment"
   },
   "hash": "667088346d52c2f8ebf87e478c19ef37575a0151ad466eeb2f85ecfd265aa528"
+},{
+  "tool": "Code Inspection",
+  "category": "Potential Code Quality Issues",
+  "type": "Invalid XML documentation comment",
+  "tags": [
+    "C#",
+    ".NET 6.0"
+  ],
+  "severity": "High",
+  "comment": "XML element is not closed",
+  "detailsInfo": "Invalid XML documentation comment",
+  "sources": [
+    {
+      "type": "file",
+      "path": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+      "language": "C#",
+      "line": 26,
+      "offset": 14,
+      "length": 7,
+      "code": {
+        "startLine": 24,
+        "length": 7,
+        "offset": 23,
+        "surroundingCode": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Jellyfin.Plugin.Themerr",
+    "inspectionName": "InvalidXmlDocComment"
+  },
+  "hash": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
 },{
   "tool": "Code Inspection",
   "category": "General",

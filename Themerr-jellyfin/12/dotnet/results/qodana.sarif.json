@@ -90565,37 +90565,6 @@
                 ]
               },
               {
-                "id": "ES6UnusedImports",
-                "shortDescription": {
-                  "text": "Unused import"
-                },
-                "fullDescription": {
-                  "text": "Reports a redundant 'import' statement. This is usually the case if the imported symbols are not used in the source file. To avoid side-effects, consider using bare import 'import 'packageName'' instead of the regular one.",
-                  "markdown": "Reports a redundant `import` statement. This is usually the case if the imported symbols are not used in the source file. To avoid side-effects, consider using bare import `import 'packageName'` instead of the regular one."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Imports and dependencies",
-                      "index": 60,
-                      "toolComponent": {
-                        "name": "QDNET"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "InnerHTMLJS",
                 "shortDescription": {
                   "text": "Use of 'innerHTML' property"
@@ -90616,6 +90585,37 @@
                     "target": {
                       "id": "JavaScript and TypeScript/DOM issues",
                       "index": 31,
+                      "toolComponent": {
+                        "name": "QDNET"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6UnusedImports",
+                "shortDescription": {
+                  "text": "Unused import"
+                },
+                "fullDescription": {
+                  "text": "Reports a redundant 'import' statement. This is usually the case if the imported symbols are not used in the source file. To avoid side-effects, consider using bare import 'import 'packageName'' instead of the regular one.",
+                  "markdown": "Reports a redundant `import` statement. This is usually the case if the imported symbols are not used in the source file. To avoid side-effects, consider using bare import `import 'packageName'` instead of the regular one."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Imports and dependencies",
+                      "index": 60,
                       "toolComponent": {
                         "name": "QDNET"
                       }
@@ -100322,14 +100322,14 @@
       "language": "en-US",
       "versionControlProvenance": [
         {
-          "repositoryUri": "https://github.com/LizardByte/qodana-reports.git",
-          "revisionId": "4bacd75fbd81b04c73ee0bec6cacdbdc0f01b7b8",
+          "repositoryUri": "https://github.com/LizardByte/Themerr-jellyfin.git",
+          "revisionId": "d009e71c6b871ef4a4ce94a8b86404c5a069b9b3",
           "branch": "nightly",
           "properties": {
-            "repoUrl": "https://github.com/LizardByte/qodana-reports.git",
-            "lastAuthorName": "ReenigneArcher",
+            "repoUrl": "https://github.com/LizardByte/Themerr-jellyfin.git",
+            "lastAuthorName": "LizardByte-bot",
             "vcsType": "Git",
-            "lastAuthorEmail": "42013603+reenignearcher@users.noreply.github.com"
+            "lastAuthorEmail": "108553330+lizardbyte-bot@users.noreply.github.com"
           }
         }
       ],
@@ -100400,13 +100400,13 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/Plugin.cs",
+                  "uri": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
                   "startLine": 10,
                   "startColumn": 1,
-                  "charOffset": 278,
+                  "charOffset": 259,
                   "charLength": 1,
                   "snippet": {
                     "text": "{"
@@ -100416,10 +100416,10 @@
                 "contextRegion": {
                   "startLine": 8,
                   "startColumn": 1,
-                  "charOffset": 243,
-                  "charLength": 115,
+                  "charOffset": 209,
+                  "charLength": 111,
                   "snippet": {
-                    "text": "\nnamespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {"
+                    "text": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
                   }
                 }
               },
@@ -100432,7 +100432,61 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "1a4acba02d3fff4e1dcaac5b839a170002bfc3a2a00d5746965b740e3ac85701"
+            "equalIndicator/v1": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
+          "ruleId": "ArrangeNamespaceBody",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Convert to file-scoped namespace",
+            "markdown": "Convert to file-scoped namespace"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 4,
+                  "startColumn": 1,
+                  "charOffset": 83,
+                  "charLength": 1,
+                  "snippet": {
+                    "text": "{"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "charOffset": 34,
+                  "charLength": 119,
+                  "snippet": {
+                    "text": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -100508,60 +100562,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/ScheduledTasks/ThemerrTasks.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 10,
-                  "startColumn": 1,
-                  "charOffset": 259,
-                  "charLength": 1,
-                  "snippet": {
-                    "text": "{"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 8,
-                  "startColumn": 1,
-                  "charOffset": 209,
-                  "charLength": 111,
-                  "snippet": {
-                    "text": "\nnamespace Jellyfin.Plugin.Themerr.ScheduledTasks\n{\n    public class DownloadThemerrTask : IScheduledTask\n    {"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "2c1209c2d0ba98ee44a6363b4b6b42874f90863434a780e840d205280bcdc8b9"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
-          "ruleId": "ArrangeNamespaceBody",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Convert to file-scoped namespace",
-            "markdown": "Convert to file-scoped namespace"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
                   "uriBaseId": "SRCROOT"
                 },
@@ -100616,13 +100616,13 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/Configuration/PluginConfiguration.cs",
+                  "uri": "Jellyfin.Plugin.Themerr/Plugin.cs",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 4,
+                  "startLine": 10,
                   "startColumn": 1,
-                  "charOffset": 83,
+                  "charOffset": 278,
                   "charLength": 1,
                   "snippet": {
                     "text": "{"
@@ -100630,12 +100630,12 @@
                   "sourceLanguage": "C#"
                 },
                 "contextRegion": {
-                  "startLine": 2,
+                  "startLine": 8,
                   "startColumn": 1,
-                  "charOffset": 34,
-                  "charLength": 119,
+                  "charOffset": 243,
+                  "charLength": 115,
                   "snippet": {
-                    "text": "\nnamespace Jellyfin.Plugin.Themerr.Configuration\n{\n    public class PluginConfiguration : BasePluginConfiguration\n    {"
+                    "text": "\nnamespace Jellyfin.Plugin.Themerr\n{\n    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages \n    {"
                   }
                 }
               },
@@ -100648,7 +100648,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "1ed4690d0eac5ab4138b3fd8f3c04711fe07127b7a7bfe9d63af1988f7bc91ca"
+            "equalIndicator/v1": "1a4acba02d3fff4e1dcaac5b839a170002bfc3a2a00d5746965b740e3ac85701"
           },
           "properties": {
             "ideaSeverity": "WEAK WARNING",
@@ -100820,6 +100820,60 @@
           }
         },
         {
+          "ruleId": "RoslynAnalyzersOutputInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+            "markdown": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 172,
+                  "startColumn": 21,
+                  "charOffset": 6704,
+                  "charLength": 7,
+                  "snippet": {
+                    "text": "Dispose"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 170,
+                  "startColumn": 1,
+                  "charOffset": 6674,
+                  "charLength": 59,
+                  "snippet": {
+                    "text": "\n        \n        public void Dispose()\n        {\n        }"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
+          },
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
           "ruleId": "UnusedType.Global",
           "kind": "fail",
           "level": "note",
@@ -100928,114 +100982,6 @@
           }
         },
         {
-          "ruleId": "RoslynAnalyzersOutputInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
-            "markdown": "RoslynAnalyzers Dispose methods should call SuppressFinalize: Change ThemerrManager.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/ThemerrManager.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 172,
-                  "startColumn": 21,
-                  "charOffset": 6704,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "Dispose"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 170,
-                  "startColumn": 1,
-                  "charOffset": 6674,
-                  "charLength": 59,
-                  "snippet": {
-                    "text": "\n        \n        public void Dispose()\n        {\n        }"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "16770f56f2877ee716240c4ae096a1d8a78da500235399a6d4440765e67d2513"
-          },
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
-          "ruleId": "InvalidXmlDocComment",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "XML element is not closed",
-            "markdown": "XML element is not closed"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 26,
-                  "startColumn": 14,
-                  "charOffset": 691,
-                  "charLength": 7,
-                  "snippet": {
-                    "text": "summary"
-                  },
-                  "sourceLanguage": "C#"
-                },
-                "contextRegion": {
-                  "startLine": 24,
-                  "startColumn": 1,
-                  "charOffset": 668,
-                  "charLength": 140,
-                  "snippet": {
-                    "text": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
-          },
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "tags": [
-              "C#",
-              ".NET 6.0"
-            ]
-          }
-        },
-        {
           "ruleId": "InvalidXmlDocComment",
           "kind": "fail",
           "level": "warning",
@@ -101134,6 +101080,60 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "667088346d52c2f8ebf87e478c19ef37575a0151ad466eeb2f85ecfd265aa528"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "tags": [
+              "C#",
+              ".NET 6.0"
+            ]
+          }
+        },
+        {
+          "ruleId": "InvalidXmlDocComment",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "XML element is not closed",
+            "markdown": "XML element is not closed"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Jellyfin.Plugin.Themerr/Api/ThemerrController.cs",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 14,
+                  "charOffset": 691,
+                  "charLength": 7,
+                  "snippet": {
+                    "text": "summary"
+                  },
+                  "sourceLanguage": "C#"
+                },
+                "contextRegion": {
+                  "startLine": 24,
+                  "startColumn": 1,
+                  "charOffset": 668,
+                  "charLength": 140,
+                  "snippet": {
+                    "text": "\n        \n        /// <summary>\n        /// Initializes a new instance of <see cref=\"ThemerrController\"/>.\n        public ThemerrController("
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Jellyfin.Plugin.Themerr",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "f23b9152ed0d01a42ca6f15c61039deee34a6062c94b81db93d7627ebe22fa1f"
           },
           "properties": {
             "ideaSeverity": "WARNING",
@@ -101357,10 +101357,10 @@
         }
       ],
       "automationDetails": {
-        "id": "Jellyfin.Plugin.Themerr/qodana/2023-03-20",
-        "guid": "231cd7d4-fb9b-4db1-8854-acbfe1863373",
+        "id": "Jellyfin.Plugin.Themerr/qodana/2023-03-21",
+        "guid": "6656151f-4a65-40ec-9c79-6bd96cc983b7",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4470963658"
+          "jobUrl": "https://github.com/LizardByte/Themerr-jellyfin/actions/runs/4482745516"
         }
       },
       "newlineSequences": [
