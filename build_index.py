@@ -1,6 +1,9 @@
 # standard imports
 import os
 
+# lib imports
+import requests
+
 # constants
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_FILE = os.path.join(CURRENT_DIR, 'gh-pages-template', 'index_template.html')
@@ -120,9 +123,53 @@ def main():
                 for item in reports[repo][item_type]:
                     print(f'Found {item_type}: {item}. for repo: {repo}')
 
+                    # get info about the branch or pull request from GitHub api
+                    item_response = requests.get(f'https://api.github.com/repos/LizardByte/{repo}/{item_type}/{item}')
+                    item_info = item_response.json()
+
+                    extra_info = ''
+                    extra_url = ''
+                    extra_class = ''
+                    extra_font_awesome = ''
+
+                    if item_type == 'branches':
+                        extra_info = item_info['commit']['sha'][0:7]  # first 7 characters
+                        extra_url = item_info['_links']['html']
+                        extra_font_awesome = 'fas fa-code-branch'
+                    elif item_type == 'pulls':
+                        extra_info = f"{item_info['title']} ({item_info['user']['login']})"
+                        extra_url = item_info['html_url']
+                        pull_state = item_info['state']  # open or closed
+                        pull_merged = item_info['merged']  # True or False
+                        pull_draft = item_info['draft']  # True or False
+                        extra_font_awesome = 'fas fa-code-pull-request'
+
+                        if pull_state == 'open':
+                            if pull_draft:
+                                extra_font_awesome = 'fas fa-code-pull-request text-secondary'
+                            else:
+                                extra_font_awesome = 'fas fa-code-pull-request text-success'
+                        elif pull_state == 'closed':
+                            if pull_merged:
+                                extra_class = 'pull-closed pull-merged'
+                                extra_font_awesome = 'fas fa-code-merge text-purple'
+                            else:
+                                extra_class = 'pull-closed pull-unmerged d-none'
+                                extra_font_awesome = 'fas fa-code-merge text-danger'
+
+                    font_awesome = f'<i class="{extra_font_awesome}"></i>'
+
+                    # create a link to the branch or pull request
+                    item_link = f"""
+                        <a class="text-decoration-none text-white {extra_class}"
+                            href="{extra_url}"
+                            target="_blank"
+                        >{font_awesome} {item} - {extra_info}</a>
+                    """
+
                     # create a list item in html
                     list_item = f"""
-                    <li>{item}
+                    <li class="list-group-item">{item_link}<br>
                         <!-- language -->
                     </li>
                     """
