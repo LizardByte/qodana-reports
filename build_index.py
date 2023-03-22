@@ -159,6 +159,19 @@ def main():
                 # replace d-none
                 card = card.replace(f'<div id="{item_type}" class="d-none">', f'<div id="{item_type}">')
 
+                # sort items
+                if item_type == 'branches':
+                    # alphabetical
+                    reports[repo][item_type] = dict(sorted(reports[repo][item_type].items()))
+                elif item_type == 'pulls':
+                    # reversed numerical (the newest first)
+                    reports[repo][item_type] = dict(
+                        sorted(reports[repo][item_type].items(),
+                               key=lambda x: int(x[0]),
+                               reverse=True
+                               )
+                    )
+
                 for item in reports[repo][item_type]:
                     print(f'Found {item_type}: {item}. for repo: {repo}')
 
