@@ -1,0 +1,32 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "The default argument is mutable",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Default argument value is mutable",
+  "detailsInfo": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "updater.py",
+      "language": "Python",
+      "line": 52,
+      "offset": 42,
+      "length": 19,
+      "code": {
+        "startLine": 50,
+        "length": 19,
+        "offset": 130,
+        "surroundingCode": "                  method: Callable = requests.get,\n                  max_tries: int = 8,\n                  allow_statuses: list = [requests.codes.ok]) -> requests.Response:\n    count = 1\n    while count <= max_tries:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDefaultArgumentInspection"
+  },
+  "hash": "437f245834e9577f0acedf5439e6e2c10fa497e235adc34b9b7343fa02629045"
+}]}
