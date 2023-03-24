@@ -5,12 +5,33 @@
 name: Qodana Publish
 
 on:
-  repository_dispatch:
-    types: [qodana-publish]
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository to publish'
+        required: true
+      ref:
+        description: 'Ref to publish'
+        required: true
+      run_id:
+        description: 'Run ID to publish'
+        required: true
+      repo_name:
+        description: 'Repository name'
+        required: true
+      destination:
+        description: 'Destination to publish'
+        required: true
+      status:
+        description: 'Status of the Qodana run'
+        required: true
+      reports_markdown:
+        description: 'Reports markdown'
+        required: true
 
 concurrency:
   # ensure only one workflow runs for a given repo and ref, cancel in progress to only run the latest
-  group: ${{ github.event.client_payload.repo }}-${{ github.event.client_payload.ref }}
+  group: ${{ github.event.inputs.repo }}-${{ github.event.inputs.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -37,15 +58,15 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{ secrets.GH_BOT_TOKEN }}
-          repo: ${{ github.event.client_payload.repo }}
-          run_id: ${{ github.event.client_payload.run_id }}
+          repo: ${{ github.event.inputs.repo }}
+          run_id: ${{ github.event.inputs.run_id }}
           path: ${{ runner.temp }}/artifacts
 
       - name: Parse artifacts
         run: |
           # constants
-          repo_name=${{ github.event.client_payload.repo_name }}
-          destination=${{ github.event.client_payload.destination }}
+          repo_name=${{ github.event.inputs.repo_name }}
+          destination=${{ github.event.inputs.destination }}
 
           # for each directory in artifacts directory, not recursive
           for dir in ${{ runner.temp }}/artifacts/*; do
@@ -105,16 +126,16 @@ jobs:
           branch: gh-pages
           force: false
           message: >-
-            update ${{ github.event.client_payload.repo_name }}/${{ github.event.client_payload.destination }}
+            update ${{ github.event.inputs.repo_name }}/${{ github.event.inputs.destination }}
 
-      - name: Setup final notification client payload
-        id: client_payload
+      - name: Setup final notification inputs
+        id: inputs
         run: |
           # check if destination is integer
-          if [[ ${{ github.event.client_payload.destination }} =~ ^[0-9]+$ ]]; then
+          if [[ ${{ github.event.inputs.destination }} =~ ^[0-9]+$ ]]; then
             # destination is integer, so it's a PR
 
-            if [[ ${{ github.event.client_payload.status }} == 'success' ]]; then
+            if [[ ${{ github.event.inputs.status }} == 'success' ]]; then
               status=":white_check_mark: **Qodana success** :white_check_mark:"
             else
               status=":x: **Qodana failed** :x:"
@@ -122,29 +143,45 @@ jobs:
 
             message=$(cat <<- EOF
               ${status}
-              Results: ${{ github.event.client_payload.results_markdown }}
+              Results: ${{ github.event.inputs.reports_markdown }}
           EOF
           )
 
             # escape json control characters
             message=$(jq -n --arg message "$message" '$message' | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
 
-            client_payload=$(echo '{
+            secondary_inputs=$(echo '{
               "issue_message": "'"${message}"'",
               "issue_message_id": "'"qodana"'",
-              "issue_number": "'"${{ github.event.client_payload.destination }}"'"
+              "issue_number": "'"${{ github.event.inputs.destination }}"'",
+              "issue_repo_owner": "'"${{ github.repository_owner }}"'",
+              "issue_repo_name": "'"${{ github.event.inputs.repo_name }}"'"
+            }' | jq -r .)
+
+            #escape json control characters
+            secondary_inputs=$(jq -n --arg secondary_inputs "$secondary_inputs" '$secondary_inputs' \
+              | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')
+
+            echo $secondary_inputs
+
+            # secondary input as string, not JSON
+            # todo - change dispatch_ref to master instead of nightly
+            primary_inputs=$(echo '{
+              "dispatch_repository": "'"${{ github.repository_owner }}/.github"'",
+              "dispatch_workflow": "'"dispatch-issue-comment.yml"'",
+              "dispatch_ref": "'"nightly"'",
+              "dispatch_inputs": "'"${secondary_inputs}"'"
             }' | jq -c .)
 
-            echo $client_payload
-            echo $client_payload | jq .
-            echo "client_payload=$client_payload" >> $GITHUB_OUTPUT
+            echo $primary_inputs
+            echo $primary_inputs | jq .
+            echo "primary_inputs=$primary_inputs" >> $GITHUB_OUTPUT
           fi
 
-      - name: Repository Dispatch
-        if: ${{ steps.client_payload.outputs.client_payload != '' }}
-        uses: peter-evans/repository-dispatch@v2.1.1
+      - name: Workflow Dispatch
+        uses: benc-uk/workflow-dispatch@v1.2.2
         with:
-          token: ${{ secrets.GH_BOT_TOKEN }}
-          repository: ${{ github.repository_owner }}/.github
-          event-type: issue-pr-comment
-          client-payload: ${{ steps.client_payload.outputs.client_payload }}
+          ref: ${{ github.base_ref || github.ref_name }}  # base ref for PR and branch name for push
+          workflow: dispatcher.yml
+          inputs: ${{ steps.inputs.outputs.primary_inputs }}
+          token: ${{ github.token }}
