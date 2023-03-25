@@ -134,6 +134,7 @@ jobs:
           # check if destination is integer
           if [[ ${{ github.event.inputs.destination }} =~ ^[0-9]+$ ]]; then
             # destination is integer, so it's a PR
+            echo "dispatch=true" >> $GITHUB_OUTPUT
 
             if [[ ${{ github.event.inputs.status }} == 'success' ]]; then
               status=":white_check_mark: **Qodana success** :white_check_mark:"
@@ -176,9 +177,13 @@ jobs:
             echo $primary_inputs
             echo $primary_inputs | jq .
             echo "primary_inputs=$primary_inputs" >> $GITHUB_OUTPUT
+          else
+            # destination is not integer, so it's a branch
+            echo "dispatch=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Workflow Dispatch
+        if: ${{ steps.inputs.outputs.dispatch == 'true' }}
         uses: benc-uk/workflow-dispatch@v1.2.2
         with:
           ref: ${{ github.base_ref || github.ref_name }}  # base ref for PR and branch name for push
