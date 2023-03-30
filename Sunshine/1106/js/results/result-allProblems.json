@@ -1,0 +1,594 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Regular expression can be simplified",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "Moderate",
+  "comment": "'[d]' can be simplified to 'd'",
+  "detailsInfo": "Reports regular expressions that can be simplified.\n\n**Example:**\n\n\n      [a] xx* [ah-hz]\n\nAfter the quick-fix is applied:\n\n\n      a x+ [ahz]\n\nNew in 2022.1",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "RegExp",
+      "line": 1153,
+      "offset": 27,
+      "length": 4,
+      "code": {
+        "startLine": 1151,
+        "length": 4,
+        "offset": 117,
+        "surroundingCode": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpSimplifiable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "f0f43e0377a16a413595e1601b6bfdb9be95a18aee8cdf7d5cffb104fd683a7f"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Regular expression can be simplified",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "Moderate",
+  "comment": "'[d]' can be simplified to 'd'",
+  "detailsInfo": "Reports regular expressions that can be simplified.\n\n**Example:**\n\n\n      [a] xx* [ah-hz]\n\nAfter the quick-fix is applied:\n\n\n      a x+ [ahz]\n\nNew in 2022.1",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "RegExp",
+      "line": 1153,
+      "offset": 33,
+      "length": 4,
+      "code": {
+        "startLine": 1151,
+        "length": 4,
+        "offset": 123,
+        "surroundingCode": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpSimplifiable",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "e9cb42cca7228c5f8dcb1c6c5363343304921aa7a23a4de1bffa962306b52d1c"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Missed locally stored library for HTTP link",
+  "tags": [
+    "Vue"
+  ],
+  "severity": "High",
+  "comment": "Missed locally stored library for HTTP link",
+  "detailsInfo": "Reports a URL of an external JavaScript library that is not associated with any locally stored file. Suggests downloading the library. Such association enables the IDE to provide proper code completion and navigation.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/header.html",
+      "language": "Vue",
+      "line": 74,
+      "offset": 14,
+      "length": 47,
+      "code": {
+        "startLine": 72,
+        "length": 47,
+        "offset": 46,
+        "surroundingCode": "\n<!-- Discord WidgetBot Crate-->\n<script src=\"https://cdn.jsdelivr.net/npm/@widgetbot/crate@3\" async defer>\n  new Crate({\n    server: '804382334370578482',"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnresolvedLibraryURL",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "88a75850d894c21357521bb8be08220cdeaa66f713765045a7f6d5ff9d7e464c"
+},{
+  "tool": "Code Inspection",
+  "category": "Unused symbols",
+  "type": "Unused local symbol",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "High",
+  "comment": "Unused local variable app",
+  "detailsInfo": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "JavaScript",
+      "line": 1084,
+      "offset": 15,
+      "length": 3,
+      "code": {
+        "startLine": 1082,
+        "length": 3,
+        "offset": 94,
+        "surroundingCode": "          this.restart_supported = (this.config.restart_supported === \"true\");\n\n          var app = document.getElementById(\"app\");\n          if (this.platform === \"windows\") {\n            this.tabs = this.tabs.filter((el) => {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnusedLocalSymbols",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "f6640448f77208c46d990ebc265ea05aa9de516faf7b10725295e2148c122479"
+},{
+  "tool": "Code Inspection",
+  "category": "Unused symbols",
+  "type": "Unused local symbol",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "High",
+  "comment": "Unused parameter $event",
+  "detailsInfo": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "JavaScript",
+      "line": 311,
+      "offset": 23,
+      "length": 6,
+      "code": {
+        "startLine": 309,
+        "length": 6,
+        "offset": 43,
+        "surroundingCode": "        });\n      },\n      showCoverFinder($event) {\n        this.coverCandidates = [];\n        this.coverSearching = true;"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnusedLocalSymbols",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "e3d003af9f65116a9d8135cef6fa29b6a14167aa3fcb4eaba62885707ed6df8e"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "ECMAScript 6",
+      "line": 1013,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 1011,
+        "length": 3,
+        "offset": 11,
+        "surroundingCode": "  }\n\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "894c347698426e9cbad67278e04b63dd08903d1b57889c00ae0f212a6c6ef2c0"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 242,
+      "offset": 3,
+      "length": 3,
+      "code": {
+        "startLine": 240,
+        "length": 3,
+        "offset": 12,
+        "surroundingCode": "\n<script>\n  Vue.directive('dropdown-show', {\n    bind: function (el, binding) {\n      el.addEventListener('show.bs.dropdown', binding.value);"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "b421d5d4b7cac8f6c4bf50a976dde572aa4ae99cb03164b53d27aebc7eef5233"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 248,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 246,
+        "length": 3,
+        "offset": 13,
+        "surroundingCode": "  });\n\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "7c4119167adcc3e81bcf30b7d709e88f219906c2a93dbe2ddb217d5b4290ecc2"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/index.html",
+      "language": "ECMAScript 6",
+      "line": 78,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 76,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#content\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "5c382afbdda7634646785773aec29a97198acbfdb44d8435f2dfc5f7d51ac1a7"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/welcome.html",
+      "language": "ECMAScript 6",
+      "line": 63,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 61,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "ba3c1c6a0135d9664d035bc384942da084942a54e86b7c602a913776bf9bf87c"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/password.html",
+      "language": "ECMAScript 6",
+      "line": 81,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 79,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "c26c4b51e1f5b113730ecb5a8b4ffad24e9323780acaa06f5b2ca0e36693e3f1"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/troubleshooting.html",
+      "language": "ECMAScript 6",
+      "line": 85,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 83,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "64ae49e877968b019d55bd8beba32bf42398a9a9db6455a2e2a383b6a049ee74"
+},{
+  "tool": "Code Inspection",
+  "category": "Probable bugs",
+  "type": "Equality operator may cause type coercion",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "High",
+  "comment": "Comparison r.status == 200 may cause unexpected type coercion",
+  "detailsInfo": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 301,
+      "offset": 17,
+      "length": 15,
+      "code": {
+        "startLine": 299,
+        "length": 15,
+        "offset": 107,
+        "surroundingCode": "        if (resp) {\n          fetch(\"/api/apps/\" + id, { method: \"DELETE\" }).then((r) => {\n            if (r.status == 200) document.location.reload();\n          });\n        }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSEqualityComparisonWithCoercion",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "6d12f073d8145e13e82cf2dca1470d1f16d07f31412f416554740c5a29024611"
+},{
+  "tool": "Code Inspection",
+  "category": "Probable bugs",
+  "type": "Equality operator may cause type coercion",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "High",
+  "comment": "Comparison r.status == 200 may cause unexpected type coercion",
+  "detailsInfo": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 396,
+      "offset": 15,
+      "length": 15,
+      "code": {
+        "startLine": 394,
+        "length": 15,
+        "offset": 86,
+        "surroundingCode": "          body: JSON.stringify(this.editForm),\n        }).then((r) => {\n          if (r.status == 200) document.location.reload();\n        });\n      },"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSEqualityComparisonWithCoercion",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "80031929f1e05461976717d11cd7d92caec76da26426727705191e8503d7a0a3"
+},{
+  "tool": "Code Inspection",
+  "category": "Probable bugs",
+  "type": "Equality operator may cause type coercion",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "High",
+  "comment": "Comparison r.status == 200 may cause unexpected type coercion",
+  "detailsInfo": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/welcome.html",
+      "language": "ECMAScript 6",
+      "line": 86,
+      "offset": 15,
+      "length": 15,
+      "code": {
+        "startLine": 84,
+        "length": 15,
+        "offset": 71,
+        "surroundingCode": "        }).then((r) => {\n          this.loading = false;\n          if (r.status == 200) {\n            r.json().then((rj) => {\n              if (rj.status.toString() === \"true\") {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSEqualityComparisonWithCoercion",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "8d28438c8499fa4de61de6f64df95f51c2208ce51cd23c11d7a344ce2610d2ec"
+},{
+  "tool": "Code Inspection",
+  "category": "Probable bugs",
+  "type": "Equality operator may cause type coercion",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "High",
+  "comment": "Comparison r.status == 200 may cause unexpected type coercion",
+  "detailsInfo": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/password.html",
+      "language": "ECMAScript 6",
+      "line": 103,
+      "offset": 15,
+      "length": 15,
+      "code": {
+        "startLine": 101,
+        "length": 15,
+        "offset": 90,
+        "surroundingCode": "          body: JSON.stringify(this.passwordData),\n        }).then((r) => {\n          if (r.status == 200) {\n            r.json().then((rj) => {\n              if (rj.status.toString() === \"true\") {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSEqualityComparisonWithCoercion",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "6114058378c08149b02ee125edcfbdddee9c1abf49945d18e7197ddb02694725"
+},{
+  "tool": "Code Inspection",
+  "category": "Probable bugs",
+  "type": "Equality operator may cause type coercion",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "High",
+  "comment": "Comparison x.indexOf(this.logFilter) != -1 may cause unexpected type coercion",
+  "detailsInfo": "Reports a usage of an equality operator that may cause unexpected type coercions. Suggests replacing `==` and `!=` with type-safe equality operators `===` and `!==`.\n\nDepending on the option selected, one of the following cases will be reported:\n\n* All usages of `==` and `!=` operators.\n* All usages except comparison with null. Some code styles allow using `x == null` as a replacement for `x === null || x === undefined`.\n* Only suspicious expressions, such as: `==` or `!=` comparisons with `0`, `''`, `null`, `true`, `false`, or `undefined`.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/troubleshooting.html",
+      "language": "ECMAScript 6",
+      "line": 105,
+      "offset": 35,
+      "length": 31,
+      "code": {
+        "startLine": 103,
+        "length": 31,
+        "offset": 122,
+        "surroundingCode": "        if(!this.logFilter)return this.logs;\n        let lines = this.logs.split(\"\\n\");\n        lines = lines.filter(x => x.indexOf(this.logFilter) != -1);\n        return lines.join(\"\\n\");\n      }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSEqualityComparisonWithCoercion",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "0f5484418333102a82a52c6416eb1083420b23df7c1bf562b5b7f978c799fd63"
+},{
+  "tool": "Code Inspection",
+  "category": "Dependency analysis",
+  "type": "Check dependency licenses",
+  "tags": [
+    "JSON"
+  ],
+  "severity": "High",
+  "comment": "'@fortawesome/fontawesome-free' ('6.4.0') 'OFL-1.1-no-RFN' is not in the allowed or the prohibited licenses lists with project license 'PROPRIETARY-LICENSE'",
+  "detailsInfo": "Check dependencies licenses for possible problems: missing or prohibited licenses, or other compliance issues",
+  "sources": [
+    {
+      "type": "file",
+      "path": "package.json",
+      "language": "JSON",
+      "line": 1,
+      "offset": 1,
+      "length": 120,
+      "code": {
+        "startLine": 1,
+        "length": 120,
+        "offset": 0,
+        "surroundingCode": "{\n  \"dependencies\": {\n    \"@fortawesome/fontawesome-free\": \"6.4.0\",\n    \"bootstrap\": \"5.2.3\",\n    \"vue\": \"2.6.12\"\n  }\n}\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "CheckDependencyLicenses",
+    "baselineState": "new"
+  },
+  "hash": "a2e84c8b53974547b89017579d4c295e71d5d3f5bb7cbce15b32eae32b94315f"
+}]}
