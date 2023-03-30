@@ -59,12 +59,12 @@
               "name": "RegExp"
             },
             {
-              "id": "MySQL",
-              "name": "MySQL"
-            },
-            {
               "id": "Properties files",
               "name": "Properties files"
+            },
+            {
+              "id": "MySQL",
+              "name": "MySQL"
             },
             {
               "id": "CSS",
@@ -2396,20 +2396,20 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2428,20 +2428,20 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "Query_bound_parameters",
-                "shortDescription": {
-                  "text": "Query does not have required bound parameters"
-                },
-                "fullDescription": {
-                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
-                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Google App Engine (Python)",
-                      "index": 4,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyArgumentListInspection",
                 "shortDescription": {
                   "text": "Incorrect call arguments"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "Query_bound_parameters",
+                "shortDescription": {
+                  "text": "Query does not have required bound parameters"
+                },
+                "fullDescription": {
+                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
+                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Google App Engine (Python)",
+                      "index": 4,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3708,6 +3708,38 @@
                 ]
               },
               {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 15,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
                   "text": "Incompatible stub packages"
@@ -3761,38 +3793,6 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "MongoJSSideEffectsInspection",
-                "shortDescription": {
-                  "text": "Statement with side effects"
-                },
-                "fullDescription": {
-                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
-                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MongoJS",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlInsertIntoGeneratedColumnInspection",
                 "shortDescription": {
                   "text": "Insertion into generated columns"
@@ -4680,6 +4648,38 @@
                 ]
               },
               {
+                "id": "MongoJSSideEffectsInspection",
+                "shortDescription": {
+                  "text": "Statement with side effects"
+                },
+                "fullDescription": {
+                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
+                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MongoJS",
+                      "index": 10,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "MysqlLoadDataPathInspection",
                 "shortDescription": {
                   "text": "LOAD statement path"
@@ -4700,7 +4700,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4796,7 +4796,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4968,13 +4968,13 @@
                 ]
               },
               {
-                "id": "SqlMultipleLimitClausesInspection",
+                "id": "SqlNamedArgumentsInspection",
                 "shortDescription": {
-                  "text": "Multiple row limiting/offset clauses in queries"
+                  "text": "Named arguments should be used"
                 },
                 "fullDescription": {
-                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
-                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
+                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5000,13 +5000,13 @@
                 ]
               },
               {
-                "id": "SqlNamedArgumentsInspection",
+                "id": "SqlMultipleLimitClausesInspection",
                 "shortDescription": {
-                  "text": "Named arguments should be used"
+                  "text": "Multiple row limiting/offset clauses in queries"
                 },
                 "fullDescription": {
-                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
-                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
+                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5128,13 +5128,13 @@
                 ]
               },
               {
-                "id": "SqlRedundantAliasInspection",
+                "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
-                  "text": "Redundant alias expressions"
+                  "text": "Auto-increment duplicate"
                 },
                 "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
+                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5192,13 +5192,13 @@
                 ]
               },
               {
-                "id": "SqlAutoIncrementDuplicateInspection",
+                "id": "SqlRedundantAliasInspection",
                 "shortDescription": {
-                  "text": "Auto-increment duplicate"
+                  "text": "Redundant alias expressions"
                 },
                 "fullDescription": {
-                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
-                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5832,38 +5832,6 @@
                 ]
               },
               {
-                "id": "MysqlParsingInspection",
-                "shortDescription": {
-                  "text": "Unsupported syntax in pre-8.0 versions"
-                },
-                "fullDescription": {
-                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
-                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 12,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlCallNotationInspection",
                 "shortDescription": {
                   "text": "Using of named and positional arguments"
@@ -5885,6 +5853,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlParsingInspection",
+                "shortDescription": {
+                  "text": "Unsupported syntax in pre-8.0 versions"
+                },
+                "fullDescription": {
+                  "text": "Reports invalid usages of UNION in queries. The inspection works in MySQL versions that are earlier than 8.0. Example (MySQL): 'SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;'",
+                  "markdown": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8032,38 +8032,6 @@
                 ]
               },
               {
-                "id": "HtmlExtraClosingTag",
-                "shortDescription": {
-                  "text": "Redundant closing tag"
-                },
-                "fullDescription": {
-                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
-                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpOctalEscape",
                 "shortDescription": {
                   "text": "Octal escape"
@@ -8085,6 +8053,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlExtraClosingTag",
+                "shortDescription": {
+                  "text": "Redundant closing tag"
+                },
+                "fullDescription": {
+                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
+                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "LossyEncoding",
-                "shortDescription": {
-                  "text": "Lossy encoding"
-                },
-                "fullDescription": {
-                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
-                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Internationalization",
-                      "index": 30,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpEscapedMetaCharacter",
                 "shortDescription": {
                   "text": "Escaped meta character"
@@ -8501,6 +8469,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "LossyEncoding",
+                "shortDescription": {
+                  "text": "Lossy encoding"
+                },
+                "fullDescription": {
+                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
+                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Internationalization",
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8940,7 +8940,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8972,7 +8972,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9004,7 +9004,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9036,7 +9036,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9068,7 +9068,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9100,7 +9100,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssConvertColorToHexInspection",
-                "shortDescription": {
-                  "text": "Color could be replaced with #-hex"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
-                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssInvalidPseudoSelector",
                 "shortDescription": {
                   "text": "Invalid pseudo-selector"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS/Invalid elements",
                       "index": 21,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssConvertColorToHexInspection",
+                "shortDescription": {
+                  "text": "Color could be replaced with #-hex"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
+                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "e9858decd5708e65d25b07b9d81fd73d8d243018",
+          "revisionId": "2c2e85559d17f14229dc7f0d60273cf639ed4bc1",
           "branch": "nightly",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -10732,9 +10732,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-03-30",
-        "guid": "f1b8e6cf-e680-47cd-9bfd-8b6c458dfd47",
+        "guid": "00b39ba0-03c8-4cbd-8afb-2bd1e2d7c074",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4564152753"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4564415720"
         }
       },
       "newlineSequences": [
