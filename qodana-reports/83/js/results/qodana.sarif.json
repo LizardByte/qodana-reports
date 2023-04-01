@@ -169,6 +169,10 @@
               "name": "HTML"
             },
             {
+              "id": "Cucumber",
+              "name": "Cucumber"
+            },
+            {
               "id": "JavaScript and TypeScript/Unused symbols",
               "name": "Unused symbols",
               "relationships": [
@@ -185,10 +189,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "id": "Cucumber",
-              "name": "Cucumber"
             },
             {
               "id": "JavaScript and TypeScript/Data flow",
@@ -383,6 +383,10 @@
               ]
             },
             {
+              "id": "Structural search",
+              "name": "Structural search"
+            },
+            {
               "id": "JavaScript and TypeScript/Function metrics",
               "name": "Function metrics",
               "relationships": [
@@ -399,10 +403,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "id": "Structural search",
-              "name": "Structural search"
             },
             {
               "id": "Dependency analysis",
@@ -1636,38 +1636,6 @@
                 ]
               },
               {
-                "id": "IfStatementWithTooManyBranchesJS",
-                "shortDescription": {
-                  "text": "'if' statement with too many branches"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'if' statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction. Use the field below to specify the maximum number of branches expected.",
-                  "markdown": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "NonBlockStatementBodyJS",
                 "shortDescription": {
                   "text": "Statement body without braces"
@@ -1689,6 +1657,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
                       "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "IfStatementWithTooManyBranchesJS",
+                "shortDescription": {
+                  "text": "'if' statement with too many branches"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'if' statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction. Use the field below to specify the maximum number of branches expected.",
+                  "markdown": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1880,7 +1880,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2296,7 +2296,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2532,38 +2532,6 @@
                 ]
               },
               {
-                "id": "ES6ShorthandObjectProperty",
-                "shortDescription": {
-                  "text": "Property can be replaced with shorthand"
-                },
-                "fullDescription": {
-                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
-                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnnecessaryLabelOnBreakStatementJS",
                 "shortDescription": {
                   "text": "Unnecessary label on 'break' statement"
@@ -2585,6 +2553,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ShorthandObjectProperty",
+                "shortDescription": {
+                  "text": "Property can be replaced with shorthand"
+                },
+                "fullDescription": {
+                  "text": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it. Example: 'var obj = {foo:foo}' After applying the quick-fix the code looks as follows: 'var obj = {foo}'",
+                  "markdown": "Reports an object property that can be converted to ES6 shorthand style and provides a quick-fix to do it.\n\nExample:\n\n\n    var obj = {foo:foo}\n\nAfter applying the quick-fix the code looks as follows:\n\n\n    var obj = {foo}\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3012,38 +3012,6 @@
                 ]
               },
               {
-                "id": "PointlessBooleanExpressionJS",
-                "shortDescription": {
-                  "text": "Pointless statement or boolean expression"
-                },
-                "fullDescription": {
-                  "text": "Reports a pointless or pointlessly complicated boolean expression or statement. Example: 'let a = !(false && x);\n  let b = false || x;' After the quick fix is applied the result looks like: 'let a = true;\n  let b = x;'",
-                  "markdown": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSReferencingMutableVariableFromClosure",
                 "shortDescription": {
                   "text": "Referencing mutable variable from closure"
@@ -3065,6 +3033,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PointlessBooleanExpressionJS",
+                "shortDescription": {
+                  "text": "Pointless statement or boolean expression"
+                },
+                "fullDescription": {
+                  "text": "Reports a pointless or pointlessly complicated boolean expression or statement. Example: 'let a = !(false && x);\n  let b = false || x;' After the quick fix is applied the result looks like: 'let a = true;\n  let b = x;'",
+                  "markdown": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3384,7 +3384,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3524,38 +3524,6 @@
                 ]
               },
               {
-                "id": "TypeScriptCheckImport",
-                "shortDescription": {
-                  "text": "Unresolved imported name"
-                },
-                "fullDescription": {
-                  "text": "Reports an unresolved name or binding in an 'import' declaration in TypeScript code.",
-                  "markdown": "Reports an unresolved name or binding in an `import` declaration in TypeScript code."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/TypeScript",
-                      "index": 23,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSConstantReassignment",
                 "shortDescription": {
                   "text": "Attempt to assign to const or readonly variable"
@@ -3577,6 +3545,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Validity issues",
                       "index": 24,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TypeScriptCheckImport",
+                "shortDescription": {
+                  "text": "Unresolved imported name"
+                },
+                "fullDescription": {
+                  "text": "Reports an unresolved name or binding in an 'import' declaration in TypeScript code.",
+                  "markdown": "Reports an unresolved name or binding in an `import` declaration in TypeScript code."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/TypeScript",
+                      "index": 23,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3832,7 +3832,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4536,7 +4536,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5028,38 +5028,6 @@
                 ]
               },
               {
-                "id": "ES6ClassMemberInitializationOrder",
-                "shortDescription": {
-                  "text": "Use of possibly unassigned property in a static initializer"
-                },
-                "fullDescription": {
-                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
-                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "EmptyTryBlockJS",
                 "shortDescription": {
                   "text": "Empty 'try' block"
@@ -5081,6 +5049,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ES6ClassMemberInitializationOrder",
+                "shortDescription": {
+                  "text": "Use of possibly unassigned property in a static initializer"
+                },
+                "fullDescription": {
+                  "text": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet. Initialization of class members happens consequently for fields, so a field cannot reference another field that is declared later.",
+                  "markdown": "Reports a class member initializer which references another non-hoisted class member while the latter may be not initialized yet.   \n\nInitialization of class members happens consequently for fields, so a field cannot reference another field that is declared later."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6072,7 +6072,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6552,7 +6552,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6616,7 +6616,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6808,7 +6808,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Function metrics",
-                      "index": 30,
+                      "index": 31,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -8344,7 +8344,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -9728,7 +9728,7 @@
                   {
                     "target": {
                       "id": "Structural search",
-                      "index": 31,
+                      "index": 30,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -10956,38 +10956,6 @@
                 ]
               },
               {
-                "id": "XmlDeprecatedElement",
-                "shortDescription": {
-                  "text": "Deprecated symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated XML element or attribute. Symbols can be marked by XML comment or documentation tag with text 'deprecated'.",
-                  "markdown": "Reports a deprecated XML element or attribute.\n\nSymbols can be marked by XML comment or documentation tag with text 'deprecated'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 34,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpRedundantNestedCharacterClass",
                 "shortDescription": {
                   "text": "Redundant nested character class"
@@ -11009,6 +10977,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 38,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDeprecatedElement",
+                "shortDescription": {
+                  "text": "Deprecated symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated XML element or attribute. Symbols can be marked by XML comment or documentation tag with text 'deprecated'.",
+                  "markdown": "Reports a deprecated XML element or attribute.\n\nSymbols can be marked by XML comment or documentation tag with text 'deprecated'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 34,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11564,7 +11564,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11596,7 +11596,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11628,7 +11628,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11660,7 +11660,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11692,7 +11692,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11724,7 +11724,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11756,7 +11756,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -13972,7 +13972,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/qodana-reports.git",
-          "revisionId": "f8a7a6a024323cddbb4caf1ce60b7721cadac90c",
+          "revisionId": "cc1e7963cd5c0d1eeba15b08e4499c964c26678e",
           "branch": "bot/manual-update-global-workflow-nightly-76sypm",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/qodana-reports.git",
@@ -14481,9 +14481,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-04-01",
-        "guid": "1673cff3-d9fe-4922-87fc-e505221ee787",
+        "guid": "bb3a6257-adad-4043-9946-afbce09fe747",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4585204446"
+          "jobUrl": "https://github.com/LizardByte/qodana-reports/actions/runs/4585446722"
         }
       },
       "newlineSequences": [
