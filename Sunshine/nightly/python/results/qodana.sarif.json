@@ -59,12 +59,12 @@
               "name": "RegExp"
             },
             {
-              "id": "Properties files",
-              "name": "Properties files"
-            },
-            {
               "id": "MySQL",
               "name": "MySQL"
+            },
+            {
+              "id": "Properties files",
+              "name": "Properties files"
             },
             {
               "id": "CSS",
@@ -1884,20 +1884,20 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -1916,20 +1916,20 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2012,13 +2012,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2044,13 +2044,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2396,20 +2396,20 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2428,20 +2428,20 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3068,20 +3068,20 @@
                 ]
               },
               {
-                "id": "PyAbstractClassInspection",
+                "id": "PyOldStyleClassesInspection",
                 "shortDescription": {
-                  "text": "Class must implement all abstract methods"
+                  "text": "Old-style class contains new-style class features"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
-                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
+                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3100,20 +3100,20 @@
                 ]
               },
               {
-                "id": "PyOldStyleClassesInspection",
+                "id": "PyAbstractClassInspection",
                 "shortDescription": {
-                  "text": "Old-style class contains new-style class features"
+                  "text": "Class must implement all abstract methods"
                 },
                 "fullDescription": {
-                  "text": "Reports occurrences of new-style class features in old-style classes. The inspection highlights '__slots__', '__getattribute__', and 'super()' inside old-style classes.",
-                  "markdown": "Reports occurrences of\n[new-style class features](https://www.python.org/doc/newstyle/)\nin old-style classes. The inspection highlights\n`__slots__`, `__getattribute__`, and `super()`\ninside old-style classes."
+                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
+                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "Query_bound_parameters",
-                "shortDescription": {
-                  "text": "Query does not have required bound parameters"
-                },
-                "fullDescription": {
-                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
-                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Google App Engine (Python)",
-                      "index": 4,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyArgumentListInspection",
                 "shortDescription": {
                   "text": "Incorrect call arguments"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "Query_bound_parameters",
+                "shortDescription": {
+                  "text": "Query does not have required bound parameters"
+                },
+                "fullDescription": {
+                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
+                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Google App Engine (Python)",
+                      "index": 4,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3708,38 +3708,6 @@
                 ]
               },
               {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
                   "text": "Incompatible stub packages"
@@ -3793,6 +3761,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4700,7 +4700,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,6 +4776,38 @@
                 ]
               },
               {
+                "id": "MysqlSpaceAfterFunctionNameInspection",
+                "shortDescription": {
+                  "text": "Whitespace between the function name and the open parenthesis"
+                },
+                "fullDescription": {
+                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
+                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "SqlDerivedTableAliasInspection",
                 "shortDescription": {
                   "text": "Each derived table should have alias"
@@ -4797,38 +4829,6 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "MysqlSpaceAfterFunctionNameInspection",
-                "shortDescription": {
-                  "text": "Whitespace between the function name and the open parenthesis"
-                },
-                "fullDescription": {
-                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
-                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5128,13 +5128,13 @@
                 ]
               },
               {
-                "id": "SqlAutoIncrementDuplicateInspection",
+                "id": "SqlRedundantAliasInspection",
                 "shortDescription": {
-                  "text": "Auto-increment duplicate"
+                  "text": "Redundant alias expressions"
                 },
                 "fullDescription": {
-                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
-                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5160,13 +5160,13 @@
                 ]
               },
               {
-                "id": "SqlRedundantAliasInspection",
+                "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
-                  "text": "Redundant alias expressions"
+                  "text": "Auto-increment duplicate"
                 },
                 "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
+                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5884,7 +5884,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 7,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JsonSchemaDeprecation",
                 "shortDescription": {
                   "text": "Deprecated JSON property"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 9,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 7,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -7840,38 +7840,6 @@
                 ]
               },
               {
-                "id": "XmlDeprecatedElement",
-                "shortDescription": {
-                  "text": "Deprecated symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated XML element or attribute. Symbols can be marked by XML comment or documentation tag with text 'deprecated'.",
-                  "markdown": "Reports a deprecated XML element or attribute.\n\nSymbols can be marked by XML comment or documentation tag with text 'deprecated'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 7,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpRedundantNestedCharacterClass",
                 "shortDescription": {
                   "text": "Redundant nested character class"
@@ -7893,6 +7861,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDeprecatedElement",
+                "shortDescription": {
+                  "text": "Deprecated symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated XML element or attribute. Symbols can be marked by XML comment or documentation tag with text 'deprecated'.",
+                  "markdown": "Reports a deprecated XML element or attribute.\n\nSymbols can be marked by XML comment or documentation tag with text 'deprecated'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 7,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8032,38 +8032,6 @@
                 ]
               },
               {
-                "id": "HtmlExtraClosingTag",
-                "shortDescription": {
-                  "text": "Redundant closing tag"
-                },
-                "fullDescription": {
-                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
-                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpOctalEscape",
                 "shortDescription": {
                   "text": "Octal escape"
@@ -8085,6 +8053,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlExtraClosingTag",
+                "shortDescription": {
+                  "text": "Redundant closing tag"
+                },
+                "fullDescription": {
+                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
+                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "LossyEncoding",
-                "shortDescription": {
-                  "text": "Lossy encoding"
-                },
-                "fullDescription": {
-                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
-                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Internationalization",
-                      "index": 30,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpEscapedMetaCharacter",
                 "shortDescription": {
                   "text": "Escaped meta character"
@@ -8512,13 +8480,45 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "LossyEncoding",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Lossy encoding"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
+                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Internationalization",
+                      "index": 30,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpRepeatedSpace",
+                "shortDescription": {
+                  "text": "Consecutive spaces"
+                },
+                "fullDescription": {
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -8544,13 +8544,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -8940,7 +8940,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8972,7 +8972,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9004,7 +9004,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9036,7 +9036,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9068,7 +9068,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9100,7 +9100,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssInvalidPseudoSelector",
-                "shortDescription": {
-                  "text": "Invalid pseudo-selector"
-                },
-                "fullDescription": {
-                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
-                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS/Invalid elements",
-                      "index": 21,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssConvertColorToHexInspection",
                 "shortDescription": {
                   "text": "Color could be replaced with #-hex"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS",
                       "index": 14,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssInvalidPseudoSelector",
+                "shortDescription": {
+                  "text": "Invalid pseudo-selector"
+                },
+                "fullDescription": {
+                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
+                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS/Invalid elements",
+                      "index": 21,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,22 +10663,22 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "0e92bdd29c71eaf0015e1e04699cff1e50598020",
+          "revisionId": "abf4ab42a0b03b7ce77aedd5eff73b02b694752c",
           "branch": "nightly",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
-            "lastAuthorName": "aseligmann",
+            "lastAuthorName": "ns6089",
             "vcsType": "Git",
-            "lastAuthorEmail": "albertsseligmann@gmail.com"
+            "lastAuthorEmail": "61738816+ns6089@users.noreply.github.com"
           }
         }
       ],
       "results": [],
       "automationDetails": {
-        "id": "project/qodana/2023-04-08",
-        "guid": "fc8d0d26-ece0-464d-b820-23a2b81b79d7",
+        "id": "project/qodana/2023-04-09",
+        "guid": "cbf387f5-2569-41b4-b352-16fe2104b70e",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4647196522"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4647893949"
         }
       },
       "newlineSequences": [
