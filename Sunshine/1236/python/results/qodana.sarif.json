@@ -59,12 +59,12 @@
               "name": "RegExp"
             },
             {
-              "id": "Properties files",
-              "name": "Properties files"
-            },
-            {
               "id": "MySQL",
               "name": "MySQL"
+            },
+            {
+              "id": "Properties files",
+              "name": "Properties files"
             },
             {
               "id": "CSS",
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "Query_bound_parameters",
-                "shortDescription": {
-                  "text": "Query does not have required bound parameters"
-                },
-                "fullDescription": {
-                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
-                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Google App Engine (Python)",
-                      "index": 4,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyArgumentListInspection",
                 "shortDescription": {
                   "text": "Incorrect call arguments"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "Query_bound_parameters",
+                "shortDescription": {
+                  "text": "Query does not have required bound parameters"
+                },
+                "fullDescription": {
+                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
+                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Google App Engine (Python)",
+                      "index": 4,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3740,20 +3740,20 @@
                 ]
               },
               {
-                "id": "PyStubPackagesCompatibilityInspection",
+                "id": "PyProtectedMemberInspection",
                 "shortDescription": {
-                  "text": "Incompatible stub packages"
+                  "text": "Accessing a protected member of a class or a module"
                 },
                 "fullDescription": {
-                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
-                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
+                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3772,20 +3772,20 @@
                 ]
               },
               {
-                "id": "PyProtectedMemberInspection",
+                "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
-                  "text": "Accessing a protected member of a class or a module"
+                  "text": "Incompatible stub packages"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
-                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
+                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
+                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -4700,7 +4700,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,38 +4776,6 @@
                 ]
               },
               {
-                "id": "MysqlSpaceAfterFunctionNameInspection",
-                "shortDescription": {
-                  "text": "Whitespace between the function name and the open parenthesis"
-                },
-                "fullDescription": {
-                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
-                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlDerivedTableAliasInspection",
                 "shortDescription": {
                   "text": "Each derived table should have alias"
@@ -4829,6 +4797,38 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "MysqlSpaceAfterFunctionNameInspection",
+                "shortDescription": {
+                  "text": "Whitespace between the function name and the open parenthesis"
+                },
+                "fullDescription": {
+                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
+                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5128,13 +5128,13 @@
                 ]
               },
               {
-                "id": "SqlRedundantAliasInspection",
+                "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
-                  "text": "Redundant alias expressions"
+                  "text": "Auto-increment duplicate"
                 },
                 "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
+                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5192,13 +5192,13 @@
                 ]
               },
               {
-                "id": "SqlAutoIncrementDuplicateInspection",
+                "id": "SqlRedundantAliasInspection",
                 "shortDescription": {
-                  "text": "Auto-increment duplicate"
+                  "text": "Redundant alias expressions"
                 },
                 "fullDescription": {
-                  "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
-                  "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5384,13 +5384,13 @@
                 ]
               },
               {
-                "id": "SqlDtInspection",
+                "id": "SqlSideEffectsInspection",
                 "shortDescription": {
-                  "text": "Ill-formed date/time literals"
+                  "text": "Statement with side effects"
                 },
                 "fullDescription": {
-                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
-                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
+                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5416,13 +5416,13 @@
                 ]
               },
               {
-                "id": "SqlSideEffectsInspection",
+                "id": "SqlDtInspection",
                 "shortDescription": {
-                  "text": "Statement with side effects"
+                  "text": "Ill-formed date/time literals"
                 },
                 "fullDescription": {
-                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
-                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
+                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5884,7 +5884,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8032,38 +8032,6 @@
                 ]
               },
               {
-                "id": "HtmlExtraClosingTag",
-                "shortDescription": {
-                  "text": "Redundant closing tag"
-                },
-                "fullDescription": {
-                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
-                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpOctalEscape",
                 "shortDescription": {
                   "text": "Octal escape"
@@ -8085,6 +8053,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlExtraClosingTag",
+                "shortDescription": {
+                  "text": "Redundant closing tag"
+                },
+                "fullDescription": {
+                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
+                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8940,7 +8940,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8972,7 +8972,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9004,7 +9004,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9036,7 +9036,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9068,7 +9068,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9100,7 +9100,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "5836f14a3837e814c5035b45cfa79186acf64fe9",
+          "revisionId": "b3158336bd2de2a7e68510c3983972ba7a55b3cc",
           "branch": "docs-improvements-to-source-code-documentation",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -10676,9 +10676,9 @@
       "results": [],
       "automationDetails": {
         "id": "project/qodana/2023-04-28",
-        "guid": "327a2e37-7f83-47fd-80aa-1f1bac49000b",
+        "guid": "0d3011d4-7382-4cb6-a3f3-6ca6e8caf762",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4835607648"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4835633630"
         }
       },
       "newlineSequences": [
