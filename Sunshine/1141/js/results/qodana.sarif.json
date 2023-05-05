@@ -7,7 +7,7 @@
         "driver": {
           "name": "QDJS",
           "fullName": "Qodana for JS",
-          "version": "231.8007.24",
+          "version": "231.8898.72",
           "rules": [],
           "taxa": [
             {
@@ -661,7 +661,7 @@
         "extensions": [
           {
             "name": "org.editorconfig.editorconfigjetbrains",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "EditorConfigCharClassRedundancy",
@@ -1569,7 +1569,7 @@
           },
           {
             "name": "JavaScript",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "ConstantConditionalExpressionJS",
@@ -2436,38 +2436,6 @@
                 ]
               },
               {
-                "id": "TypeScriptMissingConfigOption",
-                "shortDescription": {
-                  "text": "Missing tsconfig.json option "
-                },
-                "fullDescription": {
-                  "text": "Reports a usage that requires an explicit option in 'tsconfig.json'. For example, to use JSX in '.tsx' files, 'tsconfig.json' must contain '\"jsx\"' property.",
-                  "markdown": "Reports a usage that requires an explicit option in `tsconfig.json`. For example, to use JSX in `.tsx` files, `tsconfig.json` must contain `\"jsx\"` property."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/TypeScript",
-                      "index": 23,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSObjectNullOrUndefined",
                 "shortDescription": {
                   "text": "Object is 'null' or 'undefined'"
@@ -2489,6 +2457,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TypeScriptMissingConfigOption",
+                "shortDescription": {
+                  "text": "Missing tsconfig.json option "
+                },
+                "fullDescription": {
+                  "text": "Reports a usage that requires an explicit option in 'tsconfig.json'. For example, to use JSX in '.tsx' files, 'tsconfig.json' must contain '\"jsx\"' property.",
+                  "markdown": "Reports a usage that requires an explicit option in `tsconfig.json`. For example, to use JSX in `.tsx` files, `tsconfig.json` must contain `\"jsx\"` property."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/TypeScript",
+                      "index": 23,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2532,38 +2532,6 @@
                 ]
               },
               {
-                "id": "UnnecessaryLabelOnBreakStatementJS",
-                "shortDescription": {
-                  "text": "Unnecessary label on 'break' statement"
-                },
-                "fullDescription": {
-                  "text": "Reports a labeled 'break' statement whose labels may be removed without changing the flow of control.",
-                  "markdown": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Control flow issues",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ES6ShorthandObjectProperty",
                 "shortDescription": {
                   "text": "Property can be replaced with shorthand"
@@ -2585,6 +2553,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "UnnecessaryLabelOnBreakStatementJS",
+                "shortDescription": {
+                  "text": "Unnecessary label on 'break' statement"
+                },
+                "fullDescription": {
+                  "text": "Reports a labeled 'break' statement whose labels may be removed without changing the flow of control.",
+                  "markdown": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Control flow issues",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3428,38 +3428,6 @@
                 ]
               },
               {
-                "id": "NpmUsedModulesInstalled",
-                "shortDescription": {
-                  "text": "Missing module dependency"
-                },
-                "fullDescription": {
-                  "text": "Reports a module from a 'require()' call or an 'import' statement that is not installed or is not listed in package.json dependencies. Suggests installing the module and/or including it into package.json. For 'require()' calls, works only in the files from the scope of Node.js Core JavaScript library.",
-                  "markdown": "Reports a module from a `require()` call or an `import` statement that is not installed or is not listed in package.json dependencies.\n\nSuggests installing the module and/or including it into package.json.\n\nFor `require()` calls, works only in the files from the scope of *Node.js Core* JavaScript library."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Imports and dependencies",
-                      "index": 41,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnusedCatchParameterJS",
                 "shortDescription": {
                   "text": "Unused 'catch' parameter"
@@ -3481,6 +3449,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "NpmUsedModulesInstalled",
+                "shortDescription": {
+                  "text": "Missing module dependency"
+                },
+                "fullDescription": {
+                  "text": "Reports a module from a 'require()' call or an 'import' statement that is not installed or is not listed in package.json dependencies. Suggests installing the module and/or including it into package.json. For 'require()' calls, works only in the files from the scope of Node.js Core JavaScript library.",
+                  "markdown": "Reports a module from a `require()` call or an `import` statement that is not installed or is not listed in package.json dependencies.\n\nSuggests installing the module and/or including it into package.json.\n\nFor `require()` calls, works only in the files from the scope of *Node.js Core* JavaScript library."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Imports and dependencies",
+                      "index": 41,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3524,38 +3524,6 @@
                 ]
               },
               {
-                "id": "JSConstantReassignment",
-                "shortDescription": {
-                  "text": "Attempt to assign to const or readonly variable"
-                },
-                "fullDescription": {
-                  "text": "Reports reassigning a value to a constant or a readonly variable.",
-                  "markdown": "Reports reassigning a value to a constant or a readonly variable."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Validity issues",
-                      "index": 24,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "TypeScriptCheckImport",
                 "shortDescription": {
                   "text": "Unresolved imported name"
@@ -3577,6 +3545,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/TypeScript",
                       "index": 23,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSConstantReassignment",
+                "shortDescription": {
+                  "text": "Attempt to assign to const or readonly variable"
+                },
+                "fullDescription": {
+                  "text": "Reports reassigning a value to a constant or a readonly variable.",
+                  "markdown": "Reports reassigning a value to a constant or a readonly variable."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Validity issues",
+                      "index": 24,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4036,38 +4036,6 @@
                 ]
               },
               {
-                "id": "JSTypeOfValues",
-                "shortDescription": {
-                  "text": "'typeof' comparison with non-standard value"
-                },
-                "fullDescription": {
-                  "text": "Reports a comparison of a 'typeof' expression with a literal string which is not one of the standard types: 'undefined', 'object', 'boolean', 'number', 'string', 'function', or 'symbol'. Such comparisons always return 'false'.",
-                  "markdown": "Reports a comparison of a `typeof` expression with a literal string which is not one of the standard types: `undefined`, `object`, `boolean`, `number`, `string`, `function`, or `symbol`. Such comparisons always return `false`."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Probable bugs",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "NestedConditionalExpressionJS",
                 "shortDescription": {
                   "text": "Nested conditional expression"
@@ -4089,6 +4057,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Potentially confusing code constructs",
                       "index": 25,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSTypeOfValues",
+                "shortDescription": {
+                  "text": "'typeof' comparison with non-standard value"
+                },
+                "fullDescription": {
+                  "text": "Reports a comparison of a 'typeof' expression with a literal string which is not one of the standard types: 'undefined', 'object', 'boolean', 'number', 'string', 'function', or 'symbol'. Such comparisons always return 'false'.",
+                  "markdown": "Reports a comparison of a `typeof` expression with a literal string which is not one of the standard types: `undefined`, `object`, `boolean`, `number`, `string`, `function`, or `symbol`. Such comparisons always return `false`."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Probable bugs",
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4132,38 +4132,6 @@
                 ]
               },
               {
-                "id": "TextLabelInSwitchStatementJS",
-                "shortDescription": {
-                  "text": "Text label in 'switch' statement"
-                },
-                "fullDescription": {
-                  "text": "Reports a labeled statement inside a 'switch' statement, which often results from a typo. Example: 'switch(x)\n    {\n        case 1:\n        case2:   //typo!\n        case 3:\n            break;\n    }'",
-                  "markdown": "Reports a labeled statement inside a `switch` statement, which often results from a typo.\n\nExample:\n\n\n        switch(x)\n        {\n            case 1:\n            case2:   //typo!\n            case 3:\n                break;\n        }\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Switch statement issues",
-                      "index": 45,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ES6PossiblyAsyncFunction",
                 "shortDescription": {
                   "text": "'await' in non-async function"
@@ -4185,6 +4153,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Async code and promises",
                       "index": 47,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TextLabelInSwitchStatementJS",
+                "shortDescription": {
+                  "text": "Text label in 'switch' statement"
+                },
+                "fullDescription": {
+                  "text": "Reports a labeled statement inside a 'switch' statement, which often results from a typo. Example: 'switch(x)\n    {\n        case 1:\n        case2:   //typo!\n        case 3:\n            break;\n    }'",
+                  "markdown": "Reports a labeled statement inside a `switch` statement, which often results from a typo.\n\nExample:\n\n\n        switch(x)\n        {\n            case 1:\n            case2:   //typo!\n            case 3:\n                break;\n        }\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Switch statement issues",
+                      "index": 45,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -5636,20 +5636,20 @@
                 ]
               },
               {
-                "id": "JSUnfilteredForInLoop",
+                "id": "JSAnnotator",
                 "shortDescription": {
-                  "text": "Unfiltered for..in loop"
+                  "text": "ECMAScript specification is not followed"
                 },
                 "fullDescription": {
-                  "text": "Reports unfiltered 'for-in' loops. The use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when 'Object''s prototype may be incorrectly modified. For example, the following code will print 42 and myMethod: 'Object.prototype.myMethod = function myMethod() {};\nlet a = { foo: 42 };\nfor (let i in a) {\n  console.log(a[i]);\n}' Suggests replacing the whole loop with a 'Object.keys()' method or adding a 'hasOwnProperty()' check. After applying the quick-fix the code looks as follows: 'for (let i in a) {\n  if (a.hasOwnProperty(i)) {\n    console.log(a[i]);\n  }\n}'",
-                  "markdown": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
+                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
+                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
-                  "level": "warning",
+                  "level": "error",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
                   }
                 },
                 "relationships": [
@@ -5700,20 +5700,20 @@
                 ]
               },
               {
-                "id": "JSAnnotator",
+                "id": "JSUnfilteredForInLoop",
                 "shortDescription": {
-                  "text": "ECMAScript specification is not followed"
+                  "text": "Unfiltered for..in loop"
                 },
                 "fullDescription": {
-                  "text": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters. Generally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors.",
-                  "markdown": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
+                  "text": "Reports unfiltered 'for-in' loops. The use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when 'Object''s prototype may be incorrectly modified. For example, the following code will print 42 and myMethod: 'Object.prototype.myMethod = function myMethod() {};\nlet a = { foo: 42 };\nfor (let i in a) {\n  console.log(a[i]);\n}' Suggests replacing the whole loop with a 'Object.keys()' method or adding a 'hasOwnProperty()' check. After applying the quick-fix the code looks as follows: 'for (let i in a) {\n  if (a.hasOwnProperty(i)) {\n    console.log(a[i]);\n  }\n}'",
+                  "markdown": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
-                  "level": "error",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -7044,38 +7044,6 @@
                 ]
               },
               {
-                "id": "ConstantOnLHSOfComparisonJS",
-                "shortDescription": {
-                  "text": "Constant on left side of comparison"
-                },
-                "fullDescription": {
-                  "text": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons.",
-                  "markdown": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Code style issues",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSCheckFunctionSignatures",
                 "shortDescription": {
                   "text": "Signature mismatch"
@@ -7097,6 +7065,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "ConstantOnLHSOfComparisonJS",
+                "shortDescription": {
+                  "text": "Constant on left side of comparison"
+                },
+                "fullDescription": {
+                  "text": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons.",
+                  "markdown": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Code style issues",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7940,38 +7940,6 @@
                 ]
               },
               {
-                "id": "InnerHTMLJS",
-                "shortDescription": {
-                  "text": "Use of 'innerHTML' property"
-                },
-                "fullDescription": {
-                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
-                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/DOM issues",
-                      "index": 46,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSMissingSwitchBranches",
                 "shortDescription": {
                   "text": "'switch' statement has missing branches"
@@ -7993,6 +7961,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Switch statement issues",
                       "index": 45,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "InnerHTMLJS",
+                "shortDescription": {
+                  "text": "Use of 'innerHTML' property"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript access to DOM nodes as text using the 'innerHTML' property. Most usages of 'innerHTML' are performed better with explicit DOM calls, such as 'getElementByID()' and 'createElement()'. Additionally, 'innerHTML' will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs.",
+                  "markdown": "Reports a JavaScript access to DOM nodes as text using the `innerHTML` property. Most usages of `innerHTML` are performed better with explicit DOM calls, such as `getElementByID()` and `createElement()`. Additionally, `innerHTML` will not work with XML DOMs, including DOMs for XHTML if viewed as XML. This can lead to difficulties in diagnosing bugs."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/DOM issues",
+                      "index": 46,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -8292,38 +8292,6 @@
                 ]
               },
               {
-                "id": "JSUnusedLocalSymbols",
-                "shortDescription": {
-                  "text": "Unused local symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
-                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ReturnFromFinallyBlockJS",
                 "shortDescription": {
                   "text": "'return' inside 'finally' block"
@@ -8345,6 +8313,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSUnusedLocalSymbols",
+                "shortDescription": {
+                  "text": "Unused local symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Unused symbols",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -8397,7 +8397,7 @@
           },
           {
             "name": "AngularJS",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "AngularNgOptimizedImage",
@@ -9008,6 +9008,38 @@
                 ]
               },
               {
+                "id": "AngularMissingRequiredDirectiveInputBinding",
+                "shortDescription": {
+                  "text": "Missing required directive input"
+                },
+                "fullDescription": {
+                  "text": "Reports a missing binding for a required directive input.",
+                  "markdown": "Reports a missing binding for a required directive input."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Angular",
+                      "index": 3,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "AngularInsecureBindingToEvent",
                 "shortDescription": {
                   "text": "Insecure binding to event"
@@ -9049,7 +9081,7 @@
           },
           {
             "name": "org.intellij.plugins.postcss",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "PostCssCustomSelector",
@@ -9221,7 +9253,7 @@
           },
           {
             "name": "org.jetbrains.plugins.sass",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "SassScssUnresolvedMixin",
@@ -9361,7 +9393,7 @@
           },
           {
             "name": "com.jetbrains.sh",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "ShellCheck",
@@ -9405,7 +9437,7 @@
           },
           {
             "name": "Karma",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "KarmaConfigFile",
@@ -9449,7 +9481,7 @@
           },
           {
             "name": "com.intellij",
-            "version": "231.8007.24",
+            "version": "231.8898.72",
             "rules": [
               {
                 "id": "JsonSchemaDeprecation",
@@ -11340,13 +11372,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -11372,13 +11404,13 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "RegExpRepeatedSpace",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Consecutive spaces"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -11541,7 +11573,7 @@
           },
           {
             "name": "gherkin",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "GherkinScenarioToScenarioOutline",
@@ -11777,7 +11809,7 @@
           },
           {
             "name": "HtmlTools",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "HtmlRequiredAltAttribute",
@@ -12141,7 +12173,7 @@
           },
           {
             "name": "com.intellij.css",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "CssInvalidHtmlTagReference",
@@ -12953,7 +12985,7 @@
           },
           {
             "name": "com.dmarcotte.handlebars",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "HbEmptyBlock",
@@ -12997,7 +13029,7 @@
           },
           {
             "name": "com.intellij.plugins.dependencyAnalysis",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "CheckThirdPartySoftwareList",
@@ -13105,7 +13137,7 @@
           },
           {
             "name": "org.jetbrains.plugins.yaml",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "YAMLSchemaValidation",
@@ -13309,7 +13341,7 @@
           },
           {
             "name": "org.jetbrains.plugins.less",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "LessUnresolvedMixin",
@@ -13417,7 +13449,7 @@
           },
           {
             "name": "org.intellij.intelliLang",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "InjectedReferences",
@@ -13461,7 +13493,7 @@
           },
           {
             "name": "org.jetbrains.plugins.vue",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "VueDataFunction",
@@ -13665,7 +13697,7 @@
           },
           {
             "name": "org.intellij.qodana",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "QodanaServiceMessage",
@@ -13709,7 +13741,7 @@
           },
           {
             "name": "com.jetbrains.lang.ejs",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "EjsUnresolvedInclude",
@@ -13753,7 +13785,7 @@
           },
           {
             "name": "intellij.webpack",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "WebpackConfigHighlighting",
@@ -13797,7 +13829,7 @@
           },
           {
             "name": "tslint",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "TsLint",
@@ -13841,7 +13873,7 @@
           },
           {
             "name": "com.jetbrains.plugins.jade",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "JadeTabsAndSpaces",
@@ -13885,7 +13917,7 @@
           },
           {
             "name": "tanvd.grazi",
-            "version": "231.8007",
+            "version": "231.8898",
             "rules": [
               {
                 "id": "LanguageDetectionInspection",
@@ -13972,7 +14004,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "c954f0a2a25dadb168f88f70bdbf2898126650f3",
+          "revisionId": "ea59b24e16f20bd0e2ac9871bf3d5e019dd00226",
           "branch": "packaging-fix-macos-dmg",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -13999,9 +14031,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 1153,
+                  "startLine": 1155,
                   "startColumn": 27,
-                  "charOffset": 43189,
+                  "charOffset": 43711,
                   "charLength": 4,
                   "snippet": {
                     "text": "[\\d]"
@@ -14009,9 +14041,9 @@
                   "sourceLanguage": "RegExp"
                 },
                 "contextRegion": {
-                  "startLine": 1151,
+                  "startLine": 1153,
                   "startColumn": 1,
-                  "charOffset": 43072,
+                  "charOffset": 43594,
                   "charLength": 228,
                   "snippet": {
                     "text": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
@@ -14027,7 +14059,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "f0f43e0377a16a413595e1601b6bfdb9be95a18aee8cdf7d5cffb104fd683a7f"
+            "equalIndicator/v1": "241e39030bc333ebfed959a6a400829787e77d518446cc6625910fab4d8d5d2b"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14054,9 +14086,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 1153,
+                  "startLine": 1155,
                   "startColumn": 33,
-                  "charOffset": 43195,
+                  "charOffset": 43717,
                   "charLength": 4,
                   "snippet": {
                     "text": "[\\d]"
@@ -14064,9 +14096,9 @@
                   "sourceLanguage": "RegExp"
                 },
                 "contextRegion": {
-                  "startLine": 1151,
+                  "startLine": 1153,
                   "startColumn": 1,
-                  "charOffset": 43072,
+                  "charOffset": 43594,
                   "charLength": 228,
                   "snippet": {
                     "text": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
@@ -14082,7 +14114,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "e9cb42cca7228c5f8dcb1c6c5363343304921aa7a23a4de1bffa962306b52d1c"
+            "equalIndicator/v1": "634a89898d8168264a98e91c434117fe68afbbfa4b9afe55bdf3ceb696a65011"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14164,9 +14196,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 1084,
+                  "startLine": 1087,
                   "startColumn": 15,
-                  "charOffset": 40621,
+                  "charOffset": 41191,
                   "charLength": 3,
                   "snippet": {
                     "text": "app"
@@ -14174,12 +14206,12 @@
                   "sourceLanguage": "JavaScript"
                 },
                 "contextRegion": {
-                  "startLine": 1082,
+                  "startLine": 1085,
                   "startColumn": 1,
-                  "charOffset": 40527,
-                  "charLength": 227,
+                  "charOffset": 41128,
+                  "charLength": 196,
                   "snippet": {
-                    "text": "          this.restart_supported = (this.config.restart_supported === \"true\");\n\n          var app = document.getElementById(\"app\");\n          if (this.platform === \"windows\") {\n            this.tabs = this.tabs.filter((el) => {"
+                    "text": "          this.platform = this.config.platform;\n\n          var app = document.getElementById(\"app\");\n          if (this.platform === \"windows\") {\n            this.tabs = this.tabs.filter((el) => {"
                   }
                 }
               },
@@ -14192,7 +14224,62 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "f6640448f77208c46d990ebc265ea05aa9de516faf7b10725295e2148c122479"
+            "equalIndicator/v1": "0d30a8c08f40e06b7e275e3dab3ee57468bd22155f1c3b039b41f1f7631ce13f"
+          },
+          "baselineState": "unchanged",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "JavaScript"
+            ]
+          }
+        },
+        {
+          "ruleId": "JSUnusedLocalSymbols",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Unused local variable i",
+            "markdown": "Unused local variable i"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src_assets/common/assets/web/apps.html",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 284,
+                  "startColumn": 33,
+                  "charOffset": 9485,
+                  "charLength": 1,
+                  "snippet": {
+                    "text": "i"
+                  },
+                  "sourceLanguage": "JavaScript"
+                },
+                "contextRegion": {
+                  "startLine": 282,
+                  "startColumn": 1,
+                  "charOffset": 9409,
+                  "charLength": 183,
+                  "snippet": {
+                    "text": "                </div>\n                <div\n                  v-for=\"(cover,i) in coverCandidates\"\n                  :key=\"'i'\"\n                  class=\"col-12 col-sm-6 col-lg-4 mb-3\""
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "e419255593c8832f076c027817d52e60b9a2c5c0a781ed3ea9b20464adb3ee0a"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14219,9 +14306,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 311,
+                  "startLine": 405,
                   "startColumn": 23,
-                  "charOffset": 10409,
+                  "charOffset": 13055,
                   "charLength": 6,
                   "snippet": {
                     "text": "$event"
@@ -14229,12 +14316,12 @@
                   "sourceLanguage": "JavaScript"
                 },
                 "contextRegion": {
-                  "startLine": 309,
+                  "startLine": 403,
                   "startColumn": 1,
-                  "charOffset": 10366,
-                  "charLength": 123,
+                  "charOffset": 12974,
+                  "charLength": 161,
                   "snippet": {
-                    "text": "        });\n      },\n      showCoverFinder($event) {\n        this.coverCandidates = [];\n        this.coverSearching = true;"
+                    "text": "        this.editForm[\"prep-cmd\"].push(template);\n      },\n      showCoverFinder($event) {\n        this.coverCandidates = [];\n        this.coverSearching = true;"
                   }
                 }
               },
@@ -14247,7 +14334,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "e3d003af9f65116a9d8135cef6fa29b6a14167aa3fcb4eaba62885707ed6df8e"
+            "equalIndicator/v1": "938e1486d143ba6860eafab839a9e2de0e7b9e711cd38d68e6b639dfe350ba26"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14274,9 +14361,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 1013,
+                  "startLine": 1018,
                   "startColumn": 7,
-                  "charOffset": 39070,
+                  "charOffset": 39753,
                   "charLength": 3,
                   "snippet": {
                     "text": "Vue"
@@ -14284,9 +14371,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 1011,
+                  "startLine": 1016,
                   "startColumn": 1,
-                  "charOffset": 39059,
+                  "charOffset": 39742,
                   "charLength": 45,
                   "snippet": {
                     "text": "  }\n\n  new Vue({\n    el: \"#app\",\n    data() {"
@@ -14302,7 +14389,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "894c347698426e9cbad67278e04b63dd08903d1b57889c00ae0f212a6c6ef2c0"
+            "equalIndicator/v1": "3813150f00f12e379d54aedaf94c451ccc82f76398c0d4a25ec97efaae9ba26d"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14329,9 +14416,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 242,
+                  "startLine": 321,
                   "startColumn": 3,
-                  "charOffset": 8506,
+                  "charOffset": 10704,
                   "charLength": 3,
                   "snippet": {
                     "text": "Vue"
@@ -14339,12 +14426,12 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 240,
+                  "startLine": 319,
                   "startColumn": 1,
-                  "charOffset": 8494,
-                  "charLength": 141,
+                  "charOffset": 10686,
+                  "charLength": 147,
                   "snippet": {
-                    "text": "\n<script>\n  Vue.directive('dropdown-show', {\n    bind: function (el, binding) {\n      el.addEventListener('show.bs.dropdown', binding.value);"
+                    "text": "</div>\n<script>\n  Vue.directive('dropdown-show', {\n    bind: function (el, binding) {\n      el.addEventListener('show.bs.dropdown', binding.value);"
                   }
                 }
               },
@@ -14357,7 +14444,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "b421d5d4b7cac8f6c4bf50a976dde572aa4ae99cb03164b53d27aebc7eef5233"
+            "equalIndicator/v1": "3f6734c6a8505c15f344abb4c716ffcb713b5d33c2b398c75d757225e3885cb5"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14384,9 +14471,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 248,
+                  "startLine": 327,
                   "startColumn": 7,
-                  "charOffset": 8655,
+                  "charOffset": 10853,
                   "charLength": 3,
                   "snippet": {
                     "text": "Vue"
@@ -14394,9 +14481,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 246,
+                  "startLine": 325,
                   "startColumn": 1,
-                  "charOffset": 8642,
+                  "charOffset": 10840,
                   "charLength": 47,
                   "snippet": {
                     "text": "  });\n\n  new Vue({\n    el: \"#app\",\n    data() {"
@@ -14412,7 +14499,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "7c4119167adcc3e81bcf30b7d709e88f219906c2a93dbe2ddb217d5b4290ecc2"
+            "equalIndicator/v1": "161a5411dffe52b92cb7df2d79f084d06b5076b7c7a2bf8086c0daaf24bbc745"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14604,9 +14691,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 85,
+                  "startLine": 82,
                   "startColumn": 7,
-                  "charOffset": 2619,
+                  "charOffset": 2479,
                   "charLength": 3,
                   "snippet": {
                     "text": "Vue"
@@ -14614,9 +14701,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 83,
+                  "startLine": 80,
                   "startColumn": 1,
-                  "charOffset": 2603,
+                  "charOffset": 2463,
                   "charLength": 50,
                   "snippet": {
                     "text": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
@@ -14632,7 +14719,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "64ae49e877968b019d55bd8beba32bf42398a9a9db6455a2e2a383b6a049ee74"
+            "equalIndicator/v1": "33a17eb52aa9720023960a8ed355e2610ffa4816356914057952e636368a064d"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14659,9 +14746,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 301,
+                  "startLine": 389,
                   "startColumn": 17,
-                  "charOffset": 10188,
+                  "charOffset": 12696,
                   "charLength": 15,
                   "snippet": {
                     "text": "r.status == 200"
@@ -14669,9 +14756,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 299,
+                  "startLine": 387,
                   "startColumn": 1,
-                  "charOffset": 10081,
+                  "charOffset": 12589,
                   "charLength": 175,
                   "snippet": {
                     "text": "        if (resp) {\n          fetch(\"/api/apps/\" + id, { method: \"DELETE\" }).then((r) => {\n            if (r.status == 200) document.location.reload();\n          });\n        }"
@@ -14687,7 +14774,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "6d12f073d8145e13e82cf2dca1470d1f16d07f31412f416554740c5a29024611"
+            "equalIndicator/v1": "d07bf52ca05179d1c6783b95ee9890a220340fd1bc14c5223336c2a2988c7a54"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14714,9 +14801,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 396,
+                  "startLine": 490,
                   "startColumn": 15,
-                  "charOffset": 13703,
+                  "charOffset": 16349,
                   "charLength": 15,
                   "snippet": {
                     "text": "r.status == 200"
@@ -14724,9 +14811,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 394,
+                  "startLine": 488,
                   "startColumn": 1,
-                  "charOffset": 13617,
+                  "charOffset": 16263,
                   "charLength": 151,
                   "snippet": {
                     "text": "          body: JSON.stringify(this.editForm),\n        }).then((r) => {\n          if (r.status == 200) document.location.reload();\n        });\n      },"
@@ -14742,7 +14829,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "80031929f1e05461976717d11cd7d92caec76da26426727705191e8503d7a0a3"
+            "equalIndicator/v1": "ddd84899979ad68167cea52663360399a8caf2f49153cf39b86619bdba8eccda"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14879,9 +14966,9 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 105,
+                  "startLine": 100,
                   "startColumn": 35,
-                  "charOffset": 3142,
+                  "charOffset": 2940,
                   "charLength": 31,
                   "snippet": {
                     "text": "x.indexOf(this.logFilter) != -1"
@@ -14889,9 +14976,9 @@
                   "sourceLanguage": "ECMAScript 6"
                 },
                 "contextRegion": {
-                  "startLine": 103,
+                  "startLine": 98,
                   "startColumn": 1,
-                  "charOffset": 3020,
+                  "charOffset": 2818,
                   "charLength": 196,
                   "snippet": {
                     "text": "        if(!this.logFilter)return this.logs;\n        let lines = this.logs.split(\"\\n\");\n        lines = lines.filter(x => x.indexOf(this.logFilter) != -1);\n        return lines.join(\"\\n\");\n      }"
@@ -14907,7 +14994,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "0f5484418333102a82a52c6416eb1083420b23df7c1bf562b5b7f978c799fd63"
+            "equalIndicator/v1": "e0731e4a2fa289021a19d6d5685adc91cc91db455ea4cac6651fcf03d4d7e3c8"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14937,9 +15024,9 @@
                   "startLine": 1,
                   "startColumn": 1,
                   "charOffset": 0,
-                  "charLength": 120,
+                  "charLength": 67,
                   "snippet": {
-                    "text": "{\n  \"dependencies\": {\n    \"@fortawesome/fontawesome-free\": \"6.4.0\",\n    \"bootstrap\": \"5.2.3\",\n    \"vue\": \"2.6.12\"\n  }\n}\n"
+                    "text": "{\n  \"dependencies\": {\n    \"@fortawesome/fontawesome-free\": \"6.4.0\","
                   },
                   "sourceLanguage": "JSON"
                 },
@@ -14947,9 +15034,9 @@
                   "startLine": 1,
                   "startColumn": 1,
                   "charOffset": 0,
-                  "charLength": 120,
+                  "charLength": 113,
                   "snippet": {
-                    "text": "{\n  \"dependencies\": {\n    \"@fortawesome/fontawesome-free\": \"6.4.0\",\n    \"bootstrap\": \"5.2.3\",\n    \"vue\": \"2.6.12\"\n  }\n}\n"
+                    "text": "{\n  \"dependencies\": {\n    \"@fortawesome/fontawesome-free\": \"6.4.0\",\n    \"bootstrap\": \"5.2.3\",\n    \"vue\": \"2.6.12\""
                   }
                 }
               },
@@ -14962,7 +15049,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "a2e84c8b53974547b89017579d4c295e71d5d3f5bb7cbce15b32eae32b94315f"
+            "equalIndicator/v1": "7b09f0d20a4d4325f977617d4c0a58bf9b09ffc1cc2621244ccf5626ed435d47"
           },
           "baselineState": "unchanged",
           "properties": {
@@ -14975,10 +15062,10 @@
         }
       ],
       "automationDetails": {
-        "id": "project/qodana/2023-04-06",
-        "guid": "4435e3fb-14dc-4b3c-8099-c7dbd5bb173b",
+        "id": "project/qodana/2023-05-05",
+        "guid": "53be6491-d69d-4d63-879c-111255d3ab03",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4624669572"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4888723022"
         }
       },
       "newlineSequences": [
