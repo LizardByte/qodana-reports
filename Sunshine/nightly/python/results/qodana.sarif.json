@@ -1628,13 +1628,13 @@
                 ]
               },
               {
-                "id": "PyMissingConstructorInspection",
+                "id": "PyDefaultArgumentInspection",
                 "shortDescription": {
-                  "text": "Missed call to '__init__' of the super class"
+                  "text": "The default argument is mutable"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
-                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
+                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1660,13 +1660,13 @@
                 ]
               },
               {
-                "id": "PyDefaultArgumentInspection",
+                "id": "PyMissingConstructorInspection",
                 "shortDescription": {
-                  "text": "The default argument is mutable"
+                  "text": "Missed call to '__init__' of the super class"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
-                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
+                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1884,20 +1884,20 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -1916,20 +1916,20 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2012,13 +2012,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2044,13 +2044,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "PyArgumentListInspection",
-                "shortDescription": {
-                  "text": "Incorrect call arguments"
-                },
-                "fullDescription": {
-                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
-                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "Query_bound_parameters",
                 "shortDescription": {
                   "text": "Query does not have required bound parameters"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Google App Engine (Python)",
                       "index": 4,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyArgumentListInspection",
+                "shortDescription": {
+                  "text": "Incorrect call arguments"
+                },
+                "fullDescription": {
+                  "text": "Reports discrepancies between declared parameters and actual arguments, as well as incorrect arguments, for example, duplicate named arguments, and incorrect argument order. Example: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n The correct code fragment looks at follows: class Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")",
+                  "markdown": "Reports discrepancies between declared parameters and actual arguments, as well as\nincorrect arguments, for example, duplicate named arguments, and incorrect argument order.\n\n**Example:**\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__() # unfilled parameter\nbar(5, \"#\") # unexpected argument\n```\n\nThe correct code fragment looks at follows:\n\n```\nclass Foo:\n    def __call__(self, p1: int, *, p2: str = \"%\"):\n        return p2 * p1\n\n\nbar = Foo()\nbar.__call__(5)\nbar(5, p2=\"#\")\n```"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5384,13 +5384,13 @@
                 ]
               },
               {
-                "id": "SqlSideEffectsInspection",
+                "id": "SqlDtInspection",
                 "shortDescription": {
-                  "text": "Statement with side effects"
+                  "text": "Ill-formed date/time literals"
                 },
                 "fullDescription": {
-                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
-                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
+                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5416,13 +5416,13 @@
                 ]
               },
               {
-                "id": "SqlDtInspection",
+                "id": "SqlSideEffectsInspection",
                 "shortDescription": {
-                  "text": "Ill-formed date/time literals"
+                  "text": "Statement with side effects"
                 },
                 "fullDescription": {
-                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
-                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
+                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "JsonSchemaDeprecation",
-                "shortDescription": {
-                  "text": "Deprecated JSON property"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
-                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JSON and JSON5",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDuplicatedId",
                 "shortDescription": {
                   "text": "Duplicate 'id' attribute"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JsonSchemaDeprecation",
+                "shortDescription": {
+                  "text": "Deprecated JSON property"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
+                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JSON and JSON5",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -7840,38 +7840,6 @@
                 ]
               },
               {
-                "id": "RegExpRedundantNestedCharacterClass",
-                "shortDescription": {
-                  "text": "Redundant nested character class"
-                },
-                "fullDescription": {
-                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
-                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDeprecatedElement",
                 "shortDescription": {
                   "text": "Deprecated symbol"
@@ -7893,6 +7861,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpRedundantNestedCharacterClass",
+                "shortDescription": {
+                  "text": "Redundant nested character class"
+                },
+                "fullDescription": {
+                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
+                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssInvalidPseudoSelector",
-                "shortDescription": {
-                  "text": "Invalid pseudo-selector"
-                },
-                "fullDescription": {
-                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
-                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS/Invalid elements",
-                      "index": 21,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssConvertColorToHexInspection",
                 "shortDescription": {
                   "text": "Color could be replaced with #-hex"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS",
                       "index": 14,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssInvalidPseudoSelector",
+                "shortDescription": {
+                  "text": "Invalid pseudo-selector"
+                },
+                "fullDescription": {
+                  "text": "Reports an incorrect CSS pseudo-class pseudo-element.",
+                  "markdown": "Reports an incorrect CSS [pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS/Invalid elements",
+                      "index": 21,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,22 +10663,22 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "97f18d63538ad8f0b1c08f0cad9fcce0f57f5492",
+          "revisionId": "979f7f4e601418d0ed2537da97c5342b7bcb52c1",
           "branch": "nightly",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
-            "lastAuthorName": "Cameron Gutman",
+            "lastAuthorName": "ReenigneArcher",
             "vcsType": "Git",
-            "lastAuthorEmail": "aicommander@gmail.com"
+            "lastAuthorEmail": "42013603+reenignearcher@users.noreply.github.com"
           }
         }
       ],
       "results": [],
       "automationDetails": {
         "id": "project/qodana/2023-05-07",
-        "guid": "ff7b2b7e-2b1f-4bb6-85e9-319534a88afe",
+        "guid": "0f7331ab-edf3-43ac-9df8-a9cd5420c300",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4908296904"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4908815712"
         }
       },
       "newlineSequences": [
