@@ -255,16 +255,16 @@
           "description": "Reports invalid usages of a class with `__slots__` definitions.\n\n**Example:**\n\n```\nclass Foo:\n    __slots__ = ['foo', 'bar']\n\n\nfoo = Foo()\nfoo.baz = 'spam'\n```"
         },
         {
-          "shortName": "PyDefaultArgumentInspection",
-          "displayName": "The default argument is mutable",
-          "enabled": true,
-          "description": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
-        },
-        {
           "shortName": "PyMissingConstructorInspection",
           "displayName": "Missed call to '__init__' of the super class",
           "enabled": true,
           "description": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+        },
+        {
+          "shortName": "PyDefaultArgumentInspection",
+          "displayName": "The default argument is mutable",
+          "enabled": true,
+          "description": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
         },
         {
           "shortName": "PyShadowingBuiltinsInspection",
@@ -303,16 +303,16 @@
           "description": "Reports coroutines that were called\nwithout using the `await` syntax.\n\n**Example:**\n\n```\nasync def bar():\n    pass\n\n\nasync def foo():\n    bar()\n```\n\nAfter the quick-fix is applied, the code changes to:\n\n```\nasync def bar():\n    pass\n\n\nasync def foo():\n    await bar()\n```"
         },
         {
-          "shortName": "PyComparisonWithNoneInspection",
-          "displayName": "Using equality operators to compare with None",
-          "enabled": true,
-          "description": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
-        },
-        {
           "shortName": "CommandLineInspection",
           "displayName": "Incorrect CLI syntax",
           "enabled": true,
           "description": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+        },
+        {
+          "shortName": "PyComparisonWithNoneInspection",
+          "displayName": "Using equality operators to compare with None",
+          "enabled": true,
+          "description": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
         },
         {
           "shortName": "PyCallingNonCallableInspection",
@@ -798,16 +798,16 @@
           "description": "Reports incorrect usages of transition table variables in triggers.\n\nExample (HSQLDB):\n\n    CREATE TABLE foo(a INT);\n\n    CREATE TRIGGER trg\n     AFTER DELETE ON foo\n    BEGIN\n       SELECT * FROM NEW;\n    END;\n\n    CREATE TRIGGER trig AFTER INSERT ON foo\n       REFERENCING OLD ROW AS newrow\n       FOR EACH ROW WHEN (a > 1)\n       INSERT INTO foo VALUES (1)\n\nIn HSQLDB, DELETE triggers may be used only with the OLD state while INSERT triggers may have only the NEW state. So, in the previous\nexample, NEW in `SELECT * FROM NEW;` will be highlighted as well as OLD in `REFERENCING OLD ROW AS newrow`."
         },
         {
-          "shortName": "SqlNamedArgumentsInspection",
-          "displayName": "Named arguments should be used",
-          "enabled": false,
-          "description": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
-        },
-        {
           "shortName": "SqlMultipleLimitClausesInspection",
           "displayName": "Multiple row limiting/offset clauses in queries",
           "enabled": false,
           "description": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+        },
+        {
+          "shortName": "SqlNamedArgumentsInspection",
+          "displayName": "Named arguments should be used",
+          "enabled": false,
+          "description": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
         },
         {
           "shortName": "SqlCaseVsCoalesceInspection",
@@ -870,16 +870,16 @@
           "description": "Reports situations when source code of a database object has been changed.\n\nThe inspection is triggered when you perform database or object introspection. The introspection is run when you open source code of an\nobject, run statements, and perform code refactoring.\nAlso, you can run introspection by right-clicking an object and selecting **Refresh**.\n\nThe inspection covers the following situations:\n\n* Object source code was changed in the database but code in the editor was not updated. Works in PostgreSQL, Microsoft SQL Server, Oracle, and Sybase ASE.\n* You changed the object source code, introspected the database, but source code has been already changed by someone else.\n* The database introspector was updated in the IDE and you need to download new object properties that were missing in the previous introspector version."
         },
         {
-          "shortName": "SqlSideEffectsInspection",
-          "displayName": "Statement with side effects",
-          "enabled": false,
-          "description": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
-        },
-        {
           "shortName": "SqlDtInspection",
           "displayName": "Ill-formed date/time literals",
           "enabled": false,
           "description": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+        },
+        {
+          "shortName": "SqlSideEffectsInspection",
+          "displayName": "Statement with side effects",
+          "enabled": false,
+          "description": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
         },
         {
           "shortName": "SqlIllegalCursorStateInspection",
@@ -1014,16 +1014,16 @@
           "description": "Reports usages of backward GOTO statements and GOTO statements used to exit a loop.\n\nThe extensive use of GOTO statements is generally\nnot recommended. For details, see [GOTO statement in\nSQL\nprocedures at ibm.com](https://www.ibm.com/docs/no/db2/11.5?topic=procedures-goto-statement-in-sql).\n\nInstead of jumping back to a previous statement using GOTO, consider using a loop.\n\nInstead of exiting the WHILE loop with GOTO, consider using other control-of-flow statements (for example, RETURN or BREAK).\n\nExample (Oracle):\n\n    CREATE PROCEDURE test(n INT) AS\n    DECLARE\n        x INT;\n    BEGIN\n        x := 0;\n        GOTO a;\n        <<a>> x := 1;\n        IF (n = 0) THEN\n            GOTO a;\n        END IF;\n        WHILE TRUE\n            LOOP\n                GOTO b;\n            END LOOP;\n        <<b>> x := 3;\n    END;\n"
         },
         {
-          "shortName": "SqlUnusedVariableInspection",
-          "displayName": "Unused variable",
-          "enabled": false,
-          "description": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
-        },
-        {
           "shortName": "SqlNoDataSourceInspection",
           "displayName": "No data sources configured",
           "enabled": false,
           "description": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+        },
+        {
+          "shortName": "SqlUnusedVariableInspection",
+          "displayName": "Unused variable",
+          "enabled": false,
+          "description": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
         },
         {
           "shortName": "SqlWithoutWhereInspection",
@@ -1356,39 +1356,16 @@
           "description": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
         },
         {
-          "shortName": "RegExpRepeatedSpace",
-          "displayName": "Consecutive spaces",
-          "enabled": true,
-          "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
-        },
-        {
           "shortName": "RegExpDuplicateAlternationBranch",
           "displayName": "Duplicate branch in alternation",
           "enabled": true,
           "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
-        }
-      ]
-    },
-    {
-      "name": "MySQL",
-      "inspections": [
-        {
-          "shortName": "MysqlLoadDataPathInspection",
-          "displayName": "LOAD statement path",
-          "enabled": false,
-          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
         },
         {
-          "shortName": "MysqlSpaceAfterFunctionNameInspection",
-          "displayName": "Whitespace between the function name and the open parenthesis",
-          "enabled": false,
-          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-        },
-        {
-          "shortName": "MysqlParsingInspection",
-          "displayName": "Unsupported syntax in pre-8.0 versions",
-          "enabled": false,
-          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
+          "shortName": "RegExpRepeatedSpace",
+          "displayName": "Consecutive spaces",
+          "enabled": true,
+          "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
         }
       ]
     },
@@ -1430,6 +1407,29 @@
           "displayName": "Property key/value delimiter doesn't match code style settings",
           "enabled": false,
           "description": "Reports properties in which key or value delimiters do not match code style settings."
+        }
+      ]
+    },
+    {
+      "name": "MySQL",
+      "inspections": [
+        {
+          "shortName": "MysqlLoadDataPathInspection",
+          "displayName": "LOAD statement path",
+          "enabled": false,
+          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
+        },
+        {
+          "shortName": "MysqlSpaceAfterFunctionNameInspection",
+          "displayName": "Whitespace between the function name and the open parenthesis",
+          "enabled": false,
+          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+        },
+        {
+          "shortName": "MysqlParsingInspection",
+          "displayName": "Unsupported syntax in pre-8.0 versions",
+          "enabled": false,
+          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
         }
       ]
     },
