@@ -3740,20 +3740,20 @@
                 ]
               },
               {
-                "id": "PyProtectedMemberInspection",
+                "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
-                  "text": "Accessing a protected member of a class or a module"
+                  "text": "Incompatible stub packages"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
-                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
+                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
+                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -3772,20 +3772,20 @@
                 ]
               },
               {
-                "id": "PyStubPackagesCompatibilityInspection",
+                "id": "PyProtectedMemberInspection",
                 "shortDescription": {
-                  "text": "Incompatible stub packages"
+                  "text": "Accessing a protected member of a class or a module"
                 },
                 "fullDescription": {
-                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
-                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+                  "text": "Reports cases when a protected member is accessed outside the class, a descendant of the class where it is defined, or a module. class Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method",
+                  "markdown": "Reports cases when a protected member is accessed outside the class,\na descendant of the class where it is defined, or a module.\n\n```\nclass Foo:\n    def _protected_method(self):\n        pass\n\n\nclass Bar(Foo):\n    def public_method(self):\n        self._protected_method()\n\n\nfoo = Foo()\nfoo._protected_method() # Access to a protected method\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "SqlInsertIntoGeneratedColumnInspection",
-                "shortDescription": {
-                  "text": "Insertion into generated columns"
-                },
-                "fullDescription": {
-                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
-                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MongoJSSideEffectsInspection",
                 "shortDescription": {
                   "text": "Statement with side effects"
@@ -4669,6 +4637,38 @@
                     "target": {
                       "id": "MongoJS",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "SqlInsertIntoGeneratedColumnInspection",
+                "shortDescription": {
+                  "text": "Insertion into generated columns"
+                },
+                "fullDescription": {
+                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
+                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,38 +4776,6 @@
                 ]
               },
               {
-                "id": "SqlDerivedTableAliasInspection",
-                "shortDescription": {
-                  "text": "Each derived table should have alias"
-                },
-                "fullDescription": {
-                  "text": "Reports derived tables without aliases. Example (MySQL): 'CREATE TABLE table1 (id INT, name VARCHAR(20), cats FLOAT);\nCREATE TABLE table2 (id INT, age INTEGER);\n\nSELECT id AS ID, name, cats, age\nFROM (SELECT table1.id, name, cats, age\nFROM table1\nJOIN table2 ON table1.id = table2.id);' According to Derived Tables at dev.mysql.com, an alias is mandatory. You can add the alias by using the Introduce alias quick-fix. After the quick-fix is applied: 'SELECT id AS ID, name, cats, age\nFROM (SELECT table1.id, name, cats, age\nFROM table1\nJOIN table2 ON table1.id = table2.id);'",
-                  "markdown": "Reports derived tables without aliases.\n\nExample (MySQL):\n\n    CREATE TABLE table1 (id INT, name VARCHAR(20), cats FLOAT);\n    CREATE TABLE table2 (id INT, age INTEGER);\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n\nAccording to [Derived Tables at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/derived-tables.html), an alias is\nmandatory. You can add the alias by using the **Introduce alias** quick-fix.\n\nAfter the quick-fix is applied:\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MysqlSpaceAfterFunctionNameInspection",
                 "shortDescription": {
                   "text": "Whitespace between the function name and the open parenthesis"
@@ -4829,6 +4797,38 @@
                     "target": {
                       "id": "MySQL",
                       "index": 13,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "SqlDerivedTableAliasInspection",
+                "shortDescription": {
+                  "text": "Each derived table should have alias"
+                },
+                "fullDescription": {
+                  "text": "Reports derived tables without aliases. Example (MySQL): 'CREATE TABLE table1 (id INT, name VARCHAR(20), cats FLOAT);\nCREATE TABLE table2 (id INT, age INTEGER);\n\nSELECT id AS ID, name, cats, age\nFROM (SELECT table1.id, name, cats, age\nFROM table1\nJOIN table2 ON table1.id = table2.id);' According to Derived Tables at dev.mysql.com, an alias is mandatory. You can add the alias by using the Introduce alias quick-fix. After the quick-fix is applied: 'SELECT id AS ID, name, cats, age\nFROM (SELECT table1.id, name, cats, age\nFROM table1\nJOIN table2 ON table1.id = table2.id);'",
+                  "markdown": "Reports derived tables without aliases.\n\nExample (MySQL):\n\n    CREATE TABLE table1 (id INT, name VARCHAR(20), cats FLOAT);\n    CREATE TABLE table2 (id INT, age INTEGER);\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n\nAccording to [Derived Tables at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/derived-tables.html), an alias is\nmandatory. You can add the alias by using the **Introduce alias** quick-fix.\n\nAfter the quick-fix is applied:\n\n    SELECT id AS ID, name, cats, age\n    FROM (SELECT table1.id, name, cats, age\n    FROM table1\n    JOIN table2 ON table1.id = table2.id);\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -5384,13 +5384,13 @@
                 ]
               },
               {
-                "id": "SqlSideEffectsInspection",
+                "id": "SqlDtInspection",
                 "shortDescription": {
-                  "text": "Statement with side effects"
+                  "text": "Ill-formed date/time literals"
                 },
                 "fullDescription": {
-                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
-                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
+                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5416,13 +5416,13 @@
                 ]
               },
               {
-                "id": "SqlDtInspection",
+                "id": "SqlSideEffectsInspection",
                 "shortDescription": {
-                  "text": "Ill-formed date/time literals"
+                  "text": "Statement with side effects"
                 },
                 "fullDescription": {
-                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
-                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
+                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "JsonSchemaDeprecation",
-                "shortDescription": {
-                  "text": "Deprecated JSON property"
-                },
-                "fullDescription": {
-                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
-                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JSON and JSON5",
-                      "index": 9,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDuplicatedId",
                 "shortDescription": {
                   "text": "Duplicate 'id' attribute"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JsonSchemaDeprecation",
+                "shortDescription": {
+                  "text": "Deprecated JSON property"
+                },
+                "fullDescription": {
+                  "text": "Reports a deprecated property in a JSON file. Note that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'.",
+                  "markdown": "Reports a deprecated property in a JSON file.  \nNote that deprecation mechanism is not defined in the JSON Schema specification yet, and this inspection uses a non-standard extension 'deprecationMessage'."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JSON and JSON5",
+                      "index": 9,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6880,38 +6880,6 @@
                 ]
               },
               {
-                "id": "RequiredAttributes",
-                "shortDescription": {
-                  "text": "Missing required attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
-                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "DuplicatedCode",
                 "shortDescription": {
                   "text": "Duplicated code fragment"
@@ -6933,6 +6901,38 @@
                     "target": {
                       "id": "General",
                       "index": 18,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RequiredAttributes",
+                "shortDescription": {
+                  "text": "Missing required attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported.",
+                  "markdown": "Reports a missing mandatory attribute in an XML/HTML tag. Suggests configuring attributes that should not be reported."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -7840,38 +7840,6 @@
                 ]
               },
               {
-                "id": "RegExpRedundantNestedCharacterClass",
-                "shortDescription": {
-                  "text": "Redundant nested character class"
-                },
-                "fullDescription": {
-                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
-                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "XmlDeprecatedElement",
                 "shortDescription": {
                   "text": "Deprecated symbol"
@@ -7893,6 +7861,38 @@
                     "target": {
                       "id": "XML",
                       "index": 7,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpRedundantNestedCharacterClass",
+                "shortDescription": {
+                  "text": "Redundant nested character class"
+                },
+                "fullDescription": {
+                  "text": "Reports unnecessary nested character classes. Example: '[a-c[x-z]]' After the quick-fix is applied: '[a-cx-z]' New in 2020.2",
+                  "markdown": "Reports unnecessary nested character classes.\n\n**Example:**\n\n\n      [a-c[x-z]]\n\nAfter the quick-fix is applied:\n\n\n      [a-cx-z]\n\nNew in 2020.2"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8032,38 +8032,6 @@
                 ]
               },
               {
-                "id": "HtmlExtraClosingTag",
-                "shortDescription": {
-                  "text": "Redundant closing tag"
-                },
-                "fullDescription": {
-                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
-                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpOctalEscape",
                 "shortDescription": {
                   "text": "Octal escape"
@@ -8085,6 +8053,38 @@
                     "target": {
                       "id": "RegExp",
                       "index": 11,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlExtraClosingTag",
+                "shortDescription": {
+                  "text": "Redundant closing tag"
+                },
+                "fullDescription": {
+                  "text": "Reports redundant closing tags on empty elements, for example, 'img' or 'br'. Example: '<html>\n    <body>\n      <br></br>\n    </body>\n  </html>' After the quick-fix is applied: '<html>\n    <body>\n      <br>\n    </body>\n  </html>'",
+                  "markdown": "Reports redundant closing tags on empty elements, for example, `img` or `br`.\n\n**Example:**\n\n\n      <html>\n        <body>\n          <br></br>\n        </body>\n      </html>\n\nAfter the quick-fix is applied:\n\n\n      <html>\n        <body>\n          <br>\n        </body>\n      </html>\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssConvertColorToHexInspection",
-                "shortDescription": {
-                  "text": "Color could be replaced with #-hex"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
-                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssInvalidPseudoSelector",
                 "shortDescription": {
                   "text": "Invalid pseudo-selector"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS/Invalid elements",
                       "index": 21,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssConvertColorToHexInspection",
+                "shortDescription": {
+                  "text": "Color could be replaced with #-hex"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
+                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10663,7 +10663,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "faf67e766f244ba99c5f576c823540fa4de6d097",
+          "revisionId": "73850825c50f5a5fb2f51e72e4b6b948e1933371",
           "branch": "ci!-remove-fedora-36",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -10675,10 +10675,10 @@
       ],
       "results": [],
       "automationDetails": {
-        "id": "project/qodana/2023-05-03",
-        "guid": "5f773164-4325-4cbf-a082-baa558641035",
+        "id": "project/qodana/2023-05-15",
+        "guid": "8533bc3f-6204-4f5f-8959-a45c20f8154a",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4867919790"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/4985778179"
         }
       },
       "newlineSequences": [
