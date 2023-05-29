@@ -59,12 +59,12 @@
               "name": "RegExp"
             },
             {
-              "id": "Properties files",
-              "name": "Properties files"
-            },
-            {
               "id": "MySQL",
               "name": "MySQL"
+            },
+            {
+              "id": "Properties files",
+              "name": "Properties files"
             },
             {
               "id": "CSS",
@@ -1628,13 +1628,13 @@
                 ]
               },
               {
-                "id": "PyMissingConstructorInspection",
+                "id": "PyDefaultArgumentInspection",
                 "shortDescription": {
-                  "text": "Missed call to '__init__' of the super class"
+                  "text": "The default argument is mutable"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
-                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
+                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
+                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -1660,13 +1660,13 @@
                 ]
               },
               {
-                "id": "PyDefaultArgumentInspection",
+                "id": "PyMissingConstructorInspection",
                 "shortDescription": {
-                  "text": "The default argument is mutable"
+                  "text": "Missed call to '__init__' of the super class"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for an argument. Default argument values are evaluated only once at function definition time, which means that modifying the default value of the argument will affect all subsequent calls of that function. Example: def func(s, cache={}):\n    cache[s] = None\n When the quick-fix is applied, the code changes to: def func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None",
-                  "markdown": "Reports a problem when a mutable value as a list or dictionary is detected in a default value for\nan argument.   \n\nDefault argument values are evaluated only once at function definition time,\nwhich means that modifying the\ndefault value of the argument will affect all subsequent calls of that function.\n\n**Example:**\n\n```\ndef func(s, cache={}):\n    cache[s] = None\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\ndef func(s, cache=None):\n    if cache is None:\n        cache = {}\n    cache[s] = None\n```"
+                  "text": "Reports cases when a call to the 'super' constructor in a class is missed. Example: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n The 'Pear' class should have a 'super' call in the '__init__' method. When the quick-fix is applied, the code changes to: class Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()",
+                  "markdown": "Reports cases when a call to the `super` constructor in a class is missed.\n\n**Example:**\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        pass\n```\n\nThe `Pear` class should have a `super` call in the `__init__`\nmethod.\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Fruit:\n    def __init__(self):\n        pass\n\n\nclass Pear(Fruit):\n    def __init__(self):\n        super().__init__()\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2012,13 +2012,13 @@
                 ]
               },
               {
-                "id": "PyChainedComparisonsInspection",
+                "id": "PyMethodParametersInspection",
                 "shortDescription": {
-                  "text": "Too complex chained comparisons"
+                  "text": "Improper first parameter"
                 },
                 "fullDescription": {
-                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
-                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
+                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
+                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -2044,13 +2044,13 @@
                 ]
               },
               {
-                "id": "PyMethodParametersInspection",
+                "id": "PyChainedComparisonsInspection",
                 "shortDescription": {
-                  "text": "Improper first parameter"
+                  "text": "Too complex chained comparisons"
                 },
                 "fullDescription": {
-                  "text": "Reports methods that lack the first parameter that is usually named 'self'. Example: class Movie:\n\n   def show():\n       pass\n When the quick-fix is applied, the code changes to: class Movie:\n\n   def show(self):\n       pass\n The inspection also reports naming issues in class methods. Example: class Movie:\n    @classmethod\n    def show(abc):\n        pass\n Since the first parameter of a class method should be 'cls', the IDE provides a quick-fix to rename it.",
-                  "markdown": "Reports methods that lack the first parameter that is usually\nnamed `self`.\n\n**Example:**\n\n```\nclass Movie:\n\n   def show():\n       pass\n```\n\nWhen the quick-fix is applied, the code changes to:\n\n```\nclass Movie:\n\n   def show(self):\n       pass\n```\n\nThe inspection also reports naming issues in class methods.\n\n**Example:**\n\n```\nclass Movie:\n    @classmethod\n    def show(abc):\n        pass\n```\n\nSince the first parameter of a class method should be `cls`, the IDE provides a quick-fix\nto rename it."
+                  "text": "Reports chained comparisons that can be simplified. Example: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if x >= xmin and x <= xmax:\n          pass' The IDE offers to simplify 'if x >= xmin and x <= xmax'. When the quick-fix is applied, the code changes to: 'def do_comparison(x):\n      xmin = 10\n      xmax = 100\n      if xmin <= x <= xmax:\n          pass'",
+                  "markdown": "Reports chained comparisons that can be simplified.\n\n**Example:**\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if x >= xmin and x <= xmax:\n              pass\n\nThe IDE offers to simplify `if x >= xmin and x <= xmax`.\nWhen the quick-fix is applied, the code changes to:\n\n\n      def do_comparison(x):\n          xmin = 10\n          xmax = 100\n          if xmin <= x <= xmax:\n              pass\n"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -3004,38 +3004,6 @@
                 ]
               },
               {
-                "id": "PyRedundantParenthesesInspection",
-                "shortDescription": {
-                  "text": "Redundant parentheses"
-                },
-                "fullDescription": {
-                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
-                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Python",
-                      "index": 2,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyTrailingSemicolonInspection",
                 "shortDescription": {
                   "text": "Prohibited trailing semicolon in a statement"
@@ -3068,13 +3036,13 @@
                 ]
               },
               {
-                "id": "PyAbstractClassInspection",
+                "id": "PyRedundantParenthesesInspection",
                 "shortDescription": {
-                  "text": "Class must implement all abstract methods"
+                  "text": "Redundant parentheses"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
-                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                  "text": "Reports about redundant parentheses in expressions. The IDE provides the quick-fix action to remove the redundant parentheses.",
+                  "markdown": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -3114,6 +3082,38 @@
                   "parameters": {
                     "ideaSeverity": "WARNING",
                     "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Python",
+                      "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PyAbstractClassInspection",
+                "shortDescription": {
+                  "text": "Class must implement all abstract methods"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when not all abstract properties or methods are defined in a subclass. Example: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n When the quick-fix is applied, the IDE implements an abstract method for the 'Triangle' class: from abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass",
+                  "markdown": "Reports cases when not all abstract properties or methods are defined in\na subclass.\n\n**Example:**\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_triangle(self):\n        pass\n```\n\nWhen the quick-fix is applied, the IDE implements an abstract method for the `Triangle` class:\n\n```\nfrom abc import abstractmethod, ABC\n\n\nclass Figure(ABC):\n\n    @abstractmethod\n    def do_figure(self):\n        pass\n\n\nclass Triangle(Figure):\n    def do_figure(self):\n        pass\n\n    def do_triangle(self):\n        pass\n```"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3196,38 +3196,6 @@
                 ]
               },
               {
-                "id": "Query_bound_parameters",
-                "shortDescription": {
-                  "text": "Query does not have required bound parameters"
-                },
-                "fullDescription": {
-                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
-                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Google App Engine (Python)",
-                      "index": 4,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyArgumentListInspection",
                 "shortDescription": {
                   "text": "Incorrect call arguments"
@@ -3249,6 +3217,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "Query_bound_parameters",
+                "shortDescription": {
+                  "text": "Query does not have required bound parameters"
+                },
+                "fullDescription": {
+                  "text": "Reports GQL queries with bound parameters that don't have the necessary parameters passed to the query method call.",
+                  "markdown": "Reports GQL queries with bound parameters that don't have the necessary\nparameters passed to the query method call."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Google App Engine (Python)",
+                      "index": 4,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3708,38 +3708,6 @@
                 ]
               },
               {
-                "id": "DjangoCloseTagInspection",
-                "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
-                },
-                "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Django",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "PyProtectedMemberInspection",
                 "shortDescription": {
                   "text": "Accessing a protected member of a class or a module"
@@ -3761,6 +3729,38 @@
                     "target": {
                       "id": "Python",
                       "index": 2,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DjangoCloseTagInspection",
+                "shortDescription": {
+                  "text": "Mismatched opening and closing tags"
+                },
+                "fullDescription": {
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Django",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "MongoJSSideEffectsInspection",
-                "shortDescription": {
-                  "text": "Statement with side effects"
-                },
-                "fullDescription": {
-                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
-                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MongoJS",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "SqlInsertIntoGeneratedColumnInspection",
                 "shortDescription": {
                   "text": "Insertion into generated columns"
@@ -4680,6 +4648,38 @@
                 ]
               },
               {
+                "id": "MongoJSSideEffectsInspection",
+                "shortDescription": {
+                  "text": "Statement with side effects"
+                },
+                "fullDescription": {
+                  "text": "Reports statements that can cause side effects while the data source is in read-only mode. For more information about enabling read-only mode, see Enable read-only mode for a connection in the IDE documentation. The Disable read-only mode quick-fix turns off the read-only mode for the respective data source. Example: 'db.my_collection.insertOne()'",
+                  "markdown": "Reports statements that can cause side effects while the data source is in read-only mode.\n\nFor more information about enabling read-only mode, see\n[Enable\nread-only mode for a connection in the IDE documentation](https://www.jetbrains.com/help/datagrip/configuring-database-connections.html#enable-read-only-mode-for-a-connection).\n\nThe **Disable read-only mode** quick-fix turns off the read-only mode for the respective data source.\n\nExample:\n\n\n    db.my_collection.insertOne()\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MongoJS",
+                      "index": 10,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "MysqlLoadDataPathInspection",
                 "shortDescription": {
                   "text": "LOAD statement path"
@@ -4700,7 +4700,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4776,6 +4776,38 @@
                 ]
               },
               {
+                "id": "MysqlSpaceAfterFunctionNameInspection",
+                "shortDescription": {
+                  "text": "Whitespace between the function name and the open parenthesis"
+                },
+                "fullDescription": {
+                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
+                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "MySQL",
+                      "index": 12,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "SqlDerivedTableAliasInspection",
                 "shortDescription": {
                   "text": "Each derived table should have alias"
@@ -4797,38 +4829,6 @@
                     "target": {
                       "id": "SQL",
                       "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "MysqlSpaceAfterFunctionNameInspection",
-                "shortDescription": {
-                  "text": "Whitespace between the function name and the open parenthesis"
-                },
-                "fullDescription": {
-                  "text": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default. Example (MySQL): 'SELECT MAX (qty) FROM orders;'",
-                  "markdown": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "MySQL",
-                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4968,13 +4968,13 @@
                 ]
               },
               {
-                "id": "SqlNamedArgumentsInspection",
+                "id": "SqlMultipleLimitClausesInspection",
                 "shortDescription": {
-                  "text": "Named arguments should be used"
+                  "text": "Multiple row limiting/offset clauses in queries"
                 },
                 "fullDescription": {
-                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
-                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
+                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5000,13 +5000,13 @@
                 ]
               },
               {
-                "id": "SqlMultipleLimitClausesInspection",
+                "id": "SqlNamedArgumentsInspection",
                 "shortDescription": {
-                  "text": "Multiple row limiting/offset clauses in queries"
+                  "text": "Named arguments should be used"
                 },
                 "fullDescription": {
-                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
-                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
+                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5128,6 +5128,38 @@
                 ]
               },
               {
+                "id": "SqlRedundantAliasInspection",
+                "shortDescription": {
+                  "text": "Redundant alias expressions"
+                },
+                "fullDescription": {
+                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
+                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "SqlIdentifierInspection",
                 "shortDescription": {
                   "text": "Identifier should be quoted"
@@ -5167,38 +5199,6 @@
                 "fullDescription": {
                   "text": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key. Example (MySQL): 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT,\n    c2 INT AUTO_INCREMENT,\n);' The AUTO_INCREMENT constraint for 'c2' will be highlighted as 'c1' already has this constraint. To fix the warning, you can make 'id' a primary key and delete AUTO_INCREMENT for 'c2'. 'CREATE TABLE my_table\n(\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    c2 INT,\n);'",
                   "markdown": "Reports tables that contain two columns with an automatic increment. In MySQL, Microsoft SQL Server, and Db2 dialects, a table can have only one field with a auto-increment option, and this field must be a key.\n\nExample (MySQL):\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT,\n        c2 INT AUTO_INCREMENT,\n    );\n\nThe AUTO_INCREMENT constraint for `c2` will be highlighted as `c1` already has this constraint. To fix the warning,\nyou can make `id` a primary key and delete AUTO_INCREMENT for `c2`.\n\n    CREATE TABLE my_table\n    (\n        id INT AUTO_INCREMENT PRIMARY KEY,\n        c2 INT,\n    );\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "SqlRedundantAliasInspection",
-                "shortDescription": {
-                  "text": "Redundant alias expressions"
-                },
-                "fullDescription": {
-                  "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
-                  "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5884,7 +5884,7 @@
                   {
                     "target": {
                       "id": "MySQL",
-                      "index": 13,
+                      "index": 12,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8096,38 +8096,6 @@
                 ]
               },
               {
-                "id": "UnusedDefine",
-                "shortDescription": {
-                  "text": "Unused define"
-                },
-                "fullDescription": {
-                  "text": "Reports an unused named pattern ('define') in a RELAX-NG file (XML or Compact Syntax). 'define' elements that are used through an include in another file are ignored.",
-                  "markdown": "Reports an unused named pattern (`define`) in a RELAX-NG file (XML or Compact Syntax). `define` elements that are used through an include in another file are ignored."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RELAX NG",
-                      "index": 26,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "HtmlUnknownAnchorTarget",
                 "shortDescription": {
                   "text": "Unresolved fragment in a link"
@@ -8149,6 +8117,38 @@
                     "target": {
                       "id": "HTML",
                       "index": 16,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "UnusedDefine",
+                "shortDescription": {
+                  "text": "Unused define"
+                },
+                "fullDescription": {
+                  "text": "Reports an unused named pattern ('define') in a RELAX-NG file (XML or Compact Syntax). 'define' elements that are used through an include in another file are ignored.",
+                  "markdown": "Reports an unused named pattern (`define`) in a RELAX-NG file (XML or Compact Syntax). `define` elements that are used through an include in another file are ignored."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RELAX NG",
+                      "index": 26,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "RegExpEscapedMetaCharacter",
-                "shortDescription": {
-                  "text": "Escaped meta character"
-                },
-                "fullDescription": {
-                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
-                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "RegExp",
-                      "index": 11,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "LossyEncoding",
                 "shortDescription": {
                   "text": "Lossy encoding"
@@ -8501,6 +8469,38 @@
                     "target": {
                       "id": "Internationalization",
                       "index": 30,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpEscapedMetaCharacter",
+                "shortDescription": {
+                  "text": "Escaped meta character"
+                },
+                "fullDescription": {
+                  "text": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character '[', ']' and '^', because those would need additional escaping inside a character class. Example: '\\d+\\.\\d+' After the quick-fix is applied: '\\d+[.]\\d+' New in 2017.1",
+                  "markdown": "Reports escaped meta characters. Some RegExp coding styles specify that meta characters should be placed inside a character class, to make the regular expression easier to understand. This inspection does not warn about the meta character `[`, `]` and `^`, because those would need additional escaping inside a character class.\n\n**Example:**\n\n\n      \\d+\\.\\d+\n\nAfter the quick-fix is applied:\n\n\n      \\d+[.]\\d+\n\nNew in 2017.1"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "RegExp",
+                      "index": 11,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8940,7 +8940,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8972,7 +8972,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9004,7 +9004,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9036,7 +9036,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9068,7 +9068,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9100,7 +9100,7 @@
                   {
                     "target": {
                       "id": "Properties files",
-                      "index": 12,
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -9764,38 +9764,6 @@
                 ]
               },
               {
-                "id": "CssConvertColorToHexInspection",
-                "shortDescription": {
-                  "text": "Color could be replaced with #-hex"
-                },
-                "fullDescription": {
-                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
-                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "CSS",
-                      "index": 14,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "CssInvalidPseudoSelector",
                 "shortDescription": {
                   "text": "Invalid pseudo-selector"
@@ -9817,6 +9785,38 @@
                     "target": {
                       "id": "CSS/Invalid elements",
                       "index": 21,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "CssConvertColorToHexInspection",
+                "shortDescription": {
+                  "text": "Color could be replaced with #-hex"
+                },
+                "fullDescription": {
+                  "text": "Reports an 'rgb()', 'hsl()', or other color function. Suggests replacing a color function with an equivalent hexadecimal notation. Example: 'rgb(12, 15, 255)' After the quick-fix is applied: '#0c0fff'.",
+                  "markdown": "Reports an `rgb()`, `hsl()`, or other color function.\n\nSuggests replacing a color function with an equivalent hexadecimal notation.\n\n**Example:**\n\n    rgb(12, 15, 255)\n\nAfter the quick-fix is applied:\n\n    #0c0fff.\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "CSS",
+                      "index": 14,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -10664,7 +10664,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "e3149559cfc3729b56dae3bb6629a8056d062546",
+          "revisionId": "d4ded00036cc83e2c1c9a623f47e8b487339f300",
           "branch": "ci(tests)-add-initial-tests",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -10731,94 +10731,6 @@
           }
         },
         {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-break-on-failure-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 113,
-                  "startColumn": 5,
-                  "charOffset": 4279,
-                  "charLength": 517,
-                  "snippet": {
-                    "text": "SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 113,
-                  "startColumn": 1,
-                  "charOffset": 4275,
-                  "charLength": 521,
-                  "snippet": {
-                    "text": "    SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-throw-on-failure-test.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 101,
-                  "startColumn": 5,
-                  "charOffset": 3476,
-                  "charLength": 494,
-                  "snippet": {
-                    "text": "SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 101,
-                  "startColumn": 1,
-                  "charOffset": 3472,
-                  "charLength": 498,
-                  "snippet": {
-                    "text": "    SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "de5ad679ab08f60c3fe7bbdc13eed89876a671a03329c555af67b729fa74a11f"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
           "ruleId": "PyUnboundLocalVariableInspection",
           "kind": "fail",
           "level": "warning",
@@ -10868,94 +10780,6 @@
           "properties": {
             "ideaSeverity": "WARNING",
             "qodanaSeverity": "High",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 136,
-                  "startColumn": 5,
-                  "charOffset": 4818,
-                  "charLength": 496,
-                  "snippet": {
-                    "text": "\"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 136,
-                  "startColumn": 1,
-                  "charOffset": 4814,
-                  "charLength": 500,
-                  "snippet": {
-                    "text": "    \"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 152,
-                  "startColumn": 5,
-                  "charOffset": 5349,
-                  "charLength": 512,
-                  "snippet": {
-                    "text": "\"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 152,
-                  "startColumn": 1,
-                  "charOffset": 5345,
-                  "charLength": 516,
-                  "snippet": {
-                    "text": "    \"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "0dfcce21ca17798d0eb369543220b77c0aa668fc0b12940fbe25835b6646fd1e"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
             "tags": [
               "Python"
             ]
@@ -11017,70 +10841,37 @@
           }
         },
         {
-          "ruleId": "DuplicatedCode",
+          "ruleId": "RegExpRedundantEscape",
           "kind": "fail",
-          "level": "note",
+          "level": "warning",
           "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
+            "text": "Redundant character escape '\\]' in RegExp",
+            "markdown": "Redundant character escape `\\]` in RegExp"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 69,
-                  "startColumn": 9,
-                  "charOffset": 2487,
-                  "charLength": 554,
+                  "startLine": 70,
+                  "startColumn": 25,
+                  "charOffset": 2782,
+                  "charLength": 2,
                   "snippet": {
-                    "text": "{\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        }"
+                    "text": "\\]"
                   },
-                  "sourceLanguage": "Python"
+                  "sourceLanguage": "RegExp"
                 },
                 "contextRegion": {
-                  "startLine": 69,
+                  "startLine": 68,
                   "startColumn": 1,
-                  "charOffset": 2479,
-                  "charLength": 563,
+                  "charOffset": 2645,
+                  "charLength": 240,
                   "snippet": {
-                    "text": "        {\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        },"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 554,
-                  "startColumn": 20,
-                  "charOffset": 18956,
-                  "charLength": 482,
-                  "snippet": {
-                    "text": "{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 554,
-                  "startColumn": 1,
-                  "charOffset": 18937,
-                  "charLength": 503,
-                  "snippet": {
-                    "text": "    'testsuites': [{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }],"
+                    "text": "  output = re.sub(r'\\[.*\\d+ tests.*\\n', '', output)\n  output = re.sub(r'\\[.* test environment .*\\n', '', output)\n  output = re.sub(r'\\[=+\\] \\d+ tests .* ran.*', '', output)\n  output = re.sub(r'.* FAILED TESTS\\n', '', output)\n  return output"
                   }
                 }
               },
@@ -11093,14 +10884,124 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "ed31752f3f9ba7327bb6964745d60b6d4e71312d32014281e66b46a1be55a339"
+            "equalIndicator/v1": "d11ee055d234f170eda001c2891543d5556a16306bba8c7c0a9af35767e16f0c"
           },
           "baselineState": "new",
           "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
             "tags": [
-              "Python"
+              "RegExp"
+            ]
+          }
+        },
+        {
+          "ruleId": "RegExpRedundantEscape",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Redundant character escape '\\:' in RegExp",
+            "markdown": "Redundant character escape `\\:` in RegExp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 31,
+                  "charOffset": 3281,
+                  "charLength": 2,
+                  "snippet": {
+                    "text": "\\:"
+                  },
+                  "sourceLanguage": "RegExp"
+                },
+                "contextRegion": {
+                  "startLine": 86,
+                  "startColumn": 1,
+                  "charOffset": 3244,
+                  "charLength": 76,
+                  "snippet": {
+                    "text": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "12f68405544471d88ada96fcf74fd9c2a5ca290ebb4db39c8ff530619d77698f"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "RegExp"
+            ]
+          }
+        },
+        {
+          "ruleId": "RegExpRedundantEscape",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Redundant character escape '\\:' in RegExp",
+            "markdown": "Redundant character escape `\\:` in RegExp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 45,
+                  "charOffset": 3295,
+                  "charLength": 2,
+                  "snippet": {
+                    "text": "\\:"
+                  },
+                  "sourceLanguage": "RegExp"
+                },
+                "contextRegion": {
+                  "startLine": 86,
+                  "startColumn": 1,
+                  "charOffset": 3244,
+                  "charLength": 76,
+                  "snippet": {
+                    "text": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "2311c505016320e35121afde5e56d05ad2d59824117c699bd5b77c5354d7281e"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "RegExp"
             ]
           }
         },
@@ -11160,94 +11061,6 @@
           }
         },
         {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 661,
-                  "startColumn": 5,
-                  "charOffset": 22185,
-                  "charLength": 323,
-                  "snippet": {
-                    "text": "date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 661,
-                  "startColumn": 1,
-                  "charOffset": 22181,
-                  "charLength": 327,
-                  "snippet": {
-                    "text": "    date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 286,
-                  "startColumn": 5,
-                  "charOffset": 17252,
-                  "charLength": 321,
-                  "snippet": {
-                    "text": "date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 286,
-                  "startColumn": 1,
-                  "charOffset": 17248,
-                  "charLength": 325,
-                  "snippet": {
-                    "text": "    date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "fc4fbb489af28e319bd879e7a05dd3dc09c3fbc4d692a3b53fdb31eee0e1d5e6"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
           "ruleId": "RegExpRedundantEscape",
           "kind": "fail",
           "level": "warning",
@@ -11299,94 +11112,6 @@
             "qodanaSeverity": "High",
             "tags": [
               "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 722,
-                  "startColumn": 5,
-                  "charOffset": 24043,
-                  "charLength": 517,
-                  "snippet": {
-                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 722,
-                  "startColumn": 1,
-                  "charOffset": 24039,
-                  "charLength": 521,
-                  "snippet": {
-                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 345,
-                  "startColumn": 5,
-                  "charOffset": 19118,
-                  "charLength": 517,
-                  "snippet": {
-                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 345,
-                  "startColumn": 1,
-                  "charOffset": 19114,
-                  "charLength": 521,
-                  "snippet": {
-                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
             ]
           }
         },
@@ -12271,61 +11996,6 @@
           }
         },
         {
-          "ruleId": "PyUnusedLocalInspection",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Local variable 'test' value is not used",
-            "markdown": "Local variable 'test' value is not used"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 206,
-                  "startColumn": 3,
-                  "charOffset": 6870,
-                  "charLength": 4,
-                  "snippet": {
-                    "text": "test"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 204,
-                  "startColumn": 1,
-                  "charOffset": 6834,
-                  "charLength": 121,
-                  "snippet": {
-                    "text": "  tests_run = []\n  test_case = ''\n  test = ''\n  for line in p.output.split('\\n'):\n    match = TEST_CASE_REGEX.match(line)"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "ec1b317c1827b9228f3efd8fa23016a17cf3cf41e99de48d8880841a6a66840d"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
           "ruleId": "PyShadowingBuiltinsInspection",
           "kind": "fail",
           "level": "note",
@@ -12370,6 +12040,61 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "8c2e116a99036db32d3e211dc913415fd4b305962af0a46ff84b436a5d32a154"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyUnusedLocalInspection",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Local variable 'test' value is not used",
+            "markdown": "Local variable 'test' value is not used"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 206,
+                  "startColumn": 3,
+                  "charOffset": 6870,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "test"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 204,
+                  "startColumn": 1,
+                  "charOffset": 6834,
+                  "charLength": 121,
+                  "snippet": {
+                    "text": "  tests_run = []\n  test_case = ''\n  test = ''\n  for line in p.output.split('\\n'):\n    match = TEST_CASE_REGEX.match(line)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "ec1b317c1827b9228f3efd8fa23016a17cf3cf41e99de48d8880841a6a66840d"
           },
           "baselineState": "new",
           "properties": {
@@ -13536,6 +13261,94 @@
           }
         },
         {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-break-on-failure-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 5,
+                  "charOffset": 4279,
+                  "charLength": 517,
+                  "snippet": {
+                    "text": "SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 113,
+                  "startColumn": 1,
+                  "charOffset": 4275,
+                  "charLength": 521,
+                  "snippet": {
+                    "text": "    SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-throw-on-failure-test.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 5,
+                  "charOffset": 3476,
+                  "charLength": 494,
+                  "snippet": {
+                    "text": "SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 101,
+                  "startColumn": 1,
+                  "charOffset": 3472,
+                  "charLength": 498,
+                  "snippet": {
+                    "text": "    SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "de5ad679ab08f60c3fe7bbdc13eed89876a671a03329c555af67b729fa74a11f"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
           "ruleId": "PyShadowingNamesInspection",
           "kind": "fail",
           "level": "note",
@@ -13580,6 +13393,94 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "074e0b6befc5484b2c64a03421ab6a5e408ca7a644fcbf215e255fd435666d6a"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 5,
+                  "charOffset": 4818,
+                  "charLength": 496,
+                  "snippet": {
+                    "text": "\"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 136,
+                  "startColumn": 1,
+                  "charOffset": 4814,
+                  "charLength": 500,
+                  "snippet": {
+                    "text": "    \"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 152,
+                  "startColumn": 5,
+                  "charOffset": 5349,
+                  "charLength": 512,
+                  "snippet": {
+                    "text": "\"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 152,
+                  "startColumn": 1,
+                  "charOffset": 5345,
+                  "charLength": 516,
+                  "snippet": {
+                    "text": "    \"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "0dfcce21ca17798d0eb369543220b77c0aa668fc0b12940fbe25835b6646fd1e"
           },
           "baselineState": "new",
           "properties": {
@@ -13701,6 +13602,94 @@
           }
         },
         {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 9,
+                  "charOffset": 2487,
+                  "charLength": 554,
+                  "snippet": {
+                    "text": "{\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        }"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 69,
+                  "startColumn": 1,
+                  "charOffset": 2479,
+                  "charLength": 563,
+                  "snippet": {
+                    "text": "        {\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        },"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 554,
+                  "startColumn": 20,
+                  "charOffset": 18956,
+                  "charLength": 482,
+                  "snippet": {
+                    "text": "{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 554,
+                  "startColumn": 1,
+                  "charOffset": 18937,
+                  "charLength": 503,
+                  "snippet": {
+                    "text": "    'testsuites': [{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }],"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "ed31752f3f9ba7327bb6964745d60b6d4e71312d32014281e66b46a1be55a339"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
           "ruleId": "PyShadowingNamesInspection",
           "kind": "fail",
           "level": "note",
@@ -13811,6 +13800,94 @@
           }
         },
         {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 661,
+                  "startColumn": 5,
+                  "charOffset": 22185,
+                  "charLength": 323,
+                  "snippet": {
+                    "text": "date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 661,
+                  "startColumn": 1,
+                  "charOffset": 22181,
+                  "charLength": 327,
+                  "snippet": {
+                    "text": "    date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 286,
+                  "startColumn": 5,
+                  "charOffset": 17252,
+                  "charLength": 321,
+                  "snippet": {
+                    "text": "date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 286,
+                  "startColumn": 1,
+                  "charOffset": 17248,
+                  "charLength": 325,
+                  "snippet": {
+                    "text": "    date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "fc4fbb489af28e319bd879e7a05dd3dc09c3fbc4d692a3b53fdb31eee0e1d5e6"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
           "ruleId": "PyShadowingNamesInspection",
           "kind": "fail",
           "level": "note",
@@ -13910,6 +13987,94 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "9181576807cd4f6d90b9824d71d0947f567d2d5d9a34290345b8fc4015ebd831"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 722,
+                  "startColumn": 5,
+                  "charOffset": 24043,
+                  "charLength": 517,
+                  "snippet": {
+                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 722,
+                  "startColumn": 1,
+                  "charOffset": 24039,
+                  "charLength": 521,
+                  "snippet": {
+                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 345,
+                  "startColumn": 5,
+                  "charOffset": 19118,
+                  "charLength": 517,
+                  "snippet": {
+                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 345,
+                  "startColumn": 1,
+                  "charOffset": 19114,
+                  "charLength": 521,
+                  "snippet": {
+                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
           },
           "baselineState": "new",
           "properties": {
@@ -77888,9 +78053,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-05-29",
-        "guid": "b59d58bf-318d-4c2f-98bd-df7742d2dc78",
+        "guid": "7c01874d-9160-4f3b-a3c1-2b133b5e8dc7",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5107862603"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5107931472"
         }
       },
       "newlineSequences": [

@@ -32,52 +32,6 @@
   "hash": "20775858f431ce0138aed985adfcb3a9bce6bfde1bb1392f759a409931f9c33d"
 },{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Duplicates",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Duplicated code",
-  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
-  "sources": [
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-break-on-failure-unittest.py",
-      "language": "Python",
-      "line": 113,
-      "offset": 5,
-      "length": 517,
-      "code": {
-        "startLine": 113,
-        "length": 517,
-        "offset": 4,
-        "surroundingCode": "    SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-      }
-    },
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-throw-on-failure-test.py",
-      "language": "Python",
-      "line": 101,
-      "offset": 5,
-      "length": 494,
-      "code": {
-        "startLine": 101,
-        "length": 494,
-        "offset": 4,
-        "surroundingCode": "    SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "DuplicatedCode",
-    "baselineState": "new"
-  },
-  "hash": "de5ad679ab08f60c3fe7bbdc13eed89876a671a03329c555af67b729fa74a11f"
-},{
-  "tool": "Code Inspection",
   "category": "Python",
   "type": "Unbound local variables",
   "tags": [
@@ -108,52 +62,6 @@
     "baselineState": "new"
   },
   "hash": "f4d46f010b1b165b0e0ff70a9b31f0834b82b33adc40092a03734610a14f9cb0"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Duplicates",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Duplicated code",
-  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
-  "sources": [
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
-      "language": "Python",
-      "line": 136,
-      "offset": 5,
-      "length": 496,
-      "code": {
-        "startLine": 136,
-        "length": 496,
-        "offset": 4,
-        "surroundingCode": "    \"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
-      }
-    },
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
-      "language": "Python",
-      "line": 152,
-      "offset": 5,
-      "length": 512,
-      "code": {
-        "startLine": 152,
-        "length": 512,
-        "offset": 4,
-        "surroundingCode": "    \"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "DuplicatedCode",
-    "baselineState": "new"
-  },
-  "hash": "0dfcce21ca17798d0eb369543220b77c0aa668fc0b12940fbe25835b6646fd1e"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -188,50 +96,100 @@
   "hash": "d837982052a851e440d0c97e49d52b3bd1a5084efe6bcd28f8e4b6603aec81d6"
 },{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Duplicates",
+  "category": "RegExp",
+  "type": "Redundant character escape",
   "tags": [
-    "Python"
+    "RegExp"
   ],
-  "severity": "Moderate",
-  "comment": "Duplicated code",
-  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "severity": "High",
+  "comment": "Redundant character escape ']' in RegExp",
+  "detailsInfo": "Reports redundant character escape sequences that can be replaced with unescaped characters preserving the meaning. Many escape sequences that are necessary outside of a character class are redundant inside square brackets `[]` of a character class.\n\n\nAlthough unescaped opening curly braces `{` outside of character classes are allowed in some dialects (JavaScript, Python, and so on),\nit can cause confusion and make the pattern less portable, because there are dialects that require escaping curly braces as characters.\nFor this reason the inspection does not report escaped opening curly braces.\n\n**Example:**\n\n\n      \\-\\;[\\.]\n\nAfter the quick-fix is applied:\n\n\n      -;[.]\n\n\nThe **Ignore escaped closing brackets '}' and '\\]'** option specifies whether to report `\\}` and `\\]` outside of a character class\nwhen they are allowed to be unescaped by the RegExp dialect.\n\nNew in 2017.3",
   "sources": [
     {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-      "language": "Python",
-      "line": 69,
-      "offset": 9,
-      "length": 554,
+      "type": "file",
+      "path": "lib/googletest/googlemock/test/gmock_output_test.py",
+      "language": "RegExp",
+      "line": 70,
+      "offset": 25,
+      "length": 2,
       "code": {
-        "startLine": 69,
-        "length": 554,
-        "offset": 8,
-        "surroundingCode": "        {\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        },"
-      }
-    },
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-      "language": "Python",
-      "line": 554,
-      "offset": 20,
-      "length": 482,
-      "code": {
-        "startLine": 554,
-        "length": 482,
-        "offset": 19,
-        "surroundingCode": "    'testsuites': [{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }],"
+        "startLine": 68,
+        "length": 2,
+        "offset": 137,
+        "surroundingCode": "  output = re.sub(r'\\[.*\\d+ tests.*\\n', '', output)\n  output = re.sub(r'\\[.* test environment .*\\n', '', output)\n  output = re.sub(r'\\[=+\\] \\d+ tests .* ran.*', '', output)\n  output = re.sub(r'.* FAILED TESTS\\n', '', output)\n  return output"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "DuplicatedCode",
+    "inspectionName": "RegExpRedundantEscape",
     "baselineState": "new"
   },
-  "hash": "ed31752f3f9ba7327bb6964745d60b6d4e71312d32014281e66b46a1be55a339"
+  "hash": "d11ee055d234f170eda001c2891543d5556a16306bba8c7c0a9af35767e16f0c"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Redundant character escape",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "High",
+  "comment": "Redundant character escape ':' in RegExp",
+  "detailsInfo": "Reports redundant character escape sequences that can be replaced with unescaped characters preserving the meaning. Many escape sequences that are necessary outside of a character class are redundant inside square brackets `[]` of a character class.\n\n\nAlthough unescaped opening curly braces `{` outside of character classes are allowed in some dialects (JavaScript, Python, and so on),\nit can cause confusion and make the pattern less portable, because there are dialects that require escaping curly braces as characters.\nFor this reason the inspection does not report escaped opening curly braces.\n\n**Example:**\n\n\n      \\-\\;[\\.]\n\nAfter the quick-fix is applied:\n\n\n      -;[.]\n\n\nThe **Ignore escaped closing brackets '}' and '\\]'** option specifies whether to report `\\}` and `\\]` outside of a character class\nwhen they are allowed to be unescaped by the RegExp dialect.\n\nNew in 2017.3",
+  "sources": [
+    {
+      "type": "file",
+      "path": "lib/googletest/googlemock/test/gmock_output_test.py",
+      "language": "RegExp",
+      "line": 88,
+      "offset": 31,
+      "length": 2,
+      "code": {
+        "startLine": 86,
+        "length": 2,
+        "offset": 37,
+        "surroundingCode": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpRedundantEscape",
+    "baselineState": "new"
+  },
+  "hash": "12f68405544471d88ada96fcf74fd9c2a5ca290ebb4db39c8ff530619d77698f"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Redundant character escape",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "High",
+  "comment": "Redundant character escape ':' in RegExp",
+  "detailsInfo": "Reports redundant character escape sequences that can be replaced with unescaped characters preserving the meaning. Many escape sequences that are necessary outside of a character class are redundant inside square brackets `[]` of a character class.\n\n\nAlthough unescaped opening curly braces `{` outside of character classes are allowed in some dialects (JavaScript, Python, and so on),\nit can cause confusion and make the pattern less portable, because there are dialects that require escaping curly braces as characters.\nFor this reason the inspection does not report escaped opening curly braces.\n\n**Example:**\n\n\n      \\-\\;[\\.]\n\nAfter the quick-fix is applied:\n\n\n      -;[.]\n\n\nThe **Ignore escaped closing brackets '}' and '\\]'** option specifies whether to report `\\}` and `\\]` outside of a character class\nwhen they are allowed to be unescaped by the RegExp dialect.\n\nNew in 2017.3",
+  "sources": [
+    {
+      "type": "file",
+      "path": "lib/googletest/googlemock/test/gmock_output_test.py",
+      "language": "RegExp",
+      "line": 88,
+      "offset": 45,
+      "length": 2,
+      "code": {
+        "startLine": 86,
+        "length": 2,
+        "offset": 51,
+        "surroundingCode": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpRedundantEscape",
+    "baselineState": "new"
+  },
+  "hash": "2311c505016320e35121afde5e56d05ad2d59824117c699bd5b77c5354d7281e"
 },{
   "tool": "Code Inspection",
   "category": "RegExp",
@@ -266,52 +224,6 @@
   "hash": "e5061eaff299c5f1a6607ba4bb1b148f9b4fa719f6ec3fe039043a26befe6286"
 },{
   "tool": "Code Inspection",
-  "category": "General",
-  "type": "Duplicates",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Duplicated code",
-  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
-  "sources": [
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-      "language": "Python",
-      "line": 661,
-      "offset": 5,
-      "length": 323,
-      "code": {
-        "startLine": 661,
-        "length": 323,
-        "offset": 4,
-        "surroundingCode": "    date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
-      }
-    },
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
-      "language": "Python",
-      "line": 286,
-      "offset": 5,
-      "length": 321,
-      "code": {
-        "startLine": 286,
-        "length": 321,
-        "offset": 4,
-        "surroundingCode": "    date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "DuplicatedCode",
-    "baselineState": "new"
-  },
-  "hash": "fc4fbb489af28e319bd879e7a05dd3dc09c3fbc4d692a3b53fdb31eee0e1d5e6"
-},{
-  "tool": "Code Inspection",
   "category": "RegExp",
   "type": "Redundant character escape",
   "tags": [
@@ -342,52 +254,6 @@
     "baselineState": "new"
   },
   "hash": "144949ffd93cedbeec4f8907562fe7bd8d442847b5d81e23ac2516dba9eeeb34"
-},{
-  "tool": "Code Inspection",
-  "category": "General",
-  "type": "Duplicates",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Duplicated code",
-  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
-  "sources": [
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-      "language": "Python",
-      "line": 722,
-      "offset": 5,
-      "length": 517,
-      "code": {
-        "startLine": 722,
-        "length": 517,
-        "offset": 4,
-        "surroundingCode": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-      }
-    },
-    {
-      "type": "Duplicates",
-      "path": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
-      "language": "Python",
-      "line": 345,
-      "offset": 5,
-      "length": 517,
-      "code": {
-        "startLine": 345,
-        "length": 517,
-        "offset": 4,
-        "surroundingCode": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "DuplicatedCode",
-    "baselineState": "new"
-  },
-  "hash": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
 },{
   "tool": "Code Inspection",
   "category": "RegExp",
@@ -903,38 +769,6 @@
 },{
   "tool": "Code Inspection",
   "category": "Python",
-  "type": "Unused local symbols",
-  "tags": [
-    "Python"
-  ],
-  "severity": "Moderate",
-  "comment": "Local variable 'test' value is not used",
-  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "lib/googletest/googletest/test/googletest-filter-unittest.py",
-      "language": "Python",
-      "line": 206,
-      "offset": 3,
-      "length": 4,
-      "code": {
-        "startLine": 204,
-        "length": 4,
-        "offset": 36,
-        "surroundingCode": "  tests_run = []\n  test_case = ''\n  test = ''\n  for line in p.output.split('\\n'):\n    match = TEST_CASE_REGEX.match(line)"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "PyUnusedLocalInspection",
-    "baselineState": "new"
-  },
-  "hash": "ec1b317c1827b9228f3efd8fa23016a17cf3cf41e99de48d8880841a6a66840d"
-},{
-  "tool": "Code Inspection",
-  "category": "Python",
   "type": "Shadowing built-in names",
   "tags": [
     "Python"
@@ -964,6 +798,38 @@
     "baselineState": "new"
   },
   "hash": "8c2e116a99036db32d3e211dc913415fd4b305962af0a46ff84b436a5d32a154"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unused local symbols",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Local variable 'test' value is not used",
+  "detailsInfo": "Reports local variables, parameters, and functions that are locally defined, but not used name in a function.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "lib/googletest/googletest/test/googletest-filter-unittest.py",
+      "language": "Python",
+      "line": 206,
+      "offset": 3,
+      "length": 4,
+      "code": {
+        "startLine": 204,
+        "length": 4,
+        "offset": 36,
+        "surroundingCode": "  tests_run = []\n  test_case = ''\n  test = ''\n  for line in p.output.split('\\n'):\n    match = TEST_CASE_REGEX.match(line)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyUnusedLocalInspection",
+    "baselineState": "new"
+  },
+  "hash": "ec1b317c1827b9228f3efd8fa23016a17cf3cf41e99de48d8880841a6a66840d"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1638,6 +1504,52 @@
   "hash": "f42f6f2f79599853ddc3f85baaded6ec576ea626be9441d3f25491e759b1174b"
 },{
   "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-break-on-failure-unittest.py",
+      "language": "Python",
+      "line": 113,
+      "offset": 5,
+      "length": 517,
+      "code": {
+        "startLine": 113,
+        "length": 517,
+        "offset": 4,
+        "surroundingCode": "    SetEnvVar(BREAK_ON_FAILURE_ENV_VAR, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % BREAK_ON_FAILURE_FLAG\n    else:\n      flag = '--%s' % BREAK_ON_FAILURE_FLAG\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if expect_seg_fault:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-throw-on-failure-test.py",
+      "language": "Python",
+      "line": 101,
+      "offset": 5,
+      "length": 494,
+      "code": {
+        "startLine": 101,
+        "length": 494,
+        "offset": 4,
+        "surroundingCode": "    SetEnvVar(THROW_ON_FAILURE, env_var_value)\n\n    if env_var_value is None:\n      env_var_value_msg = ' is not set'\n    else:\n      env_var_value_msg = '=' + env_var_value\n\n    if flag_value is None:\n      flag = ''\n    elif flag_value == '0':\n      flag = '--%s=0' % THROW_ON_FAILURE\n    else:\n      flag = '--%s' % THROW_ON_FAILURE\n\n    command = [EXE_PATH]\n    if flag:\n      command.append(flag)\n\n    if should_fail:\n      should_or_not = 'should'\n    else:\n      should_or_not = 'should not'"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "de5ad679ab08f60c3fe7bbdc13eed89876a671a03329c555af67b729fa74a11f"
+},{
+  "tool": "Code Inspection",
   "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
@@ -1668,6 +1580,52 @@
     "baselineState": "new"
   },
   "hash": "074e0b6befc5484b2c64a03421ab6a5e408ca7a644fcbf215e255fd435666d6a"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
+      "language": "Python",
+      "line": 136,
+      "offset": 5,
+      "length": 496,
+      "code": {
+        "startLine": 136,
+        "length": 496,
+        "offset": 4,
+        "surroundingCode": "    \"\"\"Tests the behavior of specifying fail_fast via Googletest env var.\"\"\"\n\n    try:\n      SetEnvVar(FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(FAIL_FAST_ENV_VAR, None)"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-failfast-unittest.py",
+      "language": "Python",
+      "line": 152,
+      "offset": 5,
+      "length": 512,
+      "code": {
+        "startLine": 152,
+        "length": 512,
+        "offset": 4,
+        "surroundingCode": "    \"\"\"Tests the behavior of specifying fail_fast via Bazel testbridge.\"\"\"\n\n    try:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '1')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('1 FAILED TEST', txt)\n      self.assertIn('[  SKIPPED ] 3 tests', txt)\n\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, '0')\n      txt, _ = RunAndReturnOutput('HasSimpleTest')\n      self.assertIn('4 FAILED TEST', txt)\n      self.assertNotIn('[  SKIPPED ]', txt)\n    finally:\n      SetEnvVar(BAZEL_FAIL_FAST_ENV_VAR, None)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "0dfcce21ca17798d0eb369543220b77c0aa668fc0b12940fbe25835b6646fd1e"
 },{
   "tool": "Code Inspection",
   "category": "Python",
@@ -1734,6 +1692,52 @@
   "hash": "0dd45b458ab9bbb413df5ce7b7188dbba8f4dc83d484ba17e1571cbc52c289ed"
 },{
   "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+      "language": "Python",
+      "line": 69,
+      "offset": 9,
+      "length": 554,
+      "code": {
+        "startLine": 69,
+        "length": 554,
+        "offset": 8,
+        "surroundingCode": "        {\n            'name': 'SuccessfulTest',\n            'tests': 1,\n            'failures': 0,\n            'disabled': 0,\n            'errors': 0,\n            'time': '*',\n            'timestamp': '*',\n            'testsuite': [{\n                'name': 'Succeeds',\n                'file': 'gtest_xml_output_unittest_.cc',\n                'line': 53,\n                'status': 'RUN',\n                'result': 'COMPLETED',\n                'time': '*',\n                'timestamp': '*',\n                'classname': 'SuccessfulTest',\n            }],\n        },"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+      "language": "Python",
+      "line": 554,
+      "offset": 20,
+      "length": 482,
+      "code": {
+        "startLine": 554,
+        "length": 482,
+        "offset": 19,
+        "surroundingCode": "    'testsuites': [{\n        'name': 'SuccessfulTest',\n        'tests': 1,\n        'failures': 0,\n        'disabled': 0,\n        'errors': 0,\n        'time': '*',\n        'timestamp': '*',\n        'testsuite': [{\n            'name': 'Succeeds',\n            'file': 'gtest_xml_output_unittest_.cc',\n            'line': 53,\n            'status': 'RUN',\n            'result': 'COMPLETED',\n            'time': '*',\n            'timestamp': '*',\n            'classname': 'SuccessfulTest',\n        }],\n    }],"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "ed31752f3f9ba7327bb6964745d60b6d4e71312d32014281e66b46a1be55a339"
+},{
+  "tool": "Code Inspection",
   "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
@@ -1798,6 +1802,52 @@
   "hash": "b1b712f834cc85b411d64eea6cd808bd352693e3e52ded21859e4d9dca3de6b0"
 },{
   "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+      "language": "Python",
+      "line": 661,
+      "offset": 5,
+      "length": 323,
+      "code": {
+        "startLine": 661,
+        "length": 323,
+        "offset": 4,
+        "surroundingCode": "    date_time_from_json = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_json)"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
+      "language": "Python",
+      "line": 286,
+      "offset": 5,
+      "length": 321,
+      "code": {
+        "startLine": 286,
+        "length": 321,
+        "offset": 4,
+        "surroundingCode": "    date_time_from_xml = datetime.datetime(\n        year=int(match.group(1)),\n        month=int(match.group(2)),\n        day=int(match.group(3)),\n        hour=int(match.group(4)),\n        minute=int(match.group(5)),\n        second=int(match.group(6)),\n    )\n\n    time_delta = abs(datetime.datetime.now() - date_time_from_xml)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "fc4fbb489af28e319bd879e7a05dd3dc09c3fbc4d692a3b53fdb31eee0e1d5e6"
+},{
+  "tool": "Code Inspection",
   "category": "Python",
   "type": "Shadowing names from outer scopes",
   "tags": [
@@ -1860,6 +1910,52 @@
     "baselineState": "new"
   },
   "hash": "9181576807cd4f6d90b9824d71d0947f567d2d5d9a34290345b8fc4015ebd831"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+      "language": "Python",
+      "line": 722,
+      "offset": 5,
+      "length": 517,
+      "code": {
+        "startLine": 722,
+        "length": 517,
+        "offset": 4,
+        "surroundingCode": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
+      "language": "Python",
+      "line": 345,
+      "offset": 5,
+      "length": 517,
+      "code": {
+        "startLine": 345,
+        "length": 517,
+        "offset": 4,
+        "surroundingCode": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
 },{
   "tool": "Code Inspection",
   "category": "Python",
