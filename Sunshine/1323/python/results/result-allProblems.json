@@ -1,1 +1,5437 @@
-{"version":"3","listProblem":[]}
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 55,
+      "offset": 1,
+      "length": 410,
+      "code": {
+        "startLine": 55,
+        "length": 410,
+        "offset": 0,
+        "surroundingCode": "try:\n  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# it is also possible to pass the root description URL to u.selectigd() :\n# u.selectigd('http://192.168.1.254:5678/desc/root')\n# display information about the IGD and the internet connection\nprint('local ip address :', u.lanaddr)\nprint('external ip address :', u.externalipaddress())\nprint( u.statusinfo(), u.connectiontype())"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 24,
+      "offset": 1,
+      "length": 282,
+      "code": {
+        "startLine": 24,
+        "length": 282,
+        "offset": 0,
+        "surroundingCode": "try:\n  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# display information about the IGD and the internet connection\nprint('local ip address :', u.lanaddr)\nprint('external ip address :', u.externalipaddress())\nprint(u.statusinfo(), u.connectiontype())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "de7f71c03e0664c51e94cbf62a5448868aebef38e5b95d736ad0327d3a9d9de5"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 naming convention violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Class names should use CamelCase convention",
+  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 28,
+      "offset": 7,
+      "length": 13,
+      "code": {
+        "startLine": 26,
+        "length": 13,
+        "offset": 54,
+        "surroundingCode": "\n#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8NamingInspection",
+    "baselineState": "new"
+  },
+  "hash": "6c8ebe18bab0d675b0d5c6705404012a60965dbe8c5454f099026a2ce5a621ef"
+},{
+  "tool": "Code Inspection",
+  "category": "General",
+  "type": "Duplicates",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Duplicated code",
+  "detailsInfo": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index).",
+  "sources": [
+    {
+      "type": "Duplicates",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 73,
+      "offset": 1,
+      "length": 257,
+      "code": {
+        "startLine": 73,
+        "length": 257,
+        "offset": 0,
+        "surroundingCode": "port = 0\nproto = 'UDP'\n# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n\nprint(u.getspecificportmapping(port, proto))"
+      }
+    },
+    {
+      "type": "Duplicates",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 38,
+      "offset": 1,
+      "length": 257,
+      "code": {
+        "startLine": 38,
+        "length": 257,
+        "offset": 0,
+        "surroundingCode": "port = 0\nproto = 'UDP'\n# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n\nprint(u.getspecificportmapping(port, proto))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "DuplicatedCode",
+    "baselineState": "new"
+  },
+  "hash": "95c0235e6be63a8010d29535b8ae8f25135777067a568123fcb38a01666d14f4"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 naming convention violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Function name should be lowercase",
+  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 29,
+      "offset": 6,
+      "length": 6,
+      "code": {
+        "startLine": 27,
+        "length": 6,
+        "offset": 97,
+        "surroundingCode": "#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)\n\t\tself.end_headers()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8NamingInspection",
+    "baselineState": "new"
+  },
+  "hash": "49e32821dbc7ccbb15122abcd3de3ba0948a038ba140a2849cc4b3d5c4e63bc9"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 naming convention violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Class names should use CamelCase convention",
+  "detailsInfo": "Reports violations of the\n[PEP8](https://www.python.org/dev/peps/pep-0008/) naming conventions.\n\n**Example:**\n\n```\nclass mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```\n\nIn this code fragment, IDE offers to rename `mammalia` to `Mammalia`.\nWhen the quick-fix is applied, the code change to:\n\n```\nclass Mammalia(object):\n    extremities = 4\n\n    def feeds(self):\n        print(\"milk\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 7,
+      "length": 19,
+      "code": {
+        "startLine": 16,
+        "length": 19,
+        "offset": 38,
+        "surroundingCode": "EXT = ['build/libminiupnpc.a']\n\nclass make_then_build_ext(build_ext.build_ext):\n      def run(self):\n            subprocess.check_call([os.environ.get('MAKE', 'make')] + EXT)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8NamingInspection",
+    "baselineState": "new"
+  },
+  "hash": "052a442af0a3b96c85f6b920cd44f1306235d9a83309ab8dc110ce7ab1d88e9b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Inconsistent indentation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Inconsistent indentation: previous line used spaces, this line uses tabs",
+  "detailsInfo": "Reports inconsistent indentation in Python source files when, for example,\nyou use a mixture of tabs and spaces in your code.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 17,
+        "length": 1,
+        "offset": 47,
+        "surroundingCode": "# function definition\ndef list_redirections():\n\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInconsistentIndentationInspection",
+    "baselineState": "new"
+  },
+  "hash": "5cedb95c1ca7ba936b00c18cdae430592e4fa913c3b28f9fd7fb4bd4ea7eeadd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Inconsistent indentation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Inconsistent indentation: previous line used spaces, this line uses tabs",
+  "detailsInfo": "Reports inconsistent indentation in Python source files when, for example,\nyou use a mixture of tabs and spaces in your code.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 78,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 76,
+        "length": 1,
+        "offset": 18,
+        "surroundingCode": "i = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInconsistentIndentationInspection",
+    "baselineState": "new"
+  },
+  "hash": "332467a517b1cb8389b70877ae6c48ce64feaec4ddb04e807228a7f1902c840c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Inconsistent indentation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Inconsistent indentation: previous line used tabs, this line uses spaces",
+  "detailsInfo": "Reports inconsistent indentation in Python source files when, for example,\nyou use a mixture of tabs and spaces in your code.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 88,
+      "offset": 1,
+      "length": 2,
+      "code": {
+        "startLine": 86,
+        "length": 2,
+        "offset": 50,
+        "surroundingCode": "print(u.getspecificportmapping(port, proto))\ntry:\n  print(u.getportmappingnumberofentries())\nexcept Exception as e:\n  print('GetPortMappingNumberOfEntries() is not supported :', e)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInconsistentIndentationInspection",
+    "baselineState": "new"
+  },
+  "hash": "f60de77785794f768b24bdc4c427ff7b0941eee0144f56709aa83c7d9c586ed1"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Inconsistent indentation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Inconsistent indentation: previous line used spaces, this line uses tabs",
+  "detailsInfo": "Reports inconsistent indentation in Python source files when, for example,\nyou use a mixture of tabs and spaces in your code.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 43,
+      "offset": 1,
+      "length": 1,
+      "code": {
+        "startLine": 41,
+        "length": 1,
+        "offset": 18,
+        "surroundingCode": "i = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyInconsistentIndentationInspection",
+    "baselineState": "new"
+  },
+  "hash": "8892d83e65d1393cb9effa49f99adf00de94c549453f9e921b67fb0882771558"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Deprecated function, class, or module",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "The distutils.sysconfig module is deprecated, use sysconfig instead",
+  "detailsInfo": "Reports usages of Python functions, or methods that are marked as\ndeprecated and raise the `DeprecationWarning` or `PendingDeprecationWarning` warning.\n\nAlso, this inspection highlights usages of `abc.abstractstaticmethod`, `abc.abstractproperty`, and `abc.abstractclassmethod`\ndecorators.\n\n**Example:**\n\n```\nclass Foo:\n    @property\n    def bar(self):\n        import warnings\n        warnings.warn(\"this is deprecated\", DeprecationWarning, 2)\n        return 5\n\n\nfoo = Foo()\nprint(foo.bar)\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 21,
+      "offset": 1,
+      "length": 9,
+      "code": {
+        "startLine": 19,
+        "length": 9,
+        "offset": 84,
+        "surroundingCode": "        from distutils.core import setup, Extension\nfrom distutils import sysconfig\nsysconfig.get_config_vars()[\"OPT\"] = ''\nsysconfig.get_config_vars()[\"CFLAGS\"] = ''\nsetup(name=\"miniupnpc\","
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDeprecationInspection",
+    "baselineState": "new"
+  },
+  "hash": "6ed4f42cc457f76bbd27a300925002a2975775cdd5a3acd1969f266e4ff435f4"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Deprecated function, class, or module",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "The distutils.sysconfig module is deprecated, use sysconfig instead",
+  "detailsInfo": "Reports usages of Python functions, or methods that are marked as\ndeprecated and raise the `DeprecationWarning` or `PendingDeprecationWarning` warning.\n\nAlso, this inspection highlights usages of `abc.abstractstaticmethod`, `abc.abstractproperty`, and `abc.abstractclassmethod`\ndecorators.\n\n**Example:**\n\n```\nclass Foo:\n    @property\n    def bar(self):\n        import warnings\n        warnings.warn(\"this is deprecated\", DeprecationWarning, 2)\n        return 5\n\n\nfoo = Foo()\nprint(foo.bar)\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 1,
+      "length": 9,
+      "code": {
+        "startLine": 20,
+        "length": 9,
+        "offset": 72,
+        "surroundingCode": "from distutils import sysconfig\nsysconfig.get_config_vars()[\"OPT\"] = ''\nsysconfig.get_config_vars()[\"CFLAGS\"] = ''\nsetup(name=\"miniupnpc\",\n      version=open('VERSION').read().strip(),"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyDeprecationInspection",
+    "baselineState": "new"
+  },
+  "hash": "8f6460d3ec617d79d175ac7bf81a639dd30c2bf4ddaaddf5a16ae2f0a3a83309"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 16,
+      "offset": 9,
+      "length": 6,
+      "code": {
+        "startLine": 14,
+        "length": 6,
+        "offset": 60,
+        "surroundingCode": "        try:\n            s = str.encode(s, \"ascii\")\n        except:\n            s = b''\n    l = len(s)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection",
+    "baselineState": "new"
+  },
+  "hash": "d35fb04a89f2c13e9cb56625525655d1c359133ba8c5b33df64286434f9ba6a5"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Unclear exception clauses",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Too broad exception clause",
+  "detailsInfo": "Reports exception clauses that do not provide specific information\nabout the problem.\n\n**Example:**\n\n* Clauses that do not specify an exception class\n* Clauses that are specified as `Exception`",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 1,
+      "length": 6,
+      "code": {
+        "startLine": 20,
+        "length": 6,
+        "offset": 72,
+        "surroundingCode": "  # create the object\n  u = miniupnpc.UPnP(**vars(parser.parse_args()))\nexcept:\n  print('argparse not available')\n  i = 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyBroadExceptionInspection",
+    "baselineState": "new"
+  },
+  "hash": "ad70adb68b1bf3e03ff3092005f563b9e46ea680db65b2f6ff7ab9d888bd859e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Prohibited trailing semicolon in a statement",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Trailing semicolon in the statement",
+  "detailsInfo": "Reports trailing semicolons in statements.\n\n**Example:**\n\n```\ndef my_func(a):\n    c = a ** 2;\n    return c\n```\n\nIDE provides a quick-fix that removes a trailing semicolon. When you\napply it, the code changes to:\n\n```\ndef my_func(a):\n    c = a ** 2\n    return c\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 41,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 39,
+        "length": 1,
+        "offset": 103,
+        "surroundingCode": "#print ' multicastif', u.multicastif\n#print ' minissdpdsocket', u.minissdpdsocket\nu.discoverdelay = 200;\n\ntry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyTrailingSemicolonInspection",
+    "baselineState": "new"
+  },
+  "hash": "8ed450ad0fadc7a8d111487ffc0f596ee3ce5cb62dffe1bfa5b7d00c7acf59ef"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Prohibited trailing semicolon in a statement",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Trailing semicolon in the statement",
+  "detailsInfo": "Reports trailing semicolons in statements.\n\n**Example:**\n\n```\ndef my_func(a):\n    c = a ** 2;\n    return c\n```\n\nIDE provides a quick-fix that removes a trailing semicolon. When you\napply it, the code changes to:\n\n```\ndef my_func(a):\n    c = a ** 2\n    return c\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 16,
+        "length": 1,
+        "offset": 103,
+        "surroundingCode": "print(' multicastif', u.multicastif)\nprint(' minissdpdsocket', u.minissdpdsocket)\nu.discoverdelay = 200;\n#u.minissdpdsocket = '../minissdpd/minissdpd.sock'\n# discovery process, it usually takes several seconds (2 seconds or more)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyTrailingSemicolonInspection",
+    "baselineState": "new"
+  },
+  "hash": "7d998950a8d9d2b23e1e016ea5f8c8b17e629aa5205e6f4bbb95ece2cfcf07c4"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Using equality operators to compare with None",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Comparison with None performed with equality operators",
+  "detailsInfo": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 6,
+      "length": 7,
+      "code": {
+        "startLine": 20,
+        "length": 7,
+        "offset": 51,
+        "surroundingCode": "\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyComparisonWithNoneInspection",
+    "baselineState": "new"
+  },
+  "hash": "ba0fbe6e8cfa6c03a21098e716050e80e254fdbb33c7e2e78388436c9dbfe7f7"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Using equality operators to compare with None",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Comparison with None performed with equality operators",
+  "detailsInfo": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 62,
+      "offset": 8,
+      "length": 9,
+      "code": {
+        "startLine": 60,
+        "length": 9,
+        "offset": 91,
+        "surroundingCode": "\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyComparisonWithNoneInspection",
+    "baselineState": "new"
+  },
+  "hash": "6f6057197d3567692e532270aa7e1dc974d3f9bec5e788106a01818294559258"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Using equality operators to compare with None",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Comparison with None performed with equality operators",
+  "detailsInfo": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 79,
+      "offset": 5,
+      "length": 7,
+      "code": {
+        "startLine": 77,
+        "length": 7,
+        "offset": 48,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyComparisonWithNoneInspection",
+    "baselineState": "new"
+  },
+  "hash": "1c61dc4f85c21065ad8bb48d2b472419cf1a81662743d8f18e6781ba1e49c279"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Using equality operators to compare with None",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "Comparison with None performed with equality operators",
+  "detailsInfo": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 44,
+      "offset": 5,
+      "length": 7,
+      "code": {
+        "startLine": 42,
+        "length": 7,
+        "offset": 48,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyComparisonWithNoneInspection",
+    "baselineState": "new"
+  },
+  "hash": "58bde660e73f7df726f9b7f5fa7734980c1b2219ee63b7eb7b64385259acce7d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E401 multiple imports on one line",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 6,
+      "offset": 14,
+      "length": 1,
+      "code": {
+        "startLine": 4,
+        "length": 1,
+        "offset": 125,
+        "surroundingCode": "# Python3 module to submit service to running MiniSSDPd\n# MiniSSDPd: See http://miniupnp.free.fr/minissdpd.html\nimport socket, os\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "9d3f1a8ffdab05df56c6ed166c1d4482ffece1540683fc40f5c61b0c3a41578e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E722 do not use bare 'except'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 16,
+      "offset": 9,
+      "length": 6,
+      "code": {
+        "startLine": 14,
+        "length": 6,
+        "offset": 60,
+        "surroundingCode": "        try:\n            s = str.encode(s, \"ascii\")\n        except:\n            s = b''\n    l = len(s)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "baa3d01267f832338b0c72b92b7d5520356ec59cf39786d25f5c1e7622a054a0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E741 ambiguous variable name 'l'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 5,
+      "length": 1,
+      "code": {
+        "startLine": 16,
+        "length": 1,
+        "offset": 40,
+        "surroundingCode": "        except:\n            s = b''\n    l = len(s)\n    if l == 0:\n        return b'\\x00'"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "ba05e1a7d375ce9ddc73074e8c8ef9b0950e2d2ef7ec7f748cd604dd2885c239"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E741 ambiguous variable name 'l'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 8,
+      "length": 1,
+      "code": {
+        "startLine": 17,
+        "length": 1,
+        "offset": 42,
+        "surroundingCode": "            s = b''\n    l = len(s)\n    if l == 0:\n        return b'\\x00'\n    encodedlen = (l & 0x7F).to_bytes(1, 'little')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "1111bbd2d12f1d2cc4ee6156a473bb92572383aa88c27e9b024521f2c6f141d6"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E741 ambiguous variable name 'l'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/minissdpd/submit_to_minissdpd.py",
+      "language": "Python",
+      "line": 23,
+      "offset": 9,
+      "length": 1,
+      "code": {
+        "startLine": 21,
+        "length": 1,
+        "offset": 78,
+        "surroundingCode": "    encodedlen = (l & 0x7F).to_bytes(1, 'little')\n    while l > 0x7F:\n        l = l >> 7\n        c = (l & 0x7F) | 0x80\n        encodedlen = c.to_bytes(1, 'little') + encodedlen"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "97cc1ae64e7f77a5d213f0f5de2cbaac9e35d5429f62600c6f0e041c94caa4fb"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E302 expected 2 blank lines, found 1",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 1,
+      "length": 24,
+      "code": {
+        "startLine": 16,
+        "length": 24,
+        "offset": 23,
+        "surroundingCode": "\n# function definition\ndef list_redirections():\n\ti = 0\n\twhile True:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d4b7cf2610eb0d2863c1e44d9a3726338bbd51f183bbfbc0e7cbcaf8abac052b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E101 indentation contains mixed spaces and tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 25,
+      "length": 7,
+      "code": {
+        "startLine": 16,
+        "length": 7,
+        "offset": 47,
+        "surroundingCode": "\n# function definition\ndef list_redirections():\n\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b4678359c6b303e3826dd1e58efd970e363418c77dd5d0e0ca672ff4ec20b475"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 25,
+      "length": 7,
+      "code": {
+        "startLine": 16,
+        "length": 7,
+        "offset": 47,
+        "surroundingCode": "\n# function definition\ndef list_redirections():\n\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "fff8c0992accdc6aaa16cef1bb6df97c2e55bdda221b2093304de7e8de5d8f1a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 7,
+      "length": 13,
+      "code": {
+        "startLine": 17,
+        "length": 13,
+        "offset": 53,
+        "surroundingCode": "# function definition\ndef list_redirections():\n\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "4a7321f3e8d88a5f3e1732cc911310a0fcbc581edb29672615d1dd8e62caa718"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 20,
+      "offset": 13,
+      "length": 33,
+      "code": {
+        "startLine": 18,
+        "length": 33,
+        "offset": 44,
+        "surroundingCode": "def list_redirections():\n\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "300b50cd058b098180a182600f78929be4c3d1db6bdad60b5a771ed44d831a27"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 21,
+      "offset": 33,
+      "length": 14,
+      "code": {
+        "startLine": 19,
+        "length": 14,
+        "offset": 52,
+        "surroundingCode": "\ti = 0\n\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "551ca1979591fd9fe5f833678848418feb8201f1a0759d43abfa0ae0d58d93fb"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E225 missing whitespace around operator",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 7,
+      "length": 2,
+      "code": {
+        "startLine": 20,
+        "length": 2,
+        "offset": 52,
+        "surroundingCode": "\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "093cfb258319813fcaf7ba214665adcec84953037750b2dcd35f37d3a31b0abd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E711 comparison to None should be 'if cond is None:'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 7,
+      "length": 2,
+      "code": {
+        "startLine": 20,
+        "length": 2,
+        "offset": 52,
+        "surroundingCode": "\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "50003c4adf04c49049f7efca13d78ba7c4b6736d777f354f16c423bd3b72ee17"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 14,
+      "length": 9,
+      "code": {
+        "startLine": 20,
+        "length": 9,
+        "offset": 59,
+        "surroundingCode": "\twhile True:\n\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)\n\t\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "4164373d6067828336397bc514257141fb6d38e6e2ad4a83534f42291a3bca3d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 23,
+      "offset": 9,
+      "length": 14,
+      "code": {
+        "startLine": 21,
+        "length": 14,
+        "offset": 55,
+        "surroundingCode": "\t\tp = u.getgenericportmapping(i)\n\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)\n\t\ti = i + 1\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "7ce612d9d870b018fb3bb598ea3b0ee37c1a7c92ba31a7ac7732b91a0cccac6c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 24,
+      "offset": 14,
+      "length": 12,
+      "code": {
+        "startLine": 22,
+        "length": 12,
+        "offset": 36,
+        "surroundingCode": "\t\tif p==None:\n\t\t\tbreak\n\t\tprint(i, p)\n\t\ti = i + 1\n\n#define the handler class for HTTP connections"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b575411692d0700cef5ab0b761f6274482e901815beb6b05f8f827c43324c7e3"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 27,
+      "offset": 1,
+      "length": 46,
+      "code": {
+        "startLine": 25,
+        "length": 46,
+        "offset": 13,
+        "surroundingCode": "\t\ti = i + 1\n\n#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "dc71be5d972bfb763f4d3d6ae56a6893d70fbc687e4194f50ea7ca8c93995903"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E302 expected 2 blank lines, found 1",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 28,
+      "offset": 1,
+      "length": 44,
+      "code": {
+        "startLine": 26,
+        "length": 44,
+        "offset": 48,
+        "surroundingCode": "\n#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "429e8927efedb03b79f62d56e5952559ca03557b2c40250cba980080c7af09dc"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 28,
+      "offset": 45,
+      "length": 19,
+      "code": {
+        "startLine": 26,
+        "length": 19,
+        "offset": 92,
+        "surroundingCode": "\n#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)\n\t\tself.end_headers()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "63b1256308d57b9a29cc11b4d324829b5e0cb6b167cec3eef3f86969c87ff952"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 29,
+      "offset": 19,
+      "length": 26,
+      "code": {
+        "startLine": 27,
+        "length": 26,
+        "offset": 110,
+        "surroundingCode": "#define the handler class for HTTP connections\nclass handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)\n\t\tself.end_headers()\n\t\tself.wfile.write(b\"OK MON GARS\")"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "ffbb0313d8a6b7b2d6d4e8eefdd8c9eea0a73719d56ff0ccf4a3396295a77de9"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 30,
+      "offset": 26,
+      "length": 21,
+      "code": {
+        "startLine": 28,
+        "length": 21,
+        "offset": 89,
+        "surroundingCode": "class handler_class(BaseHTTPRequestHandler):\n\tdef do_GET(self):\n\t\tself.send_response(200)\n\t\tself.end_headers()\n\t\tself.wfile.write(b\"OK MON GARS\")\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "3e7e8978a480b70a73c8be4c9e00d6eeb1ced380de152d81043ca73d9f02bd2f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 31,
+      "offset": 21,
+      "length": 35,
+      "code": {
+        "startLine": 29,
+        "length": 35,
+        "offset": 65,
+        "surroundingCode": "\tdef do_GET(self):\n\t\tself.send_response(200)\n\t\tself.end_headers()\n\t\tself.wfile.write(b\"OK MON GARS\")\n\n# create the object"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "da56f80aca65e4a3ba26ab88ce25eaebe1bea48cce5668c5e9118dc2b4300d8b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E305 expected 2 blank lines after class or function definition, found 1",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 35,
+      "offset": 1,
+      "length": 20,
+      "code": {
+        "startLine": 33,
+        "length": 20,
+        "offset": 21,
+        "surroundingCode": "\n# create the object\nu = miniupnpc.UPnP()\n#print 'inital(default) values :'\n#print ' discoverdelay', u.discoverdelay"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e48f57020ec1f3009404cca0de62e8e9440990aa443f1941cad79773e5d9c191"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 36,
+      "offset": 1,
+      "length": 33,
+      "code": {
+        "startLine": 34,
+        "length": 33,
+        "offset": 41,
+        "surroundingCode": "# create the object\nu = miniupnpc.UPnP()\n#print 'inital(default) values :'\n#print ' discoverdelay', u.discoverdelay\n#print ' lanaddr', u.lanaddr"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "8d9950e1793c80c58e18ee5ff3e7da8201280d66035e92fabea3339fcea8283f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 37,
+      "offset": 1,
+      "length": 40,
+      "code": {
+        "startLine": 35,
+        "length": 40,
+        "offset": 55,
+        "surroundingCode": "u = miniupnpc.UPnP()\n#print 'inital(default) values :'\n#print ' discoverdelay', u.discoverdelay\n#print ' lanaddr', u.lanaddr\n#print ' multicastif', u.multicastif"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b4a619e0e9fae519c2500b90fd072763efbd0324b1621fe31afcdedeed703bbe"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 38,
+      "offset": 1,
+      "length": 28,
+      "code": {
+        "startLine": 36,
+        "length": 28,
+        "offset": 75,
+        "surroundingCode": "#print 'inital(default) values :'\n#print ' discoverdelay', u.discoverdelay\n#print ' lanaddr', u.lanaddr\n#print ' multicastif', u.multicastif\n#print ' minissdpdsocket', u.minissdpdsocket"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "31e23e8fbd490f4feb76097b01d3b80949d141f53b0c12cd1c111ca37e76edf2"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 39,
+      "offset": 1,
+      "length": 36,
+      "code": {
+        "startLine": 37,
+        "length": 36,
+        "offset": 70,
+        "surroundingCode": "#print ' discoverdelay', u.discoverdelay\n#print ' lanaddr', u.lanaddr\n#print ' multicastif', u.multicastif\n#print ' minissdpdsocket', u.minissdpdsocket\nu.discoverdelay = 200;"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "a87c3635ac34ab1c374dc282c986c8f5030ca308db5c0c6bf0ecf38dc96d10bd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 40,
+      "offset": 1,
+      "length": 44,
+      "code": {
+        "startLine": 38,
+        "length": 44,
+        "offset": 66,
+        "surroundingCode": "#print ' lanaddr', u.lanaddr\n#print ' multicastif', u.multicastif\n#print ' minissdpdsocket', u.minissdpdsocket\nu.discoverdelay = 200;\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "42281b267293d906a2d5c1a71ee055b8e713d53f2d9d8dc40921271f91b35956"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E703 statement ends with a semicolon",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 41,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 39,
+        "length": 1,
+        "offset": 103,
+        "surroundingCode": "#print ' multicastif', u.multicastif\n#print ' minissdpdsocket', u.minissdpdsocket\nu.discoverdelay = 200;\n\ntry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "cc63bfd2a193a8f12e8360e05353aef24739ff399ac9110124a834fe41b76949"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 43,
+      "offset": 5,
+      "length": 54,
+      "code": {
+        "startLine": 41,
+        "length": 54,
+        "offset": 28,
+        "surroundingCode": "u.discoverdelay = 200;\n\ntry:\n\tprint('Discovering... delay=%ums' % u.discoverdelay)\n\tndevices = u.discover()\n\tprint(ndevices, 'device(s) detected')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "9a7bca8dd84ca6f6661742b78313f4368804d455265e11d9087a914d194bd4bf"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 44,
+      "offset": 54,
+      "length": 25,
+      "code": {
+        "startLine": 42,
+        "length": 25,
+        "offset": 59,
+        "surroundingCode": "\ntry:\n\tprint('Discovering... delay=%ums' % u.discoverdelay)\n\tndevices = u.discover()\n\tprint(ndevices, 'device(s) detected')\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "42714a1f1839d24b3daa91fe1babfb89a7e34a66642505b314337e62348baab3"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 45,
+      "offset": 25,
+      "length": 39,
+      "code": {
+        "startLine": 43,
+        "length": 39,
+        "offset": 83,
+        "surroundingCode": "try:\n\tprint('Discovering... delay=%ums' % u.discoverdelay)\n\tndevices = u.discover()\n\tprint(ndevices, 'device(s) detected')\n\n\t# select an igd"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "91a86ab2f9e059eebb22d5f61f6b2e5603e14811874e2505d8b54fd123ff31bf"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 46,
+      "offset": 39,
+      "length": 18,
+      "code": {
+        "startLine": 44,
+        "length": 18,
+        "offset": 117,
+        "surroundingCode": "\tprint('Discovering... delay=%ums' % u.discoverdelay)\n\tndevices = u.discover()\n\tprint(ndevices, 'device(s) detected')\n\n\t# select an igd\n\tu.selectigd()\n\t# display information about the IGD and the internet connection"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "402c2d91f2438e1b0fa0cbd270dce94cb196ef036beedf378f3b27d8f8ac7f0f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 48,
+      "offset": 17,
+      "length": 15,
+      "code": {
+        "startLine": 46,
+        "length": 15,
+        "offset": 56,
+        "surroundingCode": "\tprint(ndevices, 'device(s) detected')\n\n\t# select an igd\n\tu.selectigd()\n\t# display information about the IGD and the internet connection\n\tprint('local ip address :', u.lanaddr)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d4833a146ab10cbc8710c031dff36521f97b64659ed38203cea01d166ed18d49"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 49,
+      "offset": 15,
+      "length": 65,
+      "code": {
+        "startLine": 47,
+        "length": 65,
+        "offset": 32,
+        "surroundingCode": "\n\t# select an igd\n\tu.selectigd()\n\t# display information about the IGD and the internet connection\n\tprint('local ip address :', u.lanaddr)\n\texternalipaddress = u.externalipaddress()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "38667be1789946aaa222377c4c7a087b7db39a39bd244767a987855ef2805f2e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 50,
+      "offset": 65,
+      "length": 40,
+      "code": {
+        "startLine": 48,
+        "length": 40,
+        "offset": 96,
+        "surroundingCode": "\t# select an igd\n\tu.selectigd()\n\t# display information about the IGD and the internet connection\n\tprint('local ip address :', u.lanaddr)\n\texternalipaddress = u.externalipaddress()\n\tprint('external ip address :', externalipaddress)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "966d14f1dbf8059e517535b93709a61567aa9afb6a0aaf7922c93d4ff99ff02a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 51,
+      "offset": 40,
+      "length": 43,
+      "code": {
+        "startLine": 49,
+        "length": 43,
+        "offset": 119,
+        "surroundingCode": "\tu.selectigd()\n\t# display information about the IGD and the internet connection\n\tprint('local ip address :', u.lanaddr)\n\texternalipaddress = u.externalipaddress()\n\tprint('external ip address :', externalipaddress)\n\tprint(u.statusinfo(), u.connectiontype())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e5d83f37c8ffb64c45c6882f54e63eb9403af8498f044b030154a93249dc3bdd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 52,
+      "offset": 43,
+      "length": 51,
+      "code": {
+        "startLine": 50,
+        "length": 51,
+        "offset": 147,
+        "surroundingCode": "\t# display information about the IGD and the internet connection\n\tprint('local ip address :', u.lanaddr)\n\texternalipaddress = u.externalipaddress()\n\tprint('external ip address :', externalipaddress)\n\tprint(u.statusinfo(), u.connectiontype())\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "ea078f7d119507432a9220eb914a1e5a5eb18b28aa9b02f343007c655eb9f007"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 53,
+      "offset": 51,
+      "length": 43,
+      "code": {
+        "startLine": 51,
+        "length": 43,
+        "offset": 133,
+        "surroundingCode": "\tprint('local ip address :', u.lanaddr)\n\texternalipaddress = u.externalipaddress()\n\tprint('external ip address :', externalipaddress)\n\tprint(u.statusinfo(), u.connectiontype())\n\n\t#instanciate a HTTPd object. The port is assigned by the system."
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "39159bf5ece0688da39dc8c9a23cab422ddff1f7ecca23d3dd96d90c4cbbfd8a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 54,
+      "offset": 43,
+      "length": 67,
+      "code": {
+        "startLine": 52,
+        "length": 67,
+        "offset": 136,
+        "surroundingCode": "\texternalipaddress = u.externalipaddress()\n\tprint('external ip address :', externalipaddress)\n\tprint(u.statusinfo(), u.connectiontype())\n\n\t#instanciate a HTTPd object. The port is assigned by the system.\n\thttpd = HTTPServer((u.lanaddr, 0), handler_class)\n\teport = httpd.server_port"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "30d59972bdb62dc430ee8f347fd74d2845fb7d393bd430fd024a27faa9546fe8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 2,
+      "length": 64,
+      "code": {
+        "startLine": 54,
+        "length": 64,
+        "offset": 45,
+        "surroundingCode": "\tprint(u.statusinfo(), u.connectiontype())\n\n\t#instanciate a HTTPd object. The port is assigned by the system.\n\thttpd = HTTPServer((u.lanaddr, 0), handler_class)\n\teport = httpd.server_port"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "05dfa5635b20972acce5550fe00f897ef8fc6b9331d66202cd95a93435fb0c75"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 66,
+      "length": 51,
+      "code": {
+        "startLine": 54,
+        "length": 51,
+        "offset": 109,
+        "surroundingCode": "\tprint(u.statusinfo(), u.connectiontype())\n\n\t#instanciate a HTTPd object. The port is assigned by the system.\n\thttpd = HTTPServer((u.lanaddr, 0), handler_class)\n\teport = httpd.server_port\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "1cf71e216fd365c1e787b57d6b697ebbcdd2455fc4f0c23877dc721143b131b8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 57,
+      "offset": 51,
+      "length": 27,
+      "code": {
+        "startLine": 55,
+        "length": 27,
+        "offset": 117,
+        "surroundingCode": "\n\t#instanciate a HTTPd object. The port is assigned by the system.\n\thttpd = HTTPServer((u.lanaddr, 0), handler_class)\n\teport = httpd.server_port\n\n\t# find a free port for the redirection"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "fef973679bb16c796e2976ba6cb3e17cc54b4b4b1dbd181fd24ef935762ba7e9"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 58,
+      "offset": 27,
+      "length": 41,
+      "code": {
+        "startLine": 56,
+        "length": 41,
+        "offset": 143,
+        "surroundingCode": "\t#instanciate a HTTPd object. The port is assigned by the system.\n\thttpd = HTTPServer((u.lanaddr, 0), handler_class)\n\teport = httpd.server_port\n\n\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "1506e84235006741182d6f260996ef8834c42e148a93208c200f2582cc4f8224"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 60,
+      "offset": 40,
+      "length": 44,
+      "code": {
+        "startLine": 58,
+        "length": 44,
+        "offset": 67,
+        "surroundingCode": "\teport = httpd.server_port\n\n\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "8934bf98b04c7b5c3e3c5a0cd99d626f11210ebbdae262bc9d675bb1d6370a97"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 61,
+      "offset": 44,
+      "length": 36,
+      "code": {
+        "startLine": 59,
+        "length": 36,
+        "offset": 84,
+        "surroundingCode": "\n\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f37f012bfeb2ec33c2622c74b0154a980307512f3c6074b9e1386c05c45e7bf6"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E711 comparison to None should be 'if cond is not None:'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 62,
+      "offset": 10,
+      "length": 2,
+      "code": {
+        "startLine": 60,
+        "length": 2,
+        "offset": 93,
+        "surroundingCode": "\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "fd2d7c7ab705e0c962ffcb7118bb2ed21954ecb76081673173b5415a99607a9c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 62,
+      "offset": 36,
+      "length": 20,
+      "code": {
+        "startLine": 60,
+        "length": 20,
+        "offset": 119,
+        "surroundingCode": "\t# find a free port for the redirection\n\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "2f0f1057d59d79d5423f92f7338eae4042690dc4acec5d40e392c660838d4bb5"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 63,
+      "offset": 20,
+      "length": 45,
+      "code": {
+        "startLine": 61,
+        "length": 45,
+        "offset": 99,
+        "surroundingCode": "\tr = u.getspecificportmapping(eport, 'TCP')\n\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')\n\n\tprint('trying to redirect %s port %u TCP => %s port %u TCP' % (externalipaddress, eport, u.lanaddr, httpd.server_port))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "50fdbc3996b3c2d0d580ffd0e87806be52454734e2efb0e5f21a139a99c3eff1"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 64,
+      "offset": 45,
+      "length": 122,
+      "code": {
+        "startLine": 62,
+        "length": 122,
+        "offset": 100,
+        "surroundingCode": "\twhile r != None and eport < 65536:\n\t\teport = eport + 1\n\t\tr = u.getspecificportmapping(eport, 'TCP')\n\n\tprint('trying to redirect %s port %u TCP => %s port %u TCP' % (externalipaddress, eport, u.lanaddr, httpd.server_port))\n\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "daeb84647f38537c98d9b3a80e7c5ae58ded6b9900aad6b4de54f468f978596b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 66,
+      "offset": 121,
+      "length": 67,
+      "code": {
+        "startLine": 64,
+        "length": 67,
+        "offset": 166,
+        "surroundingCode": "\t\tr = u.getspecificportmapping(eport, 'TCP')\n\n\tprint('trying to redirect %s port %u TCP => %s port %u TCP' % (externalipaddress, eport, u.lanaddr, httpd.server_port))\n\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "bb4fc2569a4728e3f4aa4c7f0d55b2b2c817282ff8fd0d2fc566ce187c4cbdef"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E101 indentation contains mixed spaces and tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 68,
+      "offset": 66,
+      "length": 60,
+      "code": {
+        "startLine": 66,
+        "length": 60,
+        "offset": 187,
+        "surroundingCode": "\tprint('trying to redirect %s port %u TCP => %s port %u TCP' % (externalipaddress, eport, u.lanaddr, httpd.server_port))\n\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "9e33e4f2c804d36faa4110241f7cd4202ea3f34ad59d26a7dc4f9b4e43001898"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 68,
+      "offset": 66,
+      "length": 60,
+      "code": {
+        "startLine": 66,
+        "length": 60,
+        "offset": 187,
+        "surroundingCode": "\tprint('trying to redirect %s port %u TCP => %s port %u TCP' % (externalipaddress, eport, u.lanaddr, httpd.server_port))\n\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "61cccb5d8d2b7a251e9fa71f11c3cffb57aa26edbbc0518cc679817bd11fd84f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E128 continuation line under-indented for visual indent",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 69,
+      "offset": 22,
+      "length": 25,
+      "code": {
+        "startLine": 67,
+        "length": 25,
+        "offset": 88,
+        "surroundingCode": "\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "5fc205479e6665365bb0af1cde8ac421bb61a657d7938e3c549a038aacb1328d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 69,
+      "offset": 60,
+      "length": 7,
+      "code": {
+        "startLine": 67,
+        "length": 7,
+        "offset": 126,
+        "surroundingCode": "\n\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "a5440d4329c676978bcf32106c1f1f1e9cd51586a86406a4c6289c5b67b52ae4"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 70,
+      "offset": 7,
+      "length": 99,
+      "code": {
+        "startLine": 68,
+        "length": 99,
+        "offset": 132,
+        "surroundingCode": "\tb = u.addportmapping(eport, 'TCP', u.lanaddr, httpd.server_port,\n\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "bd3db931d08db9a7e3cb928a58a5c4ad758f1979748cfecf68d93af0feae3199"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E203 whitespace before ','",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 71,
+      "offset": 90,
+      "length": 1,
+      "code": {
+        "startLine": 69,
+        "length": 1,
+        "offset": 156,
+        "surroundingCode": "\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "557fba2c959e9224a7f15c28f5bb827666fcf20a3bde47eacb495eb414b64a23"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E231 missing whitespace after ','",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 71,
+      "offset": 91,
+      "length": 1,
+      "code": {
+        "startLine": 69,
+        "length": 1,
+        "offset": 157,
+        "surroundingCode": "\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "5b8a9a72c6cd55964625fae8fd7766962e0eb295772f0c32213b1b2773a96fa0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 71,
+      "offset": 99,
+      "length": 7,
+      "code": {
+        "startLine": 69,
+        "length": 7,
+        "offset": 165,
+        "surroundingCode": "\t                    'UPnP IGD Tester port %u' % eport, '')\n\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()\n\t\t\thttpd.server_close()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d0d1d49c7d3f923bf28e596d7d288b9b10d4305891ce122270a6439d42292a7a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 72,
+      "offset": 7,
+      "length": 26,
+      "code": {
+        "startLine": 70,
+        "length": 26,
+        "offset": 112,
+        "surroundingCode": "\tif b:\n\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()\n\t\t\thttpd.server_close()\n\t\texcept KeyboardInterrupt as details:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "006d5f468e0cd3ebc5f43a30197dcad48e79b1b8b70360722f8e7e86d0178f36"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 73,
+      "offset": 26,
+      "length": 24,
+      "code": {
+        "startLine": 71,
+        "length": 24,
+        "offset": 131,
+        "surroundingCode": "\t\tprint('Success. Now waiting for some HTTP request on http://%s:%u' % (externalipaddress ,eport))\n\t\ttry:\n\t\t\thttpd.handle_request()\n\t\t\thttpd.server_close()\n\t\texcept KeyboardInterrupt as details:\n\t\t\tprint(\"CTRL-C exception!\", details)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "0a03bd51472f6bd26afcce2e0ae7956fdff106a5e554492ee42910db7024980c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 74,
+      "offset": 24,
+      "length": 39,
+      "code": {
+        "startLine": 72,
+        "length": 39,
+        "offset": 56,
+        "surroundingCode": "\t\ttry:\n\t\t\thttpd.handle_request()\n\t\t\thttpd.server_close()\n\t\texcept KeyboardInterrupt as details:\n\t\t\tprint(\"CTRL-C exception!\", details)\n\t\tb = u.deleteportmapping(eport, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "811f2aa2cd1be9207068aae30b729580f6156eaa2b5c832f055ae67281669ccb"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 75,
+      "offset": 39,
+      "length": 39,
+      "code": {
+        "startLine": 73,
+        "length": 39,
+        "offset": 88,
+        "surroundingCode": "\t\t\thttpd.handle_request()\n\t\t\thttpd.server_close()\n\t\texcept KeyboardInterrupt as details:\n\t\t\tprint(\"CTRL-C exception!\", details)\n\t\tb = u.deleteportmapping(eport, 'TCP')\n\t\tif b:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "5fcdd462c9f73f97d029cb89fdc3c891ce48b6a639c810e3960cf2367aa2c8a8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 76,
+      "offset": 39,
+      "length": 40,
+      "code": {
+        "startLine": 74,
+        "length": 40,
+        "offset": 101,
+        "surroundingCode": "\t\t\thttpd.server_close()\n\t\texcept KeyboardInterrupt as details:\n\t\t\tprint(\"CTRL-C exception!\", details)\n\t\tb = u.deleteportmapping(eport, 'TCP')\n\t\tif b:\n\t\t\tprint('Successfully deleted port mapping')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "35f04ef8bf2143d97c7cd7bb9d60c69380e87d148cba09a5cb76b6a0f2d387f2"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 77,
+      "offset": 40,
+      "length": 8,
+      "code": {
+        "startLine": 75,
+        "length": 8,
+        "offset": 117,
+        "surroundingCode": "\t\texcept KeyboardInterrupt as details:\n\t\t\tprint(\"CTRL-C exception!\", details)\n\t\tb = u.deleteportmapping(eport, 'TCP')\n\t\tif b:\n\t\t\tprint('Successfully deleted port mapping')\n\t\telse:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "249b8a848199c8e7c9cbb6db159ed51d6d79b95b72755ef57c0c6377f9ad1516"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 78,
+      "offset": 8,
+      "length": 46,
+      "code": {
+        "startLine": 76,
+        "length": 46,
+        "offset": 86,
+        "surroundingCode": "\t\t\tprint(\"CTRL-C exception!\", details)\n\t\tb = u.deleteportmapping(eport, 'TCP')\n\t\tif b:\n\t\t\tprint('Successfully deleted port mapping')\n\t\telse:\n\t\t\tprint('Failed to remove port mapping')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "4d9c3fdd6daa547d9ac5916120f578b320f6d6157c14bc0bd75f0cf8d997df23"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 79,
+      "offset": 46,
+      "length": 8,
+      "code": {
+        "startLine": 77,
+        "length": 8,
+        "offset": 93,
+        "surroundingCode": "\t\tb = u.deleteportmapping(eport, 'TCP')\n\t\tif b:\n\t\t\tprint('Successfully deleted port mapping')\n\t\telse:\n\t\t\tprint('Failed to remove port mapping')\n\telse:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "017e66987dfa344e87c1ee703b6aef594a74cecc62d8f5462e63710e3c1de77e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 80,
+      "offset": 8,
+      "length": 42,
+      "code": {
+        "startLine": 78,
+        "length": 42,
+        "offset": 61,
+        "surroundingCode": "\t\tif b:\n\t\t\tprint('Successfully deleted port mapping')\n\t\telse:\n\t\t\tprint('Failed to remove port mapping')\n\telse:\n\t\tprint('Failed')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b29b357a1e91bf1843f765966d762f93e47e1f480ccd4eafa30e2a729ba24699"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 81,
+      "offset": 42,
+      "length": 7,
+      "code": {
+        "startLine": 79,
+        "length": 7,
+        "offset": 95,
+        "surroundingCode": "\t\t\tprint('Successfully deleted port mapping')\n\t\telse:\n\t\t\tprint('Failed to remove port mapping')\n\telse:\n\t\tprint('Failed')\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "2b0a5e085a8e1a74d800278c4fe8c222d0d75090c8cef8da520986b0d8508586"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 82,
+      "offset": 7,
+      "length": 18,
+      "code": {
+        "startLine": 80,
+        "length": 18,
+        "offset": 56,
+        "surroundingCode": "\t\telse:\n\t\t\tprint('Failed to remove port mapping')\n\telse:\n\t\tprint('Failed')\n\n\thttpd.server_close()"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "25d3d11b881659f187afe94a8454d6b92aaf5bb8d73733bd71cdb6524cd89f56"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 83,
+      "offset": 18,
+      "length": 23,
+      "code": {
+        "startLine": 81,
+        "length": 23,
+        "offset": 66,
+        "surroundingCode": "\t\t\tprint('Failed to remove port mapping')\n\telse:\n\t\tprint('Failed')\n\n\thttpd.server_close()\n\nexcept Exception as e:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f25a3bee92375d6a139bded459b2b9a54429108f6dcdc9ba6029513a680410bc"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/testupnpigd.py",
+      "language": "Python",
+      "line": 87,
+      "offset": 23,
+      "length": 25,
+      "code": {
+        "startLine": 85,
+        "length": 25,
+        "offset": 45,
+        "surroundingCode": "\thttpd.server_close()\n\nexcept Exception as e:\n\tprint('Exception :', e)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "205ba1eaf430302aad147d6e1128bce0421cef3f71712e7f6692ce02a7d0f1c8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E302 expected 2 blank lines, found 1",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 1,
+      "length": 47,
+      "code": {
+        "startLine": 16,
+        "length": 47,
+        "offset": 32,
+        "surroundingCode": "EXT = ['build/libminiupnpc.a']\n\nclass make_then_build_ext(build_ext.build_ext):\n      def run(self):\n            subprocess.check_call([os.environ.get('MAKE', 'make')] + EXT)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f649e3ad3a99b6fb3a48f1c2c09d43ee31c1a2fa1103c369cc66aa0802516171"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 17,
+        "length": 3,
+        "offset": 55,
+        "surroundingCode": "\nclass make_then_build_ext(build_ext.build_ext):\n      def run(self):\n            subprocess.check_call([os.environ.get('MAKE', 'make')] + EXT)\n            build_ext.build_ext.run(self)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d44f265ce33207890b200ffaacc279cb6aba671798f64d9b8d3762d9aaac5d8a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 17,
+        "length": 3,
+        "offset": 55,
+        "surroundingCode": "\nclass make_then_build_ext(build_ext.build_ext):\n      def run(self):\n            subprocess.check_call([os.environ.get('MAKE', 'make')] + EXT)\n            build_ext.build_ext.run(self)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "099e9cbe45b09b7351172f4c47411fb6343c43a9b7d5e0895d3421df42c1d159"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 20,
+      "offset": 13,
+      "length": 10,
+      "code": {
+        "startLine": 18,
+        "length": 10,
+        "offset": 81,
+        "surroundingCode": "class make_then_build_ext(build_ext.build_ext):\n      def run(self):\n            subprocess.check_call([os.environ.get('MAKE', 'make')] + EXT)\n            build_ext.build_ext.run(self)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "7563893181b66a1822b84bd65624e615c364af5bd6d130a43c791ad27c5aac31"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E305 expected 2 blank lines after class or function definition, found 1",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setup.py",
+      "language": "Python",
+      "line": 23,
+      "offset": 1,
+      "length": 23,
+      "code": {
+        "startLine": 21,
+        "length": 23,
+        "offset": 43,
+        "surroundingCode": "            build_ext.build_ext.run(self)\n\nsetup(name=\"miniupnpc\",\n      version=open('VERSION').read().strip(),\n      author='Thomas BERNARD',"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "7cb5e0746dd9a210a03b6c54e4f5544230f9b37383a51c9fc2c5f3cfe25d5aec"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 14,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 12,
+        "length": 6,
+        "offset": 8,
+        "surroundingCode": "\ntry:\n  import argparse\n  parser = argparse.ArgumentParser()\n  parser.add_argument('-m', '--multicastif')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b61459be3c8ff265112af737a905e49ad7bb50fe426cbf4faad66d780dd071b2"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 15,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 13,
+        "length": 6,
+        "offset": 25,
+        "surroundingCode": "try:\n  import argparse\n  parser = argparse.ArgumentParser()\n  parser.add_argument('-m', '--multicastif')\n  parser.add_argument('-p', '--minissdpdsocket')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "36138556bf429ec450d361847b741d509c1353a4d11ab5133822ac7a129ec351"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 16,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 14,
+        "length": 6,
+        "offset": 57,
+        "surroundingCode": "  import argparse\n  parser = argparse.ArgumentParser()\n  parser.add_argument('-m', '--multicastif')\n  parser.add_argument('-p', '--minissdpdsocket')\n  parser.add_argument('-d', '--discoverdelay', type=int, default=200)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "8b682683778a0ce4c4ae91245e3010ce2ec4ca7035ce2a984c2d0b423df950f6"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 17,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 15,
+        "length": 6,
+        "offset": 84,
+        "surroundingCode": "  parser = argparse.ArgumentParser()\n  parser.add_argument('-m', '--multicastif')\n  parser.add_argument('-p', '--minissdpdsocket')\n  parser.add_argument('-d', '--discoverdelay', type=int, default=200)\n  parser.add_argument('-z', '--localport', type=int, default=0)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "0b743ea5e8afc77dd3b2158b0d4f93aedb607255f38adef243d0425226fd9bce"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 16,
+        "length": 6,
+        "offset": 96,
+        "surroundingCode": "  parser.add_argument('-m', '--multicastif')\n  parser.add_argument('-p', '--minissdpdsocket')\n  parser.add_argument('-d', '--discoverdelay', type=int, default=200)\n  parser.add_argument('-z', '--localport', type=int, default=0)\n  # create the object"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "edfe2465bc5f66f08f0663021fda579ceeae16b08d790fe0dda81f6ecbb07833"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 3,
+      "length": 6,
+      "code": {
+        "startLine": 17,
+        "length": 6,
+        "offset": 121,
+        "surroundingCode": "  parser.add_argument('-p', '--minissdpdsocket')\n  parser.add_argument('-d', '--discoverdelay', type=int, default=200)\n  parser.add_argument('-z', '--localport', type=int, default=0)\n  # create the object\n  u = miniupnpc.UPnP(**vars(parser.parse_args()))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "2c5f629e01a67047db8c189569e46b8df6c1f34d0d40ba971f06ee6245d90f51"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E114 indentation is not a multiple of 4 (comment)",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 20,
+      "offset": 3,
+      "length": 19,
+      "code": {
+        "startLine": 18,
+        "length": 19,
+        "offset": 136,
+        "surroundingCode": "  parser.add_argument('-d', '--discoverdelay', type=int, default=200)\n  parser.add_argument('-z', '--localport', type=int, default=0)\n  # create the object\n  u = miniupnpc.UPnP(**vars(parser.parse_args()))\nexcept:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "6cd29cf0389a59451b3f83f2c5613b445e9d166a026c26e42c3f92d3f9d1d09d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 21,
+      "offset": 3,
+      "length": 1,
+      "code": {
+        "startLine": 19,
+        "length": 1,
+        "offset": 88,
+        "surroundingCode": "  parser.add_argument('-z', '--localport', type=int, default=0)\n  # create the object\n  u = miniupnpc.UPnP(**vars(parser.parse_args()))\nexcept:\n  print('argparse not available')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "183b6ca599b30a4f892cd846c266f1d5b19758194f7dd5882b4926a55e59bad5"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E722 do not use bare 'except'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 22,
+      "offset": 1,
+      "length": 6,
+      "code": {
+        "startLine": 20,
+        "length": 6,
+        "offset": 72,
+        "surroundingCode": "  # create the object\n  u = miniupnpc.UPnP(**vars(parser.parse_args()))\nexcept:\n  print('argparse not available')\n  i = 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "30ef6fd64a73b628d3800bbbf945a9818bcb4bb2424ff93e8142c70dfffe6799"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 23,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 21,
+        "length": 5,
+        "offset": 60,
+        "surroundingCode": "  u = miniupnpc.UPnP(**vars(parser.parse_args()))\nexcept:\n  print('argparse not available')\n  i = 1\n  multicastif = None"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "183ff186c04b03288fd442685ec93b02d750aaef9a076eb371d0c73e8eac44e1"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 24,
+      "offset": 3,
+      "length": 1,
+      "code": {
+        "startLine": 22,
+        "length": 1,
+        "offset": 44,
+        "surroundingCode": "except:\n  print('argparse not available')\n  i = 1\n  multicastif = None\n  minissdpdsocket = None"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f31d5a4c9cbc9a1e3e62d3c946b2c18f621bb162c680d08570d1389f2c9240cc"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 25,
+      "offset": 3,
+      "length": 11,
+      "code": {
+        "startLine": 23,
+        "length": 11,
+        "offset": 44,
+        "surroundingCode": "  print('argparse not available')\n  i = 1\n  multicastif = None\n  minissdpdsocket = None\n  discoverdelay = 200"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f2473e96e17546b4b3bc25b38f53d1f8bef9d173ec2bbcec47768e16fcd58c85"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 26,
+      "offset": 3,
+      "length": 15,
+      "code": {
+        "startLine": 24,
+        "length": 15,
+        "offset": 31,
+        "surroundingCode": "  i = 1\n  multicastif = None\n  minissdpdsocket = None\n  discoverdelay = 200\n  localport = 0"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "8c3c310c4ea6d9847b1203a56241cf2c40f9ca62617d6dc915a00ca5842076ad"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 27,
+      "offset": 3,
+      "length": 13,
+      "code": {
+        "startLine": 25,
+        "length": 13,
+        "offset": 48,
+        "surroundingCode": "  multicastif = None\n  minissdpdsocket = None\n  discoverdelay = 200\n  localport = 0\n  while i < len(sys.argv):"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f5ec7ce866bd6f12ef0a6cfcda2e9bf5fa20980c6b7576029756e457ba0923d8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 28,
+      "offset": 3,
+      "length": 9,
+      "code": {
+        "startLine": 26,
+        "length": 9,
+        "offset": 49,
+        "surroundingCode": "  minissdpdsocket = None\n  discoverdelay = 200\n  localport = 0\n  while i < len(sys.argv):\n    print(sys.argv[i])"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f99bad0f667eb271cc960b3d8f249300451147335eb2216eb05f3a3dcbdbbf3e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 29,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 27,
+        "length": 5,
+        "offset": 40,
+        "surroundingCode": "  discoverdelay = 200\n  localport = 0\n  while i < len(sys.argv):\n    print(sys.argv[i])\n    if sys.argv[i] == '-m' or sys.argv[i] == '--multicastif':"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "78a853c44e02ba9984bc1fe2e4567195849b7722c6d327f10cd6f6f82cec1ce3"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 32,
+      "offset": 7,
+      "length": 11,
+      "code": {
+        "startLine": 30,
+        "length": 11,
+        "offset": 91,
+        "surroundingCode": "    print(sys.argv[i])\n    if sys.argv[i] == '-m' or sys.argv[i] == '--multicastif':\n      multicastif = sys.argv[i+1]\n    elif sys.argv[i] == '-p' or sys.argv[i] == '--minissdpdsocket':\n      minissdpdsocket = sys.argv[i+1]"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b1e3e98a0401c0c2cfb941e964c51e7c984cacf05d1c30ccd2c9dfcf33d28f66"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 34,
+      "offset": 7,
+      "length": 15,
+      "code": {
+        "startLine": 32,
+        "length": 15,
+        "offset": 108,
+        "surroundingCode": "      multicastif = sys.argv[i+1]\n    elif sys.argv[i] == '-p' or sys.argv[i] == '--minissdpdsocket':\n      minissdpdsocket = sys.argv[i+1]\n    elif sys.argv[i] == '-d' or sys.argv[i] == '--discoverdelay':\n      discoverdelay = int(sys.argv[i+1])"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "1779b772662a0541d26cfd64f90593c417c6e1954467c47660a74e6b5eae6afd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 36,
+      "offset": 7,
+      "length": 13,
+      "code": {
+        "startLine": 34,
+        "length": 13,
+        "offset": 110,
+        "surroundingCode": "      minissdpdsocket = sys.argv[i+1]\n    elif sys.argv[i] == '-d' or sys.argv[i] == '--discoverdelay':\n      discoverdelay = int(sys.argv[i+1])\n    elif sys.argv[i] == '-z' or sys.argv[i] == '--localport':\n      localport = int(sys.argv[i+1])"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "368d5cdcdd493c5eb19060bae1e0214efe0bcae21f71d49214434073407e6802"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 38,
+      "offset": 7,
+      "length": 9,
+      "code": {
+        "startLine": 36,
+        "length": 9,
+        "offset": 109,
+        "surroundingCode": "      discoverdelay = int(sys.argv[i+1])\n    elif sys.argv[i] == '-z' or sys.argv[i] == '--localport':\n      localport = int(sys.argv[i+1])\n    else:\n      raise Exception('invalid argument %s' % sys.argv[i])"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "a297b1314532cfef72d977f86b2381099c1bf75117de522c2c56baa85d4b22b4"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 40,
+      "offset": 7,
+      "length": 5,
+      "code": {
+        "startLine": 38,
+        "length": 5,
+        "offset": 53,
+        "surroundingCode": "      localport = int(sys.argv[i+1])\n    else:\n      raise Exception('invalid argument %s' % sys.argv[i])\n    i += 2\n  # create the object"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "7968088a9941db1b3d3e8cc7f804aed39385bd3a0e022ae766bbf6fdbaad39db"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E114 indentation is not a multiple of 4 (comment)",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 42,
+      "offset": 3,
+      "length": 19,
+      "code": {
+        "startLine": 40,
+        "length": 19,
+        "offset": 72,
+        "surroundingCode": "      raise Exception('invalid argument %s' % sys.argv[i])\n    i += 2\n  # create the object\n  u = miniupnpc.UPnP(multicastif, minissdpdsocket, discoverdelay, localport)\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "6245e2bf14e3b2dfc8b1f7febb12a8d339a40edf9b3cb462fab6884fcaf8cd53"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 43,
+      "offset": 3,
+      "length": 1,
+      "code": {
+        "startLine": 41,
+        "length": 1,
+        "offset": 35,
+        "surroundingCode": "    i += 2\n  # create the object\n  u = miniupnpc.UPnP(multicastif, minissdpdsocket, discoverdelay, localport)\n\nprint('inital(default) values :')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "0060dbb5f263acf13bdca87e289bf7ab294639b436b73806f1a210d7c8b730c3"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 50,
+      "offset": 1,
+      "length": 50,
+      "code": {
+        "startLine": 48,
+        "length": 50,
+        "offset": 82,
+        "surroundingCode": "print(' multicastif', u.multicastif)\nprint(' minissdpdsocket', u.minissdpdsocket)\n#u.minissdpdsocket = '../minissdpd/minissdpd.sock'\n# discovery process, it usually takes several seconds (2 seconds or more)\nprint('Discovering... delay=%ums' % u.discoverdelay)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "a72c6ef3b555812e9b419e89c5973a875b03548bedf401ffc7da7374a16bfdc0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 56,
+      "offset": 3,
+      "length": 1,
+      "code": {
+        "startLine": 54,
+        "length": 1,
+        "offset": 23,
+        "surroundingCode": "# select an igd\ntry:\n  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "41ea628ad6d1043c3b36a4fb35452e27cf3c0fd86c63ec3ce28b7231e6eeda29"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 58,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 56,
+        "length": 5,
+        "offset": 41,
+        "surroundingCode": "  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# it is also possible to pass the root description URL to u.selectigd() :"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d94914c231b43ade7918e20b35ba7bccba3556307f1d9ad03a9614b9685a3d04"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 59,
+      "offset": 3,
+      "length": 3,
+      "code": {
+        "startLine": 57,
+        "length": 3,
+        "offset": 51,
+        "surroundingCode": "except Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# it is also possible to pass the root description URL to u.selectigd() :\n# u.selectigd('http://192.168.1.254:5678/desc/root')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f33f13ae6de2365424ab32d150032839353f19eeab5ae51a96d03ed685b3025b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E201 whitespace after '('",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 65,
+      "offset": 7,
+      "length": 1,
+      "code": {
+        "startLine": 63,
+        "length": 1,
+        "offset": 99,
+        "surroundingCode": "print('local ip address :', u.lanaddr)\nprint('external ip address :', u.externalipaddress())\nprint( u.statusinfo(), u.connectiontype())\nprint('total bytes : sent', u.totalbytesent(), 'received', u.totalbytereceived())\nprint('total packets : sent', u.totalpacketsent(), 'received', u.totalpacketreceived())"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "0b9fc2b9db7478c24f895aa7af5919695e754802c29539be38a46d1d42a8628b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 69,
+      "offset": 1,
+      "length": 37,
+      "code": {
+        "startLine": 67,
+        "length": 37,
+        "offset": 89,
+        "surroundingCode": "print('total packets : sent', u.totalpacketsent(), 'received', u.totalpacketreceived())\n\n#print u.addportmapping(64000, 'TCP',\n#                       '192.168.1.166', 63000, 'port mapping test', '')\n#print u.deleteportmapping(64000, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "fb19a4431ce01f9417d9e3b8871dc2694d6a0321b546344b55d1a972344562fc"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 71,
+      "offset": 1,
+      "length": 40,
+      "code": {
+        "startLine": 69,
+        "length": 40,
+        "offset": 111,
+        "surroundingCode": "#print u.addportmapping(64000, 'TCP',\n#                       '192.168.1.166', 63000, 'port mapping test', '')\n#print u.deleteportmapping(64000, 'TCP')\n\nport = 0"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "86ba9e76af28c5a0fa0fc123be17344a5f637f2dfe19d894745654ae91af685e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E101 indentation contains mixed spaces and tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 77,
+      "offset": 12,
+      "length": 32,
+      "code": {
+        "startLine": 75,
+        "length": 32,
+        "offset": 43,
+        "surroundingCode": "# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "05e8378db73325d26fa8691451c7ef534f732d11c86d09a39bb2078ba4fba2cd"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 77,
+      "offset": 12,
+      "length": 32,
+      "code": {
+        "startLine": 75,
+        "length": 32,
+        "offset": 43,
+        "surroundingCode": "# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "dad926fac2404e4f39b6158702960120694d89e644820a5a03b4dbbaa343d210"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 78,
+      "offset": 32,
+      "length": 13,
+      "code": {
+        "startLine": 76,
+        "length": 13,
+        "offset": 49,
+        "surroundingCode": "i = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "19344c035b4700afd61bedb9d83c3e6eb6d9745365b1bbef11e3e40fe8100162"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E225 missing whitespace around operator",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 79,
+      "offset": 6,
+      "length": 2,
+      "code": {
+        "startLine": 77,
+        "length": 2,
+        "offset": 49,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d91715c1d774694e13a0d90a8c5df474a66aefd972cbc7093803162cecd1a4d8"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E711 comparison to None should be 'if cond is None:'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 79,
+      "offset": 6,
+      "length": 2,
+      "code": {
+        "startLine": 77,
+        "length": 2,
+        "offset": 49,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "11ca06eafb322d2eb90bcc27eb7d71e5b7d68ef3073aa51e8ef1294c26c93bb1"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 79,
+      "offset": 13,
+      "length": 8,
+      "code": {
+        "startLine": 77,
+        "length": 8,
+        "offset": 56,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "9f6c1fb94665a8c05bbd5201996ce638ba58eb3fa1de3f178b881483d4e52cad"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 80,
+      "offset": 8,
+      "length": 13,
+      "code": {
+        "startLine": 78,
+        "length": 13,
+        "offset": 52,
+        "surroundingCode": "\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "eaa9880a8f008b04c848fe17b832025d26be2485b16be3faab7545fb84c23d70"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 81,
+      "offset": 13,
+      "length": 49,
+      "code": {
+        "startLine": 79,
+        "length": 49,
+        "offset": 33,
+        "surroundingCode": "\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "09557a17c58ac96134fd90e53d9b26e5237254c50ad5c243d9bc888d00821393"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E231 missing whitespace after ','",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 82,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 80,
+        "length": 1,
+        "offset": 42,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e86b13e8f2db415aa39aa0e89a31658ae70f015e7b776f0bf571083fc9ce9bef"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 82,
+      "offset": 49,
+      "length": 19,
+      "code": {
+        "startLine": 80,
+        "length": 19,
+        "offset": 69,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "0975a00728243403542d8dca67344afc43ce86c7219e2a5545216967e5f8c17c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 83,
+      "offset": 2,
+      "length": 17,
+      "code": {
+        "startLine": 81,
+        "length": 17,
+        "offset": 63,
+        "surroundingCode": "\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "dbefd4fbd47a197edb40c2aab5b2555772b5ac5f83c4307c2c228b3a1a64d746"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 83,
+      "offset": 19,
+      "length": 11,
+      "code": {
+        "startLine": 81,
+        "length": 11,
+        "offset": 80,
+        "surroundingCode": "\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n\nprint(u.getspecificportmapping(port, proto))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e46c86f4808d8499dae9503a67f162cf2f0e8512b0ee6ff769d37506789835fa"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E101 indentation contains mixed spaces and tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 87,
+      "offset": 5,
+      "length": 43,
+      "code": {
+        "startLine": 85,
+        "length": 43,
+        "offset": 50,
+        "surroundingCode": "\nprint(u.getspecificportmapping(port, proto))\ntry:\n  print(u.getportmappingnumberofentries())\nexcept Exception as e:\n  print('GetPortMappingNumberOfEntries() is not supported :', e)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "9cf55163ea4a82a2536b6dee9cbbf96589a67ed12f5b6ea815965420e012348b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 88,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 86,
+        "length": 5,
+        "offset": 52,
+        "surroundingCode": "print(u.getspecificportmapping(port, proto))\ntry:\n  print(u.getportmappingnumberofentries())\nexcept Exception as e:\n  print('GetPortMappingNumberOfEntries() is not supported :', e)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "ae0c5838d8f1f349bc84889d2b29fce505060993174240fd171c4c2aecba293f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 90,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 88,
+        "length": 5,
+        "offset": 68,
+        "surroundingCode": "  print(u.getportmappingnumberofentries())\nexcept Exception as e:\n  print('GetPortMappingNumberOfEntries() is not supported :', e)\n\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "7131a317181db3a50d0edcaf978fdb13480bf7a956cf0fb052a459614668e866"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E703 statement ends with a semicolon",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 18,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 16,
+        "length": 1,
+        "offset": 103,
+        "surroundingCode": "print(' multicastif', u.multicastif)\nprint(' minissdpdsocket', u.minissdpdsocket)\nu.discoverdelay = 200;\n#u.minissdpdsocket = '../minissdpd/minissdpd.sock'\n# discovery process, it usually takes several seconds (2 seconds or more)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f961eb48a1f13c16b3fb3a17f8ccad3c707b6b8b31117706ccf9a4dadee1eb0d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 1,
+      "length": 50,
+      "code": {
+        "startLine": 17,
+        "length": 50,
+        "offset": 68,
+        "surroundingCode": "print(' minissdpdsocket', u.minissdpdsocket)\nu.discoverdelay = 200;\n#u.minissdpdsocket = '../minissdpd/minissdpd.sock'\n# discovery process, it usually takes several seconds (2 seconds or more)\nprint('Discovering... delay=%ums' % u.discoverdelay)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "60e9438a2b48b30147f7c515dee7eb62775093d10d67423fd7a7d1a52dd07497"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 25,
+      "offset": 3,
+      "length": 1,
+      "code": {
+        "startLine": 23,
+        "length": 1,
+        "offset": 23,
+        "surroundingCode": "# select an igd\ntry:\n  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "2dc7e9507b4e6fddccf8cfedbd545bea8902a18a75aea995e31e528955bf0ee3"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 27,
+      "offset": 3,
+      "length": 5,
+      "code": {
+        "startLine": 25,
+        "length": 5,
+        "offset": 41,
+        "surroundingCode": "  u.selectigd()\nexcept Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# display information about the IGD and the internet connection"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "548c1a6cd541aea4cd73bcffa8acc15be4cd34b8bd96e026e4863f4c78e0550c"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E111 indentation is not a multiple of 4",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 28,
+      "offset": 3,
+      "length": 3,
+      "code": {
+        "startLine": 26,
+        "length": 3,
+        "offset": 51,
+        "surroundingCode": "except Exception as e:\n  print('Exception :', e)\n  sys.exit(1)\n# display information about the IGD and the internet connection\nprint('local ip address :', u.lanaddr)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "2e09c44141315a2bbb194b19a20e545d81232cb73a8b5f7a8a79253d2ea0739f"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 34,
+      "offset": 1,
+      "length": 37,
+      "code": {
+        "startLine": 32,
+        "length": 37,
+        "offset": 43,
+        "surroundingCode": "print(u.statusinfo(), u.connectiontype())\n\n#print u.addportmapping(64000, 'TCP',\n#                       '192.168.1.166', 63000, 'port mapping test', '')\n#print u.deleteportmapping(64000, 'TCP')"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "d3c683ea9ca86c06bb23d379aa07e09352565bd36326ef86f4a22b791c09206e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 36,
+      "offset": 1,
+      "length": 40,
+      "code": {
+        "startLine": 34,
+        "length": 40,
+        "offset": 111,
+        "surroundingCode": "#print u.addportmapping(64000, 'TCP',\n#                       '192.168.1.166', 63000, 'port mapping test', '')\n#print u.deleteportmapping(64000, 'TCP')\n\nport = 0"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "02d59dd4bd2c611596290fb9ac9239ac24edc6bd0ec0758aea25acb6fc168d46"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E101 indentation contains mixed spaces and tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 42,
+      "offset": 12,
+      "length": 32,
+      "code": {
+        "startLine": 40,
+        "length": 32,
+        "offset": 43,
+        "surroundingCode": "# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "54b2f74904fe20cc981297edf5ff1775292c8d23356e58acb3c2e901a9e2d105"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 42,
+      "offset": 12,
+      "length": 32,
+      "code": {
+        "startLine": 40,
+        "length": 32,
+        "offset": 43,
+        "surroundingCode": "# list the redirections :\ni = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f2056ef6a5f15e9ab6f3cc660e0f3b88970a04fc45a25a5c921062bf3af9371b"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 43,
+      "offset": 32,
+      "length": 13,
+      "code": {
+        "startLine": 41,
+        "length": 13,
+        "offset": 49,
+        "surroundingCode": "i = 0\nwhile True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e7d0b6834ed04a3f31d986b752397796d7c2791a07ee5e99d453095d32d6247a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E225 missing whitespace around operator",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 44,
+      "offset": 6,
+      "length": 2,
+      "code": {
+        "startLine": 42,
+        "length": 2,
+        "offset": 49,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "35b33664206d23a0b64448bfa519075f1aed44080de1cfb721d59ccec1694b70"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E711 comparison to None should be 'if cond is None:'",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 44,
+      "offset": 6,
+      "length": 2,
+      "code": {
+        "startLine": 42,
+        "length": 2,
+        "offset": 49,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "c0b1ffb9fc9cba31305527b88b853c5c201815967740f4f22ed85f941a1d47ba"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 44,
+      "offset": 13,
+      "length": 8,
+      "code": {
+        "startLine": 42,
+        "length": 8,
+        "offset": 56,
+        "surroundingCode": "while True:\n\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e5cdaeccc9b4e37e839fd77b6d6b99b34a6d7ee933e5178f2a831d1d91fea8df"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 45,
+      "offset": 8,
+      "length": 13,
+      "code": {
+        "startLine": 43,
+        "length": 13,
+        "offset": 52,
+        "surroundingCode": "\tp = u.getgenericportmapping(i)\n\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "b2fa843a848fe9488247315d0129e18fba2be21260150d3acf2062883ad63e89"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 46,
+      "offset": 13,
+      "length": 49,
+      "code": {
+        "startLine": 44,
+        "length": 49,
+        "offset": 33,
+        "surroundingCode": "\tif p==None:\n\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "f43f313779d90e358effb8c30bfc2d11cb611af131c8c9e706f33ec332c57188"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E231 missing whitespace after ','",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 47,
+      "offset": 22,
+      "length": 1,
+      "code": {
+        "startLine": 45,
+        "length": 1,
+        "offset": 42,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e91e02e3a968d88ec15e9c6b9dff7f92b6d20956147f04ee7f8955d3a7f4a121"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 47,
+      "offset": 49,
+      "length": 19,
+      "code": {
+        "startLine": 45,
+        "length": 19,
+        "offset": 69,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "3e9222b474560c90d32f50202f851fb6249231037a17113f8f62800fd1cd87e0"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E265 block comment should start with '# '",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 48,
+      "offset": 2,
+      "length": 17,
+      "code": {
+        "startLine": 46,
+        "length": 17,
+        "offset": 63,
+        "surroundingCode": "\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "e03ad8d3f8194bc29d2746ca1bb8aa86f5398549b434d5e1c2b4573885cf564e"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: W191 indentation contains tabs",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 48,
+      "offset": 19,
+      "length": 11,
+      "code": {
+        "startLine": 46,
+        "length": 11,
+        "offset": 80,
+        "surroundingCode": "\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1\n\nprint(u.getspecificportmapping(port, proto))"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "3e654eaf4afd87684a1fb997ab66bf5930faf25a7e1b4c6ab082c095f16636ac"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E222 multiple spaces after operator",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 11,
+      "offset": 34,
+      "length": 2,
+      "code": {
+        "startLine": 9,
+        "length": 2,
+        "offset": 45,
+        "surroundingCode": "import sys\n\nif (sys.version_info.major * 10 +  sys.version_info.minor) >= 35:\n        compat_lib = [\"legacy_stdio_definitions\"]\nelse:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "bd5ec06994ad44503382ec7eea996b05220af8873cbb0706106825dae48b6eb6"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 12,
+      "offset": 9,
+      "length": 10,
+      "code": {
+        "startLine": 10,
+        "length": 10,
+        "offset": 75,
+        "surroundingCode": "\nif (sys.version_info.major * 10 +  sys.version_info.minor) >= 35:\n        compat_lib = [\"legacy_stdio_definitions\"]\nelse:\n        compat_lib = []"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "c7e864913f2edbe34c737aac191affa34c4effc8f4499e978fdfd7d687d84108"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 14,
+      "offset": 9,
+      "length": 10,
+      "code": {
+        "startLine": 12,
+        "length": 10,
+        "offset": 64,
+        "surroundingCode": "        compat_lib = [\"legacy_stdio_definitions\"]\nelse:\n        compat_lib = []\n\ntry:"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "a7f7afda8a4ace54050fd0ff995af11fd4cb0dd67d3b10b5ad9b660199bc0e0a"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 17,
+      "offset": 9,
+      "length": 4,
+      "code": {
+        "startLine": 15,
+        "length": 4,
+        "offset": 14,
+        "surroundingCode": "\ntry:\n        from setuptools import setup, Extension\nexcept ImportError:\n        from distutils.core import setup, Extension"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "dea9f941026322f1096b5624acc9eb6f987216f0f22fd63e105e64e60a9575a2"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "PEP 8 coding style violation",
+  "tags": [
+    "Python"
+  ],
+  "severity": "Moderate",
+  "comment": "PEP 8: E117 over-indented",
+  "detailsInfo": "Reports violations of the [PEP 8 coding style guide](https://www.python.org/dev/peps/pep-0008/) by running the bundled [pycodestyle.py](https://github.com/PyCQA/pycodestyle) tool.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/setupmingw32.py",
+      "language": "Python",
+      "line": 19,
+      "offset": 9,
+      "length": 4,
+      "code": {
+        "startLine": 17,
+        "length": 4,
+        "offset": 76,
+        "surroundingCode": "        from setuptools import setup, Extension\nexcept ImportError:\n        from distutils.core import setup, Extension\nfrom distutils import sysconfig\nsysconfig.get_config_vars()[\"OPT\"] = ''"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyPep8Inspection",
+    "baselineState": "new"
+  },
+  "hash": "17bc5490df33ed0dd8dd4ede57b608926dc90c9653b07034619c2104f8b28ec9"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Redeclared names without usages",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Redeclared 'port' defined above without usage",
+  "detailsInfo": "Reports unconditional redeclarations of names without being used in between.\n\n**Example:**\n\n```\ndef x(): pass\n\n\nx = 2\n```\n\nIt applies to function and class declarations, and top-level assignments.\n\nWhen the warning is shown, you can try a recommended action, for example, you might be prompted to\nrename the variable.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 82,
+      "offset": 3,
+      "length": 4,
+      "code": {
+        "startLine": 80,
+        "length": 4,
+        "offset": 23,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyRedeclarationInspection",
+    "baselineState": "new"
+  },
+  "hash": "741e7db178a1cab0d611882839e23faf6ef39d1a1b85c84f7624cd41a75b7378"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Redeclared names without usages",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Redeclared 'proto' defined above without usage",
+  "detailsInfo": "Reports unconditional redeclarations of names without being used in between.\n\n**Example:**\n\n```\ndef x(): pass\n\n\nx = 2\n```\n\nIt applies to function and class declarations, and top-level assignments.\n\nWhen the warning is shown, you can try a recommended action, for example, you might be prompted to\nrename the variable.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest.py",
+      "language": "Python",
+      "line": 82,
+      "offset": 9,
+      "length": 5,
+      "code": {
+        "startLine": 80,
+        "length": 5,
+        "offset": 29,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyRedeclarationInspection",
+    "baselineState": "new"
+  },
+  "hash": "20cd50af6a5b33d4ae012ec2fe3f307fb9dfd1d10aca4f1347b19741ef023f21"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Redeclared names without usages",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Redeclared 'port' defined above without usage",
+  "detailsInfo": "Reports unconditional redeclarations of names without being used in between.\n\n**Example:**\n\n```\ndef x(): pass\n\n\nx = 2\n```\n\nIt applies to function and class declarations, and top-level assignments.\n\nWhen the warning is shown, you can try a recommended action, for example, you might be prompted to\nrename the variable.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 47,
+      "offset": 3,
+      "length": 4,
+      "code": {
+        "startLine": 45,
+        "length": 4,
+        "offset": 23,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyRedeclarationInspection",
+    "baselineState": "new"
+  },
+  "hash": "82f2ed92c629ca43d0a7cb43d3a97227a8de500a586886fddc63813ff9f1e51d"
+},{
+  "tool": "Code Inspection",
+  "category": "Python",
+  "type": "Redeclared names without usages",
+  "tags": [
+    "Python"
+  ],
+  "severity": "High",
+  "comment": "Redeclared 'proto' defined above without usage",
+  "detailsInfo": "Reports unconditional redeclarations of names without being used in between.\n\n**Example:**\n\n```\ndef x(): pass\n\n\nx = 2\n```\n\nIt applies to function and class declarations, and top-level assignments.\n\nWhen the warning is shown, you can try a recommended action, for example, you might be prompted to\nrename the variable.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "third-party/miniupnp/miniupnpc/pymoduletest3.py",
+      "language": "Python",
+      "line": 47,
+      "offset": 9,
+      "length": 5,
+      "code": {
+        "startLine": 45,
+        "length": 5,
+        "offset": 29,
+        "surroundingCode": "\t\tbreak\n\tprint(i, p)\n\t(port, proto, (ihost,iport), desc, c, d, e) = p\n\t#print port, desc\n\ti = i + 1"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "PyRedeclarationInspection",
+    "baselineState": "new"
+  },
+  "hash": "22f23a3b8279f3fe20e997193baf5ab1800bd7249f6ee213da1f65c93b93e73d"
+}]}
