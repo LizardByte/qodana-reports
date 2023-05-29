@@ -1884,20 +1884,20 @@
                 ]
               },
               {
-                "id": "PyComparisonWithNoneInspection",
+                "id": "CommandLineInspection",
                 "shortDescription": {
-                  "text": "Using equality operators to compare with None"
+                  "text": "Incorrect CLI syntax"
                 },
                 "fullDescription": {
-                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
-                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
+                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
+                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "note",
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -1916,20 +1916,20 @@
                 ]
               },
               {
-                "id": "CommandLineInspection",
+                "id": "PyComparisonWithNoneInspection",
                 "shortDescription": {
-                  "text": "Incorrect CLI syntax"
+                  "text": "Using equality operators to compare with None"
                 },
                 "fullDescription": {
-                  "text": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies that option names and arguments are correct. Do not disable the inspection if you are going to use command-line interfaces like manage.py in Django.",
-                  "markdown": "Reports the problems if the arguments of the command you type in the console are not in the proper order. The inspection also verifies\nthat option names and arguments are correct.\n\nDo not disable the inspection if you are going to use command-line interfaces like [manage.py in Django](https://www.jetbrains.com/help/pycharm/running-manage-py.html)."
+                  "text": "Reports comparisons with 'None'. That type of comparisons should always be done with 'is' or 'is not', never the equality operators. Example: a = 2\n\n\nif a == None:\n    print(\"Success\")\n Once the quick-fix is applied, the code changes to: a = 2\n\n\nif a is None:\n    print(\"Success\")",
+                  "markdown": "Reports comparisons with `None`. That type of comparisons\nshould always be done with `is` or `is not`, never\nthe equality operators.\n\n**Example:**\n\n```\na = 2\n\n\nif a == None:\n    print(\"Success\")\n```\n\nOnce the quick-fix is applied, the code changes to:\n\n```\na = 2\n\n\nif a is None:\n    print(\"Success\")\n```"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
-                  "level": "warning",
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -2396,20 +2396,20 @@
                 ]
               },
               {
-                "id": "PyArgumentEqualDefaultInspection",
+                "id": "CythonUsageBeforeDeclarationInspection",
                 "shortDescription": {
-                  "text": "The function argument is equal to the default parameter value"
+                  "text": "Cython variable is used before its declaration"
                 },
                 "fullDescription": {
-                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
-                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
+                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
+                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
+                  "enabled": true,
+                  "level": "warning",
                   "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
                   }
                 },
                 "relationships": [
@@ -2428,20 +2428,20 @@
                 ]
               },
               {
-                "id": "CythonUsageBeforeDeclarationInspection",
+                "id": "PyArgumentEqualDefaultInspection",
                 "shortDescription": {
-                  "text": "Cython variable is used before its declaration"
+                  "text": "The function argument is equal to the default parameter value"
                 },
                 "fullDescription": {
-                  "text": "Reports Cython variables being referenced before declaration. Example: cdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0",
-                  "markdown": "Reports Cython variables being referenced before declaration.\n\n**Example:**\n\n```\ncdef int c_x\n\nprint(c_x, c_y)  # Variable 'c_y' is used before its declaration\n\ncdef int c_y = 0\n```"
+                  "text": "Reports a problem when an argument passed to the function is equal to the default parameter value. This inspection is disabled by default to avoid performance degradation. Example: def my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)",
+                  "markdown": "Reports a problem when an argument\npassed to the function is equal to the default parameter value.\n\nThis inspection is disabled by default to avoid performance degradation.\n\n**Example:**\n\n```\ndef my_function(a: int = 2):\n    print(a)\n\n\nmy_function(2)\n```"
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
+                  "enabled": false,
+                  "level": "note",
                   "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
                   }
                 },
                 "relationships": [
@@ -3708,16 +3708,16 @@
                 ]
               },
               {
-                "id": "PyStubPackagesCompatibilityInspection",
+                "id": "DjangoCloseTagInspection",
                 "shortDescription": {
-                  "text": "Incompatible stub packages"
+                  "text": "Mismatched opening and closing tags"
                 },
                 "fullDescription": {
-                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
-                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
+                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
+                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
                 },
                 "defaultConfiguration": {
-                  "enabled": true,
+                  "enabled": false,
                   "level": "warning",
                   "parameters": {
                     "ideaSeverity": "WARNING",
@@ -3727,8 +3727,8 @@
                 "relationships": [
                   {
                     "target": {
-                      "id": "Python",
-                      "index": 2,
+                      "id": "Django",
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -3772,16 +3772,16 @@
                 ]
               },
               {
-                "id": "DjangoCloseTagInspection",
+                "id": "PyStubPackagesCompatibilityInspection",
                 "shortDescription": {
-                  "text": "Mismatched opening and closing tags"
+                  "text": "Incompatible stub packages"
                 },
                 "fullDescription": {
-                  "text": "Reports cases when opening tags in Django templates are not correctly matched by closing tags. Example: {% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n The IDE reports an error on the 'strong' tag not being closed.",
-                  "markdown": "Reports cases when opening tags in Django templates are not correctly matched by closing tags.\n\n**Example:**\n\n```\n{% if error_message %}<p><strong>{{ error_message }}</p>{% endif %}\n```\n\nThe IDE reports an error on the `strong` tag not being closed."
+                  "text": "Reports stub packages that do not support the version of the corresponding runtime package. A stub package contains type information for some runtime package.",
+                  "markdown": "Reports stub packages that do not support the version of the corresponding runtime package.\n\nA [stub package](https://www.python.org/dev/peps/pep-0561/) contains type information for some runtime package."
                 },
                 "defaultConfiguration": {
-                  "enabled": false,
+                  "enabled": true,
                   "level": "warning",
                   "parameters": {
                     "ideaSeverity": "WARNING",
@@ -3791,8 +3791,8 @@
                 "relationships": [
                   {
                     "target": {
-                      "id": "Django",
-                      "index": 15,
+                      "id": "Python",
+                      "index": 2,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4616,38 +4616,6 @@
                 ]
               },
               {
-                "id": "SqlInsertIntoGeneratedColumnInspection",
-                "shortDescription": {
-                  "text": "Insertion into generated columns"
-                },
-                "fullDescription": {
-                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
-                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "MongoJSSideEffectsInspection",
                 "shortDescription": {
                   "text": "Statement with side effects"
@@ -4669,6 +4637,38 @@
                     "target": {
                       "id": "MongoJS",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "SqlInsertIntoGeneratedColumnInspection",
+                "shortDescription": {
+                  "text": "Insertion into generated columns"
+                },
+                "fullDescription": {
+                  "text": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written. Example (PostgreSQL): 'CREATE TABLE foo\n(\n   col1 INT,\n   col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n);\nINSERT INTO foo(col1, col2) VALUES (1, 2);'\n You cannot insert '2' into the 'col2' column because this column is generated. For this script to work, you can change '2' to DEFAULT. 'INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);'",
+                  "markdown": "Reports INSERT statements that assign values to generated columns. Generated columns can be read, but their values can not be directly written.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo\n    (\n       col1 INT,\n       col2 INT GENERATED ALWAYS AS (col1 + 1) STORED\n    );\n    INSERT INTO foo(col1, col2) VALUES (1, 2);\n\nYou cannot insert `2` into the `col2` column because this column is generated.\nFor this script to work, you can change `2` to DEFAULT.\n`INSERT INTO foo(col1, col2) VALUES (1, DEFAULT);`"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -4968,13 +4968,13 @@
                 ]
               },
               {
-                "id": "SqlMultipleLimitClausesInspection",
+                "id": "SqlNamedArgumentsInspection",
                 "shortDescription": {
-                  "text": "Multiple row limiting/offset clauses in queries"
+                  "text": "Named arguments should be used"
                 },
                 "fullDescription": {
-                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
-                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
+                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
+                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5000,13 +5000,13 @@
                 ]
               },
               {
-                "id": "SqlNamedArgumentsInspection",
+                "id": "SqlMultipleLimitClausesInspection",
                 "shortDescription": {
-                  "text": "Named arguments should be used"
+                  "text": "Multiple row limiting/offset clauses in queries"
                 },
                 "fullDescription": {
-                  "text": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled. For more information about the difference between named and unnamed parameters, see Binding Parameters by Name (Named Parameters) at docs.microsoft.com . Example (Microsoft SQL Server): 'CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\nBEGIN\n    RETURN n + m;\nEND;\n\nCREATE PROCEDURE test AS\nBEGIN\n    foo n = 1, m = 2;\n\n--- The following call misses parameter names and will be highlighted\n    foo 1, 2;\nEND;' Parameters '1, 2' in the 'foo 1, 2;' call are highlighted because they miss names.",
-                  "markdown": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+                  "text": "Reports usages of multiple row limiting clauses in a single query. Example (Microsoft SQL Server): 'create table foo(a int);\nselect top 1 * from foo order by a offset 10 rows fetch next 20 rows only;' The SELECT TOP clause is used to specify that only 1 record must be returned. The FETCH clause specifies the number of rows to return after the OFFSET clause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant.",
+                  "markdown": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5128,6 +5128,38 @@
                 ]
               },
               {
+                "id": "SqlIdentifierInspection",
+                "shortDescription": {
+                  "text": "Identifier should be quoted"
+                },
+                "fullDescription": {
+                  "text": "Reports situations when you use SQL reserved keywords as identifier names in your query. Example (Microsoft SQL Server): 'CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);' We use 'select', 'identity', and 'order' as table and column names. But they are also reserved keywords in Microsoft SQL Server. Therefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the Quote identifier quick-fix. After the quick-fix is applied: 'CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);'",
+                  "markdown": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "SQL",
+                      "index": 5,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "SqlAutoIncrementDuplicateInspection",
                 "shortDescription": {
                   "text": "Auto-increment duplicate"
@@ -5167,38 +5199,6 @@
                 "fullDescription": {
                   "text": "Reports alias expressions that duplicate names of columns in tables and might be redundant. Example (PostgreSQL): 'CREATE TABLE foo(a INT, b INT);\n\nSELECT * FROM foo foo(a, b);\nSELECT * FROM foo foo(a);\nSELECT * FROM foo foo(x);\nSELECT * FROM foo foo(x, y);' The first two aliases use the same column names as in the 'foo' table. They are considered redundant because they column names are identical.",
                   "markdown": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "SQL",
-                      "index": 5,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "SqlIdentifierInspection",
-                "shortDescription": {
-                  "text": "Identifier should be quoted"
-                },
-                "fullDescription": {
-                  "text": "Reports situations when you use SQL reserved keywords as identifier names in your query. Example (Microsoft SQL Server): 'CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);' We use 'select', 'identity', and 'order' as table and column names. But they are also reserved keywords in Microsoft SQL Server. Therefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the Quote identifier quick-fix. After the quick-fix is applied: 'CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);'",
-                  "markdown": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5384,13 +5384,13 @@
                 ]
               },
               {
-                "id": "SqlDtInspection",
+                "id": "SqlSideEffectsInspection",
                 "shortDescription": {
-                  "text": "Ill-formed date/time literals"
+                  "text": "Statement with side effects"
                 },
                 "fullDescription": {
-                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
-                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
+                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
+                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -5416,13 +5416,13 @@
                 ]
               },
               {
-                "id": "SqlSideEffectsInspection",
+                "id": "SqlDtInspection",
                 "shortDescription": {
-                  "text": "Statement with side effects"
+                  "text": "Ill-formed date/time literals"
                 },
                 "fullDescription": {
-                  "text": "Reports statements that might lead to modification of a database during a read-only connection. To enable read-only mode for a connection, right-click a data source in the Database tool window (View | Tool Windows | Database) and select Properties. In the Data Sources and Drivers dialog, click the Options tab and select the Read-only checkbox. Example (MySQL): 'CREATE TABLE foo(a INT);\nINSERT INTO foo VALUES (1);' As 'CREATE TABLE' and 'INSERT INTO' statements lead to a database modification, these statements will be highlighted in read-only connection mode.",
-                  "markdown": "Reports statements that might lead to modification of a database during a read-only connection.\n\nTo enable read-only mode for a\nconnection,\nright-click a data source in the **Database** tool window (**View \\| Tool Windows \\| Database** ) and select **Properties** .\nIn the **Data Sources and Drivers** dialog, click the **Options** tab and select the **Read-only** checkbox.\n\nExample (MySQL):\n\n    CREATE TABLE foo(a INT);\n    INSERT INTO foo VALUES (1);\n\nAs `CREATE TABLE` and `INSERT INTO` statements lead to a database modification, these statements will be highlighted\nin read-only connection mode."
+                  "text": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2. Example (MySQL): 'SELECT TIME '10 -12:13:14' FROM dual;\nSELECT TIME ' 12 : 13 : 14 ' FROM dual;\nSELECT TIME '12 13 14' FROM dual;\nSELECT TIME '12-13-14' FROM dual;\nSELECT TIME '12.13.14' FROM dual;\nSELECT TIME '12:13:' FROM dual;\nSELECT TIME '12:13' FROM dual;\nSELECT TIME '12:' FROM dual;' In this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted. For more information about date and time literals in MySQL, see Date and Time Literals at dev.mysql.com. The following date and type literals are valid for MySQL. 'SELECT TIME '12:13:14' FROM dual;\nSELECT TIME '12:13:14.555' FROM dual;\nSELECT TIME '12:13:14.' FROM dual;\nSELECT TIME '-12:13:14' FROM dual;\nSELECT TIME '10 12:13:14' FROM dual;\nSELECT TIME '-10 12:13:14' FROM dual;'",
+                  "markdown": "Reports errors in date and time literals. This inspection is available in MySQL, Oracle, Db2, and H2.\n\nExample (MySQL):\n\n    SELECT TIME '10 -12:13:14' FROM dual;\n    SELECT TIME ' 12 : 13 : 14 ' FROM dual;\n    SELECT TIME '12 13 14' FROM dual;\n    SELECT TIME '12-13-14' FROM dual;\n    SELECT TIME '12.13.14' FROM dual;\n    SELECT TIME '12:13:' FROM dual;\n    SELECT TIME '12:13' FROM dual;\n    SELECT TIME '12:' FROM dual;\n\nIn this example, dates ignore the MySQL standard for date and time literals. Therefore, they will be highlighted.\nFor more information about date and time literals in MySQL, see [Date and Time Literals at dev.mysql.com](https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html).\n\nThe following date and type literals are valid for MySQL.\n\n    SELECT TIME '12:13:14' FROM dual;\n    SELECT TIME '12:13:14.555' FROM dual;\n    SELECT TIME '12:13:14.' FROM dual;\n    SELECT TIME '-12:13:14' FROM dual;\n    SELECT TIME '10 12:13:14' FROM dual;\n    SELECT TIME '-10 12:13:14' FROM dual;\n"
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6312,13 +6312,13 @@
                 ]
               },
               {
-                "id": "SqlUnusedVariableInspection",
+                "id": "SqlNoDataSourceInspection",
                 "shortDescription": {
-                  "text": "Unused variable"
+                  "text": "No data sources configured"
                 },
                 "fullDescription": {
-                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
-                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
+                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
+                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6344,13 +6344,13 @@
                 ]
               },
               {
-                "id": "SqlNoDataSourceInspection",
+                "id": "SqlUnusedVariableInspection",
                 "shortDescription": {
-                  "text": "No data sources configured"
+                  "text": "Unused variable"
                 },
                 "fullDescription": {
-                  "text": "Reports the absence of data sources in the Database tool window (View | Tool Windows | Database).",
-                  "markdown": "Reports the absence of data sources in the **Database** tool window (**View \\| Tool Windows \\| Database**)."
+                  "text": "Reports unused arguments, variables, or parameters. Example (PostgreSQL): 'CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n$$\nBEGIN\n    RETURN PARAMUSED;\nEND\n$$ LANGUAGE plpgsql;' The 'PARAMUNUSED' parameter is not used in the function and might be deleted.",
+                  "markdown": "Reports unused arguments, variables, or parameters.\n\nExample (PostgreSQL):\n\n    CREATE FUNCTION foo(PARAMUSED INT, PARAMUNUSED INT) RETURNS INT AS\n    $$\n    BEGIN\n        RETURN PARAMUSED;\n    END\n    $$ LANGUAGE plpgsql;\n\nThe `PARAMUNUSED` parameter is not used in the function and might be deleted."
                 },
                 "defaultConfiguration": {
                   "enabled": false,
@@ -6656,38 +6656,6 @@
                 ]
               },
               {
-                "id": "XmlDuplicatedId",
-                "shortDescription": {
-                  "text": "Duplicate 'id' attribute"
-                },
-                "fullDescription": {
-                  "text": "Reports a duplicate 'id' attribute in XML.",
-                  "markdown": "Reports a duplicate `id` attribute in XML."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "error",
-                  "parameters": {
-                    "ideaSeverity": "ERROR",
-                    "qodanaSeverity": "Critical"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "XML",
-                      "index": 7,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JsonSchemaDeprecation",
                 "shortDescription": {
                   "text": "Deprecated JSON property"
@@ -6709,6 +6677,38 @@
                     "target": {
                       "id": "JSON and JSON5",
                       "index": 9,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "XmlDuplicatedId",
+                "shortDescription": {
+                  "text": "Duplicate 'id' attribute"
+                },
+                "fullDescription": {
+                  "text": "Reports a duplicate 'id' attribute in XML.",
+                  "markdown": "Reports a duplicate `id` attribute in XML."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "error",
+                  "parameters": {
+                    "ideaSeverity": "ERROR",
+                    "qodanaSeverity": "Critical"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "XML",
+                      "index": 7,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -6880,38 +6880,6 @@
                 ]
               },
               {
-                "id": "DuplicatedCode",
-                "shortDescription": {
-                  "text": "Duplicated code fragment"
-                },
-                "fullDescription": {
-                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
-                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "General",
-                      "index": 18,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RequiredAttributes",
                 "shortDescription": {
                   "text": "Missing required attribute"
@@ -6933,6 +6901,38 @@
                     "target": {
                       "id": "HTML",
                       "index": 16,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "DuplicatedCode",
+                "shortDescription": {
+                  "text": "Duplicated code fragment"
+                },
+                "fullDescription": {
+                  "text": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in File | Settings | Editor | Duplicates.",
+                  "markdown": "Reports duplicated blocks of code from the selected scope: the same file or the entire project. The inspection features quick-fixes that help you to set the size of detected duplicates, navigate to repetitive code fragments, and compare them in a tool window. The inspection options allow you to select the scope of the reported duplicated fragments and set the initial size for the duplicated language constructs. You can also configure the constructs that you want to anonymize in [File \\| Settings \\| Editor \\| Duplicates](settings://duplicates.index)."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "General",
+                      "index": 18,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8096,38 +8096,6 @@
                 ]
               },
               {
-                "id": "HtmlUnknownAnchorTarget",
-                "shortDescription": {
-                  "text": "Unresolved fragment in a link"
-                },
-                "fullDescription": {
-                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
-                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "HTML",
-                      "index": 16,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnusedDefine",
                 "shortDescription": {
                   "text": "Unused define"
@@ -8149,6 +8117,38 @@
                     "target": {
                       "id": "RELAX NG",
                       "index": 26,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "HtmlUnknownAnchorTarget",
+                "shortDescription": {
+                  "text": "Unresolved fragment in a link"
+                },
+                "fullDescription": {
+                  "text": "Reports an unresolved last part of an URL after the '#' sign.",
+                  "markdown": "Reports an unresolved last part of an URL after the `#` sign."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "HTML",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDPY"
                       }
@@ -8448,38 +8448,6 @@
                 ]
               },
               {
-                "id": "LossyEncoding",
-                "shortDescription": {
-                  "text": "Lossy encoding"
-                },
-                "fullDescription": {
-                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
-                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "Internationalization",
-                      "index": 30,
-                      "toolComponent": {
-                        "name": "QDPY"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "RegExpEscapedMetaCharacter",
                 "shortDescription": {
                   "text": "Escaped meta character"
@@ -8512,13 +8480,45 @@
                 ]
               },
               {
-                "id": "RegExpDuplicateAlternationBranch",
+                "id": "LossyEncoding",
                 "shortDescription": {
-                  "text": "Duplicate branch in alternation"
+                  "text": "Lossy encoding"
                 },
                 "fullDescription": {
-                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
-                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
+                  "text": "Reports characters that cannot be displayed because of the current document encoding. Examples: If you type international characters in a document with the US-ASCII charset, some characters will be lost on save. If you load a UTF-8-encoded file using the ISO-8859-1 one-byte charset, some characters will be displayed incorrectly. You can fix this by changing the file encoding either by specifying the encoding directly in the file, e.g. by editing 'encoding=' attribute in the XML prolog of XML file, or by changing the corresponding options in Settings | Editor | File Encodings.",
+                  "markdown": "Reports characters that cannot be displayed because of the current document encoding.\n\nExamples:\n\n* If you type international characters in a document with the **US-ASCII** charset, some characters will be lost on save.\n* If you load a **UTF-8** -encoded file using the **ISO-8859-1** one-byte charset, some characters will be displayed incorrectly.\n\nYou can fix this by changing the file encoding\neither by specifying the encoding directly in the file, e.g. by editing `encoding=` attribute in the XML prolog of XML file,\nor by changing the corresponding options in **Settings \\| Editor \\| File Encodings**."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Internationalization",
+                      "index": 30,
+                      "toolComponent": {
+                        "name": "QDPY"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "RegExpRepeatedSpace",
+                "shortDescription": {
+                  "text": "Consecutive spaces"
+                },
+                "fullDescription": {
+                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
+                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -8544,13 +8544,13 @@
                 ]
               },
               {
-                "id": "RegExpRepeatedSpace",
+                "id": "RegExpDuplicateAlternationBranch",
                 "shortDescription": {
-                  "text": "Consecutive spaces"
+                  "text": "Duplicate branch in alternation"
                 },
                 "fullDescription": {
-                  "text": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier. Example: '(     )' After the quick-fix is applied: '( {5})' New in 2017.1",
-                  "markdown": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+                  "text": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression. Example: '(alpha|bravo|charlie|alpha)' After the quick-fix is applied: '(alpha|bravo|charlie)' New in 2017.1",
+                  "markdown": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
                 },
                 "defaultConfiguration": {
                   "enabled": true,
@@ -10664,7 +10664,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "b284d31742d6c22a73039b3986304558009065d6",
+          "revisionId": "e3149559cfc3729b56dae3bb6629a8056d062546",
           "branch": "ci(tests)-add-initial-tests",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -10720,116 +10720,6 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "20775858f431ce0138aed985adfcb3a9bce6bfde1bb1392f759a409931f9c33d"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnboundLocalVariableInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Local variable 'output' might be referenced before assignment",
-            "markdown": "Local variable 'output' might be referenced before assignment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 685,
-                  "startColumn": 33,
-                  "charOffset": 21374,
-                  "charLength": 6,
-                  "snippet": {
-                    "text": "output"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 683,
-                  "startColumn": 1,
-                  "charOffset": 21286,
-                  "charLength": 168,
-                  "snippet": {
-                    "text": "      # opposed to running them.\n      self.assertTrue(\n          '[==========]' not in output,\n          (\n              'Unexpected output during test enumeration.\\n'"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "f4d46f010b1b165b0e0ff70a9b31f0834b82b33adc40092a03734610a14f9cb0"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "PyUnboundLocalVariableInspection",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Local variable 'tests' might be referenced before assignment",
-            "markdown": "Local variable 'tests' might be referenced before assignment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-shuffle-test.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 103,
-                  "startColumn": 7,
-                  "charOffset": 3257,
-                  "charLength": 5,
-                  "snippet": {
-                    "text": "tests"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 101,
-                  "startColumn": 1,
-                  "charOffset": 3192,
-                  "charLength": 144,
-                  "snippet": {
-                    "text": "      test_iterations.append(tests)\n    elif line.strip():\n      tests.append(line.strip())  # 'TestCaseName.TestName'\n\n  return test_iterations"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "d837982052a851e440d0c97e49d52b3bd1a5084efe6bcd28f8e4b6603aec81d6"
           },
           "baselineState": "new",
           "properties": {
@@ -10929,177 +10819,12 @@
           }
         },
         {
-          "ruleId": "RegExpRedundantEscape",
+          "ruleId": "PyUnboundLocalVariableInspection",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Redundant character escape '\\]' in RegExp",
-            "markdown": "Redundant character escape `\\]` in RegExp"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 70,
-                  "startColumn": 25,
-                  "charOffset": 2782,
-                  "charLength": 2,
-                  "snippet": {
-                    "text": "\\]"
-                  },
-                  "sourceLanguage": "RegExp"
-                },
-                "contextRegion": {
-                  "startLine": 68,
-                  "startColumn": 1,
-                  "charOffset": 2645,
-                  "charLength": 240,
-                  "snippet": {
-                    "text": "  output = re.sub(r'\\[.*\\d+ tests.*\\n', '', output)\n  output = re.sub(r'\\[.* test environment .*\\n', '', output)\n  output = re.sub(r'\\[=+\\] \\d+ tests .* ran.*', '', output)\n  output = re.sub(r'.* FAILED TESTS\\n', '', output)\n  return output"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "d11ee055d234f170eda001c2891543d5556a16306bba8c7c0a9af35767e16f0c"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "RegExpRedundantEscape",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Redundant character escape '\\:' in RegExp",
-            "markdown": "Redundant character escape `\\:` in RegExp"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 88,
-                  "startColumn": 31,
-                  "charOffset": 3281,
-                  "charLength": 2,
-                  "snippet": {
-                    "text": "\\:"
-                  },
-                  "sourceLanguage": "RegExp"
-                },
-                "contextRegion": {
-                  "startLine": 86,
-                  "startColumn": 1,
-                  "charOffset": 3244,
-                  "charLength": 76,
-                  "snippet": {
-                    "text": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "12f68405544471d88ada96fcf74fd9c2a5ca290ebb4db39c8ff530619d77698f"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "RegExpRedundantEscape",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Redundant character escape '\\:' in RegExp",
-            "markdown": "Redundant character escape `\\:` in RegExp"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googlemock/test/gmock_output_test.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 88,
-                  "startColumn": 45,
-                  "charOffset": 3295,
-                  "charLength": 2,
-                  "snippet": {
-                    "text": "\\:"
-                  },
-                  "sourceLanguage": "RegExp"
-                },
-                "contextRegion": {
-                  "startLine": 86,
-                  "startColumn": 1,
-                  "charOffset": 3244,
-                  "charLength": 76,
-                  "snippet": {
-                    "text": "  \"\"\"\n\n  return re.sub(r'.*[/\\\\](.+)(\\:\\d+|\\(\\d+\\))\\:', 'FILE:#:', output)\n\n"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "2311c505016320e35121afde5e56d05ad2d59824117c699bd5b77c5354d7281e"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "RegExpRedundantEscape",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Redundant character escape '\\-' in RegExp",
-            "markdown": "Redundant character escape `\\-` in RegExp"
+            "text": "Local variable 'output' might be referenced before assignment",
+            "markdown": "Local variable 'output' might be referenced before assignment"
           },
           "locations": [
             {
@@ -11109,22 +10834,22 @@
                   "uriBaseId": "SRCROOT"
                 },
                 "region": {
-                  "startLine": 113,
-                  "startColumn": 35,
-                  "charOffset": 4610,
-                  "charLength": 2,
+                  "startLine": 685,
+                  "startColumn": 33,
+                  "charOffset": 21374,
+                  "charLength": 6,
                   "snippet": {
-                    "text": "\\-"
+                    "text": "output"
                   },
-                  "sourceLanguage": "RegExp"
+                  "sourceLanguage": "Python"
                 },
                 "contextRegion": {
-                  "startLine": 111,
+                  "startLine": 683,
                   "startColumn": 1,
-                  "charOffset": 4512,
-                  "charLength": 193,
+                  "charOffset": 21286,
+                  "charLength": 168,
                   "snippet": {
-                    "text": "\n# Regex for parsing test case names from Google Test's output.\nTEST_CASE_REGEX = re.compile(r'^\\[\\-+\\] \\d+ tests? from (\\w+(/\\w+)?)')\n\n# Regex for parsing test names from Google Test's output."
+                    "text": "      # opposed to running them.\n      self.assertTrue(\n          '[==========]' not in output,\n          (\n              'Unexpected output during test enumeration.\\n'"
                   }
                 }
               },
@@ -11137,124 +10862,14 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "e5061eaff299c5f1a6607ba4bb1b148f9b4fa719f6ec3fe039043a26befe6286"
+            "equalIndicator/v1": "f4d46f010b1b165b0e0ff70a9b31f0834b82b33adc40092a03734610a14f9cb0"
           },
           "baselineState": "new",
           "properties": {
             "ideaSeverity": "WARNING",
             "qodanaSeverity": "High",
             "tags": [
-              "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "RegExpRedundantEscape",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Redundant character escape '\\]' in RegExp",
-            "markdown": "Redundant character escape `\\]` in RegExp"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 113,
-                  "startColumn": 38,
-                  "charOffset": 4613,
-                  "charLength": 2,
-                  "snippet": {
-                    "text": "\\]"
-                  },
-                  "sourceLanguage": "RegExp"
-                },
-                "contextRegion": {
-                  "startLine": 111,
-                  "startColumn": 1,
-                  "charOffset": 4512,
-                  "charLength": 193,
-                  "snippet": {
-                    "text": "\n# Regex for parsing test case names from Google Test's output.\nTEST_CASE_REGEX = re.compile(r'^\\[\\-+\\] \\d+ tests? from (\\w+(/\\w+)?)')\n\n# Regex for parsing test names from Google Test's output."
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "144949ffd93cedbeec4f8907562fe7bd8d442847b5d81e23ac2516dba9eeeb34"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "RegExp"
-            ]
-          }
-        },
-        {
-          "ruleId": "RegExpRedundantEscape",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Redundant character escape '\\]' in RegExp",
-            "markdown": "Redundant character escape `\\]` in RegExp"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 116,
-                  "startColumn": 39,
-                  "charOffset": 4744,
-                  "charLength": 2,
-                  "snippet": {
-                    "text": "\\]"
-                  },
-                  "sourceLanguage": "RegExp"
-                },
-                "contextRegion": {
-                  "startLine": 114,
-                  "startColumn": 1,
-                  "charOffset": 4647,
-                  "charLength": 180,
-                  "snippet": {
-                    "text": "\n# Regex for parsing test names from Google Test's output.\nTEST_REGEX = re.compile(r'^\\[\\s*RUN\\s*\\].*\\.(\\w+(/\\w+)?)')\n\n# Regex for parsing disabled banner from Google Test's output"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "3402c0c512d57cc9454d0531886b874901bc6c0a33fd09013078c573d686848e"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WARNING",
-            "qodanaSeverity": "High",
-            "tags": [
-              "RegExp"
+              "Python"
             ]
           }
         },
@@ -11341,6 +10956,61 @@
           "properties": {
             "ideaSeverity": "WEAK WARNING",
             "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "PyUnboundLocalVariableInspection",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Local variable 'tests' might be referenced before assignment",
+            "markdown": "Local variable 'tests' might be referenced before assignment"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-shuffle-test.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 103,
+                  "startColumn": 7,
+                  "charOffset": 3257,
+                  "charLength": 5,
+                  "snippet": {
+                    "text": "tests"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 101,
+                  "startColumn": 1,
+                  "charOffset": 3192,
+                  "charLength": 144,
+                  "snippet": {
+                    "text": "      test_iterations.append(tests)\n    elif line.strip():\n      tests.append(line.strip())  # 'TestCaseName.TestName'\n\n  return test_iterations"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "d837982052a851e440d0c97e49d52b3bd1a5084efe6bcd28f8e4b6603aec81d6"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
             "tags": [
               "Python"
             ]
@@ -11435,6 +11105,61 @@
           }
         },
         {
+          "ruleId": "RegExpRedundantEscape",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Redundant character escape '\\-' in RegExp",
+            "markdown": "Redundant character escape `\\-` in RegExp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 35,
+                  "charOffset": 4610,
+                  "charLength": 2,
+                  "snippet": {
+                    "text": "\\-"
+                  },
+                  "sourceLanguage": "RegExp"
+                },
+                "contextRegion": {
+                  "startLine": 111,
+                  "startColumn": 1,
+                  "charOffset": 4512,
+                  "charLength": 193,
+                  "snippet": {
+                    "text": "\n# Regex for parsing test case names from Google Test's output.\nTEST_CASE_REGEX = re.compile(r'^\\[\\-+\\] \\d+ tests? from (\\w+(/\\w+)?)')\n\n# Regex for parsing test names from Google Test's output."
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "e5061eaff299c5f1a6607ba4bb1b148f9b4fa719f6ec3fe039043a26befe6286"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "RegExp"
+            ]
+          }
+        },
+        {
           "ruleId": "DuplicatedCode",
           "kind": "fail",
           "level": "note",
@@ -11519,6 +11244,204 @@
             "qodanaSeverity": "Moderate",
             "tags": [
               "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "RegExpRedundantEscape",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Redundant character escape '\\]' in RegExp",
+            "markdown": "Redundant character escape `\\]` in RegExp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 38,
+                  "charOffset": 4613,
+                  "charLength": 2,
+                  "snippet": {
+                    "text": "\\]"
+                  },
+                  "sourceLanguage": "RegExp"
+                },
+                "contextRegion": {
+                  "startLine": 111,
+                  "startColumn": 1,
+                  "charOffset": 4512,
+                  "charLength": 193,
+                  "snippet": {
+                    "text": "\n# Regex for parsing test case names from Google Test's output.\nTEST_CASE_REGEX = re.compile(r'^\\[\\-+\\] \\d+ tests? from (\\w+(/\\w+)?)')\n\n# Regex for parsing test names from Google Test's output."
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "144949ffd93cedbeec4f8907562fe7bd8d442847b5d81e23ac2516dba9eeeb34"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "RegExp"
+            ]
+          }
+        },
+        {
+          "ruleId": "DuplicatedCode",
+          "kind": "fail",
+          "level": "note",
+          "message": {
+            "text": "Duplicated code",
+            "markdown": "Duplicated code"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 722,
+                  "startColumn": 5,
+                  "charOffset": 24043,
+                  "charLength": 517,
+                  "snippet": {
+                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 722,
+                  "startColumn": 1,
+                  "charOffset": 24039,
+                  "charLength": 521,
+                  "snippet": {
+                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 345,
+                  "startColumn": 5,
+                  "charOffset": 19118,
+                  "charLength": 517,
+                  "snippet": {
+                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  },
+                  "sourceLanguage": "Python"
+                },
+                "contextRegion": {
+                  "startLine": 345,
+                  "startColumn": 1,
+                  "charOffset": 19114,
+                  "charLength": 521,
+                  "snippet": {
+                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WEAK WARNING",
+            "qodanaSeverity": "Moderate",
+            "tags": [
+              "Python"
+            ]
+          }
+        },
+        {
+          "ruleId": "RegExpRedundantEscape",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Redundant character escape '\\]' in RegExp",
+            "markdown": "Redundant character escape `\\]` in RegExp"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "lib/googletest/googletest/test/googletest-filter-unittest.py",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 39,
+                  "charOffset": 4744,
+                  "charLength": 2,
+                  "snippet": {
+                    "text": "\\]"
+                  },
+                  "sourceLanguage": "RegExp"
+                },
+                "contextRegion": {
+                  "startLine": 114,
+                  "startColumn": 1,
+                  "charOffset": 4647,
+                  "charLength": 180,
+                  "snippet": {
+                    "text": "\n# Regex for parsing test names from Google Test's output.\nTEST_REGEX = re.compile(r'^\\[\\s*RUN\\s*\\].*\\.(\\w+(/\\w+)?)')\n\n# Regex for parsing disabled banner from Google Test's output"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "project",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v1": "3402c0c512d57cc9454d0531886b874901bc6c0a33fd09013078c573d686848e"
+          },
+          "baselineState": "new",
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "tags": [
+              "RegExp"
             ]
           }
         },
@@ -11842,94 +11765,6 @@
           ],
           "partialFingerprints": {
             "equalIndicator/v1": "1f4a75c5399ed62e18eb697e66eb644393c451e141dabc8b63631762749d7a45"
-          },
-          "baselineState": "new",
-          "properties": {
-            "ideaSeverity": "WEAK WARNING",
-            "qodanaSeverity": "Moderate",
-            "tags": [
-              "Python"
-            ]
-          }
-        },
-        {
-          "ruleId": "DuplicatedCode",
-          "kind": "fail",
-          "level": "note",
-          "message": {
-            "text": "Duplicated code",
-            "markdown": "Duplicated code"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/googletest-json-output-unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 722,
-                  "startColumn": 5,
-                  "charOffset": 24043,
-                  "charLength": 517,
-                  "snippet": {
-                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 722,
-                  "startColumn": 1,
-                  "charOffset": 24039,
-                  "charLength": 521,
-                  "snippet": {
-                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            },
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "lib/googletest/googletest/test/gtest_xml_output_unittest.py",
-                  "uriBaseId": "SRCROOT"
-                },
-                "region": {
-                  "startLine": 345,
-                  "startColumn": 5,
-                  "charOffset": 19118,
-                  "charLength": 517,
-                  "snippet": {
-                    "text": "p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  },
-                  "sourceLanguage": "Python"
-                },
-                "contextRegion": {
-                  "startLine": 345,
-                  "startColumn": 1,
-                  "charOffset": 19114,
-                  "charLength": 521,
-                  "snippet": {
-                    "text": "    p = gtest_test_utils.Subprocess(command)\n    if p.terminated_by_signal:\n      # p.signal is available only if p.terminated_by_signal is True.\n      self.assertFalse(\n          p.terminated_by_signal,\n          '%s was killed by signal %d' % (GTEST_PROGRAM_NAME, p.signal),\n      )\n    else:\n      self.assertTrue(p.exited)\n      self.assertEqual(\n          1,\n          p.exit_code,\n          \"'%s' exited with code %s, which doesn't match \"\n          'the expected exit code %s.' % (command, p.exit_code, 1),\n      )"
-                  }
-                }
-              },
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "project",
-                  "kind": "module"
-                }
-              ]
-            }
-          ],
-          "partialFingerprints": {
-            "equalIndicator/v1": "899cc854f323ce10bb46413c30ad9d8290ba3e084c880ca3f679bd7c0882e56f"
           },
           "baselineState": "new",
           "properties": {
@@ -78053,9 +77888,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-05-29",
-        "guid": "0582fd80-b1e7-4be5-98d8-91d4d4ebaaf2",
+        "guid": "b59d58bf-318d-4c2f-98bd-df7742d2dc78",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5107840025"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5107862603"
         }
       },
       "newlineSequences": [
