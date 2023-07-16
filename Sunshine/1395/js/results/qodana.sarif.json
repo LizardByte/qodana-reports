@@ -169,6 +169,10 @@
               "name": "HTML"
             },
             {
+              "id": "Cucumber",
+              "name": "Cucumber"
+            },
+            {
               "id": "JavaScript and TypeScript/Unused symbols",
               "name": "Unused symbols",
               "relationships": [
@@ -185,10 +189,6 @@
                   ]
                 }
               ]
-            },
-            {
-              "id": "Cucumber",
-              "name": "Cucumber"
             },
             {
               "id": "JavaScript and TypeScript/Data flow",
@@ -760,38 +760,6 @@
                 ]
               },
               {
-                "id": "JSValidateJSDoc",
-                "shortDescription": {
-                  "text": "Syntax errors and unresolved references in JSDoc"
-                },
-                "fullDescription": {
-                  "text": "Reports a syntax discrepancy in a documentation comment.",
-                  "markdown": "Reports a syntax discrepancy in a documentation comment."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "IfStatementWithTooManyBranchesJS",
                 "shortDescription": {
                   "text": "'if' statement with too many branches"
@@ -813,6 +781,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSValidateJSDoc",
+                "shortDescription": {
+                  "text": "Syntax errors and unresolved references in JSDoc"
+                },
+                "fullDescription": {
+                  "text": "Reports a syntax discrepancy in a documentation comment.",
+                  "markdown": "Reports a syntax discrepancy in a documentation comment."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -972,7 +972,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -1528,38 +1528,6 @@
                 ]
               },
               {
-                "id": "TypeScriptMissingConfigOption",
-                "shortDescription": {
-                  "text": "Missing tsconfig.json option "
-                },
-                "fullDescription": {
-                  "text": "Reports a usage that requires an explicit option in 'tsconfig.json'. For example, to use JSX in '.tsx' files, 'tsconfig.json' must contain '\"jsx\"' property.",
-                  "markdown": "Reports a usage that requires an explicit option in `tsconfig.json`. For example, to use JSX in `.tsx` files, `tsconfig.json` must contain `\"jsx\"` property."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/TypeScript",
-                      "index": 23,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSObjectNullOrUndefined",
                 "shortDescription": {
                   "text": "Object is 'null' or 'undefined'"
@@ -1581,6 +1549,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "TypeScriptMissingConfigOption",
+                "shortDescription": {
+                  "text": "Missing tsconfig.json option "
+                },
+                "fullDescription": {
+                  "text": "Reports a usage that requires an explicit option in 'tsconfig.json'. For example, to use JSX in '.tsx' files, 'tsconfig.json' must contain '\"jsx\"' property.",
+                  "markdown": "Reports a usage that requires an explicit option in `tsconfig.json`. For example, to use JSX in `.tsx` files, `tsconfig.json` must contain `\"jsx\"` property."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/TypeScript",
+                      "index": 23,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2520,38 +2520,6 @@
                 ]
               },
               {
-                "id": "NpmUsedModulesInstalled",
-                "shortDescription": {
-                  "text": "Missing module dependency"
-                },
-                "fullDescription": {
-                  "text": "Reports a module from a 'require()' call or an 'import' statement that is not installed or is not listed in package.json dependencies. Suggests installing the module and/or including it into package.json. For 'require()' calls, works only in the files from the scope of Node.js Core JavaScript library.",
-                  "markdown": "Reports a module from a `require()` call or an `import` statement that is not installed or is not listed in package.json dependencies.\n\nSuggests installing the module and/or including it into package.json.\n\nFor `require()` calls, works only in the files from the scope of *Node.js Core* JavaScript library."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Imports and dependencies",
-                      "index": 41,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "UnusedCatchParameterJS",
                 "shortDescription": {
                   "text": "Unused 'catch' parameter"
@@ -2573,6 +2541,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "NpmUsedModulesInstalled",
+                "shortDescription": {
+                  "text": "Missing module dependency"
+                },
+                "fullDescription": {
+                  "text": "Reports a module from a 'require()' call or an 'import' statement that is not installed or is not listed in package.json dependencies. Suggests installing the module and/or including it into package.json. For 'require()' calls, works only in the files from the scope of Node.js Core JavaScript library.",
+                  "markdown": "Reports a module from a `require()` call or an `import` statement that is not installed or is not listed in package.json dependencies.\n\nSuggests installing the module and/or including it into package.json.\n\nFor `require()` calls, works only in the files from the scope of *Node.js Core* JavaScript library."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Imports and dependencies",
+                      "index": 41,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -2924,7 +2924,7 @@
                   {
                     "target": {
                       "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -3128,38 +3128,6 @@
                 ]
               },
               {
-                "id": "JSTypeOfValues",
-                "shortDescription": {
-                  "text": "'typeof' comparison with non-standard value"
-                },
-                "fullDescription": {
-                  "text": "Reports a comparison of a 'typeof' expression with a literal string which is not one of the standard types: 'undefined', 'object', 'boolean', 'number', 'string', 'function', or 'symbol'. Such comparisons always return 'false'.",
-                  "markdown": "Reports a comparison of a `typeof` expression with a literal string which is not one of the standard types: `undefined`, `object`, `boolean`, `number`, `string`, `function`, or `symbol`. Such comparisons always return `false`."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Probable bugs",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "NestedConditionalExpressionJS",
                 "shortDescription": {
                   "text": "Nested conditional expression"
@@ -3181,6 +3149,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Potentially confusing code constructs",
                       "index": 25,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSTypeOfValues",
+                "shortDescription": {
+                  "text": "'typeof' comparison with non-standard value"
+                },
+                "fullDescription": {
+                  "text": "Reports a comparison of a 'typeof' expression with a literal string which is not one of the standard types: 'undefined', 'object', 'boolean', 'number', 'string', 'function', or 'symbol'. Such comparisons always return 'false'.",
+                  "markdown": "Reports a comparison of a `typeof` expression with a literal string which is not one of the standard types: `undefined`, `object`, `boolean`, `number`, `string`, `function`, or `symbol`. Such comparisons always return `false`."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Probable bugs",
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -4728,38 +4728,6 @@
                 ]
               },
               {
-                "id": "JSIncompatibleTypesComparison",
-                "shortDescription": {
-                  "text": "Comparison of expressions having incompatible types"
-                },
-                "fullDescription": {
-                  "text": "Reports a comparison with operands of incompatible types or an operand with a type without possible common values.",
-                  "markdown": "Reports a comparison with operands of incompatible types or an operand with a type without possible common values."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Probable bugs",
-                      "index": 13,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "JSUnfilteredForInLoop",
                 "shortDescription": {
                   "text": "Unfiltered for..in loop"
@@ -4781,6 +4749,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/General",
                       "index": 10,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSIncompatibleTypesComparison",
+                "shortDescription": {
+                  "text": "Comparison of expressions having incompatible types"
+                },
+                "fullDescription": {
+                  "text": "Reports a comparison with operands of incompatible types or an operand with a type without possible common values.",
+                  "markdown": "Reports a comparison with operands of incompatible types or an operand with a type without possible common values."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Probable bugs",
+                      "index": 13,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6136,38 +6136,6 @@
                 ]
               },
               {
-                "id": "JSCheckFunctionSignatures",
-                "shortDescription": {
-                  "text": "Signature mismatch"
-                },
-                "fullDescription": {
-                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
-                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "WEAK WARNING",
-                    "qodanaSeverity": "Moderate"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/General",
-                      "index": 10,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ConstantOnLHSOfComparisonJS",
                 "shortDescription": {
                   "text": "Constant on left side of comparison"
@@ -6189,6 +6157,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Code style issues",
                       "index": 9,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSCheckFunctionSignatures",
+                "shortDescription": {
+                  "text": "Signature mismatch"
+                },
+                "fullDescription": {
+                  "text": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types. TypeScript code is ignored.",
+                  "markdown": "Reports a JavaScript call expression where the arguments do not match the signature of the referenced function, including the types of arguments and their number. Also, reports if the overloading function doesn't match the overloaded one in terms of parameters and return types.\n\nTypeScript code is ignored."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "WEAK WARNING",
+                    "qodanaSeverity": "Moderate"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/General",
+                      "index": 10,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -6648,38 +6648,6 @@
                 ]
               },
               {
-                "id": "PlatformDetectionJS",
-                "shortDescription": {
-                  "text": "Inaccurate platform detection"
-                },
-                "fullDescription": {
-                  "text": "Reports a common JavaScript pattern for detecting the browser or operating system in which the script is run. In addition to pointing out non-portable constructs, these platform detection patterns are often incomplete and easily fooled. For most cases, detection of individual environment features is preferable to attempting to detect the entire platform. Patterns detected include: 'document.all' 'document.layers' 'navigator.userAgent' 'navigator.oscpu' 'navigator.appName' 'navigator.appCodeName' 'navigator.platform'",
-                  "markdown": "Reports a common JavaScript pattern for detecting the browser or operating system in which the script is run. In addition to pointing out non-portable constructs, these platform detection patterns are often incomplete and easily fooled. For most cases, detection of individual environment features is preferable to attempting to detect the entire platform.\n\nPatterns detected include:\n\n* `document.all`\n* `document.layers`\n* `navigator.userAgent`\n* `navigator.oscpu`\n* `navigator.appName`\n* `navigator.appCodeName`\n* `navigator.platform`"
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/DOM issues",
-                      "index": 46,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "IfStatementWithIdenticalBranchesJS",
                 "shortDescription": {
                   "text": "'if' statement with identical branches"
@@ -6701,6 +6669,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Control flow issues",
                       "index": 1,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "PlatformDetectionJS",
+                "shortDescription": {
+                  "text": "Inaccurate platform detection"
+                },
+                "fullDescription": {
+                  "text": "Reports a common JavaScript pattern for detecting the browser or operating system in which the script is run. In addition to pointing out non-portable constructs, these platform detection patterns are often incomplete and easily fooled. For most cases, detection of individual environment features is preferable to attempting to detect the entire platform. Patterns detected include: 'document.all' 'document.layers' 'navigator.userAgent' 'navigator.oscpu' 'navigator.appName' 'navigator.appCodeName' 'navigator.platform'",
+                  "markdown": "Reports a common JavaScript pattern for detecting the browser or operating system in which the script is run. In addition to pointing out non-portable constructs, these platform detection patterns are often incomplete and easily fooled. For most cases, detection of individual environment features is preferable to attempting to detect the entire platform.\n\nPatterns detected include:\n\n* `document.all`\n* `document.layers`\n* `navigator.userAgent`\n* `navigator.oscpu`\n* `navigator.appName`\n* `navigator.appCodeName`\n* `navigator.platform`"
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/DOM issues",
+                      "index": 46,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7000,6 +7000,38 @@
                 ]
               },
               {
+                "id": "JSMissingSwitchBranches",
+                "shortDescription": {
+                  "text": "'switch' statement has missing branches"
+                },
+                "fullDescription": {
+                  "text": "Reports a 'switch' statement on a variable of the type 'enum' or 'union' when the statement doesn't cover some value options from the type.",
+                  "markdown": "Reports a `switch` statement on a variable of the type `enum` or `union` when the statement doesn't cover some value options from the type."
+                },
+                "defaultConfiguration": {
+                  "enabled": false,
+                  "level": "note",
+                  "parameters": {
+                    "ideaSeverity": "INFORMATION",
+                    "qodanaSeverity": "Info"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Switch statement issues",
+                      "index": 45,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
                 "id": "InnerHTMLJS",
                 "shortDescription": {
                   "text": "Use of 'innerHTML' property"
@@ -7053,38 +7085,6 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Imports and dependencies",
                       "index": 41,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "JSMissingSwitchBranches",
-                "shortDescription": {
-                  "text": "'switch' statement has missing branches"
-                },
-                "fullDescription": {
-                  "text": "Reports a 'switch' statement on a variable of the type 'enum' or 'union' when the statement doesn't cover some value options from the type.",
-                  "markdown": "Reports a `switch` statement on a variable of the type `enum` or `union` when the statement doesn't cover some value options from the type."
-                },
-                "defaultConfiguration": {
-                  "enabled": false,
-                  "level": "note",
-                  "parameters": {
-                    "ideaSeverity": "INFORMATION",
-                    "qodanaSeverity": "Info"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Switch statement issues",
-                      "index": 45,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -7384,38 +7384,6 @@
                 ]
               },
               {
-                "id": "JSUnusedLocalSymbols",
-                "shortDescription": {
-                  "text": "Unused local symbol"
-                },
-                "fullDescription": {
-                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
-                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
-                },
-                "defaultConfiguration": {
-                  "enabled": true,
-                  "level": "warning",
-                  "parameters": {
-                    "ideaSeverity": "WARNING",
-                    "qodanaSeverity": "High"
-                  }
-                },
-                "relationships": [
-                  {
-                    "target": {
-                      "id": "JavaScript and TypeScript/Unused symbols",
-                      "index": 15,
-                      "toolComponent": {
-                        "name": "QDJS"
-                      }
-                    },
-                    "kinds": [
-                      "superset"
-                    ]
-                  }
-                ]
-              },
-              {
                 "id": "ReturnFromFinallyBlockJS",
                 "shortDescription": {
                   "text": "'return' inside 'finally' block"
@@ -7437,6 +7405,38 @@
                     "target": {
                       "id": "JavaScript and TypeScript/Try statement issues",
                       "index": 29,
+                      "toolComponent": {
+                        "name": "QDJS"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "JSUnusedLocalSymbols",
+                "shortDescription": {
+                  "text": "Unused local symbol"
+                },
+                "fullDescription": {
+                  "text": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+                  "markdown": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "JavaScript and TypeScript/Unused symbols",
+                      "index": 16,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11596,7 +11596,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11628,7 +11628,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11660,7 +11660,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11692,7 +11692,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11724,7 +11724,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11756,7 +11756,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -11788,7 +11788,7 @@
                   {
                     "target": {
                       "id": "Cucumber",
-                      "index": 16,
+                      "index": 15,
                       "toolComponent": {
                         "name": "QDJS"
                       }
@@ -14004,7 +14004,7 @@
       "versionControlProvenance": [
         {
           "repositoryUri": "https://github.com/LizardByte/Sunshine.git",
-          "revisionId": "39dd723900913784fe71c8052e6cc1ec4b924464",
+          "revisionId": "f16598ef10529e60f35bec7363223cbb6054022e",
           "branch": "docs(website)-add-gh-pages",
           "properties": {
             "repoUrl": "https://github.com/LizardByte/Sunshine.git",
@@ -14198,7 +14198,7 @@
                 "region": {
                   "startLine": 28,
                   "startColumn": 21,
-                  "charOffset": 1592,
+                  "charOffset": 1603,
                   "charLength": 85,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
@@ -14208,7 +14208,7 @@
                 "contextRegion": {
                   "startLine": 26,
                   "startColumn": 1,
-                  "charOffset": 1436,
+                  "charOffset": 1447,
                   "charLength": 412,
                   "snippet": {
                     "text": "        <link rel=\"icon\" type=\"image/x-icon\" href=\"https://app.lizardbyte.dev/assets/images/favicon.ico\" />\n        <!-- FontAwesome-->\n        <link href=\"https://app.lizardbyte.dev/node_modules/@fortawesome/fontawesome-free/css/all.min.css\" rel=\"stylesheet\" />\n        <!-- Bootstrap theme-->\n        <link href=\"https://app.lizardbyte.dev/node_modules/bootstrap/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />"
@@ -14224,7 +14224,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "c65ec7cfe4bbedb78707edb78c5b74c866ffe827b569c40d89796350e0c1378e"
+            "equalIndicator/v1": "d49daedaa9f9f7921a5fd3cccaef999add985dc03788e8d2cbc01c322583021d"
           },
           "baselineState": "new",
           "properties": {
@@ -14253,7 +14253,7 @@
                 "region": {
                   "startLine": 30,
                   "startColumn": 21,
-                  "charOffset": 1751,
+                  "charOffset": 1762,
                   "charLength": 76,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -14263,7 +14263,7 @@
                 "contextRegion": {
                   "startLine": 28,
                   "startColumn": 1,
-                  "charOffset": 1572,
+                  "charOffset": 1583,
                   "charLength": 386,
                   "snippet": {
                     "text": "        <link href=\"https://app.lizardbyte.dev/node_modules/@fortawesome/fontawesome-free/css/all.min.css\" rel=\"stylesheet\" />\n        <!-- Bootstrap theme-->\n        <link href=\"https://app.lizardbyte.dev/node_modules/bootstrap/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />\n        <!-- Custom css-->\n        <link href=\"https://app.lizardbyte.dev/css/custom.css\" rel=\"stylesheet\" />"
@@ -14279,7 +14279,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "fc0bdb95274f3ffd8d81455e4ab15cb6d8c52abc74968dc2eb17286181c386b6"
+            "equalIndicator/v1": "ba15bdc63cc9d30b2309a5c23e7391f0e94f10798a60fb01c54f43283c6b35ee"
           },
           "baselineState": "new",
           "properties": {
@@ -14308,7 +14308,7 @@
                 "region": {
                   "startLine": 32,
                   "startColumn": 21,
-                  "charOffset": 1896,
+                  "charOffset": 1907,
                   "charLength": 41,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/css/custom.css"
@@ -14318,7 +14318,7 @@
                 "contextRegion": {
                   "startLine": 30,
                   "startColumn": 1,
-                  "charOffset": 1731,
+                  "charOffset": 1742,
                   "charLength": 326,
                   "snippet": {
                     "text": "        <link href=\"https://app.lizardbyte.dev/node_modules/bootstrap/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />\n        <!-- Custom css-->\n        <link href=\"https://app.lizardbyte.dev/css/custom.css\" rel=\"stylesheet\" />\n\n        <script src=\"https://app.lizardbyte.dev/node_modules/jquery/dist/jquery.min.js\"></script>"
@@ -14334,7 +14334,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "18197b10779fb02c5dcb1d42e3e173a3d5f45db7e70a30d814fcf16ba83c9b14"
+            "equalIndicator/v1": "6146fc1753ac791898994390046dbef471efc2f39defa48d3a48f38204437fd7"
           },
           "baselineState": "new",
           "properties": {
@@ -14363,7 +14363,7 @@
                 "region": {
                   "startLine": 34,
                   "startColumn": 22,
-                  "charOffset": 1981,
+                  "charOffset": 1992,
                   "charLength": 65,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/node_modules/jquery/dist/jquery.min.js"
@@ -14373,7 +14373,7 @@
                 "contextRegion": {
                   "startLine": 32,
                   "startColumn": 1,
-                  "charOffset": 1876,
+                  "charOffset": 1887,
                   "charLength": 303,
                   "snippet": {
                     "text": "        <link href=\"https://app.lizardbyte.dev/css/custom.css\" rel=\"stylesheet\" />\n\n        <script src=\"https://app.lizardbyte.dev/node_modules/jquery/dist/jquery.min.js\"></script>\n        <script src=\"https://app.lizardbyte.dev/node_modules/@popperjs/core/dist/umd/popper.min.js\"></script>\n    </head>"
@@ -14389,7 +14389,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "ee93319ba71780bae74ead4c7c123fbb596672bf48920856c2301baf5194ac75"
+            "equalIndicator/v1": "95f66c45a7017e6bde08faa09fa1f56e7e553bba028f839c0d6a8985b8091f29"
           },
           "baselineState": "new",
           "properties": {
@@ -14418,7 +14418,7 @@
                 "region": {
                   "startLine": 35,
                   "startColumn": 22,
-                  "charOffset": 2079,
+                  "charOffset": 2090,
                   "charLength": 77,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/node_modules/@popperjs/core/dist/umd/popper.min.js"
@@ -14428,7 +14428,7 @@
                 "contextRegion": {
                   "startLine": 33,
                   "startColumn": 1,
-                  "charOffset": 1959,
+                  "charOffset": 1970,
                   "charLength": 277,
                   "snippet": {
                     "text": "\n        <script src=\"https://app.lizardbyte.dev/node_modules/jquery/dist/jquery.min.js\"></script>\n        <script src=\"https://app.lizardbyte.dev/node_modules/@popperjs/core/dist/umd/popper.min.js\"></script>\n    </head>\n    <body class=\"d-flex flex-column h-100 bg-dark-gray\">"
@@ -14444,7 +14444,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "05572b0d5911eaad272e9b5524cf4187a99ceed2b5bd5a15021a04562fde6ffa"
+            "equalIndicator/v1": "c5b057cfec8eb94f201e3b360dbd0420827df31f068b26614512438df602ab97"
           },
           "baselineState": "new",
           "properties": {
@@ -14473,7 +14473,7 @@
                 "region": {
                   "startLine": 399,
                   "startColumn": 22,
-                  "charOffset": 23952,
+                  "charOffset": 23963,
                   "charLength": 81,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -14483,7 +14483,7 @@
                 "contextRegion": {
                   "startLine": 397,
                   "startColumn": 1,
-                  "charOffset": 23896,
+                  "charOffset": 23907,
                   "charLength": 177,
                   "snippet": {
                     "text": "\n        <!-- Bootstrap core JS-->\n        <script src=\"https://app.lizardbyte.dev/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js\"></script>\n\n        <!-- Get navbar -->"
@@ -14499,7 +14499,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "e55a7c5fba83258fd3ce0e6f3c250aacb70d1fd8fec4e6908a19aab971bc82f1"
+            "equalIndicator/v1": "ef010fab4eb559bae1c134e82ad4c62b6d8ef1b97bb08d7ddeab6be6c39ab0e0"
           },
           "baselineState": "new",
           "properties": {
@@ -14528,7 +14528,7 @@
                 "region": {
                   "startLine": 402,
                   "startColumn": 22,
-                  "charOffset": 24095,
+                  "charOffset": 24106,
                   "charLength": 39,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/js/navbar.js"
@@ -14538,7 +14538,7 @@
                 "contextRegion": {
                   "startLine": 400,
                   "startColumn": 1,
-                  "charOffset": 24045,
+                  "charOffset": 24056,
                   "charLength": 200,
                   "snippet": {
                     "text": "\n        <!-- Get navbar -->\n        <script src=\"https://app.lizardbyte.dev/js/navbar.js\"></script>\n        <!-- Get footer -->\n        <script src=\"https://app.lizardbyte.dev/js/footer.js\"></script>"
@@ -14554,7 +14554,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "77d9013772df3f59d12690cc74612e1cc14cf691bfed770bdea85d78d0da39d6"
+            "equalIndicator/v1": "b19e726c0d7c47aa4d739453e89fb5ebe922077ddda944b44c6e680411bbd56f"
           },
           "baselineState": "new",
           "properties": {
@@ -14583,7 +14583,7 @@
                 "region": {
                   "startLine": 404,
                   "startColumn": 22,
-                  "charOffset": 24195,
+                  "charOffset": 24206,
                   "charLength": 39,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/js/footer.js"
@@ -14593,7 +14593,7 @@
                 "contextRegion": {
                   "startLine": 402,
                   "startColumn": 1,
-                  "charOffset": 24074,
+                  "charOffset": 24085,
                   "charLength": 279,
                   "snippet": {
                     "text": "        <script src=\"https://app.lizardbyte.dev/js/navbar.js\"></script>\n        <!-- Get footer -->\n        <script src=\"https://app.lizardbyte.dev/js/footer.js\"></script>\n        <!-- Discord WidgetBot -->\n        <script src=\"https://app.lizardbyte.dev/js/discord.js\"></script>"
@@ -14609,7 +14609,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "f080517f255b06c5f402ae2429e9ac857b654a5a18cf08aaf0f2fa87b6b77c95"
+            "equalIndicator/v1": "77a849b86d4ef38cc71789806bb7f61e5e8e0733ba50a8cf125b32f5391473ca"
           },
           "baselineState": "new",
           "properties": {
@@ -14638,7 +14638,7 @@
                 "region": {
                   "startLine": 406,
                   "startColumn": 22,
-                  "charOffset": 24302,
+                  "charOffset": 24313,
                   "charLength": 40,
                   "snippet": {
                     "text": "https://app.lizardbyte.dev/js/discord.js"
@@ -14648,7 +14648,7 @@
                 "contextRegion": {
                   "startLine": 404,
                   "startColumn": 1,
-                  "charOffset": 24174,
+                  "charOffset": 24185,
                   "charLength": 199,
                   "snippet": {
                     "text": "        <script src=\"https://app.lizardbyte.dev/js/footer.js\"></script>\n        <!-- Discord WidgetBot -->\n        <script src=\"https://app.lizardbyte.dev/js/discord.js\"></script>\n    </body>\n</html>"
@@ -14664,7 +14664,7 @@
             }
           ],
           "partialFingerprints": {
-            "equalIndicator/v1": "b7b0885d3751a6cb7d57a6cf2bb7a70bf987455604348c0d2a0b131b756a49bb"
+            "equalIndicator/v1": "f313bf342fadbe5149e0d020e65e5907fa9997601f03468a6a87c06c7928280e"
           },
           "baselineState": "new",
           "properties": {
@@ -15558,9 +15558,9 @@
       ],
       "automationDetails": {
         "id": "project/qodana/2023-07-15",
-        "guid": "bc04de08-7bf2-4089-a7d1-aa8dec5207f6",
+        "guid": "dfa2de77-40cc-463a-9290-9851f74302e3",
         "properties": {
-          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5564749435"
+          "jobUrl": "https://github.com/LizardByte/Sunshine/actions/runs/5564774858"
         }
       },
       "newlineSequences": [
