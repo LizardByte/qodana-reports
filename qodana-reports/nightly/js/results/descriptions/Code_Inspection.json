@@ -411,6 +411,12 @@
           "description": "Reports a text or tag occurrence inside a `<ng-content>` tag used for content projection."
         },
         {
+          "shortName": "AngularMissingRequiredDirectiveInputBinding",
+          "displayName": "Missing required directive input",
+          "enabled": true,
+          "description": "Reports a missing binding for a required directive input."
+        },
+        {
           "shortName": "AngularInsecureBindingToEvent",
           "displayName": "Insecure binding to event",
           "enabled": true,
@@ -1266,6 +1272,29 @@
       ]
     },
     {
+      "name": "Unused symbols",
+      "inspections": [
+        {
+          "shortName": "JSUnusedAssignment",
+          "displayName": "Unused assignment",
+          "enabled": true,
+          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above-mentioned reasons)."
+        },
+        {
+          "shortName": "JSUnusedGlobalSymbols",
+          "displayName": "Unused global symbol",
+          "enabled": false,
+          "description": "Reports an unused globally accessible public function, variable, class, or property."
+        },
+        {
+          "shortName": "JSUnusedLocalSymbols",
+          "displayName": "Unused local symbol",
+          "enabled": true,
+          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+        }
+      ]
+    },
+    {
       "name": "Cucumber",
       "inspections": [
         {
@@ -1309,29 +1338,6 @@
           "displayName": "Missing ':' after examples keyword",
           "enabled": false,
           "description": "Reports `Examples` sections in Cucumber .feature files if they do not have ':' after the `Examples` keyword."
-        }
-      ]
-    },
-    {
-      "name": "Unused symbols",
-      "inspections": [
-        {
-          "shortName": "JSUnusedAssignment",
-          "displayName": "Unused assignment",
-          "enabled": true,
-          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above-mentioned reasons)."
-        },
-        {
-          "shortName": "JSUnusedGlobalSymbols",
-          "displayName": "Unused global symbol",
-          "enabled": false,
-          "description": "Reports an unused globally accessible public function, variable, class, or property."
-        },
-        {
-          "shortName": "JSUnusedLocalSymbols",
-          "displayName": "Unused local symbol",
-          "enabled": true,
-          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
         }
       ]
     },
