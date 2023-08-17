@@ -393,6 +393,39 @@
     "JavaScript"
   ],
   "severity": "High",
+  "comment": "Unused local variable app",
+  "detailsInfo": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "JavaScript",
+      "line": 1126,
+      "offset": 15,
+      "length": 3,
+      "code": {
+        "startLine": 1124,
+        "length": 3,
+        "offset": 63,
+        "surroundingCode": "          this.platform = this.config.platform;\n\n          var app = document.getElementById(\"app\");\n          if (this.platform === \"windows\") {\n            this.tabs = this.tabs.filter((el) => {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "JSUnusedLocalSymbols",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "49612332556b4b5b672f2016c969ec7dee176eb462e771da9605294e4d1b6468"
+},{
+  "tool": "Code Inspection",
+  "category": "Unused symbols",
+  "type": "Unused local symbol",
+  "tags": [
+    "JavaScript"
+  ],
+  "severity": "High",
   "comment": "Unused local variable i",
   "detailsInfo": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
   "sources": [
@@ -453,37 +486,235 @@
   "hash": "5f56f9ce98190647b721997bab46c68840105ab24b1f65572184b7ed0b019187"
 },{
   "tool": "Code Inspection",
-  "category": "Unused symbols",
-  "type": "Unused local symbol",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
   "tags": [
-    "JavaScript"
+    "ECMAScript 6"
   ],
-  "severity": "High",
-  "comment": "Unused local variable app",
-  "detailsInfo": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration.",
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
   "sources": [
     {
       "type": "file",
       "path": "src_assets/common/assets/web/config.html",
-      "language": "JavaScript",
-      "line": 1126,
-      "offset": 15,
+      "language": "ECMAScript 6",
+      "line": 1057,
+      "offset": 7,
       "length": 3,
       "code": {
-        "startLine": 1124,
+        "startLine": 1055,
         "length": 3,
-        "offset": 63,
-        "surroundingCode": "          this.platform = this.config.platform;\n\n          var app = document.getElementById(\"app\");\n          if (this.platform === \"windows\") {\n            this.tabs = this.tabs.filter((el) => {"
+        "offset": 11,
+        "surroundingCode": "  }\n\n  new Vue({\n    el: \"#app\",\n    data() {"
       }
     }
   ],
   "attributes": {
     "module": "project",
-    "inspectionName": "JSUnusedLocalSymbols",
+    "inspectionName": "TypeScriptUMDGlobal",
     "isTechDebt": "true",
     "baselineState": "unchanged"
   },
-  "hash": "49612332556b4b5b672f2016c969ec7dee176eb462e771da9605294e4d1b6468"
+  "hash": "68c913f1e86cd907eee5d22613773e0dde2231c2a1b0dad547c043d1ace3e255"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 341,
+      "offset": 3,
+      "length": 3,
+      "code": {
+        "startLine": 339,
+        "length": 3,
+        "offset": 18,
+        "surroundingCode": "</div>\n<script>\n  Vue.directive('dropdown-show', {\n    bind: function (el, binding) {\n      el.addEventListener('show.bs.dropdown', binding.value);"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "4515f9d992cddcfc1d6ff7e5eb5d6b498e848f3f15c268d48ee2b07305ca4646"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/apps.html",
+      "language": "ECMAScript 6",
+      "line": 347,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 345,
+        "length": 3,
+        "offset": 13,
+        "surroundingCode": "  });\n\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "1e984630ab2ba2b6f74713906f45a3655e7c27b830be5831b47af48e2ec1cbd0"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/index.html",
+      "language": "ECMAScript 6",
+      "line": 78,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 76,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#content\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "0a7b420f3e3404f44747127881008888782d020846347cec7a224d166c9ceb08"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/welcome.html",
+      "language": "ECMAScript 6",
+      "line": 63,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 61,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "ba3c1c6a0135d9664d035bc384942da084942a54e86b7c602a913776bf9bf87c"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/password.html",
+      "language": "ECMAScript 6",
+      "line": 81,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 79,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "c26c4b51e1f5b113730ecb5a8b4ffad24e9323780acaa06f5b2ca0e36693e3f1"
+},{
+  "tool": "Code Inspection",
+  "category": "TypeScript",
+  "type": "Referenced UMD global variable",
+  "tags": [
+    "ECMAScript 6"
+  ],
+  "severity": "Moderate",
+  "comment": "Referenced UMD global variable",
+  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/troubleshooting.html",
+      "language": "ECMAScript 6",
+      "line": 82,
+      "offset": 7,
+      "length": 3,
+      "code": {
+        "startLine": 80,
+        "length": 3,
+        "offset": 16,
+        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "TypeScriptUMDGlobal",
+    "isTechDebt": "true",
+    "baselineState": "unchanged"
+  },
+  "hash": "4751ee14d8e2c370dff23160c02cc4b356fc76a197024f1fef1e7db94ba5b74a"
 },{
   "tool": "Code Inspection",
   "category": "Probable bugs",
@@ -649,237 +880,6 @@
     "baselineState": "unchanged"
   },
   "hash": "6008510d9d3db645e21db91d5f7927a0034317e16393f88cf41fa335b1bee3ef"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/apps.html",
-      "language": "ECMAScript 6",
-      "line": 341,
-      "offset": 3,
-      "length": 3,
-      "code": {
-        "startLine": 339,
-        "length": 3,
-        "offset": 18,
-        "surroundingCode": "</div>\n<script>\n  Vue.directive('dropdown-show', {\n    bind: function (el, binding) {\n      el.addEventListener('show.bs.dropdown', binding.value);"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "4515f9d992cddcfc1d6ff7e5eb5d6b498e848f3f15c268d48ee2b07305ca4646"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/apps.html",
-      "language": "ECMAScript 6",
-      "line": 347,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 345,
-        "length": 3,
-        "offset": 13,
-        "surroundingCode": "  });\n\n  new Vue({\n    el: \"#app\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "1e984630ab2ba2b6f74713906f45a3655e7c27b830be5831b47af48e2ec1cbd0"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/config.html",
-      "language": "ECMAScript 6",
-      "line": 1057,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 1055,
-        "length": 3,
-        "offset": 11,
-        "surroundingCode": "  }\n\n  new Vue({\n    el: \"#app\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "68c913f1e86cd907eee5d22613773e0dde2231c2a1b0dad547c043d1ace3e255"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/index.html",
-      "language": "ECMAScript 6",
-      "line": 78,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 76,
-        "length": 3,
-        "offset": 16,
-        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#content\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "0a7b420f3e3404f44747127881008888782d020846347cec7a224d166c9ceb08"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/welcome.html",
-      "language": "ECMAScript 6",
-      "line": 63,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 61,
-        "length": 3,
-        "offset": 16,
-        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "ba3c1c6a0135d9664d035bc384942da084942a54e86b7c602a913776bf9bf87c"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/password.html",
-      "language": "ECMAScript 6",
-      "line": 81,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 79,
-        "length": 3,
-        "offset": 16,
-        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "c26c4b51e1f5b113730ecb5a8b4ffad24e9323780acaa06f5b2ca0e36693e3f1"
-},{
-  "tool": "Code Inspection",
-  "category": "TypeScript",
-  "type": "Referenced UMD global variable",
-  "tags": [
-    "ECMAScript 6"
-  ],
-  "severity": "Moderate",
-  "comment": "Referenced UMD global variable",
-  "detailsInfo": "Reports a usage of a Universal Module Definition (UMD) global variable if the current file is a module (ECMAScript or CommonJS). Referencing UMD variables without explicit imports can lead to a runtime error if the library isn't included implicitly.",
-  "sources": [
-    {
-      "type": "file",
-      "path": "src_assets/common/assets/web/troubleshooting.html",
-      "language": "ECMAScript 6",
-      "line": 82,
-      "offset": 7,
-      "length": 3,
-      "code": {
-        "startLine": 80,
-        "length": 3,
-        "offset": 16,
-        "surroundingCode": "\n<script>\n  new Vue({\n    el: \"#app\",\n    data() {"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "project",
-    "inspectionName": "TypeScriptUMDGlobal",
-    "isTechDebt": "true",
-    "baselineState": "unchanged"
-  },
-  "hash": "4751ee14d8e2c370dff23160c02cc4b356fc76a197024f1fef1e7db94ba5b74a"
 },{
   "tool": "Code Inspection",
   "category": "Dependency analysis",
