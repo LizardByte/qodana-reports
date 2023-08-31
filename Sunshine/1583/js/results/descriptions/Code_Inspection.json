@@ -576,89 +576,6 @@
       ]
     },
     {
-      "name": "Code style issues",
-      "inspections": [
-        {
-          "shortName": "NonBlockStatementBodyJS",
-          "displayName": "Statement body without braces",
-          "enabled": false,
-          "description": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
-        },
-        {
-          "shortName": "JSDeclarationsAtScopeStart",
-          "displayName": "'var' declared not at the beginning of a function",
-          "enabled": false,
-          "description": "Checks that declarations of local variables declared with **var** are at the top of a function scope.   \n\nBy default, variable declarations are always moved (\"hoisted\") invisibly to the top of their containing scope when the code is executed. Therefore, declaring them at the top of the scope helps represent this behavior in the code."
-        },
-        {
-          "shortName": "ChainedEqualityJS",
-          "displayName": "Chained equality",
-          "enabled": false,
-          "description": "Reports a chained equality comparison (i.e. `a==b==c`). Such comparisons are confusing."
-        },
-        {
-          "shortName": "JSArrowFunctionBracesCanBeRemoved",
-          "displayName": "Redundant braces around arrow function body",
-          "enabled": false,
-          "description": "Reports an arrow function whose body only consists of braces and exactly one statement. Suggests converting to concise syntax without braces.\n\n\n`\nlet incrementer = (x) => {return x + 1};\n`\n\nAfter the quick-fix is applied, the code fragment looks as follows:\n\n\n`\nlet incrementer = (x) => x + 1;\n`"
-        },
-        {
-          "shortName": "JSUndefinedPropertyAssignment",
-          "displayName": "Undefined property assignment",
-          "enabled": true,
-          "description": "Reports an assignment to a property that is not defined in the type of a variable.\n\nExample:\n\n\n    /**\n     * @type {{ property1: string, property2: number }}\n     */\n    let myVariable = create();\n\n    myVariable.newProperty = 3; // bad\n"
-        },
-        {
-          "shortName": "JSRemoveUnnecessaryParentheses",
-          "displayName": "Unnecessary parentheses",
-          "enabled": false,
-          "description": "Reports redundant parentheses.\n\nIn expressions:\n`var x = ((1) + 2) + 3`\n\nIn arrow function argument lists:\n`var incrementer = (x) => x + 1`\n\nIn TypeScript and Flow type declarations:\n`type Card = (Suit & Rank) | (Suit & Number)`"
-        },
-        {
-          "shortName": "ChainedFunctionCallJS",
-          "displayName": "Chained function call",
-          "enabled": false,
-          "description": "Reports a function call whose target is another function call, for example, `foo().bar()`"
-        },
-        {
-          "shortName": "NestedFunctionCallJS",
-          "displayName": "Nested function call",
-          "enabled": false,
-          "description": "Reports a function call that is used as an argument in another function call, for example, `foo(bar())`"
-        },
-        {
-          "shortName": "ConstantOnLHSOfComparisonJS",
-          "displayName": "Constant on left side of comparison",
-          "enabled": false,
-          "description": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
-        },
-        {
-          "shortName": "ConstantOnRHSOfComparisonJS",
-          "displayName": "Constant on right side of comparison",
-          "enabled": false,
-          "description": "Reports a comparison operation with a constant in the right-hand side. According to coding conventions, constants should only be in the left-hand side of comparisons."
-        },
-        {
-          "shortName": "UnterminatedStatementJS",
-          "displayName": "Unterminated statement",
-          "enabled": false,
-          "description": "Reports a statement without a semicolon or a newline at the end.\n\nSelect the 'Terminate statements with semicolons' option in *Editor \\| Code Style \\| JavaScript or TypeScript - Punctuation* to report any statement that doesn't end with a semicolon, even if a newline is used.\nAccording to some coding styles, semicolons are preferred to line-breaks for consistency with the other languages."
-        },
-        {
-          "shortName": "CssMissingSemicolon",
-          "displayName": "Missing semicolon",
-          "enabled": false,
-          "description": "Reports a missing semicolon at the end of a declaration."
-        },
-        {
-          "shortName": "CssRedundantUnit",
-          "displayName": "Redundant measure unit",
-          "enabled": false,
-          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
-        }
-      ]
-    },
-    {
       "name": "General",
       "inspections": [
         {
@@ -776,16 +693,16 @@
           "description": "Reports multiple destructuring properties with identical keys. Suggests merging the properties."
         },
         {
-          "shortName": "JSAnnotator",
-          "displayName": "ECMAScript specification is not followed",
-          "enabled": false,
-          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
-        },
-        {
           "shortName": "JSUnfilteredForInLoop",
           "displayName": "Unfiltered for..in loop",
           "enabled": false,
           "description": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
+        },
+        {
+          "shortName": "JSAnnotator",
+          "displayName": "ECMAScript specification is not followed",
+          "enabled": false,
+          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
         },
         {
           "shortName": "JSLastCommaInObjectLiteral",
@@ -930,6 +847,89 @@
           "displayName": "Qodana service message",
           "enabled": false,
           "description": "Reports the Qodana service messages such as suspending a particular inspection due to a large number of reported problems."
+        }
+      ]
+    },
+    {
+      "name": "Code style issues",
+      "inspections": [
+        {
+          "shortName": "NonBlockStatementBodyJS",
+          "displayName": "Statement body without braces",
+          "enabled": false,
+          "description": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
+        },
+        {
+          "shortName": "JSDeclarationsAtScopeStart",
+          "displayName": "'var' declared not at the beginning of a function",
+          "enabled": false,
+          "description": "Checks that declarations of local variables declared with **var** are at the top of a function scope.   \n\nBy default, variable declarations are always moved (\"hoisted\") invisibly to the top of their containing scope when the code is executed. Therefore, declaring them at the top of the scope helps represent this behavior in the code."
+        },
+        {
+          "shortName": "ChainedEqualityJS",
+          "displayName": "Chained equality",
+          "enabled": false,
+          "description": "Reports a chained equality comparison (i.e. `a==b==c`). Such comparisons are confusing."
+        },
+        {
+          "shortName": "JSArrowFunctionBracesCanBeRemoved",
+          "displayName": "Redundant braces around arrow function body",
+          "enabled": false,
+          "description": "Reports an arrow function whose body only consists of braces and exactly one statement. Suggests converting to concise syntax without braces.\n\n\n`\nlet incrementer = (x) => {return x + 1};\n`\n\nAfter the quick-fix is applied, the code fragment looks as follows:\n\n\n`\nlet incrementer = (x) => x + 1;\n`"
+        },
+        {
+          "shortName": "JSUndefinedPropertyAssignment",
+          "displayName": "Undefined property assignment",
+          "enabled": true,
+          "description": "Reports an assignment to a property that is not defined in the type of a variable.\n\nExample:\n\n\n    /**\n     * @type {{ property1: string, property2: number }}\n     */\n    let myVariable = create();\n\n    myVariable.newProperty = 3; // bad\n"
+        },
+        {
+          "shortName": "JSRemoveUnnecessaryParentheses",
+          "displayName": "Unnecessary parentheses",
+          "enabled": false,
+          "description": "Reports redundant parentheses.\n\nIn expressions:\n`var x = ((1) + 2) + 3`\n\nIn arrow function argument lists:\n`var incrementer = (x) => x + 1`\n\nIn TypeScript and Flow type declarations:\n`type Card = (Suit & Rank) | (Suit & Number)`"
+        },
+        {
+          "shortName": "ChainedFunctionCallJS",
+          "displayName": "Chained function call",
+          "enabled": false,
+          "description": "Reports a function call whose target is another function call, for example, `foo().bar()`"
+        },
+        {
+          "shortName": "NestedFunctionCallJS",
+          "displayName": "Nested function call",
+          "enabled": false,
+          "description": "Reports a function call that is used as an argument in another function call, for example, `foo(bar())`"
+        },
+        {
+          "shortName": "ConstantOnLHSOfComparisonJS",
+          "displayName": "Constant on left side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
+        },
+        {
+          "shortName": "ConstantOnRHSOfComparisonJS",
+          "displayName": "Constant on right side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant in the right-hand side. According to coding conventions, constants should only be in the left-hand side of comparisons."
+        },
+        {
+          "shortName": "UnterminatedStatementJS",
+          "displayName": "Unterminated statement",
+          "enabled": false,
+          "description": "Reports a statement without a semicolon or a newline at the end.\n\nSelect the 'Terminate statements with semicolons' option in *Editor \\| Code Style \\| JavaScript or TypeScript - Punctuation* to report any statement that doesn't end with a semicolon, even if a newline is used.\nAccording to some coding styles, semicolons are preferred to line-breaks for consistency with the other languages."
+        },
+        {
+          "shortName": "CssMissingSemicolon",
+          "displayName": "Missing semicolon",
+          "enabled": false,
+          "description": "Reports a missing semicolon at the end of a declaration."
+        },
+        {
+          "shortName": "CssRedundantUnit",
+          "displayName": "Redundant measure unit",
+          "enabled": false,
+          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
         }
       ]
     },
@@ -1272,6 +1272,29 @@
       ]
     },
     {
+      "name": "Unused symbols",
+      "inspections": [
+        {
+          "shortName": "JSUnusedAssignment",
+          "displayName": "Unused assignment",
+          "enabled": true,
+          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above-mentioned reasons)."
+        },
+        {
+          "shortName": "JSUnusedGlobalSymbols",
+          "displayName": "Unused global symbol",
+          "enabled": false,
+          "description": "Reports an unused globally accessible public function, variable, class, or property."
+        },
+        {
+          "shortName": "JSUnusedLocalSymbols",
+          "displayName": "Unused local symbol",
+          "enabled": true,
+          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
+        }
+      ]
+    },
+    {
       "name": "Cucumber",
       "inspections": [
         {
@@ -1315,29 +1338,6 @@
           "displayName": "Missing ':' after examples keyword",
           "enabled": false,
           "description": "Reports `Examples` sections in Cucumber .feature files if they do not have ':' after the `Examples` keyword."
-        }
-      ]
-    },
-    {
-      "name": "Unused symbols",
-      "inspections": [
-        {
-          "shortName": "JSUnusedAssignment",
-          "displayName": "Unused assignment",
-          "enabled": true,
-          "description": "Reports a variable whose value is never used after assignment.  \nSuggests removing the unused variable to shorten the code and to avoid redundant allocations.\n\nThe following cases are reported:\n\n* A variable is never read after assignment.\n* The value of a variable is always overwritten with another assignment before the variable is read next time.\n* The initializer of a variable is redundant (for one of the above-mentioned reasons)."
-        },
-        {
-          "shortName": "JSUnusedGlobalSymbols",
-          "displayName": "Unused global symbol",
-          "enabled": false,
-          "description": "Reports an unused globally accessible public function, variable, class, or property."
-        },
-        {
-          "shortName": "JSUnusedLocalSymbols",
-          "displayName": "Unused local symbol",
-          "enabled": true,
-          "description": "Reports an unused locally accessible parameter, local variable, function, class, or private member declaration."
         }
       ]
     },
@@ -1948,6 +1948,17 @@
       ]
     },
     {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": false,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
+        }
+      ]
+    },
+    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -1991,17 +2002,6 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
-        }
-      ]
-    },
-    {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": false,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
@@ -2304,16 +2304,16 @@
           "description": "Reports anonymous capturing groups and numeric back references in a RegExp. These are only reported when the RegExp dialect supports named group and named group references. Named groups and named back references improve code readability and are recommended to use instead. When a capture is not needed, matching can be more performant and use less memory by using a non-capturing group, i.e. `(?:xxx)` instead of `(xxx)`.\n\n**Example:**\n\n\n      (\\d\\d\\d\\d)\\1\n\nA better regex pattern could look like this:\n\n\n      (?<quad>\\d\\d\\d\\d)\\k<quad>\n\nNew in 2017.2"
         },
         {
-          "shortName": "RegExpDuplicateAlternationBranch",
-          "displayName": "Duplicate branch in alternation",
-          "enabled": true,
-          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
-        },
-        {
           "shortName": "RegExpRepeatedSpace",
           "displayName": "Consecutive spaces",
           "enabled": true,
           "description": "Reports multiple consecutive spaces in a RegExp. Because spaces are not visible by default, it can be hard to see how many spaces are required. The RegExp can be made more clear by replacing the consecutive spaces with a single space and a counted quantifier.\n\n**Example:**\n\n\n      (     )\n\nAfter the quick-fix is applied:\n\n\n      ( {5})\n\n\nNew in 2017.1"
+        },
+        {
+          "shortName": "RegExpDuplicateAlternationBranch",
+          "displayName": "Duplicate branch in alternation",
+          "enabled": true,
+          "description": "Reports duplicate branches in a RegExp alternation. Duplicate branches slow down matching and obscure the intent of the expression.\n\n**Example:**\n\n\n      (alpha|bravo|charlie|alpha)\n\nAfter the quick-fix is applied:\n\n\n      (alpha|bravo|charlie)\n\nNew in 2017.1"
         }
       ]
     },
