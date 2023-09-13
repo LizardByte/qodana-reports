@@ -1,0 +1,65 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Regular expression can be simplified",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "Moderate",
+  "comment": "'[d]' can be simplified to 'd'",
+  "detailsInfo": "Reports regular expressions that can be simplified.\n\n**Example:**\n\n\n      [a] xx* [ah-hz]\n\nAfter the quick-fix is applied:\n\n\n      a x+ [ahz]\n\nNew in 2022.1",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "RegExp",
+      "line": 1251,
+      "offset": 33,
+      "length": 4,
+      "code": {
+        "startLine": 1249,
+        "length": 4,
+        "offset": 123,
+        "surroundingCode": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpSimplifiable",
+    "baselineState": "new"
+  },
+  "hash": "44be87784e963389a10b90f13e58f3c974a748f808c9a9bbe3f98152bd2dcce8"
+},{
+  "tool": "Code Inspection",
+  "category": "RegExp",
+  "type": "Regular expression can be simplified",
+  "tags": [
+    "RegExp"
+  ],
+  "severity": "Moderate",
+  "comment": "'[d]' can be simplified to 'd'",
+  "detailsInfo": "Reports regular expressions that can be simplified.\n\n**Example:**\n\n\n      [a] xx* [ah-hz]\n\nAfter the quick-fix is applied:\n\n\n      a x+ [ahz]\n\nNew in 2022.1",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src_assets/common/assets/web/config.html",
+      "language": "RegExp",
+      "line": 1251,
+      "offset": 27,
+      "length": 4,
+      "code": {
+        "startLine": 1249,
+        "length": 4,
+        "offset": 117,
+        "surroundingCode": "          let delete_value = false\n          if (key === \"resolutions\" || key === \"fps\") {\n            let regex = /([\\d]+x[\\d]+)/g\n            // Use a regular expression to find each value and replace it with a quoted version\n"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "project",
+    "inspectionName": "RegExpSimplifiable",
+    "baselineState": "new"
+  },
+  "hash": "bb6acb36ca4dcb184be5eabe60a233a16ff1a9565bd213c375177f7fde5fdd31"
+}]}
