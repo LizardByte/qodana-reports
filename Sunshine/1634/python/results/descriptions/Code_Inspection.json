@@ -2,6 +2,125 @@
   "profile": "Default",
   "groups": [
     {
+      "name": "Control flow issues",
+      "inspections": [
+        {
+          "shortName": "ConstantConditionalExpressionJS",
+          "displayName": "Constant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression in the format `true? result1: result2` or `false? result1: result2``.\nSuggests simplifying the expression.\n`"
+        },
+        {
+          "shortName": "IfStatementWithTooManyBranchesJS",
+          "displayName": "'if' statement with too many branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
+        },
+        {
+          "shortName": "UnnecessaryContinueJS",
+          "displayName": "Unnecessary 'continue' statement",
+          "enabled": false,
+          "description": "Reports an unnecessary `continue` statement at the end of a loop. Suggests removing such statements."
+        },
+        {
+          "shortName": "JSObjectNullOrUndefined",
+          "displayName": "Object is 'null' or 'undefined'",
+          "enabled": false,
+          "description": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
+        },
+        {
+          "shortName": "UnnecessaryLabelOnBreakStatementJS",
+          "displayName": "Unnecessary label on 'break' statement",
+          "enabled": false,
+          "description": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "PointlessBooleanExpressionJS",
+          "displayName": "Pointless statement or boolean expression",
+          "enabled": false,
+          "description": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelOnContinueStatementJS",
+          "displayName": "Unnecessary label on 'continue' statement",
+          "enabled": false,
+          "description": "Reports a labeled `continue` statement whose labels may be removed without changing the flow of control."
+        },
+        {
+          "shortName": "SuspiciousTypeOfGuard",
+          "displayName": "Unsound type guard check",
+          "enabled": false,
+          "description": "Reports a `typeof` or `instanceof` unsound type guard check. The `typeof x` type guard can be unsound in one of the following two cases:\n\n* `typeof x` never corresponds to the specified value (for example, `typeof x === 'number'` when `x` is of the type 'string \\| boolean')\n* `typeof x` always corresponds to the specified value (for example, `typeof x === 'string'` when `x` is of the type 'string')\n\n<br />\n\nThe `x instanceof A` type guard can be unsound in one of the following two cases:\n\n* The type of `x` is not related to `A`\n* The type of `x` is `A` or a subtype of `A`"
+        },
+        {
+          "shortName": "LoopStatementThatDoesntLoopJS",
+          "displayName": "Loop statement that doesn't loop",
+          "enabled": false,
+          "description": "Reports a `for`, `while`, or `do` statement whose bodies are guaranteed to execute at most once. Normally, this indicates an error."
+        },
+        {
+          "shortName": "UnnecessaryReturnJS",
+          "displayName": "Unnecessary 'return' statement",
+          "enabled": false,
+          "description": "Reports an unnecessary `return` statement, that is, a `return` statement that returns no value and occurs just before the function would have \"fallen through\" the bottom. These statements may be safely removed."
+        },
+        {
+          "shortName": "ConditionalExpressionWithIdenticalBranchesJS",
+          "displayName": "Conditional expression with identical branches",
+          "enabled": false,
+          "description": "Reports a ternary conditional expression with identical `then` and `else` branches."
+        },
+        {
+          "shortName": "TailRecursionJS",
+          "displayName": "Tail recursion",
+          "enabled": false,
+          "description": "Reports a tail recursion, that is, when a function calls itself as its last action before returning. A tail recursion can always be replaced by looping, which will be considerably faster. Some JavaScript engines perform this optimization, while others do not. Thus, tail recursive solutions may have considerably different performance characteristics in different environments."
+        },
+        {
+          "shortName": "DuplicateConditionJS",
+          "displayName": "Duplicate condition in 'if' statement",
+          "enabled": false,
+          "description": "Reports duplicate conditions in different branches of an `if` statement. Duplicate conditions usually represent programmer oversight.\n\nExample:\n\n\n      if (a) {\n        ...\n      } else if (a) {\n        ...\n      }\n\n"
+        },
+        {
+          "shortName": "TrivialIfJS",
+          "displayName": "Redundant 'if' statement",
+          "enabled": false,
+          "description": "Reports an `if` statement that can be simplified to a single assignment or a `return` statement.\n\nExample:\n\n\n    if(foo())\n     {\n      return true;\n     }\n     else\n     {\n       return false;\n     }\n\nAfter applying the quick-fix the code looks as follows:\n\n     return foo();\n"
+        },
+        {
+          "shortName": "UnnecessaryLabelJS",
+          "displayName": "Unnecessary label",
+          "enabled": false,
+          "description": "Reports an unused label."
+        },
+        {
+          "shortName": "IfStatementWithIdenticalBranchesJS",
+          "displayName": "'if' statement with identical branches",
+          "enabled": false,
+          "description": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
+        },
+        {
+          "shortName": "TrivialConditionalJS",
+          "displayName": "Redundant conditional expression",
+          "enabled": false,
+          "description": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
+        },
+        {
+          "shortName": "UnreachableCodeJS",
+          "displayName": "Unreachable code",
+          "enabled": false,
+          "description": "Reports code that can never be executed, which almost certainly indicates an error"
+        },
+        {
+          "shortName": "ForLoopReplaceableByWhileJS",
+          "displayName": "'for' loop may be replaced by 'while' loop",
+          "enabled": false,
+          "description": "Reports a `for` loop that contains neither initialization nor an update component. Suggests replacing the loop with a simpler `while` statement.\n\nExample:\n\n\n      for(; exitCondition(); ) {\n        process();\n      }\n\nAfter the quick-fix is applied the result looks like:\n\n\n      while(exitCondition()) {\n        process();\n      }\n\nUse the checkbox below if you wish this inspection to ignore **for** loops with trivial or non-existent conditions."
+        }
+      ]
+    },
+    {
       "name": "EditorConfig",
       "inspections": [
         {
@@ -568,16 +687,16 @@
           "description": "Reports packages mentioned in requirements files (for example, `requirements.txt` or `Pipfile`) but not installed,\nor imported but not mentioned in requirements files.\n\n\nThe IDE shows a quick-fix banner so that you can install the missing packages in one click."
         },
         {
-          "shortName": "PyRedundantParenthesesInspection",
-          "displayName": "Redundant parentheses",
-          "enabled": true,
-          "description": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
-        },
-        {
           "shortName": "PyTrailingSemicolonInspection",
           "displayName": "Prohibited trailing semicolon in a statement",
           "enabled": true,
           "description": "Reports trailing semicolons in statements.\n\n**Example:**\n\n\n    def my_func(a):\n        c = a ** 2;\n        return c\n\nIDE provides a quick-fix that removes a trailing semicolon. When you\napply it, the code changes to:\n\n\n    def my_func(a):\n        c = a ** 2\n        return c\n"
+        },
+        {
+          "shortName": "PyRedundantParenthesesInspection",
+          "displayName": "Redundant parentheses",
+          "enabled": true,
+          "description": "Reports about redundant parentheses in expressions.\n\nThe IDE provides the quick-fix action to remove the redundant parentheses."
         },
         {
           "shortName": "PyArgumentListInspection",
@@ -692,125 +811,6 @@
           "displayName": "Non-optimal list declaration",
           "enabled": true,
           "description": "Reports cases when a list declaration\ncan be rewritten with a list literal.\n\nThis ensures better performance of your application.\n\n**Example:**\n\n\n    l = [1]\n    l.append(2)\n\nWhen the quick-fix is applied, the code changes to:\n\n\n    l = [1, 2]\n"
-        }
-      ]
-    },
-    {
-      "name": "Control flow issues",
-      "inspections": [
-        {
-          "shortName": "ConstantConditionalExpressionJS",
-          "displayName": "Constant conditional expression",
-          "enabled": false,
-          "description": "Reports a conditional expression in the format `true? result1: result2` or `false? result1: result2``.\nSuggests simplifying the expression.\n`"
-        },
-        {
-          "shortName": "IfStatementWithTooManyBranchesJS",
-          "displayName": "'if' statement with too many branches",
-          "enabled": false,
-          "description": "Reports an `if` statement with too many branches. Such statements may be confusing, and often indicate inadequate levels of design abstraction.\n\n\nUse the field below to specify the maximum number of branches expected."
-        },
-        {
-          "shortName": "UnnecessaryContinueJS",
-          "displayName": "Unnecessary 'continue' statement",
-          "enabled": false,
-          "description": "Reports an unnecessary `continue` statement at the end of a loop. Suggests removing such statements."
-        },
-        {
-          "shortName": "JSObjectNullOrUndefined",
-          "displayName": "Object is 'null' or 'undefined'",
-          "enabled": false,
-          "description": "Reports an error caused by invoking a method, accessing a property, or calling a function on an object that is `undefined` or `null`."
-        },
-        {
-          "shortName": "UnnecessaryLabelOnBreakStatementJS",
-          "displayName": "Unnecessary label on 'break' statement",
-          "enabled": false,
-          "description": "Reports a labeled `break` statement whose labels may be removed without changing the flow of control."
-        },
-        {
-          "shortName": "PointlessBooleanExpressionJS",
-          "displayName": "Pointless statement or boolean expression",
-          "enabled": false,
-          "description": "Reports a pointless or pointlessly complicated boolean expression or statement.\n\nExample:\n\n\n      let a = !(false && x);\n      let b = false || x;\n\nAfter the quick fix is applied the result looks like:\n\n\n      let a = true;\n      let b = x;\n"
-        },
-        {
-          "shortName": "UnnecessaryLabelOnContinueStatementJS",
-          "displayName": "Unnecessary label on 'continue' statement",
-          "enabled": false,
-          "description": "Reports a labeled `continue` statement whose labels may be removed without changing the flow of control."
-        },
-        {
-          "shortName": "SuspiciousTypeOfGuard",
-          "displayName": "Unsound type guard check",
-          "enabled": false,
-          "description": "Reports a `typeof` or `instanceof` unsound type guard check. The `typeof x` type guard can be unsound in one of the following two cases:\n\n* `typeof x` never corresponds to the specified value (for example, `typeof x === 'number'` when `x` is of the type 'string \\| boolean')\n* `typeof x` always corresponds to the specified value (for example, `typeof x === 'string'` when `x` is of the type 'string')\n\n<br />\n\nThe `x instanceof A` type guard can be unsound in one of the following two cases:\n\n* The type of `x` is not related to `A`\n* The type of `x` is `A` or a subtype of `A`"
-        },
-        {
-          "shortName": "LoopStatementThatDoesntLoopJS",
-          "displayName": "Loop statement that doesn't loop",
-          "enabled": false,
-          "description": "Reports a `for`, `while`, or `do` statement whose bodies are guaranteed to execute at most once. Normally, this indicates an error."
-        },
-        {
-          "shortName": "UnnecessaryReturnJS",
-          "displayName": "Unnecessary 'return' statement",
-          "enabled": false,
-          "description": "Reports an unnecessary `return` statement, that is, a `return` statement that returns no value and occurs just before the function would have \"fallen through\" the bottom. These statements may be safely removed."
-        },
-        {
-          "shortName": "ConditionalExpressionWithIdenticalBranchesJS",
-          "displayName": "Conditional expression with identical branches",
-          "enabled": false,
-          "description": "Reports a ternary conditional expression with identical `then` and `else` branches."
-        },
-        {
-          "shortName": "TailRecursionJS",
-          "displayName": "Tail recursion",
-          "enabled": false,
-          "description": "Reports a tail recursion, that is, when a function calls itself as its last action before returning. A tail recursion can always be replaced by looping, which will be considerably faster. Some JavaScript engines perform this optimization, while others do not. Thus, tail recursive solutions may have considerably different performance characteristics in different environments."
-        },
-        {
-          "shortName": "DuplicateConditionJS",
-          "displayName": "Duplicate condition in 'if' statement",
-          "enabled": false,
-          "description": "Reports duplicate conditions in different branches of an `if` statement. Duplicate conditions usually represent programmer oversight.\n\nExample:\n\n\n      if (a) {\n        ...\n      } else if (a) {\n        ...\n      }\n\n"
-        },
-        {
-          "shortName": "TrivialIfJS",
-          "displayName": "Redundant 'if' statement",
-          "enabled": false,
-          "description": "Reports an `if` statement that can be simplified to a single assignment or a `return` statement.\n\nExample:\n\n\n    if(foo())\n     {\n      return true;\n     }\n     else\n     {\n       return false;\n     }\n\nAfter applying the quick-fix the code looks as follows:\n\n     return foo();\n"
-        },
-        {
-          "shortName": "UnnecessaryLabelJS",
-          "displayName": "Unnecessary label",
-          "enabled": false,
-          "description": "Reports an unused label."
-        },
-        {
-          "shortName": "IfStatementWithIdenticalBranchesJS",
-          "displayName": "'if' statement with identical branches",
-          "enabled": false,
-          "description": "Reports an `if` statement with identical `then` and `else` branches. Such statements are almost certainly an error."
-        },
-        {
-          "shortName": "TrivialConditionalJS",
-          "displayName": "Redundant conditional expression",
-          "enabled": false,
-          "description": "Reports a conditional expression of the form\n\n\n    condition ? true : false\n    condition ? false : true\n\n\nThese expressions may be safely converted to\n\n\n    condition\n    !condition\n"
-        },
-        {
-          "shortName": "UnreachableCodeJS",
-          "displayName": "Unreachable code",
-          "enabled": false,
-          "description": "Reports code that can never be executed, which almost certainly indicates an error"
-        },
-        {
-          "shortName": "ForLoopReplaceableByWhileJS",
-          "displayName": "'for' loop may be replaced by 'while' loop",
-          "enabled": false,
-          "description": "Reports a `for` loop that contains neither initialization nor an update component. Suggests replacing the loop with a simpler `while` statement.\n\nExample:\n\n\n      for(; exitCondition(); ) {\n        process();\n      }\n\nAfter the quick-fix is applied the result looks like:\n\n\n      while(exitCondition()) {\n        process();\n      }\n\nUse the checkbox below if you wish this inspection to ignore **for** loops with trivial or non-existent conditions."
         }
       ]
     },
@@ -1230,16 +1230,16 @@
           "description": "Reports multiple destructuring properties with identical keys. Suggests merging the properties."
         },
         {
-          "shortName": "JSAnnotator",
-          "displayName": "ECMAScript specification is not followed",
-          "enabled": false,
-          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
-        },
-        {
           "shortName": "JSUnfilteredForInLoop",
           "displayName": "Unfiltered for..in loop",
           "enabled": false,
           "description": "Reports unfiltered `for-in` loops.   \n\nThe use of this construct results in processing not only own properties of an object but properties from its prototype as well. It may be unexpected in some specific cases, for example, in utility methods that copy or modify all properties or when `Object`'s prototype may be incorrectly modified. For example, the following code will print **42** and **myMethod** :   \n\n\n    Object.prototype.myMethod = function myMethod() {};\n    let a = { foo: 42 };\n    for (let i in a) {\n      console.log(a[i]);\n    }\n\nSuggests replacing the whole loop with a `Object.keys()` method or adding a `hasOwnProperty()` check. After applying the quick-fix the code looks as follows:\n\n\n    for (let i in a) {\n      if (a.hasOwnProperty(i)) {\n        console.log(a[i]);\n      }\n    }\n"
+        },
+        {
+          "shortName": "JSAnnotator",
+          "displayName": "ECMAScript specification is not followed",
+          "enabled": false,
+          "description": "Reports basic syntax issues and inconsistencies with language specification, such as invalid usages of keywords, usages of incompatible numeric format, or multiple parameters to getters/setters.   \nGenerally, such errors must always be reported and shouldn't be disabled. But in some cases, such as issues due to the dynamic nature of JavaScript, the use of not yet supported language features, or bugs in IDE's checker, it may be handy to disable reporting these very basic errors."
         },
         {
           "shortName": "JSLastCommaInObjectLiteral",
@@ -1382,29 +1382,6 @@
       ]
     },
     {
-      "name": "MySQL",
-      "inspections": [
-        {
-          "shortName": "MysqlLoadDataPathInspection",
-          "displayName": "LOAD statement path",
-          "enabled": false,
-          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
-        },
-        {
-          "shortName": "MysqlSpaceAfterFunctionNameInspection",
-          "displayName": "Whitespace between the function name and the open parenthesis",
-          "enabled": false,
-          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-        },
-        {
-          "shortName": "MysqlParsingInspection",
-          "displayName": "Unsupported syntax in pre-8.0 versions",
-          "enabled": false,
-          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
-        }
-      ]
-    },
-    {
       "name": "Properties files",
       "inspections": [
         {
@@ -1442,6 +1419,29 @@
           "displayName": "Property key/value delimiter doesn't match code style settings",
           "enabled": false,
           "description": "Reports properties in which key or value delimiters do not match code style settings."
+        }
+      ]
+    },
+    {
+      "name": "MySQL",
+      "inspections": [
+        {
+          "shortName": "MysqlLoadDataPathInspection",
+          "displayName": "LOAD statement path",
+          "enabled": false,
+          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
+        },
+        {
+          "shortName": "MysqlSpaceAfterFunctionNameInspection",
+          "displayName": "Whitespace between the function name and the open parenthesis",
+          "enabled": false,
+          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+        },
+        {
+          "shortName": "MysqlParsingInspection",
+          "displayName": "Unsupported syntax in pre-8.0 versions",
+          "enabled": false,
+          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
         }
       ]
     },
@@ -2657,16 +2657,16 @@
           "description": "Reports incorrect usages of transition table variables in triggers.\n\nExample (HSQLDB):\n\n    CREATE TABLE foo(a INT);\n\n    CREATE TRIGGER trg\n     AFTER DELETE ON foo\n    BEGIN\n       SELECT * FROM NEW;\n    END;\n\n    CREATE TRIGGER trig AFTER INSERT ON foo\n       REFERENCING OLD ROW AS newrow\n       FOR EACH ROW WHEN (a > 1)\n       INSERT INTO foo VALUES (1)\n\nIn HSQLDB, DELETE triggers may be used only with the OLD state while INSERT triggers may have only the NEW state. So, in the previous\nexample, NEW in `SELECT * FROM NEW;` will be highlighted as well as OLD in `REFERENCING OLD ROW AS newrow`."
         },
         {
-          "shortName": "SqlMultipleLimitClausesInspection",
-          "displayName": "Multiple row limiting/offset clauses in queries",
-          "enabled": false,
-          "description": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
-        },
-        {
           "shortName": "SqlNamedArgumentsInspection",
           "displayName": "Named arguments should be used",
           "enabled": false,
           "description": "Reports arguments that are used without names in routine calls. By default, this inspection is disabled.\n\nFor more information about the difference between named and unnamed parameters, see [Binding Parameters by Name (Named Parameters) at docs.microsoft.com](https://docs.microsoft.com/en-us/sql/odbc/reference/develop-app/binding-parameters-by-name-named-parameters).\n\nExample (Microsoft SQL Server):\n\n    CREATE FUNCTION foo(n INT, m INT) RETURNS INT AS\n    BEGIN\n        RETURN n + m;\n    END;\n\n    CREATE PROCEDURE test AS\n    BEGIN\n        foo n = 1, m = 2;\n\n    --- The following call misses parameter names and will be highlighted\n        foo 1, 2;\n    END;\n\nParameters `1, 2` in the `foo 1, 2;` call are highlighted because they miss names."
+        },
+        {
+          "shortName": "SqlMultipleLimitClausesInspection",
+          "displayName": "Multiple row limiting/offset clauses in queries",
+          "enabled": false,
+          "description": "Reports usages of multiple row limiting clauses in a single query.\n\nExample (Microsoft SQL Server):\n\n    create table foo(a int);\n    select top 1 * from foo order by a offset 10 rows fetch next 20 rows only;\n\nThe SELECT TOP clause is used to specify that only 1 record must be\nreturned. The FETCH clause specifies the number of rows to return after the OFFSET\nclause has been processed. But as we already have the SELECT TOP limiting clause, the FETCH clause might be redundant."
         },
         {
           "shortName": "SqlCaseVsCoalesceInspection",
@@ -2675,16 +2675,16 @@
           "description": "Reports situations when CASE and COALESCE calls are interchangeable. This inspection has the following intention actions: **Replace\nwith 'COALESCE' call** and the opposite one **Replace with CASE expression** .\n\nExample (MySQL):\n\n    SELECT\n      -- this CASE may be replaced by COALESCE\n    \tCASE\n    \t\tWHEN C1 IS NOT NULL THEN C1\n    \t\tELSE 0\n    \t\tEND\n    FROM dual;\n\nIn the example, the CASE statement can be replaced with `SELECT COALESCE(C1, 0)` that produces the same output.\n\nIf you prefer using CASE expressions, select the **Prefer CASE expressions over COALESCE function** option on\nthe inspection page."
         },
         {
-          "shortName": "SqlRedundantAliasInspection",
-          "displayName": "Redundant alias expressions",
-          "enabled": false,
-          "description": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
-        },
-        {
           "shortName": "SqlIdentifierInspection",
           "displayName": "Identifier should be quoted",
           "enabled": false,
           "description": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
+        },
+        {
+          "shortName": "SqlRedundantAliasInspection",
+          "displayName": "Redundant alias expressions",
+          "enabled": false,
+          "description": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
         },
         {
           "shortName": "SqlTransactionStatementInTriggerInspection",
