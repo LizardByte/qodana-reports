@@ -783,16 +783,16 @@
           "description": "Reports invalid definitions and usages of classes created with\n`dataclasses` or `attr` modules.\n\n**Example:**\n\n\n    import dataclasses\n\n\n    @dataclasses.dataclass\n    class FullName:\n        first: str\n        middle: str = \"\"\n        last: str\n"
         },
         {
-          "shortName": "PyprojectInspection",
-          "displayName": "Depencencies in pyproject.toml",
-          "enabled": true,
-          "description": "Reports unsatisfied dependencies, declared \\[project.dependencies\\] table in pyproject.toml.\n\n\nShows a quick-fix to install missing packages."
-        },
-        {
           "shortName": "PyClassicStyleClassInspection",
           "displayName": "Classic style class usage",
           "enabled": false,
           "description": "Reports [classic style classes](https://docs.python.org/2/reference/datamodel.html#new-style-and-classic-classes) usage. This inspection applies only to Python 2.\n\n**Example:**\n\n\n    class A:\n        pass\n\nWith quick-fixes provided by the IDE, this code fragment changes to:\n\n\n    class A(object):\n        def __init__(self):\n            pass\n"
+        },
+        {
+          "shortName": "PyprojectInspection",
+          "displayName": "Depencencies in pyproject.toml",
+          "enabled": true,
+          "description": "Reports unsatisfied dependencies, declared \\[project.dependencies\\] table in pyproject.toml.\n\n\nShows a quick-fix to install missing packages."
         },
         {
           "shortName": "PyPropertyDefinitionInspection",
@@ -1026,89 +1026,6 @@
           "displayName": "Resolution problems",
           "enabled": false,
           "description": "Reports unresolved references in MongoDB and JavaScript code.\n\nExample:\n\n    db\n    use foo\n      -- a reference to a non-existing collection\n    db.non_existing_collection\n    db['non_existing_collection']\n    db['non_existing_collection'].find().hasNext()\n\nThe `non_existing_collection` collection does not exist in the database and will be reported."
-        }
-      ]
-    },
-    {
-      "name": "Code style issues",
-      "inspections": [
-        {
-          "shortName": "NonBlockStatementBodyJS",
-          "displayName": "Statement body without braces",
-          "enabled": false,
-          "description": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
-        },
-        {
-          "shortName": "JSDeclarationsAtScopeStart",
-          "displayName": "'var' declared not at the beginning of a function",
-          "enabled": false,
-          "description": "Checks that declarations of local variables declared with **var** are at the top of a function scope.   \n\nBy default, variable declarations are always moved (\"hoisted\") invisibly to the top of their containing scope when the code is executed. Therefore, declaring them at the top of the scope helps represent this behavior in the code."
-        },
-        {
-          "shortName": "ChainedEqualityJS",
-          "displayName": "Chained equality",
-          "enabled": false,
-          "description": "Reports a chained equality comparison (i.e. `a==b==c`). Such comparisons are confusing."
-        },
-        {
-          "shortName": "JSArrowFunctionBracesCanBeRemoved",
-          "displayName": "Redundant braces around arrow function body",
-          "enabled": false,
-          "description": "Reports an arrow function whose body only consists of braces and exactly one statement. Suggests converting to concise syntax without braces.\n\n\n        let incrementer = (x) => {return x + 1};\n\nAfter the quick-fix is applied, the code fragment looks as follows:\n\n\n        let incrementer = (x) => x + 1;\n"
-        },
-        {
-          "shortName": "JSUndefinedPropertyAssignment",
-          "displayName": "Undefined property assignment",
-          "enabled": false,
-          "description": "Reports an assignment to a property that is not defined in the type of a variable.\n\nExample:\n\n\n    /**\n     * @type {{ property1: string, property2: number }}\n     */\n    let myVariable = create();\n\n    myVariable.newProperty = 3; // bad\n"
-        },
-        {
-          "shortName": "JSRemoveUnnecessaryParentheses",
-          "displayName": "Unnecessary parentheses",
-          "enabled": false,
-          "description": "Reports redundant parentheses.\n\nIn expressions:\n\n    var x = ((1) + 2) + 3\n\nIn arrow function argument lists:\n\n    var incrementer = (x) => x + 1\n\nIn TypeScript and Flow type declarations:\n\n    type Card = (Suit & Rank) | (Suit & Number)\n"
-        },
-        {
-          "shortName": "ChainedFunctionCallJS",
-          "displayName": "Chained function call",
-          "enabled": false,
-          "description": "Reports a function call whose target is another function call, for example, `foo().bar()`"
-        },
-        {
-          "shortName": "NestedFunctionCallJS",
-          "displayName": "Nested function call",
-          "enabled": false,
-          "description": "Reports a function call that is used as an argument in another function call, for example, `foo(bar())`"
-        },
-        {
-          "shortName": "ConstantOnLHSOfComparisonJS",
-          "displayName": "Constant on left side of comparison",
-          "enabled": false,
-          "description": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
-        },
-        {
-          "shortName": "ConstantOnRHSOfComparisonJS",
-          "displayName": "Constant on right side of comparison",
-          "enabled": false,
-          "description": "Reports a comparison operation with a constant in the right-hand side. According to coding conventions, constants should only be in the left-hand side of comparisons."
-        },
-        {
-          "shortName": "UnterminatedStatementJS",
-          "displayName": "Unterminated statement",
-          "enabled": false,
-          "description": "Reports a statement without a semicolon or a newline at the end.\n\nSelect the 'Terminate statements with semicolons' option in *Editor \\| Code Style \\| JavaScript or TypeScript - Punctuation* to report any statement that doesn't end with a semicolon, even if a newline is used.\nAccording to some coding styles, semicolons are preferred to line-breaks for consistency with the other languages."
-        },
-        {
-          "shortName": "CssMissingSemicolon",
-          "displayName": "Missing semicolon",
-          "enabled": false,
-          "description": "Reports a missing semicolon at the end of a declaration."
-        },
-        {
-          "shortName": "CssRedundantUnit",
-          "displayName": "Redundant measure unit",
-          "enabled": false,
-          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
         }
       ]
     },
@@ -1382,6 +1299,112 @@
       ]
     },
     {
+      "name": "Code style issues",
+      "inspections": [
+        {
+          "shortName": "NonBlockStatementBodyJS",
+          "displayName": "Statement body without braces",
+          "enabled": false,
+          "description": "Reports a `if`, `while`, `for`, or `with` statements whose body is not a block statement. Using code block in statement bodies is usually safer for downstream maintenance."
+        },
+        {
+          "shortName": "JSDeclarationsAtScopeStart",
+          "displayName": "'var' declared not at the beginning of a function",
+          "enabled": false,
+          "description": "Checks that declarations of local variables declared with **var** are at the top of a function scope.   \n\nBy default, variable declarations are always moved (\"hoisted\") invisibly to the top of their containing scope when the code is executed. Therefore, declaring them at the top of the scope helps represent this behavior in the code."
+        },
+        {
+          "shortName": "ChainedEqualityJS",
+          "displayName": "Chained equality",
+          "enabled": false,
+          "description": "Reports a chained equality comparison (i.e. `a==b==c`). Such comparisons are confusing."
+        },
+        {
+          "shortName": "JSArrowFunctionBracesCanBeRemoved",
+          "displayName": "Redundant braces around arrow function body",
+          "enabled": false,
+          "description": "Reports an arrow function whose body only consists of braces and exactly one statement. Suggests converting to concise syntax without braces.\n\n\n        let incrementer = (x) => {return x + 1};\n\nAfter the quick-fix is applied, the code fragment looks as follows:\n\n\n        let incrementer = (x) => x + 1;\n"
+        },
+        {
+          "shortName": "JSUndefinedPropertyAssignment",
+          "displayName": "Undefined property assignment",
+          "enabled": false,
+          "description": "Reports an assignment to a property that is not defined in the type of a variable.\n\nExample:\n\n\n    /**\n     * @type {{ property1: string, property2: number }}\n     */\n    let myVariable = create();\n\n    myVariable.newProperty = 3; // bad\n"
+        },
+        {
+          "shortName": "JSRemoveUnnecessaryParentheses",
+          "displayName": "Unnecessary parentheses",
+          "enabled": false,
+          "description": "Reports redundant parentheses.\n\nIn expressions:\n\n    var x = ((1) + 2) + 3\n\nIn arrow function argument lists:\n\n    var incrementer = (x) => x + 1\n\nIn TypeScript and Flow type declarations:\n\n    type Card = (Suit & Rank) | (Suit & Number)\n"
+        },
+        {
+          "shortName": "ChainedFunctionCallJS",
+          "displayName": "Chained function call",
+          "enabled": false,
+          "description": "Reports a function call whose target is another function call, for example, `foo().bar()`"
+        },
+        {
+          "shortName": "NestedFunctionCallJS",
+          "displayName": "Nested function call",
+          "enabled": false,
+          "description": "Reports a function call that is used as an argument in another function call, for example, `foo(bar())`"
+        },
+        {
+          "shortName": "ConstantOnLHSOfComparisonJS",
+          "displayName": "Constant on left side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant value in the left-hand side. According to coding conventions, constants should be in the right-hand side of comparisons."
+        },
+        {
+          "shortName": "ConstantOnRHSOfComparisonJS",
+          "displayName": "Constant on right side of comparison",
+          "enabled": false,
+          "description": "Reports a comparison operation with a constant in the right-hand side. According to coding conventions, constants should only be in the left-hand side of comparisons."
+        },
+        {
+          "shortName": "UnterminatedStatementJS",
+          "displayName": "Unterminated statement",
+          "enabled": false,
+          "description": "Reports a statement without a semicolon or a newline at the end.\n\nSelect the 'Terminate statements with semicolons' option in *Editor \\| Code Style \\| JavaScript or TypeScript - Punctuation* to report any statement that doesn't end with a semicolon, even if a newline is used.\nAccording to some coding styles, semicolons are preferred to line-breaks for consistency with the other languages."
+        },
+        {
+          "shortName": "CssMissingSemicolon",
+          "displayName": "Missing semicolon",
+          "enabled": false,
+          "description": "Reports a missing semicolon at the end of a declaration."
+        },
+        {
+          "shortName": "CssRedundantUnit",
+          "displayName": "Redundant measure unit",
+          "enabled": false,
+          "description": "Reports a measure unit of a zero value where units are not required by the specification.\n\n**Example:**\n\n    width: 0px\n"
+        }
+      ]
+    },
+    {
+      "name": "MySQL",
+      "inspections": [
+        {
+          "shortName": "MysqlLoadDataPathInspection",
+          "displayName": "LOAD statement path",
+          "enabled": false,
+          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
+        },
+        {
+          "shortName": "MysqlSpaceAfterFunctionNameInspection",
+          "displayName": "Whitespace between the function name and the open parenthesis",
+          "enabled": false,
+          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
+        },
+        {
+          "shortName": "MysqlParsingInspection",
+          "displayName": "Unsupported syntax in pre-8.0 versions",
+          "enabled": false,
+          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
+        }
+      ]
+    },
+    {
       "name": "Properties files",
       "inspections": [
         {
@@ -1419,29 +1442,6 @@
           "displayName": "Property key/value delimiter doesn't match code style settings",
           "enabled": false,
           "description": "Reports properties in which key or value delimiters do not match code style settings."
-        }
-      ]
-    },
-    {
-      "name": "MySQL",
-      "inspections": [
-        {
-          "shortName": "MysqlLoadDataPathInspection",
-          "displayName": "LOAD statement path",
-          "enabled": false,
-          "description": "Reports paths that start with the tilde character in LOAD statements.\n\nExample (MySQL):\n\n    CREATE TABLE table_name (id int);\n    LOAD DATA LOCAL INFILE '~/Documents/some_file.txt'\n    INTO TABLE table_name FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\n    IGNORE 1 LINES;\n\nInstead of the tilde character, use a full path to the file."
-        },
-        {
-          "shortName": "MysqlSpaceAfterFunctionNameInspection",
-          "displayName": "Whitespace between the function name and the open parenthesis",
-          "enabled": false,
-          "description": "Reports any whitespace in a function call between the function name and the open parenthesis, which is not supported by default.\n\nExample (MySQL):\n\n    SELECT MAX (qty) FROM orders;\n"
-        },
-        {
-          "shortName": "MysqlParsingInspection",
-          "displayName": "Unsupported syntax in pre-8.0 versions",
-          "enabled": false,
-          "description": "Reports invalid usages of UNION in queries.\n\nThe inspection works in MySQL versions that are earlier than 8.0.\n\nExample (MySQL):\n\n\n    SELECT * FROM (SELECT 1 UNION (SELECT 1 UNION SELECT 2)) a;\n"
         }
       ]
     },
@@ -2675,16 +2675,16 @@
           "description": "Reports situations when CASE and COALESCE calls are interchangeable. This inspection has the following intention actions: **Replace\nwith 'COALESCE' call** and the opposite one **Replace with CASE expression** .\n\nExample (MySQL):\n\n    SELECT\n      -- this CASE may be replaced by COALESCE\n    \tCASE\n    \t\tWHEN C1 IS NOT NULL THEN C1\n    \t\tELSE 0\n    \t\tEND\n    FROM dual;\n\nIn the example, the CASE statement can be replaced with `SELECT COALESCE(C1, 0)` that produces the same output.\n\nIf you prefer using CASE expressions, select the **Prefer CASE expressions over COALESCE function** option on\nthe inspection page."
         },
         {
-          "shortName": "SqlIdentifierInspection",
-          "displayName": "Identifier should be quoted",
-          "enabled": false,
-          "description": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
-        },
-        {
           "shortName": "SqlRedundantAliasInspection",
           "displayName": "Redundant alias expressions",
           "enabled": false,
           "description": "Reports alias expressions that duplicate names of columns in tables and might be redundant.\n\nExample (PostgreSQL):\n\n    CREATE TABLE foo(a INT, b INT);\n\n    SELECT * FROM foo foo(a, b);\n    SELECT * FROM foo foo(a);\n    SELECT * FROM foo foo(x);\n    SELECT * FROM foo foo(x, y);\n\nThe first two aliases use the same column names as in the `foo` table. They are considered redundant because they\ncolumn names are identical."
+        },
+        {
+          "shortName": "SqlIdentifierInspection",
+          "displayName": "Identifier should be quoted",
+          "enabled": false,
+          "description": "Reports situations when you use SQL reserved keywords as identifier names in your query.\n\nExample (Microsoft SQL Server):\n\n    CREATE TABLE select (identity INT IDENTITY NOT NULL, order INT NOT NULL);\n\nWe use `select`, `identity`, and `order` as table and column names.\nBut they are also reserved keywords in Microsoft SQL Server.\nTherefore, in order to use them as object names in the query, you must quote these identifiers. To quote them, you can use the\n**Quote identifier** quick-fix.\n\nAfter the quick-fix is applied:\n\n    CREATE TABLE [select] ([identity] INT IDENTITY NOT NULL, [order] INT NOT NULL);\n"
         },
         {
           "shortName": "SqlTransactionStatementInTriggerInspection",
@@ -2832,6 +2832,17 @@
       ]
     },
     {
+      "name": "Structural search",
+      "inspections": [
+        {
+          "shortName": "SSBasedInspection",
+          "displayName": "Structural search inspection",
+          "enabled": false,
+          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
+        }
+      ]
+    },
+    {
       "name": "Function metrics",
       "inspections": [
         {
@@ -2875,17 +2886,6 @@
           "displayName": "Overly nested function",
           "enabled": false,
           "description": "Reports a function whose body contains statements that are too deeply nested within other statements. Such functions may be confusing and indicate that refactoring may be necessary.\n\n\nUse the field provided below to specify the maximum acceptable nesting depth allowed in a function."
-        }
-      ]
-    },
-    {
-      "name": "Structural search",
-      "inspections": [
-        {
-          "shortName": "SSBasedInspection",
-          "displayName": "Structural search inspection",
-          "enabled": false,
-          "description": "Allows configuring **Structural Search/Structural Replace** templates that you can apply to the file you are editing.\n\nAll matches will be highlighted and marked with the template name that you have configured.\nIf you configure the **Structural Replace** pattern as well, the corresponding replace option will be available as a quick-fix."
         }
       ]
     },
